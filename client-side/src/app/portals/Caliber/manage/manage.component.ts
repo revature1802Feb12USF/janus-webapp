@@ -35,6 +35,7 @@ import { CannotDeleteModalComponent } from './cannot-delete-modal/cannot-delete-
 import { DeleteTraineeModalComponent } from './delete-trainee-modal/delete-trainee-modal.component';
 import { CannotDeleteTraineeModalComponent } from './cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
 import { DeleteBatchModalComponent } from './delete-batch-modal/delete-batch-modal.component';
+import { HydraBatchService } from '../../../hydra-client/services/batch/hydra-batch.service';
 
 // import { exists } from 'fs';
 @Component({
@@ -96,13 +97,14 @@ export class ManageComponent implements OnInit, OnDestroy {
     private datePipe: DatePipe,
     private fb: FormBuilder,
     private traineeStatusService: TraineeStatusService,
+    private hydraBatchService: HydraBatchService
   ) {
     this.batches = [];
   }
 
   ngOnInit() {
     /* keep an updated list of batches */
-    this.batchListSub = this.batchService.listSubject
+    this.batchListSub = this.hydraBatchService.listSubject
     .subscribe((batches) => this.setBatches(batches));
 
     /* keeps an updated list of trainee Statuses */
@@ -110,11 +112,11 @@ export class ManageComponent implements OnInit, OnDestroy {
       .subscribe((statuses) => this.setTraineeStatuses(statuses));
 
     /* reacts to saved batches */
-    this.savedBatchSub = this.batchService.savedSubject
+    this.savedBatchSub = this.hydraBatchService.savedSubject
       .subscribe((saved) => this.onSavedBatch(saved));
 
     /* reacts to deleted batches */
-    this.deletedBatchSub = this.batchService.deletedSubject
+    this.deletedBatchSub = this.hydraBatchService.deletedSubject
       .subscribe((deleted) => this.onDeletedBatch(deleted));
 
     /* keep updated list of trainees */
@@ -133,7 +135,7 @@ export class ManageComponent implements OnInit, OnDestroy {
     this.deletedTraineeSub = this.traineeService.deletedSubject
       .subscribe((deleted) => this.onDeletedTrainee(deleted));
 
-    this.batchService.fetchAll();
+    this.hydraBatchService.fetchAll();
   }
 
   ngOnDestroy() {
@@ -156,9 +158,9 @@ export class ManageComponent implements OnInit, OnDestroy {
   */
   public saveBatch(batch: Batch): void {
     if (batch.batchId === 0) {
-      this.batchService.create(batch);
+      this.hydraBatchService.create(batch);
     } else {
-      this.batchService.update(batch);
+      this.hydraBatchService.update(batch);
     }
   }
 
@@ -458,7 +460,7 @@ export class ManageComponent implements OnInit, OnDestroy {
    * @param batch: Batch
    */
   onSavedBatch(batch: Batch): void {
-    this.batchService.fetchAll();
+    this.hydraBatchService.fetchAll();
   }
 
   /**
@@ -467,7 +469,7 @@ export class ManageComponent implements OnInit, OnDestroy {
    * @param batch: Batch
    */
   onDeletedBatch(batch: Batch): void {
-    this.batchService.fetchAll();
+    this.hydraBatchService.fetchAll();
   }
 
   /**
@@ -480,7 +482,7 @@ export class ManageComponent implements OnInit, OnDestroy {
     modalRef.componentInstance.batch = batch;
     modalRef.result.then(result => {
       if (result === 'Delete') {
-        this.batchService.delete(batch);
+        this.hydraBatchService.delete(batch);
         this.modalService.open(CannotDeleteModalComponent);
       }
     }, refused => { });
@@ -494,7 +496,7 @@ export class ManageComponent implements OnInit, OnDestroy {
    */
   onSavedTrainee(trainee: Trainee): void {
     this.batchModalNested.close('Saved Successfully');
-    this.batchService.fetchAll();
+    this.hydraBatchService.fetchAll();
     this.traineeService.fetchAllByBatch(this.currentBatch.batchId);
     this.batchModal.close('Saved Successfully');
   }
@@ -506,7 +508,7 @@ export class ManageComponent implements OnInit, OnDestroy {
    * @param trainee
    */
   onDeletedTrainee(trainee: Trainee): void {
-    this.batchService.fetchAll();
+    this.hydraBatchService.fetchAll();
     this.traineeService.fetchAllByBatch(this.currentBatch.batchId);
     this.batchModal.close();
   }
@@ -519,7 +521,7 @@ export class ManageComponent implements OnInit, OnDestroy {
    */
   onUpdatedTrainee(trainee: Trainee): void {
     this.batchModalNested.close('Saved Successfully');
-    this.batchService.fetchAll();
+    this.hydraBatchService.fetchAll();
     this.traineeService.fetchAllByBatch(this.currentBatch.batchId);
   }
 

@@ -10,9 +10,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private hydraCategoryService: HydraCategoryService) { }
 
-  ngOnInit() {
-    alert(this.hydraCategoryService.test);
-  }
+  ngOnInit() { }
 
   ngOnDestroy() {}
 }
