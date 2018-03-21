@@ -27,6 +27,7 @@ import { TraineeTechSkillsComponent } from './portals/Caliber/reports/trainee-te
 import { HttpClientModule } from '@angular/common/http';
 import { RoleGuard } from './role-guard';
 import { CookieService } from 'ngx-cookie-service';
+import { HydraClientModule } from './portals/hydra-client/hydra-client.module';
 
 // loading routes from child modules this way will lazy load them
 const routes: Routes = [
@@ -55,7 +56,8 @@ const routes: Routes = [
     NavModule,
     RouterModule.forRoot(routes, { useHash: true }),
     ChartsModule,
-    HttpClientModule
+    HttpClientModule,
+    HydraClientModule
   ],
   declarations: [
     AppComponent,
