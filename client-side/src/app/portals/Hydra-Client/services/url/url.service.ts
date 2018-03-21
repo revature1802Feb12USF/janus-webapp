@@ -20,6 +20,7 @@ export class UrlService {
    */
   trainees = {
     fetchAllByBatch: (batchId: number) => `${environment.context}trainees/batch/${batchId}`,
+    fetchDroppedByBatch: (batchId: number) => `${environment.context}trainees/batch/dropped/${batchId}`,
     save: () => `${environment.context}trainees`,
     update: () => `${environment.context}trainees`,
     delete: (traineeId: number) => `${environment.context}trainees/${traineeId}`,
