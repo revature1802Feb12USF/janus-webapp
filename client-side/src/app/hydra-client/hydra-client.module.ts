@@ -1,6 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { HydraCategoryService } from './category/hydra-category.service';
+import { HydraSkillService } from './services/skill/hydra-skill.service';
+import { UrlService } from './services/urls/url.service';
+import { UrlConfig } from './services/urls/UrlConfig';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HydraInterceptor } from './interceptors/hydra.interceptor';
+
+
+export const URL_CONFIG = new InjectionToken<UrlService>('url.config');
 
 @NgModule({
   imports: [
@@ -8,6 +15,24 @@ import { HydraCategoryService } from './category/hydra-category.service';
   ],
   declarations: [
   ],
-  providers: [HydraCategoryService]
+  providers: [
+    HydraSkillService,
+    { provide: HTTP_INTERCEPTORS, useClass: HydraInterceptor, multi: true },  // interceptor for all HTTP requests
+  ]
 })
-export class HydraClientModule { }
+export class HydraClientModule {
+
+  static forRoot(context: string): ModuleWithProviders {
+    console.log('for root');
+    return {
+      ngModule: HydraClientModule,
+      providers: [
+        {
+          provide: UrlService,
+          useValue: new UrlService(context)
+        }
+      ]
+    };
+  }
+
+}

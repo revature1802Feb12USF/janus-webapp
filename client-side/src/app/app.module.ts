@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RoleGuard } from './role-guard';
 import { CookieService } from 'ngx-cookie-service';
 import { HydraClientModule } from './hydra-client/hydra-client.module';
+import { environment } from '../environments/environment';
 
 // loading routes from child modules this way will lazy load them
 const routes: Routes = [
@@ -54,7 +55,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     ChartsModule,
     HttpClientModule,
-    HydraClientModule
+    HydraClientModule.forRoot(environment.hydraContext)
   ],
   declarations: [
     AppComponent,
