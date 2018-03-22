@@ -4,7 +4,7 @@ import { TrainerService } from './services/trainer/trainer.service';
 
 
 import { HydraSkillService } from './services/skill/hydra-skill.service';
-import { UrlService } from './services/urls/url.service';
+import { UrlService } from './services/url/url.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HydraInterceptor } from './interceptors/hydra.interceptor';
 
@@ -21,7 +21,7 @@ import { HydraInterceptor } from './interceptors/hydra.interceptor';
   declarations: [
   ],
   providers: [
-    HydraSkillService, TrainerService,
+    HydraSkillService, TrainerService, UrlService,
     { provide: HTTP_INTERCEPTORS, useClass: HydraInterceptor, multi: true },  // interceptor for all HTTP requests
     UrlService
   ]

@@ -9,19 +9,20 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Trainer } from '../../entities/Trainer';
+import { UrlService } from '../url/url.service';
 
 
 @Injectable()
 export class TrainerService {
 
-  public listObservable = new Observable<Trainer[]>(null);
-  public titlesObservable = new Observable<String[]>();
-  public tiersObservable = new Observable<String[]>();
-  public currentTrainer = new Observable<Trainer>(null);
+  // public listObservable = new Observable<Trainer[]>(null);
+  // public titlesObservable = new Observable<String[]>();
+  // public tiersObservable = new Observable<String[]>();
+  // public currentTrainer = new Observable<Trainer>(null);
   // public currentTrainer = new Trainer;
 
 
-  constructor(private httpClient: HttpClient, private urls: urlService) { }
+  constructor(private httpClient: HttpClient, private urls: UrlService) { }
 
 
 // public populateOnStart(): void {
@@ -35,9 +36,9 @@ export class TrainerService {
   * sets current trainer | We didn't need this
   */
 
-// public changeCurrentTrainer(trainer: Trainer) {
-//   return this.httpClient.get<Trainer>(this.urls.trainers.fetch)
-// }
+public changeCurrentTrainer(trainer: Trainer) {
+  return this.httpClient.get<Trainer>(this.urls.trainers.fetchByEmail(trainer.email));
+}
 
 
 
@@ -55,12 +56,26 @@ export class TrainerService {
     */
 
 public fetchAll(): Observable<Trainer[]> {
-  this.httpClient.get<Trainer[]>(this.urls.trainers.fetchAll()).subscribe(succ => this.listObservable);
-  return this.listObservable;
+  const url = this.urls.trainers.fetchAll();
+  return this.httpClient.get<Trainer[]>(url);
+  // this.httpClient.get<Trainer[]>(this.urls.trainers.fetchAll()).subscribe(succ => this.listObservable);
+  // return this.listObservable;
 }
 
 public fetchByEmail(email: string) {
- return this.httpClient.get<Trainer>(this.urls.trainers.fetchByEmail(email)).subscribe();
+  const url = this.urls.trainers.fetchByEmail(email);
+ return this.httpClient.get<Trainer>(url);
+}
+
+public fetchTitles(): Observable<String[]> {
+  const url = this.urls.trainers.getTitles();
+  return this.httpClient.get<String[]>(url);
+
+}
+
+public fetchRoles(): Observable<String[]> {
+  const url = this.urls.trainers.getRoles();
+  return this.httpClient.get<String[]>(url);
 }
 
 /**

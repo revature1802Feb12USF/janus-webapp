@@ -1,11 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { TrainerService } from '../../services/trainer.service';
+
 import { Trainer } from '../../entities/Trainer';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TrainerService } from '../../../../hydra-client/services/trainer/trainer.service';
 
 @Component({
   selector: 'app-trainers',
@@ -28,12 +29,18 @@ export class TrainersComponent implements OnInit, OnDestroy {
 
   rForm: FormGroup;
   addForm: FormGroup;
+  // constructor(private trainerService: TrainerService,
+  //   private modalService: NgbModal, private fb: FormBuilder, private route: Router) { }
+
   constructor(private trainerService: TrainerService,
     private modalService: NgbModal, private fb: FormBuilder, private route: Router) { }
 
   ngOnInit() {
-    this.trainerService.populateOnStart();
-    this.trainerSubscription = this.trainerService.listSubject.subscribe((resp) => {
+    this.trainerService.fetchAll();
+    // this.trainerService.populateOnStart();
+    // this.trainerSubscription =
+    this.trainerService.fetchAll().subscribe((resp) => {
+      console.log(resp);
       this.trainers = resp;
       if (resp) {
         this.filteredTrainers = resp.filter(s => {
@@ -45,8 +52,8 @@ export class TrainersComponent implements OnInit, OnDestroy {
         });
       }
     });
-    this.trainerService.titlesSubject.subscribe(res => this.titles = res);
-    this.trainerService.tiersSubject.subscribe(res => {
+    this.trainerService.fetchTitles().subscribe(res => this.titles = res);
+    this.trainerService.fetchRoles().subscribe(res => {
       this.tiers = (res.filter(tier => tier !== 'ROLE_INACTIVE')); // filter out ROLE_INACTIVE
     });
     this.initFormControl();
