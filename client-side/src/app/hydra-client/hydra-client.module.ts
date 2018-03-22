@@ -21,7 +21,7 @@ import { HydraInterceptor } from './interceptors/hydra.interceptor';
   declarations: [
   ],
   providers: [
-    HydraSkillService,
+    HydraSkillService, TrainerService,
     { provide: HTTP_INTERCEPTORS, useClass: HydraInterceptor, multi: true },  // interceptor for all HTTP requests
     UrlService
   ]
