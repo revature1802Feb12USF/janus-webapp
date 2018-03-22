@@ -40,7 +40,7 @@ export class HydraBatchService implements CRUD<Batch> {
 
     public getList() {
       // this.listSubject.next(data);
-      return this.listSubject.asObservable();
+      // return this.listSubject.asObservable();
     }
 
     /*
