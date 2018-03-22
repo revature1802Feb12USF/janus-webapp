@@ -31,8 +31,8 @@ export class UrlService {
    * Endpoints for trainees
    */
   trainees = {
-    fetchAllByBatch: (batchId: number) => `${this.context}trainees/batch/${batchId}`,
-    fetchDroppedByBatch: (batchId: number) => `${this.context}trainees/batch/dropped/${batchId}`,
+    findAllByBatch: (batchId: number) => `${this.context}trainees/batch/${batchId}`,
+    findDroppedByBatch: (batchId: number) => `${this.context}trainees/batch/dropped/${batchId}`,
     save: () => `${this.context}trainees`,
     update: () => `${this.context}trainees`,
     delete: (traineeId: number) => `${this.context}trainees/${traineeId}`,
