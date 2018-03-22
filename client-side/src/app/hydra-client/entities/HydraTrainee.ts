@@ -1,6 +1,7 @@
-import { Batch } from './Batch';
+import { HydraBatch } from './HydraBatch';
 
-export class Trainee {
+
+export class HydraTrainee {
     traineeId: number;
     resourceId: number;
     name: string;
@@ -15,5 +16,5 @@ export class Trainee {
     major: string;
     techScreenerName: string;
     projectCompletion: string;
-    batch: Batch;
+    batch: HydraBatch;
 }

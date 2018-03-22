@@ -1,22 +1,24 @@
-import { Trainer } from './Trainer';
-import { Address } from './Address';
-import { Trainee } from './Trainee';
+import { HydraTrainer } from './HydraTrainer';
+import { HydraAddress } from './HydraAddress';
+import { HydraTrainee } from './HydraTrainee';
 
-export class Batch {
+
+
+export class HydraBatch {
     batchId: number;
     resourceId: number;
     trainingName: string;
-    trainer: Trainer;
-    coTrainer: Trainer;
+    trainer: HydraTrainer;
+    coTrainer: HydraTrainer;
     skillType: string;
     trainingType: string;
     startDate: Date;
     endDate: Date;
     location: string;
-    address: Address;
+    address: HydraAddress;
     goodGradeThreshold: number;
     borderlineGradeThreshold: number;
-    trainees: Trainee[];
+    trainees: HydraTrainee[];
     weeks: number;
     gradedWeeks: number;
 }

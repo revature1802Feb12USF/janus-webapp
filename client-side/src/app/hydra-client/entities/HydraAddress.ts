@@ -1,4 +1,4 @@
-export class Address {
+export class HydraAddress {
     addressId: number;
     street: string;
     city: string;

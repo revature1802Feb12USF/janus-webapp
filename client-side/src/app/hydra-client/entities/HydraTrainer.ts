@@ -1,4 +1,4 @@
-export class Trainer {
+export class HydraTrainer {
     public static ROLE_INACTIVE = 'ROLE_INACTIVE';
 
     trainerId: number;
