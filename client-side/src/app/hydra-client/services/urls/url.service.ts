@@ -1,8 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
-import { URL_CONFIG } from '../../hydra-client.module';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class UrlService {
+  private context: string;
 
   /**
    * All urls associated with skills will come from this object
@@ -15,7 +16,8 @@ export class UrlService {
     update: () => `${this.context}skills`,
   };
 
-  constructor(private context: string) {
+  constructor() {
+    this.context = environment.hydraContext;
   }
 
 }

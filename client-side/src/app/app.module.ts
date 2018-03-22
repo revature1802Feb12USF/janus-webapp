@@ -55,7 +55,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     ChartsModule,
     HttpClientModule,
-    HydraClientModule.forRoot(environment.hydraContext)
+    HydraClientModule
   ],
   declarations: [
     AppComponent,
