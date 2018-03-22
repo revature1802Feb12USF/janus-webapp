@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 
 // entities
-import { Trainer } from '../../../../entities/Trainer';
+
 
 
 
 // rxjs
 import { Observable } from 'rxjs/Observable';
-import { UrlService } from '../url/url.service';
 import { HttpClient } from '@angular/common/http';
+import { Trainer } from '../../entities/Trainer';
 
 
 @Injectable()
@@ -21,7 +21,7 @@ export class TrainerService {
   // public currentTrainer = new Trainer;
 
 
-  constructor(private httpClient: HttpClient, private urls: UrlService) { }
+  constructor(private httpClient: HttpClient, private urls: urlService) { }
 
 
 // public populateOnStart(): void {
