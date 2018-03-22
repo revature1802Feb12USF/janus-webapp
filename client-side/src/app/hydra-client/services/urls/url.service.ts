@@ -16,6 +16,14 @@ export class UrlService {
     update: () => `${this.context}skills`,
   };
 
+ batch = {
+    fetchAllByTrainer: () => `${this.context}batches/trainers`,
+    fetchAll: () => `${this.context}batches`,
+    save: () => `${this.context}batches`,
+    update: () => `${this.context}batches`,
+    delete: (batchId) => `${this.context}batches/${batchId}`
+};
+
   constructor() {
     this.context = environment.hydraContext;
   }

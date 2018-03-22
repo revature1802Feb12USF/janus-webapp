@@ -1,6 +1,5 @@
 import { NgModule, ModuleWithProviders, InjectionToken } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { HydraCategoryService } from './category/hydra-category.service';
 import { HydraBatchService } from './services/batch/hydra-batch.service';
 import { HydraSkillService } from './services/skill/hydra-skill.service';
 import { UrlService } from './services/urls/url.service';
@@ -15,7 +14,6 @@ import { HydraInterceptor } from './interceptors/hydra.interceptor';
   declarations: [
   ],
   providers: [
-    HydraCategoryService,
     HydraBatchService,
     HydraSkillService,
     { provide: HTTP_INTERCEPTORS, useClass: HydraInterceptor, multi: true },  // interceptor for all HTTP requests
