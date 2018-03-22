@@ -4,6 +4,12 @@ import { HttpClient } from '@angular/common/http';
 import { HydraSkill } from '../../entities/HydraSkill';
 import { UrlService } from '../urls/url.service';
 
+/**
+ * This service is used for consuming Hydra resources dealing with skills
+ *
+ * @export
+ * @class HydraSkillService
+ */
 @Injectable()
 export class HydraSkillService {
 
@@ -12,20 +18,21 @@ export class HydraSkillService {
   /**
    * Retreives all skills
    *
-   * @returns {Observable<Array<HydraSkill>>}
+   * @returns {Observable<HydraSkill[]>}
    */
-  findAll(): Observable<Array<HydraSkill>> {
+  findAll(): Observable<HydraSkill[]> {
     const url = this.urlService.skills.findAll();
-    return this.httpClient.get<Array<HydraSkill>>(url);
+    return this.httpClient.get<HydraSkill[]>(url);
   }
 
   /**
    * Retreives all active skills
    *
-   * @returns {Observable<Array<HydraSkill>>}
+   * @returns {Observable<HydraSkill[]>}
    */
-  findAllActive(): Observable<Array<HydraSkill>> {
-    return this.httpClient.get<Array<HydraSkill>>('url');
+  findAllActive(): Observable<HydraSkill[]> {
+    const url = this.urlService.skills.findAllActive();
+    return this.httpClient.get<HydraSkill[]>(url);
   }
 
   /**
@@ -35,7 +42,8 @@ export class HydraSkillService {
    * @returns {Observable<HydraSkill>}
    */
   findById(id: number): Observable<HydraSkill> {
-    return this.httpClient.get<HydraSkill>('url');
+    const url = this.urlService.skills.findById(id);
+    return this.httpClient.get<HydraSkill>(url);
   }
 
   /**
@@ -45,7 +53,8 @@ export class HydraSkillService {
   * @returns {Observable<HydraSkill>}
   */
   save(skill: HydraSkill): Observable<HydraSkill> {
-    return this.httpClient.post<HydraSkill>('url', skill);
+    const url = this.urlService.skills.save();
+    return this.httpClient.post<HydraSkill>(url, skill);
   }
 
   /**
@@ -55,6 +64,7 @@ export class HydraSkillService {
   * @returns {Observable<HydraSkill>}
   */
   update(skill: HydraSkill): Observable<HydraSkill> {
-    return this.httpClient.put<HydraSkill>('url', skill);
+    const url = this.urlService.skills.update();
+    return this.httpClient.put<HydraSkill>(url, skill);
   }
 }

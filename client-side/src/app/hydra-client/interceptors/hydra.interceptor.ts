@@ -26,7 +26,6 @@ export class HydraInterceptor implements HttpInterceptor {
                 'Accept': 'application/json',
             },
         });
-        console.log(modifiedRequest.method);
 
         return next.handle(modifiedRequest);
     }

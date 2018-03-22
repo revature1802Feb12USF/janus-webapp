@@ -16,7 +16,6 @@ export class UrlService {
   };
 
   constructor(private context: string) {
-    console.log('constructing url service');
   }
 
 }

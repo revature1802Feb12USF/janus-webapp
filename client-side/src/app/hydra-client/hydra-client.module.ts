@@ -22,8 +22,12 @@ export const URL_CONFIG = new InjectionToken<UrlService>('url.config');
 })
 export class HydraClientModule {
 
+  /**
+   * Provide the HydraClient with a context url to use
+   *
+   * @param context
+   */
   static forRoot(context: string): ModuleWithProviders {
-    console.log('for root');
     return {
       ngModule: HydraClientModule,
       providers: [
