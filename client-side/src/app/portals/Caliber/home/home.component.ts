@@ -1,6 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HydraCategoryService } from '../../../hydra-client/category/hydra-category.service';
-
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -8,9 +6,12 @@ import { HydraCategoryService } from '../../../hydra-client/category/hydra-categ
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  constructor(private hydraCategoryService: HydraCategoryService) { }
+  constructor() { }
 
-  ngOnInit() { }
+
+  ngOnInit() {
+  }
+
 
   ngOnDestroy() {}
 }
