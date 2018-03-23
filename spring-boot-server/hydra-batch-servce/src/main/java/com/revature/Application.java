@@ -22,7 +22,7 @@ public class Application {
 	   public Docket api() {
 	       return new Docket(DocumentationType.SWAGGER_2)  
 	         .select()                                  
-	         .apis(RequestHandlerSelectors.basePackage("com.revature.hydra.trainer"))              
+	         .apis(RequestHandlerSelectors.basePackage("com.revature"))              
 	         .paths(PathSelectors.any())                          
 	         .build();
 	   }

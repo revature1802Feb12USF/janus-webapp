@@ -3,6 +3,7 @@ package com.revature.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.revature.entities.Batch;
 import com.revature.repository.BatchRepo;
@@ -14,6 +15,7 @@ import com.revature.services.interfaces.BatchService;
  * @author Bobby McGetrick, Ian Perfitt, Jason Morgan, Matt Mark
  *
  */
+@Service
 public class BatchServiceImpl implements BatchService {
 
 	/************************************************************************************

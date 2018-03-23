@@ -12,7 +12,6 @@ import com.revature.entities.Batch;
  * @author Bobby McGetrick, Ian Perfitt, Jason Morgan, Matt Mark
  *
  */
-@Service
 public interface BatchService {
 
 	/************************************************************************************
