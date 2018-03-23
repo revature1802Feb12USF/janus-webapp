@@ -3,8 +3,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Input } from '@angular/core/';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
 import { Trainer } from '../../../entities/Trainer';
-import { TrainerService } from '../../../services/trainer.service';
+
 import { Subject } from 'rxjs/Subject';
+import { TrainerService } from '../../../../../hydra-client/services/trainer/trainer.service';
 
 
 @Component({
