@@ -55,64 +55,6 @@ public class BatchController {
 	}
 
 	/************************************************************************************
-	 * hashCode() and equals()
-	 ************************************************************************************/
-	/**
-	 * Generate BatchController hash code
-	 */
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((batchService == null) ? 0 : batchService.hashCode());
-		return result;
-	}
-
-	/**
-	 * Check if BatchController is equivalent to another Object
-	 *
-	 * @param Object
-	 *            obj
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		BatchController other = (BatchController) obj;
-		if (batchService == null) {
-			if (other.batchService != null)
-				return false;
-		} else if (!batchService.equals(other.batchService))
-			return false;
-		return true;
-	}
-
-	/************************************************************************************
-	 * Getters and Setters
-	 ************************************************************************************/
-	/**
-	 * Retrieve BatchContoller.batchService
-	 * 
-	 * @return BatchService
-	 */
-	public BatchService getBatchService() {
-		return batchService;
-	}
-
-	/**
-	 * Set BatchContoller.batchService to a given BatchService
-	 * 
-	 * @param BatchService batchService
-	 */
-	public void setBatchService(BatchService batchService) {
-		this.batchService = batchService;
-	}
-
-	/************************************************************************************
 	 * Create
 	 ************************************************************************************/
 	/**
