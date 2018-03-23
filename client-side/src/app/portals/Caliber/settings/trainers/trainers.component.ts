@@ -15,7 +15,7 @@ import { TrainerService } from '../../../../hydra-client/services/trainer/traine
 })
 
 export class TrainersComponent implements OnInit, OnDestroy {
-  private trainerSubscription: Subscription;
+  // private trainerSubscription: Subscription;
   trainers: Trainer[] = [];
   filteredTrainers: Trainer[] = [];
   titles: Array<any>;
@@ -40,7 +40,6 @@ export class TrainersComponent implements OnInit, OnDestroy {
     // this.trainerService.populateOnStart();
     // this.trainerSubscription =
     this.trainerService.fetchAll().subscribe((resp) => {
-      console.log(resp);
       this.trainers = resp;
       if (resp) {
         this.filteredTrainers = resp.filter(s => {
@@ -165,6 +164,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
       this.currEditTrainer = temp;
       this.trainerService.fetchAll();
     });
+    this.ngOnInit();
   }
   /**
    * get the cause for modal dismissal
@@ -189,7 +189,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
    * @memberof TrainersComponent
    */
   ngOnDestroy() {
-    this.trainerSubscription.unsubscribe();
+    // this.trainerSubscription.unsubscribe();
   }
 
   /**

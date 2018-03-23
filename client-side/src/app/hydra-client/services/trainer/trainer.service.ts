@@ -19,7 +19,7 @@ export class TrainerService {
   // public titlesObservable = new Observable<String[]>();
   // public tiersObservable = new Observable<String[]>();
   // public currentTrainer = new Observable<Trainer>(null);
-  // public currentTrainer = new Trainer;
+  public currentTrainer = new Trainer;
 
 
   constructor(private httpClient: HttpClient, private urls: UrlService) { }
@@ -37,6 +37,7 @@ export class TrainerService {
   */
 
 public changeCurrentTrainer(trainer: Trainer) {
+  this.currentTrainer = trainer;
   return this.httpClient.get<Trainer>(this.urls.trainers.fetchByEmail(trainer.email));
 }
 
