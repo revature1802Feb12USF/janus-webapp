@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.entities.Batch;
 import com.revature.repository.BatchRepo;
@@ -143,7 +144,7 @@ public class BatchServiceImpl implements BatchService {
 	 */
 	@Override
 	public List<Batch> findByTrainerId(int id) {
-		return batchRepo.findByTrainer(id);
+		return batchRepo.findByTrainerTrainerId(id);
 	}
 	
 	/**
@@ -154,6 +155,7 @@ public class BatchServiceImpl implements BatchService {
 	 */
 	@Override
 	public List<Batch> findAll() {
+		System.out.println("########### " + batchRepo.findAll() + "##############");
 		return batchRepo.findAll();
 	}
 	

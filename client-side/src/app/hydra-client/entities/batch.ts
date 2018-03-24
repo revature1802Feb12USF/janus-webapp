@@ -1,4 +1,5 @@
-import { Trainer } from "../../entities/Trainer";
+import { Trainer } from '../../entities/Trainer';
+import { Trainee } from '../../portals/Caliber/entities/Trainee';
 
 export class Batch {
     resourceId: number;
@@ -12,8 +13,8 @@ export class Batch {
     location: string;
     curriculum: string;
     skills: number;
-    trainees: number;
+    trainees: Trainee[];
     notes: string;
     batchId: number;
 }
- 
+

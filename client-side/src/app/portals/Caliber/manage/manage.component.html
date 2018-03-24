@@ -76,7 +76,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let batch of batches | DisplayBatchByYear:currentYear">
+          <tr *ngFor="let batch of batches">
+              <!-- | DisplayBatchByYear:currentYear -->
             <td>{{batch.trainingName}}</td>
             <td>{{batch.trainingType}}</td>
             <td>{{batch.skillType}}</td>

@@ -3,6 +3,7 @@ package com.revature.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.entities.Batch;
 
@@ -17,8 +18,9 @@ public interface BatchRepo extends JpaRepository<Batch, Integer>{
 
 	Batch findByBatchId(int id);
 
-	List<Batch> findByTrainer(int id);
+	List<Batch> findByTrainerTrainerId(int id);
 
+	@Transactional
 	void deleteByBatchId(int id);
 
 }

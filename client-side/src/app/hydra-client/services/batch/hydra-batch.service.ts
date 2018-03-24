@@ -13,7 +13,7 @@ import { environment } from '../../../../environments/environment';
 
 // entities
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
-import { urls } from '../../../portals/Caliber/services/urls';
+import { UrlService } from '../urls/url.service';
 import { stringifyDate } from '../../../portals/Caliber/util/utils';
 import { CRUD } from '../../../portals/Caliber/interfaces/api.interface';
 import { Batch } from '../../entities/batch';
@@ -26,16 +26,9 @@ import { Batch } from '../../entities/batch';
 @Injectable()
 export class HydraBatchService implements CRUD<Batch> {
 
-    public listSubject: BehaviorSubject<Batch[]>;
-    public savedSubject: Subject<Batch>;
-    public updatedSubject: Subject<Batch>;
-    public deletedSubject: Subject<Batch>;
 
-    constructor(public http: HttpClient) {
-      this.listSubject = new BehaviorSubject([]);
-      this.savedSubject = new Subject();
-      this.updatedSubject = new Subject();
-      this.deletedSubject = new Subject();
+    constructor(public http: HttpClient, private urls: UrlService) {
+
     }
 
     public getList() {
@@ -58,7 +51,7 @@ export class HydraBatchService implements CRUD<Batch> {
      * @returns Observable
      */
     public fetchAll() {
-      return this.http.get<any[]>(urls.batch.fetchAll());
+      return this.http.get<any[]>(this.urls.batch.fetchAll());
     }
 
     /**
@@ -70,7 +63,7 @@ export class HydraBatchService implements CRUD<Batch> {
      * @returns Observable
      */
     public fetchAllByTrainer() {
-      return this.http.get<any[]>(urls.batch.fetchAllByTrainer());
+      return this.http.get<any[]>(this.urls.batch.fetchAllByTrainer());
     }
 
     /**
@@ -85,7 +78,7 @@ export class HydraBatchService implements CRUD<Batch> {
     * @param batch: Batch
     */
     public create(batch: Batch) {
-      return this.http.post<any>(urls.batch.save(), JSON.stringify(this.prepareForApi(batch)));
+      return this.http.post<any>(this.urls.batch.save(), JSON.stringify(this.prepareForApi(batch)));
     }
 
     /**
@@ -99,7 +92,7 @@ export class HydraBatchService implements CRUD<Batch> {
      * @returns Observable
      */
     public update(batch: Batch) {
-      return this.http.put<any>(urls.batch.update(), JSON.stringify(this.prepareForApi(batch)));
+      return this.http.put<any>(this.urls.batch.update(), JSON.stringify(this.prepareForApi(batch)));
     }
 
     /**
@@ -113,7 +106,7 @@ export class HydraBatchService implements CRUD<Batch> {
      * @returns Observable
      */
     public delete(batch: Batch) {
-      return this.http.delete<any>(urls.batch.delete(batch.batchId));
+      return this.http.delete<any>(this.urls.batch.delete(batch.batchId));
     }
 
     /**

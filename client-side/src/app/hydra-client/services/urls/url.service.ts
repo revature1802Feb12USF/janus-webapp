@@ -8,13 +8,13 @@ export class UrlService {
   /**
    * All urls associated with skills will come from this object
    */
-  skills = {
-    findAll: () => `${this.context}skills`,
-    findAllActive: () => `${this.context}skills/active`,
-    findById: (id: number) => `${this.context}skills/${id}`,
-    save: () => `${this.context}skills`,
-    update: () => `${this.context}skills`,
-  };
+  // skills = {
+  //   findAll: () => `${this.context}skills`,
+  //   findAllActive: () => `${this.context}skills/active`,
+  //   findById: (id: number) => `${this.context}skills/${id}`,
+  //   save: () => `${this.context}skills`,
+  //   update: () => `${this.context}skills`,
+  // };
 
  batch = {
     fetchAllByTrainer: () => `${this.context}batches/trainers`,

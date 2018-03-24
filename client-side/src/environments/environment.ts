@@ -7,11 +7,11 @@ const bam = 'http://18.219.59.193:9001/api/v2';
 export const environment = {
   production: false,
 
-  hydraContext: 'https://virtserver.swaggerhub.com/blake2/Hydra/1.0.0/',
+  hydraContext: 'http://localhost:8080/',
 
   context: context, // change for what the production environment would actually be
   bam: bam,
-  url: 'http://localhost:8085/',
+  url: 'http://localhost:8080/',
 
   assessment: {
     fetchByBatchIdByWeek: (batchId: number, week: number) => `${context}trainer/assessment/${batchId}/${week}`,

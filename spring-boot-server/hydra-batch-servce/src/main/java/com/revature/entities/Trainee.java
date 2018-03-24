@@ -30,7 +30,6 @@ public class Trainee {
 	
 	public Trainee() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Trainee(int userId, int resourcesId, int trainingStatus, String phoneNumber, String skypeId,

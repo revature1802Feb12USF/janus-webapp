@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap/modal/modal-ref';
-import { Batch } from '../../entities/Batch';
+import { Batch } from '../../../../hydra-client/entities/batch';
 
 @Component({
   selector: 'app-delete-batch-modal',

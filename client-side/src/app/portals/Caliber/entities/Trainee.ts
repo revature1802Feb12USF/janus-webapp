@@ -1,4 +1,4 @@
-import { Batch } from './Batch';
+import { Batch } from '../../../hydra-client/entities/batch';
 
 export class Trainee {
     traineeId: number;
