@@ -1,5 +1,5 @@
-import { Batch } from './Batch';
 import { Category } from './Category';
+import { Batch } from '../../../hydra-client/entities/batch';
 
 export class Assessment {
     assessmentId: number;

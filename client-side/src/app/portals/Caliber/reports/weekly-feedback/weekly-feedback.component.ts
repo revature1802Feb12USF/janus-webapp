@@ -7,13 +7,13 @@ import { Observable } from 'rxjs/Observable';
 
 // entities
 import { Trainee } from '../../entities/Trainee';
-import { Batch } from '../../entities/Batch';
 import { Note } from '../../entities/Note';
 
 // services
 import { GranularityService } from '../services/granularity.service';
 import { ReportingService } from '../../services/reporting.service';
 import { NoteService } from '../../services/note.service';
+import { Batch } from '../../../../hydra-client/entities/batch';
 
 /**
  * Creates a table of the weekly feedback of a given trainee

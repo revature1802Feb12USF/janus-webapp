@@ -1,5 +1,5 @@
-import { Batch } from './Batch';
 import { Trainee } from './Trainee';
+import { Batch } from '../../../hydra-client/entities/batch';
 
 export class Note {
     public static TYPE_QCBATCH = 'QC_BATCH';

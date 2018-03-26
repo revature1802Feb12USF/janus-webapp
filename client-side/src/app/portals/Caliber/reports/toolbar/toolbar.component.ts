@@ -7,14 +7,14 @@
  */
 import { Component, OnInit, ViewChild, } from '@angular/core';
 
-import { BatchService } from '../../../Caliber/services/batch.service';
-import { Batch } from '../../entities/Batch';
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { TrainerService } from '../../services/trainer.service';
 import { GranularityService } from '../services/granularity.service';
 import { Trainee } from '../../entities/Trainee';
 import { PDFService } from '../../services/pdf.service';
+import { Batch } from '../../../../hydra-client/entities/batch';
+import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra-batch.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -45,7 +45,7 @@ export class ToolbarComponent implements OnInit {
   private batchSubscription: Subscription;
   private trainerSubscription: Subscription;
 
-  constructor(private batchService: BatchService,
+  constructor(private batchService: HydraBatchService,
               private granularityService: GranularityService,
               private pdfService: PDFService) {
   }
@@ -53,7 +53,7 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
     this.batchService.fetchAll();
 
-    this.batchSubscription = this.batchService.getList().subscribe(response => {
+    this.batchSubscription = this.batchService.fetchAll().subscribe(response => {
 
       if (response.length > 0) {
         this.batchList = response;
@@ -152,7 +152,7 @@ export class ToolbarComponent implements OnInit {
   createWeeksDropdown(): Array<number> {
     this.weekList = [];
 
-    for (let i = 0; i <= this.currentBatch.weeks; i++) {
+    for (let i = 0; i <= this.batchService.getWeek(this.currentBatch); i++) {
       this.weekList.push(i);
     }
 

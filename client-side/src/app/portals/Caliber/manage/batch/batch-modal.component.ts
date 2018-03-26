@@ -173,7 +173,7 @@ export class BatchModalComponent implements OnInit, OnDestroy, OnChanges {
     isNewBatch is assigned so that the proper functions are called from the buttons
     This should be redesigned */
 
-    if (this.batch.trainer == null) {
+    if (this.batch.trainer === 0) {
       this.batchType = 'Create New Batch';
       this.isNewBatch = true;
     } else {

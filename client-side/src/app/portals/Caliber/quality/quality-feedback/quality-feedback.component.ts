@@ -7,14 +7,13 @@ import { Subscription } from 'rxjs/Subscription';
 // services
 import { NoteService } from '../../services/note.service';
 import { QCStatusService } from '../../services/qcstatus.service';
-import { BatchService } from '../../services/batch.service';
-
 // entities
-import { Batch } from '../../entities/Batch';
 import { Note } from '../../entities/Note';
 import { Trainee } from '../../entities/Trainee';
 import { ReportingService } from '../../services/reporting.service';
 import { urls } from '../../services/urls';
+import { Batch } from '../../../../hydra-client/entities/batch';
+import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra-batch.service';
 
 
 
@@ -48,7 +47,7 @@ export class QualityFeedbackComponent implements OnInit, OnDestroy, OnChanges {
   constructor(
     private noteService: NoteService,
     private qcStatusService: QCStatusService,
-    private batchService: BatchService,
+    private batchService: HydraBatchService,
     private reportingService: ReportingService
   ) {
     this.setWeek(1);
@@ -64,7 +63,7 @@ export class QualityFeedbackComponent implements OnInit, OnDestroy, OnChanges {
     if (event.nextId === 'addWeekTab') {
       this.addWeek();
       event.preventDefault();
-      this.tabs.select(`week-${this.batch.weeks}`);
+      this.tabs.select(`week-${this.batchService.getWeek(this.batch)}`);
     }
   }
   public clickThroughFaces() {
@@ -102,7 +101,7 @@ export class QualityFeedbackComponent implements OnInit, OnDestroy, OnChanges {
   public getBatchWeeks(): number[] {
     const weeks: number[] = [];
 
-    for (let i = 0; i < this.batch.weeks;) {
+    for (let i = 0; i < this.batchService.getWeek(this.batch);) {
       weeks.push(++i);
     }
 
@@ -113,10 +112,10 @@ export class QualityFeedbackComponent implements OnInit, OnDestroy, OnChanges {
   * adds a week to the current batch
   */
   public addWeek() {
-    const weeks = ++this.batch.weeks;
+    // const weeks = ++this.batch.weeks;
 
-    this.batchService.update(this.batch);
-    this.setWeek(weeks);
+    // this.batchService.update(this.batch);
+    this.setWeek(this.batchService.getWeek(this.batch));
   }
 
   /**
@@ -342,7 +341,7 @@ export class QualityFeedbackComponent implements OnInit, OnDestroy, OnChanges {
     if (this.batch) {
       if (this.batch.batchId === batch.batchId) {
         Object.assign(this.batch, batch);
-        this.setWeek(this.batch.weeks);
+        this.setWeek(this.batchService.getWeek(this.batch));
       }
     }
   }
@@ -381,8 +380,8 @@ export class QualityFeedbackComponent implements OnInit, OnDestroy, OnChanges {
     this.reportingService.technologiesForTheWeek$
       .subscribe((results) => this.setTechnologies(results));
 
-    this.setWeek(this.batch.weeks);
-    this.tabs.activeId = `week-${this.batch.weeks}`;
+    this.setWeek(this.batchService.getWeek(this.batch));
+    this.tabs.activeId = `week-${this.batchService.getWeek(this.batch)}`;
 
     // this.updatedBatchSubscription = this.batchService.getUpdated()
     //   .subscribe( (batch) => this.copyBatch(batch) );
@@ -397,8 +396,8 @@ export class QualityFeedbackComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnChanges(): void {
     if (this.batch) {
-      this.setWeek(this.batch.weeks);
-      this.tabs.activeId = `week-${this.batch.weeks}`;
+      this.setWeek(this.batchService.getWeek(this.batch));
+      this.tabs.activeId = `week-${this.batchService.getWeek(this.batch)}`;
     }
   }
 
