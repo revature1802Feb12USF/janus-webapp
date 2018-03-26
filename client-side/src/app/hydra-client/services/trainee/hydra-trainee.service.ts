@@ -16,8 +16,8 @@ export class HydraTraineeService {
   constructor(private httpClient: HttpClient, private urlService: UrlService) { }
 
   /**
-   * retrieves all trainees by batch ID and pushes them on the
-   * list subject
+   * Requests all trainees by batch ID and returns an observable. Calls
+   * function 'fetchAll' below.
    *
    * spring-security: @PreAuthorize("hasAnyRole('VP', 'QC', 'TRAINER', 'STAGING', 'PANEL')")
    *
@@ -29,7 +29,9 @@ export class HydraTraineeService {
   }
 
   /**
-   * Retrieves all trainees with the input batch id.
+   * Requests all trainees with the input batch id and returns an observable.
+   *
+   * Possibly a legacy function so we did not consolidate this with fetchAllByBatch (Blake's class, 1801)
    *
    * @param batchId
    * @returns {Observable<HydraTrainee[]>}
@@ -40,8 +42,8 @@ export class HydraTraineeService {
   }
 
   /**
-   * Retrieves all trainees with the input batch id that have
-   * been dropped.
+   * Requests all trainees with the input batch id that have
+   * been dropped and returns the observable.
    *
    * @param batchId
    * @returns {Observable<HydraTrainee[]>}
@@ -67,7 +69,7 @@ export class HydraTraineeService {
   /*
     Function that pushes a trainee into savedSubject.
     Since we are no longer working with subjects, we
-    decided to comment out the below function.
+    decided to comment out the below function. (Blake's class, 1801)
   */
   // public pushToSaved(trainee: Trainee) {
   //   this.savedSubject.next(trainee);
