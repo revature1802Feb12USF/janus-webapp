@@ -37,7 +37,7 @@ export class HydraTraineeService {
    * @returns {Observable<HydraTrainee[]>}
    */
   public fetchAll(batchId: number): Observable<HydraTrainee[]> {
-    const url = this.urlService.trainees.fetchAllByBatch(batchId);
+    const url = this.urlService.trainees.findAllByBatch(batchId);
     return this.httpClient.get<HydraTrainee[]>(url);
   }
 
@@ -49,7 +49,7 @@ export class HydraTraineeService {
    * @returns {Observable<HydraTrainee[]>}
    */
   public fetchDroppedByBatch(batchId: number): Observable<HydraTrainee[]> {
-    const url = this.urlService.trainees.fetchDroppedByBatch(batchId);
+    const url = this.urlService.trainees.findDroppedByBatch(batchId);
     return this.httpClient.get<HydraTrainee[]>(url);
   }
 
