@@ -1,12 +1,13 @@
 import { HydraBatch } from './HydraBatch';
+import { HydraUser } from './HydraUser';
 
 
 export class HydraTrainee {
     traineeId: number;
     resourceId: number;
     name: string;
-    email: string;
     trainingStatus: string;
+    batch: HydraBatch;
     phoneNumber: string;
     skypeId: string;
     profileUrl: string;
@@ -16,5 +17,10 @@ export class HydraTrainee {
     major: string;
     techScreenerName: string;
     projectCompletion: string;
-    batch: HydraBatch;
+    flagStatus: string;
+    flagNotes: string;
+    marketingStatus: string;
+    client: string;
+    endClient: string;
+    traineeUserInfo: HydraUser;
 }

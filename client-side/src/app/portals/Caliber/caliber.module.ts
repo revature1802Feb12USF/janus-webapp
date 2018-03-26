@@ -121,6 +121,7 @@ import { DeleteTraineeModalComponent } from './manage/delete-trainee-modal/delet
 import { CannotDeleteTraineeModalComponent } from './manage/cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
 import { PDFService } from './services/pdf.service';
 import { ReportingService } from './services/reporting.service';
+import { HydraTraineeService } from '../../hydra-client/services/trainee/hydra-trainee.service';
 
 @NgModule({
   imports: [
@@ -225,6 +226,7 @@ import { ReportingService } from './services/reporting.service';
     BatchService,
     TrainerService,
     TraineeService,
+    HydraTraineeService,
     AssessmentService,
     RouteService,
     PanelService,

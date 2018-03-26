@@ -8,6 +8,7 @@
     "build": "ng build --prod --env=prod",
     "build-uat": "ng build --prod --env=uat",
     "test": "ng test",
+    "hydra-test": "ng test -- config.file=hydra.karma.conf.ts",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

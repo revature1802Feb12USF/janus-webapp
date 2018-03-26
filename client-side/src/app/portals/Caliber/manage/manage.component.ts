@@ -19,6 +19,7 @@ import { TrainingTypeService } from '../services/training-type.service';
 import { SkillService } from '../services/skill.service';
 import { TraineeService } from '../services/trainee.service';
 import { TraineeStatusService } from '../services/trainee-status.service';
+import { HydraTraineeService } from '../../../hydra-client/services/trainee/hydra-trainee.service';
 
 // entities
 import { Location } from '../entities/Location';
@@ -26,6 +27,7 @@ import { Trainer } from '../entities/Trainer';
 import { Batch } from '../entities/Batch';
 import { Address } from '../entities/Address';
 import { Trainee } from '../entities/Trainee';
+import { HydraTrainee } from '../../../hydra-client/entities/HydraTrainee';
 
 // components
 import { BatchModalComponent } from './batch/batch-modal.component';
@@ -96,6 +98,7 @@ export class ManageComponent implements OnInit, OnDestroy {
     private datePipe: DatePipe,
     private fb: FormBuilder,
     private traineeStatusService: TraineeStatusService,
+    private hydraTraineeService: HydraTraineeService
   ) {
     this.batches = [];
   }
@@ -103,7 +106,7 @@ export class ManageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     /* keep an updated list of batches */
     this.batchListSub = this.batchService.listSubject
-    .subscribe((batches) => this.setBatches(batches));
+      .subscribe((batches) => this.setBatches(batches));
 
     /* keeps an updated list of trainee Statuses */
     this.traineeStatusListSub = this.traineeStatusService.listSubject
@@ -134,6 +137,13 @@ export class ManageComponent implements OnInit, OnDestroy {
       .subscribe((deleted) => this.onDeletedTrainee(deleted));
 
     this.batchService.fetchAll();
+
+    console.log(this.hydraTraineeService.fetchAll(1).forEach(element => {
+      element.forEach(trainee => {
+        console.log(trainee.name);
+        console.log(trainee.traineeUserInfo);
+      });
+    }));
   }
 
   ngOnDestroy() {
@@ -419,7 +429,7 @@ export class ManageComponent implements OnInit, OnDestroy {
     this.isNew = true;
     this.createNewTrainee = new Trainee;
     this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
-    this.batchModalNested.result.then(a => {}, b => this.closeCreateTraineeModal());
+    this.batchModalNested.result.then(a => { }, b => this.closeCreateTraineeModal());
     this.batchModal.close();
   }
 
@@ -427,7 +437,7 @@ export class ManageComponent implements OnInit, OnDestroy {
     this.isNew = false;
     this.createNewTrainee = trainee;
     this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
-    this.batchModalNested.result.then(a => {}, b => this.closeCreateTraineeModal());
+    this.batchModalNested.result.then(a => { }, b => this.closeCreateTraineeModal());
     this.batchModal.close();
   }
 
