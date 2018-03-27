@@ -6,5 +6,5 @@ export class Trainer {
     lastName: string;
     title: string;
     email: string;
-    tier: any;
+    role: any;
 }

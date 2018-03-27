@@ -20,12 +20,12 @@ export class TrainersComponent implements OnInit, OnDestroy {
   trainers: Trainer[] = [];
   filteredTrainers: Trainer[] = [];
   titles: Array<any>;
-  tiers: Array<any>;
+  roles: Array<any>;
   model = new Trainer();
   activeStatus: String;
   currEditTrainer: Trainer;
   newTrainer: Trainer;
-  newTier: any;
+  newRole: any;
   newTitle: string;
 
   rForm: FormGroup;
@@ -45,18 +45,18 @@ export class TrainersComponent implements OnInit, OnDestroy {
       if (resp) {
         this.filteredTrainers = resp.filter(s => {
           if (this.activeStatus === 'ROLE_INACTIVE') {
-            return s.tier === this.activeStatus;
+            return s.role === this.activeStatus;
           } else {
-            return s.tier !== 'ROLE_INACTIVE';
+            return s.role !== 'ROLE_INACTIVE';
           }
         });
       }
     });
     this.trainerService.fetchTitles().subscribe(res => this.titles = res);
     this.trainerService.fetchRoles().subscribe(res => {
-      this.tiers = (res.filter(tier => tier !== 'ROLE_INACTIVE')); // filter out ROLE_INACTIVE
+      this.roles = (res.filter(role => role !== 'ROLE_INACTIVE')); // filter out ROLE_INACTIVE
     });
-    console.log(this.tiers);
+    console.log(this.roles);
     this.initFormControl();
   }
 
@@ -71,7 +71,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
       'lastName': ['', Validators.required],
       'email': ['', Validators.email],
       'title': ['', Validators.required],
-      'tier': ['', Validators.required],
+      'role': ['', Validators.required],
     });
   }
 
@@ -88,6 +88,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
     });
     // this.trainers.push(this.newTrainer);
     this.initFormControl();
+    this.ngOnInit();
   }
 
   open(content) {
@@ -101,24 +102,24 @@ export class TrainersComponent implements OnInit, OnDestroy {
    */
   editTrainer(content, modalTrainer: Trainer) {
     this.currEditTrainer = modalTrainer;
-    this.newTier = modalTrainer.tier;
+    this.newRole = modalTrainer.role;
     this.newTitle = modalTrainer.title;
     this.rForm = this.fb.group({
       'firstName': [this.currEditTrainer.firstName, Validators.required],
       'lastName': [this.currEditTrainer.lastName, Validators.required],
       'email': [this.currEditTrainer.email, Validators.email],
       'title': [this.newTitle, Validators.required],
-      'tier': [this.newTier, Validators.required],
+      'role': [this.newRole, Validators.required],
     });
     this.modalService.open(content, { size: 'lg' });
   }
 
   /**
-   * Tier was changed, update with new value
-   * @param newTier: tier string
+   * Role was changed, update with new value
+   * @param newRole: Role string
    */
-  tierChange(newTier) {
-    this.newTier = newTier;
+  roleChange(newRole) {
+    this.newRole = newRole;
   }
 
   /**
@@ -134,8 +135,8 @@ export class TrainersComponent implements OnInit, OnDestroy {
     }
   }
 
-  newTierChange(newTier) {
-    this.model.tier = newTier;
+  newRoleChange(newRole) {
+    this.model.role = newRole;
   }
 
   newTitleChange(newTitle) {
@@ -159,7 +160,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
     // replacing the trainer's fields with the new ones
     const temp = new Trainer();
     temp.trainerId = this.currEditTrainer.trainerId;
-    temp.tier = this.newTier;
+    temp.role = this.newRole;
     temp.title = this.newTitle;
     temp.firstName = modal.firstName;
     temp.lastName = modal.lastName;

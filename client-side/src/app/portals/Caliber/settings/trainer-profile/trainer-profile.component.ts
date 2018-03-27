@@ -4,13 +4,14 @@ import { Observable } from 'rxjs/Observable';
 
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
-import { Trainer } from '../../entities/Trainer';
+
 import { Batch } from '../../entities/Batch';
 
 import { BatchService } from '../../services/batch.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import { TrainerService } from '../../../../hydra-client/services/trainer/trainer.service';
+import { Trainer } from '../../../../hydra-client/entities/Trainer';
 
 @Component({
   selector: 'app-trainer-profile',
@@ -125,7 +126,7 @@ export class TrainerProfilesComponent implements OnInit {
   */
   editTrainer(content, modalTrainer: Trainer) {
     this.currEditTrainer = modalTrainer;
-    this.newTier = modalTrainer.tier;
+    this.newTier = modalTrainer.role;
     this.newTitle = modalTrainer.title;
     this.rForm = this.fb.group({
       'firstName': [this.currEditTrainer.firstName, Validators.required],
@@ -168,7 +169,7 @@ export class TrainerProfilesComponent implements OnInit {
   */
   updateTrainer(modal) {
     // replacing the trainer's fields with the new ones
-    this.currEditTrainer.tier = this.newTier;
+    this.currEditTrainer.role = this.newTier;
     this.currEditTrainer.title = this.newTitle;
     this.currEditTrainer.firstName = modal.firstName;
     this.currEditTrainer.email = modal.email;
