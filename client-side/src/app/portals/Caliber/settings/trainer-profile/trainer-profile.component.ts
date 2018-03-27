@@ -35,10 +35,10 @@ export class TrainerProfilesComponent implements OnInit {
   private trainerSubscription: Subscription;
   trainers: Array<Trainer>;
   titles: Array<any>;
-  tiers: Array<any>;
+  roles: Array<any>;
   model = new Trainer();
   currEditTrainer: Trainer;
-  newTier: string;
+  newRole: string;
   newTitle: string;
   rForm: FormGroup;
 
@@ -72,7 +72,7 @@ export class TrainerProfilesComponent implements OnInit {
       this.trainers = resp;
     });
     this.trainerService.fetchTitles().subscribe(res => this.titles = res);
-    this.trainerService.fetchRoles().subscribe(res => this.tiers = res);
+    this.trainerService.fetchRoles().subscribe(res => this.roles = res);
   }
 
   /**
@@ -126,14 +126,14 @@ export class TrainerProfilesComponent implements OnInit {
   */
   editTrainer(content, modalTrainer: Trainer) {
     this.currEditTrainer = modalTrainer;
-    this.newTier = modalTrainer.role;
+    this.newRole = modalTrainer.role;
     this.newTitle = modalTrainer.title;
     this.rForm = this.fb.group({
       'firstName': [this.currEditTrainer.firstName, Validators.required],
       'lastName': [this.currEditTrainer.lastName, Validators.required],
       'email': [this.currEditTrainer.email, Validators.required],
       'title': [this.newTitle],
-      'tier': [this.newTier],
+      'role': [this.newRole],
     });
     this.modalService.open(content, { size: 'lg' });
   }
@@ -143,8 +143,8 @@ export class TrainerProfilesComponent implements OnInit {
   *
   * @param newTier: string
   */
-  tierChange(newTier) {
-    this.newTier = newTier;
+  tierChange(newRole) {
+    this.newRole = newRole;
   }
 
   /**
@@ -169,7 +169,7 @@ export class TrainerProfilesComponent implements OnInit {
   */
   updateTrainer(modal) {
     // replacing the trainer's fields with the new ones
-    this.currEditTrainer.role = this.newTier;
+    this.currEditTrainer.role = this.newRole;
     this.currEditTrainer.title = this.newTitle;
     this.currEditTrainer.firstName = modal.firstName;
     this.currEditTrainer.email = modal.email;
