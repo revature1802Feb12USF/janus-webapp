@@ -13,7 +13,7 @@ import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 
 // services
 import { BatchService } from '../services/batch.service';
-import { TrainerService } from '../services/trainer.service';
+
 import { LocationService } from '../services/location.service';
 import { TrainingTypeService } from '../services/training-type.service';
 import { SkillService } from '../services/skill.service';
@@ -35,6 +35,7 @@ import { CannotDeleteModalComponent } from './cannot-delete-modal/cannot-delete-
 import { DeleteTraineeModalComponent } from './delete-trainee-modal/delete-trainee-modal.component';
 import { CannotDeleteTraineeModalComponent } from './cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
 import { DeleteBatchModalComponent } from './delete-batch-modal/delete-batch-modal.component';
+import { TrainerService } from '../../../hydra-client/services/trainer/trainer.service';
 
 // import { exists } from 'fs';
 @Component({

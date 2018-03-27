@@ -36,7 +36,6 @@ export class TrainersComponent implements OnInit, OnDestroy {
     private modalService: NgbModal, private fb: FormBuilder, private route: Router) { }
 
   ngOnInit() {
-    this.trainerService.fetchAll();
     // this.trainerService.populateOnStart();
     // this.trainerSubscription =
     this.trainerService.fetchAll().subscribe((resp) => {

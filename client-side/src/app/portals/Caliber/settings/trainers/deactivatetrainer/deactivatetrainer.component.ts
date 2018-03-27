@@ -6,6 +6,8 @@ import { Trainer } from '../../../entities/Trainer';
 
 import { Subject } from 'rxjs/Subject';
 import { TrainerService } from '../../../../../hydra-client/services/trainer/trainer.service';
+import { setInterval } from 'timers';
+import { TrainersComponent } from '../trainers.component';
 
 
 @Component({
@@ -18,7 +20,7 @@ export class DeactivateTrainerComponent implements OnInit {
     @Input()
     trainer: Trainer;
 
-    constructor(private modalService: NgbModal, private ts: TrainerService) {
+    constructor(private modalService: NgbModal, private ts: TrainerService, private trainerc: TrainersComponent) {
     }
 
     ngOnInit() {
@@ -42,6 +44,7 @@ export class DeactivateTrainerComponent implements OnInit {
         this.trainer.tier = 'ROLE_INACTIVE';
         this.ts.update(this.trainer).subscribe((resp) => {
             this.ts.fetchAll();
-          });
+        });
+        // setInterval(this.trainerc.ngOnInit, 3000);
     }
 }
