@@ -2,11 +2,12 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
-import { Trainer } from '../../entities/Trainer';
+
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TrainerService } from '../../../../hydra-client/services/trainer/trainer.service';
+import { Trainer } from '../../../../hydra-client/entities/Trainer';
 
 @Component({
   selector: 'app-trainers',
@@ -24,7 +25,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
   activeStatus: String;
   currEditTrainer: Trainer;
   newTrainer: Trainer;
-  newTier: string;
+  newTier: any;
   newTitle: string;
 
   rForm: FormGroup;
@@ -40,6 +41,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
     // this.trainerSubscription =
     this.trainerService.fetchAll().subscribe((resp) => {
       this.trainers = resp;
+      console.log(this.trainers);
       if (resp) {
         this.filteredTrainers = resp.filter(s => {
           if (this.activeStatus === 'ROLE_INACTIVE') {
@@ -54,6 +56,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
     this.trainerService.fetchRoles().subscribe(res => {
       this.tiers = (res.filter(tier => tier !== 'ROLE_INACTIVE')); // filter out ROLE_INACTIVE
     });
+    console.log(this.tiers);
     this.initFormControl();
   }
 
@@ -64,7 +67,8 @@ export class TrainersComponent implements OnInit, OnDestroy {
    */
   initFormControl() {
     this.addForm = this.fb.group({
-      'name': ['', Validators.required],
+      'firstName': ['', Validators.required],
+      'lastName': ['', Validators.required],
       'email': ['', Validators.email],
       'title': ['', Validators.required],
       'tier': ['', Validators.required],
@@ -78,7 +82,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
   addTrainer(modal: Trainer) {
     this.newTrainer = modal;
     console.log(modal);
-    console.log(modal.name);
+    console.log(modal.firstName);
     this.trainerService.create(this.newTrainer).subscribe((resp) => {
       this.trainerService.fetchAll();
     });
@@ -100,7 +104,8 @@ export class TrainersComponent implements OnInit, OnDestroy {
     this.newTier = modalTrainer.tier;
     this.newTitle = modalTrainer.title;
     this.rForm = this.fb.group({
-      'name': [this.currEditTrainer.name, Validators.required],
+      'firstName': [this.currEditTrainer.firstName, Validators.required],
+      'lastName': [this.currEditTrainer.lastName, Validators.required],
       'email': [this.currEditTrainer.email, Validators.email],
       'title': [this.newTitle, Validators.required],
       'tier': [this.newTier, Validators.required],
@@ -156,7 +161,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
     temp.trainerId = this.currEditTrainer.trainerId;
     temp.tier = this.newTier;
     temp.title = this.newTitle;
-    temp.name = modal.name;
+    temp.firstName = modal.name;
     temp.email = modal.email;
     // call trainerService to update
     this.trainerService.update(temp).subscribe((resp) => {

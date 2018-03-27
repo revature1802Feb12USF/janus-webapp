@@ -9,7 +9,7 @@
             <div class="card hovercard">
                 <div class="info">
                     <div class="title">
-                        {{ currentTrainer.name }}
+                        {{ currentTrainer.firstName }} {{currentTrainer.lastName}}
                     </div>
                     <div class="desc">{{ currentTrainer.title }}</div>
                     <div class="desc">{{ currentTrainer.email }}</div>
@@ -27,7 +27,7 @@
     Current Trainer Batches Table
 **************************************************************************************************************
  -->
-    {{currentTrainer.name}}'s Batches:
+    {{currentTrainer.firstName}}'s Batches:
     <div>
         <div id="trainers-table">
             <table class="table table-hover">

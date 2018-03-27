@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 export class Trainer {
     trainerId: number;
-    name: String;
+    firstName: String;
+    lastName: String;
     title: String;
     email: String;
     tier: String;
