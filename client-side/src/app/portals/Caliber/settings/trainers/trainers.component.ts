@@ -161,7 +161,8 @@ export class TrainersComponent implements OnInit, OnDestroy {
     temp.trainerId = this.currEditTrainer.trainerId;
     temp.tier = this.newTier;
     temp.title = this.newTitle;
-    temp.firstName = modal.name;
+    temp.firstName = modal.firstName;
+    temp.lastName = modal.lastName;
     temp.email = modal.email;
     // call trainerService to update
     this.trainerService.update(temp).subscribe((resp) => {

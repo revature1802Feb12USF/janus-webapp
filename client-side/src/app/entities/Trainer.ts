@@ -6,5 +6,5 @@ export class Trainer {
     lastName: String;
     title: String;
     email: String;
-    tier: String;
+    tier: any;
 }

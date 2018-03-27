@@ -128,7 +128,8 @@ export class TrainerProfilesComponent implements OnInit {
     this.newTier = modalTrainer.tier;
     this.newTitle = modalTrainer.title;
     this.rForm = this.fb.group({
-      'name': [this.currEditTrainer.name, Validators.required],
+      'firstName': [this.currEditTrainer.firstName, Validators.required],
+      'lastName': [this.currEditTrainer.lastName, Validators.required],
       'email': [this.currEditTrainer.email, Validators.required],
       'title': [this.newTitle],
       'tier': [this.newTier],
@@ -169,7 +170,7 @@ export class TrainerProfilesComponent implements OnInit {
     // replacing the trainer's fields with the new ones
     this.currEditTrainer.tier = this.newTier;
     this.currEditTrainer.title = this.newTitle;
-    this.currEditTrainer.name = modal.name;
+    this.currEditTrainer.firstName = modal.firstName;
     this.currEditTrainer.email = modal.email;
     // call trainerService to update
     this.trainerService.update(this.currEditTrainer);
