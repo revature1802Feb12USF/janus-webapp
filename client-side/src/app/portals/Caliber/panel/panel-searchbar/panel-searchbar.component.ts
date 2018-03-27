@@ -16,6 +16,7 @@ import { Batch } from '../../entities/Batch';
 import { TraineeService } from '../../services/trainee.service';
 import { BatchService } from '../../services/batch.service';
 import { PanelService } from '../../services/panel.service';
+import { HydraTrainee } from '../../../../hydra-client/entities/HydraTrainee';
 
 @Component({
   selector: 'app-panel-searchbar',
