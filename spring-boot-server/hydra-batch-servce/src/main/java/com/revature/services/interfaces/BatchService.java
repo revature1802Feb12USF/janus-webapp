@@ -22,7 +22,7 @@ public interface BatchService {
 	/************************************************************************************
 	 * Read
 	 ************************************************************************************/
-//	public Batch findById(int id);
+	public Batch findById(int id);
 
 	public List<Batch> findByTrainerId(int id);
 

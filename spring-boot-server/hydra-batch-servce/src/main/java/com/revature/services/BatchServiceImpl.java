@@ -129,10 +129,10 @@ public class BatchServiceImpl implements BatchService {
 	 * 
 	 * @return Batch
 	 */
-//	@Override
-//	public Batch findById(int id) {
-//		return batchRepo.findByBatchId(id);
-//	}
+	@Override
+	public Batch findById(int id) {
+		return batchRepo.findByBatchId(id);
+	}
 	
 	/**
 	 * Call BatchRepo's findByTrainerId() method and return a List of Batches in the
@@ -155,7 +155,6 @@ public class BatchServiceImpl implements BatchService {
 	 */
 	@Override
 	public List<Batch> findAll() {
-		System.out.println("########### " + batchRepo.findAll() + "##############");
 		return batchRepo.findAll();
 	}
 	
