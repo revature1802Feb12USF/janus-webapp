@@ -13,21 +13,23 @@ import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 
 // services
 import { BatchService } from '../services/batch.service';
-import { TrainerService } from '../services/trainer.service';
 import { LocationService } from '../services/location.service';
 import { TrainingTypeService } from '../services/training-type.service';
 import { SkillService } from '../services/skill.service';
 import { TraineeService } from '../services/trainee.service';
 import { TraineeStatusService } from '../services/trainee-status.service';
 import { HydraTraineeService } from '../../../hydra-client/services/trainee/hydra-trainee.service';
+import { TrainerService } from '../../../hydra-client/services/trainer/trainer.service';
+
 
 // entities
 import { Location } from '../entities/Location';
-import { Trainer } from '../entities/Trainer';
 import { Batch } from '../entities/Batch';
 import { Address } from '../entities/Address';
 import { Trainee } from '../entities/Trainee';
 import { HydraTrainee } from '../../../hydra-client/entities/HydraTrainee';
+import { HydraTrainer } from '../../../hydra-client/entities/HydraTrainer';
+
 
 // components
 import { BatchModalComponent } from './batch/batch-modal.component';
@@ -38,6 +40,8 @@ import { DeleteTraineeModalComponent } from './delete-trainee-modal/delete-train
 import { CannotDeleteTraineeModalComponent } from './cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
 import { DeleteBatchModalComponent } from './delete-batch-modal/delete-batch-modal.component';
 import { HydraBatch } from '../../../hydra-client/entities/HydraBatch';
+
+
 
 // import { exists } from 'fs';
 @Component({
@@ -59,7 +63,7 @@ export class ManageComponent implements OnInit, OnDestroy {
   batchToUpdate: HydraBatch = new HydraBatch;
   traineeProfileUrl: string;
   test: string;
-  trainers: Trainer[] = [];
+  trainers: HydraTrainer[] = [];
   trainerNames: string[] = [];
   locations: Address[] = [];
   trainingTypes: string[] = [];
@@ -278,7 +282,7 @@ export class ManageComponent implements OnInit, OnDestroy {
    *
    * @param trainers
    */
-  private setTrainers(trainers: Trainer[]): void {
+  private setTrainers(trainers: HydraTrainer[]): void {
     this.trainers = trainers;
   }
 

@@ -41,14 +41,14 @@ export class UrlService {
    * Endpoints for trainers
    */
   trainers = {
-    fetchByEmail: (email: string) => `${this.context}trainers/${email}`,
-    fetchAll: () => `${this.context}trainers`,
-    save: () => `${this.context}trainers`,
-    update: () => `${this.context}trainers`,
-    getTitles: () => `${this.context}trainers/titles`,
-    getRoles: () => `${this.context}trainers/roles`,
-  };
+    fetchByEmail: (email: string) => `${environment.context}trainers/${email}`,
+    fetchAll: () => `${environment.context}trainers`,
+    save: () => `${environment.context}trainers`,
+    update: () => `${environment.context}trainers`,
+    getTitles: () => `${environment.context}trainers/titles`,
+    getRoles: () => `${environment.context}trainers/roles`,
 
+  };
   constructor() {
     this.context = environment.hydraContext;
   }
