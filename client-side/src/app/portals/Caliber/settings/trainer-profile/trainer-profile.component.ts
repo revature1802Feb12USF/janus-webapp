@@ -170,6 +170,7 @@ export class TrainerProfilesComponent implements OnInit {
     this.currEditTrainer.role = this.newRole;
     this.currEditTrainer.title = this.newTitle;
     this.currEditTrainer.firstName = modal.firstName;
+    this.currEditTrainer.lastName = modal.lastName;
     this.currEditTrainer.email = modal.email;
     // call trainerService to update
     this.trainerService.update(this.currEditTrainer);

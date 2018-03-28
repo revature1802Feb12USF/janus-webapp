@@ -64,7 +64,7 @@ export class TrainersComponent implements OnInit {
       'firstName': ['', Validators.required],
       'lastName': ['', Validators.required],
       'email': ['', Validators.email],
-      'password': ['', Validators.email],
+      'password': ['', Validators.required],
       'title': ['', Validators.required],
       'role': ['', Validators.required],
     });
