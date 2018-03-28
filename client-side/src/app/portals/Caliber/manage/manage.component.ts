@@ -12,20 +12,21 @@ import { DisplayBatchByYear } from '../pipes/display-batch-by-year.pipe';
 import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 
 // services
+
 import { HydraBatchService } from '../../../hydra-client/services/batch/hydra-batch.service';
-import { TrainerService } from '../services/trainer.service';
 import { LocationService } from '../services/location.service';
 import { TrainingTypeService } from '../services/training-type.service';
 import { SkillService } from '../services/skill.service';
 import { TraineeService } from '../services/trainee.service';
 import { TraineeStatusService } from '../services/trainee-status.service';
+import { TrainerService } from '../../../hydra-client/services/trainer/trainer.service';
 
 // entities
 import { Location } from '../entities/Location';
-import { Trainer } from '../entities/Trainer';
 import { Batch } from '../../../hydra-client/entities/batch';
 import { Address } from '../entities/Address';
 import { Trainee } from '../entities/Trainee';
+import { HydraTrainer } from '../../../hydra-client/entities/HydraTrainer';
 
 // components
 import { BatchModalComponent } from './batch/batch-modal.component';
@@ -35,6 +36,7 @@ import { CannotDeleteModalComponent } from './cannot-delete-modal/cannot-delete-
 import { DeleteTraineeModalComponent } from './delete-trainee-modal/delete-trainee-modal.component';
 import { CannotDeleteTraineeModalComponent } from './cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
 import { DeleteBatchModalComponent } from './delete-batch-modal/delete-batch-modal.component';
+
 
 
 // import { exists } from 'fs';
@@ -57,7 +59,7 @@ export class ManageComponent implements OnInit, OnDestroy {
   batchToUpdate: Batch = new Batch;
   traineeProfileUrl: string;
   test: string;
-  trainers: Trainer[] = [];
+  trainers: HydraTrainer[] = [];
   trainerNames: string[] = [];
   locations: Address[] = [];
   trainingTypes: string[] = [];
@@ -274,7 +276,7 @@ export class ManageComponent implements OnInit, OnDestroy {
    *
    * @param trainers
    */
-  private setTrainers(trainers: Trainer[]): void {
+  private setTrainers(trainers: HydraTrainer[]): void {
     this.trainers = trainers;
   }
 

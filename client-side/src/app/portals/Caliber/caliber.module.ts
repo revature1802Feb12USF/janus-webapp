@@ -21,7 +21,6 @@ import { SpringInterceptor } from './interceptors/spring.interceptor';
 
 // services
 import { BatchService } from './services/batch.service';
-import { TrainerService } from './services/trainer.service';
 import { TraineeService } from './services/trainee.service';
 import { AssessmentService } from './services/assessment.service';
 import { RouteService } from './services/route.service';
@@ -43,6 +42,9 @@ import { AlertsService } from './services/alerts.service';
 import { EvaluationService } from './services/evaluation.service';
 import { QCStatusService } from './services/qcstatus.service';
 import { TraineeStatusService } from './services/trainee-status.service';
+import { PDFService } from './services/pdf.service';
+import { ReportingService } from './services/reporting.service';
+import { TrainerService } from '../../hydra-client/services/trainer/trainer.service';
 
 // N.T.
 import { ApiService } from './util/api.service';
@@ -119,8 +121,7 @@ import { DeleteBatchModalComponent } from './manage/delete-batch-modal/delete-ba
 import { CannotDeleteModalComponent } from './manage/cannot-delete-modal/cannot-delete-modal.component';
 import { DeleteTraineeModalComponent } from './manage/delete-trainee-modal/delete-trainee-modal.component';
 import { CannotDeleteTraineeModalComponent } from './manage/cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
-import { PDFService } from './services/pdf.service';
-import { ReportingService } from './services/reporting.service';
+
 
 @NgModule({
   imports: [
@@ -235,7 +236,6 @@ import { ReportingService } from './services/reporting.service';
     VpHomeLineGraphService,
     VpHomeSelectorService,
     ColorService,
-    TrainerService,
     LocationService,
     CategoryService,
     CategoriesService,
