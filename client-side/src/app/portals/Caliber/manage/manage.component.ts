@@ -104,7 +104,7 @@ export class ManageComponent implements OnInit {
     private fb: FormBuilder,
 
     private traineeStatusService: TraineeStatusService,
-    private hydraTraineeService: HydraTraineeService
+    private hydraTraineeService: HydraTraineeService,
     private hydraBatchService: HydraBatchService
 
   ) {
@@ -356,7 +356,7 @@ export class ManageComponent implements OnInit {
 
     for (let i = 0; i < this.currentBatch.trainees.length; i++) {
       this.currentBatch.trainees[i].batch = null;
-      this.hydraTraineeService.delete(this.currentBatch.trainees[i]);
+      this.hydraTraineeService.delete(this.currentBatch.trainees[i].traineeId);
     }
   }
 
