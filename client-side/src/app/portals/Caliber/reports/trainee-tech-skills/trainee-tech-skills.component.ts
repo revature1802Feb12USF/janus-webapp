@@ -6,7 +6,7 @@ import { PDFService } from '../../services/pdf.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { GranularityService } from '../services/granularity.service';
 import { Trainee } from '../../entities/Trainee';
-import { Batch } from '../../entities/Batch';
+import { Batch } from '../../../../hydra-client/entities/batch';
 /**
  * @author John Hudson
 */

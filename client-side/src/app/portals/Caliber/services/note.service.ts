@@ -13,8 +13,8 @@ import { AlertsService } from './alerts.service';
 // entities
 import { Note } from '../entities/Note';
 import { Trainee } from '../entities/Trainee';
-import { Batch } from '../entities/Batch';
 import { urls } from './urls';
+import { Batch } from '../../../hydra-client/entities/batch';
 
 /**
 * this service manages calls to the web services

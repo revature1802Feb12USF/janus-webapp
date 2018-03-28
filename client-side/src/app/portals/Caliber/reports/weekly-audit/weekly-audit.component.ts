@@ -10,9 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 
 // entities
-import { Batch } from '../../entities/Batch';
 import { Note } from '../../entities/Note';
 import { Trainee } from '../../entities/Trainee';
+import { Batch } from '../../../../hydra-client/entities/batch';
 
 /**
  * Creates a table showing the overall quality audit for

@@ -13,10 +13,10 @@ import { NoteService } from '../../services/note.service';
 import { ReportingService } from '../../services/reporting.service';
 
 // entities
-import { Batch } from '../../entities/Batch';
 import { Assessment } from '../../entities/Assessment';
 import { Grade } from '../../entities/Grade';
 import { Note } from '../../entities/Note';
+import { Batch } from '../../../../hydra-client/entities/batch';
 
 
 @Component({

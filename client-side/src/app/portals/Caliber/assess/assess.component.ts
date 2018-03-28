@@ -1,8 +1,6 @@
 import { Component, OnInit, NgModule, ViewEncapsulation, ElementRef} from '@angular/core';
 import { Http, HttpModule } from '@angular/http';
-import { BatchService } from '../services/batch.service';
 import { HttpClientModule  } from '@angular/common/http';
-import { Batch } from '../entities/Batch';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Assessment } from '../entities/Assessment';
 import { AssessmentService } from '../services/assessment.service';
@@ -22,6 +20,9 @@ import { DatePipe } from '@angular/common';
 import { ScrollEvent } from 'ngx-scroll-event';
 import { window } from 'rxjs/operators/window';
 import { HostListener } from '@angular/core/src/metadata/directives';
+import { HydraBatchService } from '../../../hydra-client/services/batch/hydra-batch.service';
+import { Batch } from '../../../hydra-client/entities/batch';
+import { HydraBatchUtilService } from '../../../services/hydra-batch-util.service';
 
 
 @Component({
@@ -54,9 +55,9 @@ export class AssessComponent implements OnInit {
   selectedTrainees: Trainee[] = [];
 
   pageOffsetValue;
-  constructor(private modalService: NgbModal, private batchService: BatchService, private assessmentService: AssessmentService,
+  constructor(private modalService: NgbModal, private batchService: HydraBatchService, private assessmentService: AssessmentService,
     private gradeService: GradeService, private categoryService: CategoryService, private noteService: NoteService,
-    private fb: FormBuilder, private datePipe: DatePipe) {}
+    private fb: FormBuilder, private datePipe: DatePipe, private batchUtil: HydraBatchUtilService) {}
 
   getPageOffsetHeight(event: ScrollEvent) {
     this.pageOffsetValue = pageYOffset;
@@ -103,7 +104,7 @@ export class AssessComponent implements OnInit {
       this.newAssessment.category = this.findCategory('Java');
     });
 
-    this.batchService.getList().subscribe(batch => {
+    this.batchService.fetchAll().subscribe(batch => {
       this.batches = batch;
 
       if (this.batches.length !== 0) {
@@ -119,7 +120,7 @@ export class AssessComponent implements OnInit {
 
         this.switchYear(this.currentYear);
         this.changeBatch(this.yearBatches[0]);
-        this.selectedWeek = this.selectedBatch.weeks;
+        this.selectedWeek = this.batchUtil.getWeek(this.selectedBatch);
       }
     });
 
@@ -333,10 +334,8 @@ export class AssessComponent implements OnInit {
   }
 
   addWeek() {
-    this.selectedBatch.weeks += 1;
-    this.addWeekOfNotes(this.selectedBatch.weeks);
-    this.batchService.update(this.selectedBatch);
-    this.selectedWeek = this.selectedBatch.weeks;
+    this.addWeekOfNotes(this.selectedWeek);
+    this.selectedWeek = this.batchUtil.getWeek(this.selectedBatch);
     this.assessmentService.fetchByBatchIdByWeek(this.selectedBatch.batchId, this.selectedWeek);
     this.gradeService.fetchByBatchIdByWeek(this.selectedBatch.batchId, this.selectedWeek);
     this.noteService.fetchByBatchIdByWeek(this.selectedBatch.batchId, this.selectedWeek);
@@ -347,7 +346,7 @@ export class AssessComponent implements OnInit {
   }
 
   changeBatch(batch: Batch) {
-      this.selectedWeek = batch.weeks;
+      this.selectedWeek = this.batchUtil.getWeek(batch);
 
     this.selectedBatch = batch;
 
@@ -387,7 +386,7 @@ export class AssessComponent implements OnInit {
       }
     }
     if (this.yearBatches[0] != null) {
-      this.selectedWeek = this.yearBatches[0].weeks;
+      this.selectedWeek = this.batchUtil.getWeek(this.yearBatches[0]);
       this.switchBatch(this.yearBatches[0].batchId);
 
     }

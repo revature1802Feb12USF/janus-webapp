@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { Trainee } from '../../entities/Trainee';
-import { Batch } from '../../entities/Batch';
-
+import { Batch } from '../../../../hydra-client/entities/batch';
 /**
  * Service that handles report granularity. Trainee and current batch
  * data is stored in their respective behavior subjects and read by

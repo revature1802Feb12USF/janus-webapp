@@ -12,7 +12,8 @@ import { DisplayBatchByYear } from '../pipes/display-batch-by-year.pipe';
 import { PACKAGE_ROOT_URL } from '@angular/core/src/application_tokens';
 
 // services
-import { BatchService } from '../services/batch.service';
+
+import { HydraBatchService } from '../../../hydra-client/services/batch/hydra-batch.service';
 import { LocationService } from '../services/location.service';
 import { TrainingTypeService } from '../services/training-type.service';
 import { SkillService } from '../services/skill.service';
@@ -22,7 +23,7 @@ import { TrainerService } from '../../../hydra-client/services/trainer/trainer.s
 
 // entities
 import { Location } from '../entities/Location';
-import { Batch } from '../entities/Batch';
+import { Batch } from '../../../hydra-client/entities/batch';
 import { Address } from '../entities/Address';
 import { Trainee } from '../entities/Trainee';
 import { HydraTrainer } from '../../../hydra-client/entities/HydraTrainer';
@@ -88,7 +89,6 @@ export class ManageComponent implements OnInit, OnDestroy {
   traineeToBeDeleted: Trainee;
 
   constructor(
-    private batchService: BatchService,
     private trainerService: TrainerService,
     private locationService: LocationService,
     private trainingTypeService: TrainingTypeService,
@@ -97,56 +97,57 @@ export class ManageComponent implements OnInit, OnDestroy {
     private modalService: NgbModal,
     private datePipe: DatePipe,
     private fb: FormBuilder,
-    private traineeStatusService: TraineeStatusService,
+    // private traineeStatusService: TraineeStatusService,
+    private hydraBatchService: HydraBatchService
   ) {
     this.batches = [];
   }
 
   ngOnInit() {
     /* keep an updated list of batches */
-    this.batchListSub = this.batchService.listSubject
-    .subscribe((batches) => this.setBatches(batches));
+    this.batchListSub = this.hydraBatchService.fetchAll()
+      .subscribe((batches) => this.setBatches(batches));
 
     /* keeps an updated list of trainee Statuses */
-    this.traineeStatusListSub = this.traineeStatusService.listSubject
-      .subscribe((statuses) => this.setTraineeStatuses(statuses));
+    // this.traineeStatusListSub = this.traineeStatusService.listSubject
+    //   .subscribe((statuses) => this.setTraineeStatuses(statuses));
 
     /* reacts to saved batches */
-    this.savedBatchSub = this.batchService.savedSubject
-      .subscribe((saved) => this.onSavedBatch(saved));
+    // this.savedBatchSub = this.hydraBatchService.create()
+    //   .subscribe((saved) => this.onSavedBatch(saved));
 
-    /* reacts to deleted batches */
-    this.deletedBatchSub = this.batchService.deletedSubject
-      .subscribe((deleted) => this.onDeletedBatch(deleted));
+    // /* reacts to deleted batches */
+    // this.deletedBatchSub = this.hydraBatchService.deletedSubject
+    //   .subscribe((deleted) => this.onDeletedBatch(deleted));
 
-    /* keep updated list of trainees */
-    this.traineeListSub = this.traineeService.listSubject
-      .subscribe((trainees) => this.setBatchTrainees(trainees));
+    // /* keep updated list of trainees */
+    // this.traineeListSub = this.traineeService.listSubject
+    //   .subscribe((trainees) => this.setBatchTrainees(trainees));
 
-    /* reacts to saved trainees */
-    this.createdTraineeSub = this.traineeService.savedSubject
-      .subscribe((saved) => this.onSavedTrainee(saved));
+    // /* reacts to saved trainees */
+    // this.createdTraineeSub = this.traineeService.savedSubject
+    //   .subscribe((saved) => this.onSavedTrainee(saved));
 
-    /* reacts to updated trainees */
-    this.updatedTraineeSub = this.traineeService.updatedSubject
-      .subscribe((updated) => this.onSavedTrainee(updated));
+    // /* reacts to updated trainees */
+    // this.updatedTraineeSub = this.traineeService.updatedSubject
+    //   .subscribe((updated) => this.onSavedTrainee(updated));
 
-    /* reacts to deleted trainees */
-    this.deletedTraineeSub = this.traineeService.deletedSubject
-      .subscribe((deleted) => this.onDeletedTrainee(deleted));
+    // /* reacts to deleted trainees */
+    // this.deletedTraineeSub = this.traineeService.deletedSubject
+    //   .subscribe((deleted) => this.onDeletedTrainee(deleted));
 
-    this.batchService.fetchAll();
+    this.hydraBatchService.fetchAll();
   }
 
   ngOnDestroy() {
-    this.batchListSub.unsubscribe();
-    this.savedBatchSub.unsubscribe();
-    this.deletedBatchSub.unsubscribe();
-    this.traineeListSub.unsubscribe();
-    this.traineeListSub.unsubscribe();
-    this.createdTraineeSub.unsubscribe();
-    this.updatedTraineeSub.unsubscribe();
-    this.deletedTraineeSub.unsubscribe();
+    // this.batchListSub.unsubscribe();
+    // this.savedBatchSub.unsubscribe();
+    // this.deletedBatchSub.unsubscribe();
+    // this.traineeListSub.unsubscribe();
+    // this.traineeListSub.unsubscribe();
+    // this.createdTraineeSub.unsubscribe();
+    // this.updatedTraineeSub.unsubscribe();
+    // this.deletedTraineeSub.unsubscribe();
   }
 
 
@@ -158,9 +159,9 @@ export class ManageComponent implements OnInit, OnDestroy {
   */
   public saveBatch(batch: Batch): void {
     if (batch.batchId === 0) {
-      this.batchService.create(batch);
+      this.hydraBatchService.create(batch);
     } else {
-      this.batchService.update(batch);
+      this.hydraBatchService.update(batch);
     }
   }
 
@@ -252,6 +253,7 @@ export class ManageComponent implements OnInit, OnDestroy {
     const years = this.getBatchListYears(batches);
 
     this.batches = batches;
+    console.log(this.batches);
 
     /** set the initial year to the latest year of
     * the batches */
@@ -312,11 +314,11 @@ export class ManageComponent implements OnInit, OnDestroy {
 
   /* Creates a new trainee and assigns the current batch to its batch field
   Training status is assigned since there is no training status service yet in angular */
-  createNewTraineeFunction() {
-    this.createNewTrainee.batch = this.currentBatch;
-    console.log(this.createNewTrainee);
-    this.traineeService.create(this.createNewTrainee);
-  }
+  // createNewTraineeFunction() {
+  //   this.createNewTrainee.batch = this.currentBatch;
+  //   console.log(this.createNewTrainee);
+  //   this.traineeService.create(this.createNewTrainee);
+  // }
 
   /** Updates the Trainee
   If you assign the trainee the current batch that it's in
@@ -326,12 +328,12 @@ export class ManageComponent implements OnInit, OnDestroy {
   but pass those trainees inside that current batch as null
   so that there is no circular reference
   'Employed' is assigned since there is no training status service yet */
-  updateTraineeFunction() {
-    const emptyBatch = Object.assign({}, this.currentBatch);
-    emptyBatch.trainees = [];
-    this.createNewTrainee.batch = emptyBatch;
-    this.traineeService.update(this.createNewTrainee);
-  }
+  // updateTraineeFunction() {
+  //   const emptyBatch = Object.assign({}, this.currentBatch);
+  //   emptyBatch.trainees = [];
+  //   this.createNewTrainee.batch = emptyBatch;
+  //   this.traineeService.update(this.createNewTrainee);
+  // }
 
   /**
    * Deletes the trainee
@@ -359,15 +361,15 @@ export class ManageComponent implements OnInit, OnDestroy {
     this.traineeService.delete(trainee);
     -------------------------------------*/
 
-    this.traineeToBeDeleted = trainee;
-    const modalRef = this.modalService.open(DeleteTraineeModalComponent);
-    modalRef.componentInstance.trainee = trainee;
-    modalRef.result.then(result => {
-      if (result === 'Delete') {
-        this.traineeService.delete(trainee);
-        this.modalService.open(CannotDeleteTraineeModalComponent);
-      }
-    }, refused => { });
+    //   this.traineeToBeDeleted = trainee;
+    //   const modalRef = this.modalService.open(DeleteTraineeModalComponent);
+    //   modalRef.componentInstance.trainee = trainee;
+    //   modalRef.result.then(result => {
+    //     if (result === 'Delete') {
+    //       this.traineeService.delete(trainee);
+    //       this.modalService.open(CannotDeleteTraineeModalComponent);
+    //     }
+    //   }, refused => { });
   }
 
   /**
@@ -417,132 +419,132 @@ export class ManageComponent implements OnInit, OnDestroy {
    *
    * @param createTrainee
    */
-  openCreateTraineeModal(createTrainee) {
-    this.isNew = true;
-    this.createNewTrainee = new Trainee;
-    this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
-    this.batchModalNested.result.then(a => {}, b => this.closeCreateTraineeModal());
-    this.batchModal.close();
-  }
+    openCreateTraineeModal(createTrainee) {
+      this.isNew = true;
+      this.createNewTrainee = new Trainee;
+      this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
+      this.batchModalNested.result.then(a => {}, b => this.closeCreateTraineeModal());
+      this.batchModal.close();
+    }
 
-  openUpdateTraineeModal(createTrainee, trainee) {
-    this.isNew = false;
-    this.createNewTrainee = trainee;
-    this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
-    this.batchModalNested.result.then(a => {}, b => this.closeCreateTraineeModal());
-    this.batchModal.close();
-  }
+    openUpdateTraineeModal(createTrainee, trainee) {
+      this.isNew = false;
+      this.createNewTrainee = trainee;
+      this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
+      this.batchModalNested.result.then(a => {}, b => this.closeCreateTraineeModal());
+      this.batchModal.close();
+    }
 
-  closeCreateTraineeModal() {
-    this.batchModalNested.close();
-    this.batchModal = this.modalService.open(this.currentTrainees, { size: 'lg', container: '.batch-trainee-modal-container' });
-  }
+    closeCreateTraineeModal() {
+      this.batchModalNested.close();
+      this.batchModal = this.modalService.open(this.currentTrainees, { size: 'lg', container: '.batch-trainee-modal-container' });
+    }
 
-  /** Dynamically updates the currentBatch location selected inside the
-    * update batch modal whenever a new trainer is selected from the dropdown
-    *
-    * @param addressId: number
-    */
-  onUpdateBatchLocationSelect(addressId: number) {
-    for (const location of this.locations) {
-      if (Number(location.addressId) === Number(addressId)) {
-        console.log('found location match ' + this.currentBatch.address.addressId);
-        this.currentBatch.address = location;
+  //   /** Dynamically updates the currentBatch location selected inside the
+  //     * update batch modal whenever a new trainer is selected from the dropdown
+  //     *
+  //     * @param addressId: number
+  //     */
+  //   onUpdateBatchLocationSelect(addressId: number) {
+  //     for (const location of this.locations) {
+  //       if (Number(location.addressId) === Number(addressId)) {
+  //         console.log('found location match ' + this.currentBatch.location);
+  //         this.currentBatch.location = location.city;
+  //       }
+  //     }
+
+  //   }
+
+    /**
+     * procedure for when a batch is saved
+     * successfully to the API
+     *
+     * @param batch: Batch
+     */
+    onSavedBatch(batch: Batch): void {
+      this.hydraBatchService.fetchAll();
+    }
+
+    /**
+     * procedure for when a batch is deleted successfully to API
+     *
+     * @param batch: Batch
+     */
+    onDeletedBatch(batch: Batch): void {
+      this.hydraBatchService.fetchAll();
+    }
+
+    /**
+     * Delete a batch
+     *
+     * @param batch
+     */
+    deleteBatchFunction(batch) {
+      const modalRef = this.modalService.open(DeleteBatchModalComponent);
+      modalRef.componentInstance.batch = batch;
+      modalRef.result.then(result => {
+        if (result === 'Delete') {
+          this.hydraBatchService.delete(batch);
+          this.modalService.open(CannotDeleteModalComponent);
+        }
+      }, refused => { });
+    }
+
+  //   /**
+  //    * On saved trainee, closes modals and refreshes subscribers
+  //    * In future design, the modal component must be seperate so that it can refresh without having to close
+  //    *
+  //    * @param trainee
+  //    */
+  //   onSavedTrainee(trainee: Trainee): void {
+  //     this.batchModalNested.close('Saved Successfully');
+  //     this.hydraBatchService.fetchAll();
+  //     this.traineeService.fetchAllByBatch(this.currentBatch.batchId);
+  //     this.batchModal.close('Saved Successfully');
+  //   }
+
+  //   /**
+  //    *On deleted trainee, closes modals and refreshes subscribers
+  //    *In future design, the modal component must be seperate so that it can refresh without having to close
+  //    *
+  //    * @param trainee
+  //    */
+  //   onDeletedTrainee(trainee: Trainee): void {
+  //     this.hydraBatchService.fetchAll();
+  //     this.traineeService.fetchAllByBatch(this.currentBatch.batchId);
+  //     this.batchModal.close();
+  //   }
+
+  //   /**
+  //    *On updated trainee refreshes subscribers
+  //    *
+  //    *
+  //    * @param trainee
+  //    */
+  //   onUpdatedTrainee(trainee: Trainee): void {
+  //     this.batchModalNested.close('Saved Successfully');
+  //     this.hydraBatchService.fetchAll();
+  //     this.traineeService.fetchAllByBatch(this.currentBatch.batchId);
+  //   }
+
+    /** Modal functionality */
+    private getDismissReason(reason: any): string {
+      if (reason === ModalDismissReasons.ESC) {
+        return 'by pressing ESC';
+      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+        return 'by clicking on a backdrop';
+      } else {
+        return `with: ${reason}`;
       }
     }
 
-  }
-
-  /**
-   * procedure for when a batch is saved
-   * successfully to the API
-   *
-   * @param batch: Batch
-   */
-  onSavedBatch(batch: Batch): void {
-    this.batchService.fetchAll();
-  }
-
-  /**
-   * procedure for when a batch is deleted successfully to API
-   *
-   * @param batch: Batch
-   */
-  onDeletedBatch(batch: Batch): void {
-    this.batchService.fetchAll();
-  }
-
-  /**
-   * Delete a batch
-   *
-   * @param batch
-   */
-  deleteBatchFunction(batch) {
-    const modalRef = this.modalService.open(DeleteBatchModalComponent);
-    modalRef.componentInstance.batch = batch;
-    modalRef.result.then(result => {
-      if (result === 'Delete') {
-        this.batchService.delete(batch);
-        this.modalService.open(CannotDeleteModalComponent);
-      }
-    }, refused => { });
-  }
-
-  /**
-   * On saved trainee, closes modals and refreshes subscribers
-   * In future design, the modal component must be seperate so that it can refresh without having to close
-   *
-   * @param trainee
-   */
-  onSavedTrainee(trainee: Trainee): void {
-    this.batchModalNested.close('Saved Successfully');
-    this.batchService.fetchAll();
-    this.traineeService.fetchAllByBatch(this.currentBatch.batchId);
-    this.batchModal.close('Saved Successfully');
-  }
-
-  /**
-   *On deleted trainee, closes modals and refreshes subscribers
-   *In future design, the modal component must be seperate so that it can refresh without having to close
-   *
-   * @param trainee
-   */
-  onDeletedTrainee(trainee: Trainee): void {
-    this.batchService.fetchAll();
-    this.traineeService.fetchAllByBatch(this.currentBatch.batchId);
-    this.batchModal.close();
-  }
-
-  /**
-   *On updated trainee refreshes subscribers
-   *
-   *
-   * @param trainee
-   */
-  onUpdatedTrainee(trainee: Trainee): void {
-    this.batchModalNested.close('Saved Successfully');
-    this.batchService.fetchAll();
-    this.traineeService.fetchAllByBatch(this.currentBatch.batchId);
-  }
-
-  /** Modal functionality */
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
-  }
-
-  /**
-   * Switch trainee mode, set showDropped to !showDropped.
-   */
-  switchTraineeView() {
-    this.showDropped = !this.showDropped;
-    if (this.showDropped) {
-      this.traineeService.fetchDroppedByBatch(this.currentBatch.batchId).subscribe(results => this.droppedTrainees = results);
-    }
-  }
+  //   /**
+  //    * Switch trainee mode, set showDropped to !showDropped.
+  //    */
+  //   switchTraineeView() {
+  //     this.showDropped = !this.showDropped;
+  //     if (this.showDropped) {
+  //       this.traineeService.fetchDroppedByBatch(this.currentBatch.batchId).subscribe(results => this.droppedTrainees = results);
+  //     }
+  //   }
 }
