@@ -76,7 +76,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let batch of batches | DisplayBatchByYear:currentYear">
+          <tr *ngFor="let batch of batches">
+              <!-- | DisplayBatchByYear:currentYear -->
             <td>{{batch.trainingName}}</td>
             <td>{{batch.trainingType}}</td>
             <td>{{batch.skillType}}</td>
@@ -85,8 +86,8 @@
             <td>{{batch.address | addressToString }}</td>
             <td>{{batch.startDate | date:'MMM d, y'}}</td>
             <td>{{batch.endDate | date:'MMM d, y'}}</td>
-            <td>{{batch.goodGradeThreshold}}</td>
-            <td>{{batch.borderlineGradeThreshold}}</td>
+            <!-- <td>{{batch.goodGradeThreshold}}</td>
+            <td>{{batch.borderlineGradeThreshold}}</td> -->
             <td>
               <i class="fa fa-users c-pointer" style="color:#fa7427; text-align: center;" (click)="openViewBatchTraineesModal(traineesInBatch, batch)"
                 [title]="batch.trainees.length + ' Trainees'">

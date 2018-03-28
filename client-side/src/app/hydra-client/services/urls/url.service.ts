@@ -15,17 +15,19 @@ export class UrlService {
     save: () => `${this.context}skills`,
     update: () => `${this.context}skills`,
   };
-
-  /**
+  
+ /**
    * Endpoints for batches
    */
-  batches = {
-    fetchAllByTrainer: (id: number) => `${this.context}batches/trainer/${id}`,
+
+ batch = {
+    fetchAllByTrainer: () => `${this.context}batches/trainers`,
+    fetchAllByTrainerId: (id: number) => `${this.context}batches/trainers/${id}`,
     fetchAll: () => `${this.context}batches`,
     save: () => `${this.context}batches`,
     update: () => `${this.context}batches`,
-    delete: (batchId: number) => `${this.context}batches/${batchId}`,
-  };
+    delete: (batchId) => `${this.context}batches/${batchId}`
+};
 
   /**
    * Endpoints for trainees

@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Batch } from '../entities/Batch';
 import { NoteService } from '../services/note.service';
-import { BatchService } from '../services/batch.service';
 import { Subscription } from 'rxjs/Subscription';
 
 // pipes
 import { DisplayBatchByYear } from '../pipes/display-batch-by-year.pipe';
+import { Batch } from '../../../hydra-client/entities/batch';
+import { HydraBatchService } from '../../../hydra-client/services/batch/hydra-batch.service';
 
 
 @Component({
@@ -17,7 +17,7 @@ import { DisplayBatchByYear } from '../pipes/display-batch-by-year.pipe';
 
 export class QualityComponent implements OnInit, OnDestroy {
 
-  batches: Batch[];
+  batches: Batch[] = [];
 
   currentBatch: Batch;
   currentYear: number;
@@ -26,7 +26,7 @@ export class QualityComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private batchService: BatchService,
+    private batchService: HydraBatchService,
     private batchesByYearPipe: DisplayBatchByYear
   ) {
     this.setCurrentYear( this.getCalendarYear() );
@@ -35,7 +35,7 @@ export class QualityComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.batchSubscription = this.batchService.getList()
+    this.batchSubscription = this.batchService.fetchAll()
       .subscribe( (batches) => this.setBatches(batches) );
 
     this.batchService.fetchAll();
@@ -119,24 +119,25 @@ export class QualityComponent implements OnInit, OnDestroy {
   */
   private createBatch(): Batch {
 
-    return {
-      batchId: 0,
-      resourceId: 0,
-      trainingName: '',
-      trainer: null,
-      coTrainer: null,
-      skillType: '',
-      trainingType: '',
-      startDate: null,
-      endDate: null,
-      location: '',
-      address: null,
-      goodGradeThreshold: 0,
-      borderlineGradeThreshold: 0,
-      trainees: [],
-      weeks: 1,
-      gradedWeeks: 1,
-    };
+    return new Batch();
+  //   return {
+  //     batchId: 0,
+  //     resourceId: 0,
+  //     trainingName: '',
+  //     trainer: null,
+  //     coTrainer: null,
+  //     skillType: '',
+  //     trainingType: '',
+  //     startDate: null,
+  //     endDate: null,
+  //     location: '',
+  //     address: null,
+  //     goodGradeThreshold: 0,
+  //     borderlineGradeThreshold: 0,
+  //     trainees: [],
+  //     weeks: 1,
+  //     gradedWeeks: 1,
+  //   };
   }
 
 }

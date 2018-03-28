@@ -10,12 +10,11 @@ import 'rxjs/add/operator/distinctUntilChanged';
 
 // entities
 import { Trainee } from '../../entities/Trainee';
-import { Batch } from '../../entities/Batch';
 
 // services
 import { TraineeService } from '../../services/trainee.service';
-import { BatchService } from '../../services/batch.service';
 import { PanelService } from '../../services/panel.service';
+import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra-batch.service';
 
 @Component({
   selector: 'app-panel-searchbar',
@@ -39,7 +38,7 @@ export class PanelSearchbarComponent implements OnInit, OnDestroy {
   * @constructor
   * @param panelService - the PanelService
   */
-  constructor(private traineeService: TraineeService, private batchService: BatchService,
+  constructor(private traineeService: TraineeService, private batchService: HydraBatchService,
     private panelService: PanelService) {
     this.traineeSubject = new BehaviorSubject(this.trainee);
   }
@@ -56,7 +55,7 @@ export class PanelSearchbarComponent implements OnInit, OnDestroy {
    * @function setBatchList
    */
   setBatchList() {
-    this.batchSubscription = this.batchService.getList().subscribe(batchList => {
+    this.batchSubscription = this.batchService.fetchAll().subscribe(batchList => {
       this.batchList = batchList;
       if (!this.traineeList.length) {
         this.getTrainees(this.batchList);

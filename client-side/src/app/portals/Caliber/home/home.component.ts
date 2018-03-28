@@ -9,11 +9,13 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   constructor(private trainerService: TrainerService) { }
 
+
   ngOnInit() {
     this.trainerService.fetchAll().subscribe(x => {
       console.log(x);
     });
   }
+
 
   ngOnDestroy() {}
 }
