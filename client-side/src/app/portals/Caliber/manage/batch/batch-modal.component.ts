@@ -5,7 +5,7 @@ import { NgbModal, ModalDismissReasons, NgbActiveModal } from '@ng-bootstrap/ng-
 import { Subscription } from 'rxjs/Subscription';
 
 // entities
-import { Batch } from '../../../../hydra-client/entities/batch';
+import { HydraBatch } from '../../../../hydra-client/entities/HydraBatch';
 
 // services
 import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra-batch.service';
@@ -26,10 +26,10 @@ import { ApiService } from '../../services/api.service';
 export class BatchModalComponent implements OnInit, OnDestroy, OnChanges {
 
   @Input()
-  public initialBatch: Batch;
+  public initialBatch: HydraBatch;
 
   @Input()
-  public batch: Batch;
+  public batch: HydraBatch;
 
   public trainers: Trainer[];
   public skills: string[];
@@ -55,7 +55,7 @@ export class BatchModalComponent implements OnInit, OnDestroy, OnChanges {
     private locationService: LocationService,
     public trainerService: TrainerService
   ) {
-    this.batch = new Batch();
+    this.batch = new HydraBatch();
     this.setLocations([]);
     this.setTrainers([]);
     this.setTrainingTypes([]);

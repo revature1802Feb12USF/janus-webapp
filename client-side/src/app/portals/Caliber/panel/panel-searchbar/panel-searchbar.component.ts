@@ -9,12 +9,13 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
 // entities
-import { Trainee } from '../../entities/Trainee';
+import { HydraTrainee } from '../../../../hydra-client/entities/HydraTrainee';
 
 // services
 import { TraineeService } from '../../services/trainee.service';
 import { PanelService } from '../../services/panel.service';
 import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra-batch.service';
+
 
 @Component({
   selector: 'app-panel-searchbar',
@@ -24,14 +25,14 @@ import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra
 
 export class PanelSearchbarComponent implements OnInit, OnDestroy {
   name: string;
-  trainee: Trainee;
+  trainee: HydraTrainee;
   batchList;
   traineeList = [];
   traineeNameList: any = [];
   batchSubscription: Subscription;
   closeResult: string;
 
-  protected traineeSubject: BehaviorSubject<Trainee>;
+  protected traineeSubject: BehaviorSubject<HydraTrainee>;
 
   /**
   * Get the necessary services
@@ -80,12 +81,12 @@ export class PanelSearchbarComponent implements OnInit, OnDestroy {
    * @function setTrainee
    * @param trainee
    */
-  setTrainee(trainee) {
+  setTrainee(trainee: HydraTrainee) {
     this.trainee = trainee;
     this.panelService.fetchAllByTrainee(trainee);
     this.traineeSubject.next(this.trainee);
-    this.name = this.trainee.name;
-    this.traineeService.pushToSaved(this.trainee);  // set selected trainee to savedSubject in traineeservice
+    this.name = this.trainee.traineeUserInfo.firstName;
+   // this.traineeService.pushToSaved(this.trainee);  // set selected trainee to savedSubject in traineeservice
   }
 
   /**
@@ -98,7 +99,7 @@ export class PanelSearchbarComponent implements OnInit, OnDestroy {
         this.trainee = this.traineeList[i];
         this.panelService.fetchAllByTrainee(this.trainee);
         this.traineeSubject.next(this.trainee);
-        this.traineeService.pushToSaved(this.trainee); // set selected trainee to savedsubject in traineeservice
+    //    this.traineeService.pushToSaved(this.trainee); // set selected trainee to savedsubject in traineeservice
       }
     }
   }
@@ -106,7 +107,7 @@ export class PanelSearchbarComponent implements OnInit, OnDestroy {
   /**
    * @function getTraineeSubject
    */
-  public getTraineeSubject(): Observable<Trainee> {
+  public getTraineeSubject(): Observable<HydraTrainee> {
     return this.traineeSubject.asObservable();
   }
 

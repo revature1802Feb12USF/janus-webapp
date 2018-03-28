@@ -11,8 +11,8 @@ import { Observable } from 'rxjs/Observable';
 
 // entities
 import { Note } from '../../entities/Note';
-import { Trainee } from '../../entities/Trainee';
-import { Batch } from '../../../../hydra-client/entities/batch';
+import { HydraBatch } from '../../../../hydra-client/entities/HydraBatch';
+
 
 /**
  * Creates a table showing the overall quality audit for
@@ -31,7 +31,7 @@ export class WeeklyAuditComponent implements OnInit {
   private noteSub: Subscription;
   private reportSub: Subscription;
 
-  batch: Batch;
+  batch: HydraBatch;
   week: number;
   traineeNotes: Array<Note>;
   batchNote: Note;

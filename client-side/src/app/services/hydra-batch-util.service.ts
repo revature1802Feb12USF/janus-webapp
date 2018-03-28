@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Batch } from '../hydra-client/entities/batch';
+import { HydraBatch } from '../hydra-client/entities/HydraBatch';
 
 @Injectable()
 export class HydraBatchUtilService {
@@ -11,7 +11,7 @@ export class HydraBatchUtilService {
      *
      * @param batch
      */
-  public getWeek(batch: Batch) {
+  public getWeek(batch: HydraBatch) {
     return Math.floor(((Date.now() - new Date(batch.startDate).getTime()) / 6.048e8) + 1);
     // return ((Date.now() - batch.startDate.getMilliseconds()) / 6.048e8);
 

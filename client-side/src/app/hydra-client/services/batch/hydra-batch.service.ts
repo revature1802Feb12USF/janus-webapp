@@ -16,7 +16,7 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 import { UrlService } from '../urls/url.service';
 import { stringifyDate } from '../../../portals/Caliber/util/utils';
 import { CRUD } from '../../../portals/Caliber/interfaces/api.interface';
-import { Batch } from '../../entities/batch';
+import { HydraBatch } from '../../entities/HydraBatch';
 
 
 /**
@@ -24,7 +24,7 @@ import { Batch } from '../../entities/batch';
  * for Batch objects
  */
 @Injectable()
-export class HydraBatchService implements CRUD<Batch> {
+export class HydraBatchService implements CRUD<HydraBatch> {
 
 
   constructor(public http: HttpClient, private urls: UrlService) {
@@ -81,7 +81,7 @@ export class HydraBatchService implements CRUD<Batch> {
   *
   * @param batch: Batch
   */
-  public create(batch: Batch) {
+  public create(batch: HydraBatch) {
     return this.http.post<any>(this.urls.batch.save(), JSON.stringify(this.prepareForApi(batch)));
   }
 
@@ -95,7 +95,7 @@ export class HydraBatchService implements CRUD<Batch> {
    *
    * @returns Observable
    */
-  public update(batch: Batch) {
+  public update(batch: HydraBatch) {
     return this.http.put<any>(this.urls.batch.update(), JSON.stringify(this.prepareForApi(batch)));
   }
 
@@ -109,7 +109,7 @@ export class HydraBatchService implements CRUD<Batch> {
    *
    * @returns Observable
    */
-  public delete(batch: Batch) {
+  public delete(batch: HydraBatch) {
     return this.http.delete<any>(this.urls.batch.delete(batch.batchId));
   }
 
@@ -122,7 +122,7 @@ export class HydraBatchService implements CRUD<Batch> {
    *
    * @return any
    */
-  protected prepareForApi(batch: Batch) {
+  protected prepareForApi(batch: HydraBatch) {
     const output: any = {};
     Object.assign(output, batch);
 

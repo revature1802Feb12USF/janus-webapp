@@ -16,7 +16,7 @@ import { ReportingService } from '../../services/reporting.service';
 import { Assessment } from '../../entities/Assessment';
 import { Grade } from '../../entities/Grade';
 import { Note } from '../../entities/Note';
-import { Batch } from '../../../../hydra-client/entities/batch';
+import { HydraBatch } from '../../../../hydra-client/entities/HydraBatch';
 
 
 @Component({
@@ -39,7 +39,7 @@ export class WeeklyGradesComponent implements OnInit, OnDestroy {
   batchNote: Note;
   weekTopics: string;
 
-  batch: Batch;
+  batch: HydraBatch;
   week: number;
 
   constructor(private granularityService: GranularityService,

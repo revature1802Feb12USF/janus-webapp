@@ -1,10 +1,10 @@
 import { Category } from './Category';
-import { Batch } from '../../../hydra-client/entities/batch';
+import { HydraBatch } from '../../../hydra-client/entities/HydraBatch';
 
 export class Assessment {
     assessmentId: number;
     title: string;
-    batch: Batch;
+    batch: HydraBatch;
     rawScore: number;
     type: string;
     week: number;

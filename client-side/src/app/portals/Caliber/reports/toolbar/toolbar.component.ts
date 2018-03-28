@@ -11,11 +11,11 @@ import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import { TrainerService } from '../../services/trainer.service';
 import { GranularityService } from '../services/granularity.service';
-import { Trainee } from '../../entities/Trainee';
 import { PDFService } from '../../services/pdf.service';
-import { Batch } from '../../../../hydra-client/entities/batch';
+import { HydraBatch } from '../../../../hydra-client/entities/HydraBatch';
 import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra-batch.service';
 import { HydraBatchUtilService } from '../../../../services/hydra-batch-util.service';
+import { HydraTrainee } from '../../../../hydra-client/entities/HydraTrainee';
 
 @Component({
   selector: 'app-toolbar',
@@ -31,15 +31,15 @@ export class ToolbarComponent implements OnInit {
   public traineeSelect: number;
 
   // Current batch and trainee Object based on selection
-  currentBatch: Batch = new Batch();
-  currentTrainee: Trainee;
+  currentBatch: HydraBatch = new HydraBatch();
+  currentTrainee: HydraTrainee;
 
   // Arrays
   public yearList: Array<number>;              // Contains list of all years from batches
-  public batchList: Array<Batch>;              // Contains list of all batches
-  public batchYearList: Array<Batch>;          // Contains list of all batches based on year selection
+  public batchList: Array<HydraBatch>;              // Contains list of all batches
+  public batchYearList: Array<HydraBatch>;          // Contains list of all batches based on year selection
   public weekList: Array<number>;              // Contains list of all weeks based on batch selection
-  public traineesList: Array<Trainee>;         // Contains list of all trainees based on batch selection
+  public traineesList: Array<HydraTrainee>;         // Contains list of all trainees based on batch selection
   public traineesListNames: Array<String>;     // Contains list of all trainees names based on batch selection
 
   // Subscriptions
@@ -134,7 +134,7 @@ export class ToolbarComponent implements OnInit {
   /**
    * Creates and returns an array of all batches based on year selection.
    */
-  createBatchDropdown(): Array<Batch> {
+  createBatchDropdown(): Array<HydraBatch> {
     this.batchYearList = [];
 
     for (const batch of this.batchList) {
@@ -164,13 +164,13 @@ export class ToolbarComponent implements OnInit {
   /**
    * Creates and returns an array of all trainees based on batchselection.
    */
-  createTraineesDropdown(): Array<Trainee> {
+  createTraineesDropdown(): Array<HydraTrainee> {
     this.traineesList = [];
     this.traineesListNames = [];
 
     for (const trainee of this.currentBatch.trainees) {
       this.traineesList.push(trainee);
-      this.traineesListNames.push(trainee.name);
+      this.traineesListNames.push(trainee.traineeUserInfo.firstName);
     }
 
     this.traineeSelect = 0;
@@ -250,7 +250,7 @@ export class ToolbarComponent implements OnInit {
   searchTrainees() {
     const input = (<HTMLInputElement>document.getElementById('searchTextBox')).value;
     for (const trainee of this.traineesList) {
-      if (trainee.name === input) {
+      if (trainee.traineeUserInfo.firstName || trainee.traineeUserInfo.lastName === input) {
         this.traineeOnClick(trainee.traineeId);
         (<HTMLInputElement>document.getElementById('searchTextBox')).value = input;
       }
@@ -264,7 +264,7 @@ export class ToolbarComponent implements OnInit {
    * Returns Batch object from ID based on batch selection.
    * @param batchId - Batch ID to search for.
    */
-  getBatchByIdFromSelection(batchId: number): Batch {
+  getBatchByIdFromSelection(batchId: number): HydraBatch {
     for (const batch of this.batchYearList) {
       if (batchId === batch.batchId) {
         return batch;
@@ -276,7 +276,7 @@ export class ToolbarComponent implements OnInit {
    * Returns Trainee object from ID based on trainee selection.
    * @param traineeId - Trainee ID to search for.
    */
-  getTraineeByIdFromSelection(traineeId: number): Trainee {
+  getTraineeByIdFromSelection(traineeId: number): HydraTrainee {
     for (const trainee of this.traineesList) {
       if (traineeId === trainee.traineeId) {
         return trainee;
@@ -289,8 +289,8 @@ export class ToolbarComponent implements OnInit {
    */
   sortTraineesByName() {
     this.traineesList.sort(function(a, b) {
-      const nameA = a.name.toUpperCase();
-      const nameB = b.name.toUpperCase();
+      const nameA = a.traineeUserInfo.firstName.toUpperCase();
+      const nameB = b.traineeUserInfo.firstName.toUpperCase();
       if (nameA < nameB) {
         return -1;
       }
@@ -313,8 +313,8 @@ export class ToolbarComponent implements OnInit {
   /**
    * Creates and returns an empty Trainee object with ID of 0.
    */
-  createEmptyTrainee(): Trainee {
-    const emptyTrainee = new Trainee();
+  createEmptyTrainee(): HydraTrainee {
+    const emptyTrainee = new HydraTrainee();
     emptyTrainee.traineeId = 0;
     return emptyTrainee;
   }

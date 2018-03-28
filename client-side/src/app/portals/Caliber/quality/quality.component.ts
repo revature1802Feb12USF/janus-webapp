@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 // pipes
 import { DisplayBatchByYear } from '../pipes/display-batch-by-year.pipe';
-import { Batch } from '../../../hydra-client/entities/batch';
+import { HydraBatch } from '../../../hydra-client/entities/HydraBatch';
 import { HydraBatchService } from '../../../hydra-client/services/batch/hydra-batch.service';
 
 
@@ -17,9 +17,9 @@ import { HydraBatchService } from '../../../hydra-client/services/batch/hydra-ba
 
 export class QualityComponent implements OnInit, OnDestroy {
 
-  batches: Batch[] = [];
+  batches: HydraBatch[] = [];
 
-  currentBatch: Batch;
+  currentBatch: HydraBatch;
   currentYear: number;
 
   batchSubscription: Subscription;
@@ -50,13 +50,13 @@ export class QualityComponent implements OnInit, OnDestroy {
   *
   * @param batches: Batch[]
   */
-  private setBatches(batches: Batch[]): void {
+  private setBatches(batches: HydraBatch[]): void {
     this.batches = batches;
   }
 
 
   public onYearSelect(year: number) {
-    const currentYearBatches: Batch[] = this.batchesByYearPipe.transform(this.batches, year);
+    const currentYearBatches: HydraBatch[] = this.batchesByYearPipe.transform(this.batches, year);
     this.setCurrentYear(year);
 
     if (currentYearBatches.length > 0) {
@@ -87,7 +87,7 @@ export class QualityComponent implements OnInit, OnDestroy {
     // console.log(currentYear);
   }
 
-  public getBatchesOfCurrentYear(): Batch[] {
+  public getBatchesOfCurrentYear(): HydraBatch[] {
     return this.batchesByYearPipe.transform(this.batches, this.currentYear);
   }
 
@@ -117,9 +117,9 @@ export class QualityComponent implements OnInit, OnDestroy {
   *
   * @return Batch
   */
-  private createBatch(): Batch {
+  private createBatch(): HydraBatch {
 
-    return new Batch();
+    return new HydraBatch();
   //   return {
   //     batchId: 0,
   //     resourceId: 0,

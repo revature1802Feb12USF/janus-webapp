@@ -13,9 +13,9 @@ import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra
 
 // entities
 import { Note } from '../../entities/Note';
-import { Trainee } from '../../entities/Trainee';
-import { Batch } from '../../../../hydra-client/entities/batch';
+import { HydraBatch } from '../../../../hydra-client/entities/HydraBatch';
 import { HydraBatchUtilService } from '../../../../services/hydra-batch-util.service';
+import { HydraTrainee } from '../../../../hydra-client/entities/HydraTrainee';
 
 /**
  * Creates a table of the overall feedback of a given trainee in a given batch.
@@ -43,9 +43,9 @@ export class OverallFeedbackComponent implements OnInit, OnDestroy {
   traineeNotes: Array<Note> = null;
   weekTopics: Array<Array<string>>;
 
-  trainee: Trainee;
+  trainee: HydraTrainee;
   week = 1;
-  batch: Batch;
+  batch: HydraBatch;
 
   constructor(private granularityService: GranularityService,
     private noteService: NoteService,
