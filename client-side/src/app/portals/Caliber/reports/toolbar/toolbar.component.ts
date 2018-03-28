@@ -15,6 +15,7 @@ import { Trainee } from '../../entities/Trainee';
 import { PDFService } from '../../services/pdf.service';
 import { Batch } from '../../../../hydra-client/entities/batch';
 import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra-batch.service';
+import { HydraBatchUtilService } from '../../../../services/hydra-batch-util.service';
 
 @Component({
   selector: 'app-toolbar',
@@ -47,7 +48,7 @@ export class ToolbarComponent implements OnInit {
 
   constructor(private batchService: HydraBatchService,
               private granularityService: GranularityService,
-              private pdfService: PDFService) {
+              private pdfService: PDFService, private batchUtil: HydraBatchUtilService) {
   }
 
   ngOnInit() {
@@ -152,7 +153,7 @@ export class ToolbarComponent implements OnInit {
   createWeeksDropdown(): Array<number> {
     this.weekList = [];
 
-    for (let i = 0; i <= this.batchService.getWeek(this.currentBatch); i++) {
+    for (let i = 0; i <= this.batchUtil.getWeek(this.currentBatch); i++) {
       this.weekList.push(i);
     }
 

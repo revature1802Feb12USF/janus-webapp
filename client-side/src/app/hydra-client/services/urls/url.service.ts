@@ -18,6 +18,7 @@ export class UrlService {
 
  batch = {
     fetchAllByTrainer: () => `${this.context}batches/trainers`,
+    fetchAllByTrainerId: (id: number) => `${this.context}batches/trainers/${id}`,
     fetchAll: () => `${this.context}batches`,
     save: () => `${this.context}batches`,
     update: () => `${this.context}batches`,

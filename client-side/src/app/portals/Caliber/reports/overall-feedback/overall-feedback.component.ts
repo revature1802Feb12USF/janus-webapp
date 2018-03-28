@@ -15,6 +15,7 @@ import { HydraBatchService } from '../../../../hydra-client/services/batch/hydra
 import { Note } from '../../entities/Note';
 import { Trainee } from '../../entities/Trainee';
 import { Batch } from '../../../../hydra-client/entities/batch';
+import { HydraBatchUtilService } from '../../../../services/hydra-batch-util.service';
 
 /**
  * Creates a table of the overall feedback of a given trainee in a given batch.
@@ -49,7 +50,8 @@ export class OverallFeedbackComponent implements OnInit, OnDestroy {
   constructor(private granularityService: GranularityService,
     private noteService: NoteService,
     private reportService: ReportingService,
-    private batchService: HydraBatchService) { }
+    private batchService: HydraBatchService,
+    private batchUtil: HydraBatchUtilService) { }
 
   ngOnInit() {
 
@@ -63,7 +65,7 @@ export class OverallFeedbackComponent implements OnInit, OnDestroy {
 
         if (this.trainee.traineeId > 0) {
           this.noteService.fetchByTrainee(this.trainee);
-          this.reportService.fetchTechnologiesUpToWeek(this.batch.batchId, this.batchService.getWeek(this.batch));
+          this.reportService.fetchTechnologiesUpToWeek(this.batch.batchId, this.batchUtil.getWeek(this.batch));
         }
       });
 

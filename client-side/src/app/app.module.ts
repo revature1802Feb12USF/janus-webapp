@@ -26,6 +26,7 @@ import { RoleGuard } from './role-guard';
 import { CookieService } from 'ngx-cookie-service';
 import { HydraClientModule } from './hydra-client/hydra-client.module';
 import { environment } from '../environments/environment';
+import { HydraBatchUtilService } from './services/hydra-batch-util.service';
 
 // loading routes from child modules this way will lazy load them
 const routes: Routes = [
@@ -66,7 +67,8 @@ const routes: Routes = [
   providers: [
     ChuckNorrisService,
     RoleGuard,
-    CookieService
+    CookieService,
+    HydraBatchUtilService
   ],
   bootstrap: [AppComponent]
 })
