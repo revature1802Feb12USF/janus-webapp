@@ -1,13 +1,13 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed, inject, async } from '@angular/core/testing';
 
 import { HydraBatchService } from './hydra-batch.service';
 import { HttpClient, HttpHandler, HttpClientModule } from '@angular/common/http';
-import { Batch } from '../../entities/batch';
+import { HydraBatch } from '../../entities/HydraBatch';
 import { UrlService } from '../urls/url.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 fdescribe('HydraBatchService', () => {
-  const batch = new Batch();
+  const batch = new HydraBatch();
   batch.batchId = 100;
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -21,19 +21,19 @@ fdescribe('HydraBatchService', () => {
     expect(service).toBeTruthy();
   }));
 
-  // it(`should get all trainees with batch id 1`,
-  //   async(
-  //     inject([HttpClient, HttpTestingController, HydraTraineeService],
-  //       (http: HttpClient, backend: HttpTestingController, service: HydraTraineeService) => {
-  //         service.findAllByBatchAndStatus(1, 'Dropped').subscribe();
+  it(`should get all batches`,
+    async(
+      inject([HttpClient, HttpTestingController, HydraBatchService],
+        (http: HttpClient, backend: HttpTestingController, service: HydraBatchService) => {
+          service.fetchAll().subscribe();
 
-  //         backend.expectOne({
-  //           url: `http://localhost:8080/trainees/batch/1/status/Dropped`,
-  //           method: 'GET'
-  //         });
-  //       })
-  //   )
-  // );
+          backend.expectOne({
+            url: `http://localhost:8080/batches`,
+            method: 'GET'
+          });
+        })
+    )
+  );
 
   // it(`should create a new trainee`,
   //   async(

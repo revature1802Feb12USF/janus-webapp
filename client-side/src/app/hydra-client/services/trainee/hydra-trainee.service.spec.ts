@@ -6,7 +6,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HydraTrainee } from '../../entities/HydraTrainee';
 import { UrlService } from '../urls/url.service';
 
-fdescribe('HydraTraineeService', () => {
+describe('HydraTraineeService', () => {
   const trainee = new HydraTrainee();
   trainee.traineeId = 104;
   beforeEach(() => {
