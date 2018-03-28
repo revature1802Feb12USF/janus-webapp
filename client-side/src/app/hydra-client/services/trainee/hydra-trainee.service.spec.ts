@@ -7,9 +7,11 @@ import { HydraTrainee } from '../../entities/HydraTrainee';
 import { UrlService } from '../urls/url.service';
 
 fdescribe('HydraTraineeService', () => {
+  const trainee = new HydraTrainee();
+  trainee.traineeId = 104;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [HydraTraineeService],
+      providers: [HydraTraineeService, UrlService],
       imports: [HttpClientModule,
         HttpClientTestingModule]
     });
@@ -23,10 +25,10 @@ fdescribe('HydraTraineeService', () => {
     async(
       inject([HttpClient, HttpTestingController, HydraTraineeService],
         (http: HttpClient, backend: HttpTestingController, service: HydraTraineeService) => {
-          service.fetchAllByBatch(1).subscribe();
+          service.findAllByBatchAndStatus(1, 'Dropped').subscribe();
 
           backend.expectOne({
-            url: `http://localhost:8908/trainees/batch/1`,
+            url: `http://localhost:8080/trainees/batch/1/status/Dropped`,
             method: 'GET'
           });
         })
@@ -37,11 +39,39 @@ fdescribe('HydraTraineeService', () => {
     async(
       inject([HttpClient, HttpTestingController, HydraTraineeService],
         (http: HttpClient, backend: HttpTestingController, service: HydraTraineeService) => {
-          service.create(new HydraTrainee).subscribe();
+          service.create(trainee).subscribe();
 
           backend.expectOne({
-            url: `http://localhost:8908/trainees/batch/1`,
+            url: `http://localhost:8080/trainees`,
             method: 'POST'
+          });
+        })
+    )
+  );
+
+  it(`should update a trainee`,
+    async(
+      inject([HttpClient, HttpTestingController, HydraTraineeService],
+        (http: HttpClient, backend: HttpTestingController, service: HydraTraineeService) => {
+          service.update(trainee).subscribe();
+
+          backend.expectOne({
+            url: `http://localhost:8080/trainees`,
+            method: 'PUT'
+          });
+        })
+    )
+  );
+
+  it(`should delete a trainee`,
+    async(
+      inject([HttpClient, HttpTestingController, HydraTraineeService],
+        (http: HttpClient, backend: HttpTestingController, service: HydraTraineeService) => {
+          service.delete(104).subscribe();
+
+          backend.expectOne({
+            url: `http://localhost:8080/trainees/104`,
+            method: 'DELETE'
           });
         })
     )

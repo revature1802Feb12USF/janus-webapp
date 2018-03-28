@@ -383,7 +383,7 @@ export class ManageComponent implements OnInit, OnDestroy {
 
     for (let i = 0; i < this.currentBatch.trainees.length; i++) {
       this.currentBatch.trainees[i].batch = null;
-      this.hydraTraineeService.delete(this.currentBatch.trainees[i]);
+      this.hydraTraineeService.delete(this.currentBatch.trainees[i].traineeId);
     }
   }
 

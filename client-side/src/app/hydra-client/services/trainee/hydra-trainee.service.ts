@@ -64,8 +64,8 @@ export class HydraTraineeService {
   * @param trainee: HydraTrainee
   * @returns {Observable<HydraTrainee>}
   */
-  public delete(trainee: HydraTrainee): Observable<HydraTrainee> {
-    const url = this.urlService.trainees.delete(trainee.traineeId);
+  public delete(traineeId: number): Observable<HydraTrainee> {
+    const url = this.urlService.trainees.delete(traineeId);
     return this.httpClient.delete<HydraTrainee>(url);
   }
 }
