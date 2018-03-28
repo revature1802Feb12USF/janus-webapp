@@ -1,4 +1,4 @@
-import { Batch } from '../../../hydra-client/entities/batch';
+import { HydraBatch } from '../../../hydra-client/entities/HydraBatch';
 
 export class Trainee {
     traineeId: number;
@@ -15,5 +15,5 @@ export class Trainee {
     major: string;
     techScreenerName: string;
     projectCompletion: string;
-    batch: Batch;
+    batch: HydraBatch;
 }

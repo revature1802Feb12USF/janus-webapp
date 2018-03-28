@@ -25,7 +25,7 @@ import { TrainerService } from '../../../hydra-client/services/trainer/trainer.s
 
 // entities
 import { Location } from '../entities/Location';
-import { Batch } from '../../../hydra-client/entities/batch';
+import { HydraBatch } from '../../../hydra-client/entities/HydraBatch';
 import { Address } from '../entities/Address';
 import { Trainee } from '../entities/Trainee';
 import { HydraTrainee } from '../../../hydra-client/entities/HydraTrainee';
@@ -40,7 +40,6 @@ import { CannotDeleteModalComponent } from './cannot-delete-modal/cannot-delete-
 import { DeleteTraineeModalComponent } from './delete-trainee-modal/delete-trainee-modal.component';
 import { CannotDeleteTraineeModalComponent } from './cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
 import { DeleteBatchModalComponent } from './delete-batch-modal/delete-batch-modal.component';
-import { HydraBatch } from '../../../hydra-client/entities/HydraBatch';
 
 
 
@@ -53,7 +52,7 @@ import { HydraBatch } from '../../../hydra-client/entities/HydraBatch';
 })
 export class ManageComponent implements OnInit {
   closeResult: string;
-  batches: Batch[] = [];
+  batches: HydraBatch[] = [];
   trainees: HydraTrainee[] = [];
   batchModal: NgbModalRef;
   batchModalNested: NgbModalRef;
@@ -132,7 +131,7 @@ export class ManageComponent implements OnInit {
   *
   * @param batch
   */
-  public saveBatch(batch: Batch): void {
+  public saveBatch(batch: HydraBatch): void {
     if (batch.batchId === 0) {
       this.hydraBatchService.create(batch);
     } else {
@@ -147,7 +146,7 @@ export class ManageComponent implements OnInit {
    *
    * @param batches
    */
-  public getBatchListYears(batches: Batch[]): number[] {
+  public getBatchListYears(batches: HydraBatch[]): number[] {
     const yearsSet: Set<number> = new Set();
     const years: number[] = [];
 
@@ -173,9 +172,9 @@ export class ManageComponent implements OnInit {
    *
    * @param batch
    */
-  public openBatchModal(batch: Batch): void {
+  public openBatchModal(batch: HydraBatch): void {
     if (batch === null) {
-      batch = new Batch();
+      batch = new HydraBatch();
       batch.batchId = 0;
     }
     this.batchModal = this.modalService.open(BatchModalComponent, { size: 'lg' });
@@ -187,9 +186,9 @@ export class ManageComponent implements OnInit {
    *
    * @param batch
    */
-  public openUpdateBatchModal(batch: Batch): void {
+  public openUpdateBatchModal(batch: HydraBatch): void {
     if (batch === null) {
-      batch = new Batch();
+      batch = new HydraBatch();
       batch.batchId = 0;
     }
 
@@ -224,7 +223,7 @@ export class ManageComponent implements OnInit {
    *
    * @param batches
    */
-  private setBatches(batches: Batch[]): void {
+  private setBatches(batches: HydraBatch[]): void {
     const years = this.getBatchListYears(batches);
 
     this.batches = batches;
@@ -424,7 +423,7 @@ export class ManageComponent implements OnInit {
      *
      * @param batch: Batch
      */
-    onSavedBatch(batch: Batch): void {
+    onSavedBatch(batch: HydraBatch): void {
       this.hydraBatchService.fetchAll();
     }
 
@@ -433,7 +432,7 @@ export class ManageComponent implements OnInit {
      *
      * @param batch: Batch
      */
-    onDeletedBatch(batch: Batch): void {
+    onDeletedBatch(batch: HydraBatch): void {
       this.hydraBatchService.fetchAll();
     }
 
