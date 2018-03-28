@@ -81,7 +81,6 @@ export class TrainersComponent implements OnInit {
     this.trainerService.create(this.newTrainer).subscribe((resp) => {
       this.trainerService.fetchAll();
     });
-    this.initFormControl();
     this.ngOnInit();
   }
 
