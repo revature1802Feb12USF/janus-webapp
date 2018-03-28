@@ -7,7 +7,7 @@ const bam = 'http://18.219.59.193:9001/api/v2';
 export const environment = {
   production: false,
 
-  hydraContext: 'http://localhost:8908/',
+  hydraContext: 'http://localhost:8080/',
 
   context: context, // change for what the production environment would actually be
   bam: bam,

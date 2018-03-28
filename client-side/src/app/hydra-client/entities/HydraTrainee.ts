@@ -5,7 +5,6 @@ import { HydraUser } from './HydraUser';
 export class HydraTrainee {
     traineeId: number;
     resourceId: number;
-    name: string;
     trainingStatus: string;
     batch: HydraBatch;
     phoneNumber: string;

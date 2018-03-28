@@ -31,8 +31,7 @@ export class UrlService {
    * Endpoints for trainees
    */
   trainees = {
-    findAllByBatch: (batchId: number) => `${this.context}trainees/batch/${batchId}`,
-    findDroppedByBatch: (batchId: number) => `${this.context}trainees/batch/dropped/${batchId}`,
+    findAllByBatchAndStatus: (id: number, status: string) => `${this.context}trainees/batch/${id}/status/${status}`,
     save: () => `${this.context}trainees`,
     update: () => `${this.context}trainees`,
     delete: (traineeId: number) => `${this.context}trainees/${traineeId}`,

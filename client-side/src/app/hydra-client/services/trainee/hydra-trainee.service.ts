@@ -16,40 +16,17 @@ export class HydraTraineeService {
   constructor(private httpClient: HttpClient, private urlService: UrlService) { }
 
   /**
-   * Requests all trainees by batch ID and returns an observable. Calls
-   * function 'fetchAll' below.
-   *
-   * spring-security: @PreAuthorize("hasAnyRole('VP', 'QC', 'TRAINER', 'STAGING', 'PANEL')")
-   *
-   * @param batchId: number
-   * @returns {Observable<HydraTrainee[]>}
-   */
-  public fetchAllByBatch(batchId: number): Observable<HydraTrainee[]> {
-    return this.fetchAll(batchId);
-  }
-
-  /**
    * Requests all trainees with the input batch id and returns an observable.
    *
    * Possibly a legacy function so we did not consolidate this with fetchAllByBatch (Blake's class, 1801)
    *
    * @param batchId
-   * @returns {Observable<HydraTrainee[]>}
-   */
-  public fetchAll(batchId: number): Observable<HydraTrainee[]> {
-    const url = this.urlService.trainees.findAllByBatch(batchId);
-    return this.httpClient.get<HydraTrainee[]>(url);
-  }
-
-  /**
-   * Requests all trainees with the input batch id that have
-   * been dropped and returns the observable.
+   * @param status
    *
-   * @param batchId
    * @returns {Observable<HydraTrainee[]>}
    */
-  public fetchDroppedByBatch(batchId: number): Observable<HydraTrainee[]> {
-    const url = this.urlService.trainees.findDroppedByBatch(batchId);
+  public findAllByBatchAndStatus(id: number, status: string): Observable<HydraTrainee[]> {
+    const url = this.urlService.trainees.findAllByBatchAndStatus(id, status);
     return this.httpClient.get<HydraTrainee[]>(url);
   }
 
@@ -65,15 +42,6 @@ export class HydraTraineeService {
     const url = this.urlService.trainees.save();
     return this.httpClient.post<HydraTrainee>(url, trainee);
   }
-
-  /*
-    Function that pushes a trainee into savedSubject.
-    Since we are no longer working with subjects, we
-    decided to comment out the below function. (Blake's class, 1801)
-  */
-  // public pushToSaved(trainee: Trainee) {
-  //   this.savedSubject.next(trainee);
-  // }
 
   /**
    * Updates a trainee and returns the Observable.

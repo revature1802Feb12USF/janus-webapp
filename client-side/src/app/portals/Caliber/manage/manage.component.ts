@@ -121,10 +121,6 @@ export class ManageComponent implements OnInit, OnDestroy {
     this.deletedBatchSub = this.batchService.deletedSubject
       .subscribe((deleted) => this.onDeletedBatch(deleted));
 
-    /* keep updated list of trainees */
-    // this.traineeListSub = this.traineeService.listSubject
-    //   .subscribe((trainees) => this.setBatchTrainees(trainees));
-
     /* reacts to saved trainees */
     this.createdTraineeSub = this.traineeService.savedSubject
       .subscribe((saved) => this.onSavedTrainee(saved));
@@ -138,6 +134,12 @@ export class ManageComponent implements OnInit, OnDestroy {
       .subscribe((deleted) => this.onDeletedTrainee(deleted));
 
     this.batchService.fetchAll();
+
+    this.hydraTraineeService.findAllByBatchAndStatus(2, 'Dropped').forEach(element => {
+      element.forEach(trainee => {
+        console.log(trainee.traineeUserInfo);
+      });
+    });
   }
 
   ngOnDestroy() {
