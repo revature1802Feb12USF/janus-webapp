@@ -1,13 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
-
+import { TrainerService } from '../../../../hydra-client/services/trainer/trainer.service';
+import { HydraTrainer } from '../../../../hydra-client/entities/HydraTrainer';
 import { NgForm } from '@angular/forms/src/directives/ng_form';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TrainerService } from '../../../../hydra-client/services/trainer/trainer.service';
-import { Trainer } from '../../../../hydra-client/entities/Trainer';
+
 
 @Component({
   selector: 'app-trainers',
@@ -15,30 +14,25 @@ import { Trainer } from '../../../../hydra-client/entities/Trainer';
   styleUrls: ['./trainers.component.css']
 })
 
-export class TrainersComponent implements OnInit, OnDestroy {
-  // private trainerSubscription: Subscription;
-  trainers: Trainer[] = [];
-  filteredTrainers: Trainer[] = [];
+export class TrainersComponent implements OnInit {
+  trainers: HydraTrainer[] = [];
+  filteredTrainers: HydraTrainer[] = [];
   titles: Array<any>;
   roles: Array<any>;
-  model = new Trainer();
+  model = new HydraTrainer();
   activeStatus: String;
-  currEditTrainer: Trainer;
-  newTrainer: Trainer;
+  currEditTrainer: HydraTrainer;
+  newTrainer: HydraTrainer;
   newRole: any;
   newTitle: string;
-
   rForm: FormGroup;
   addForm: FormGroup;
-  // constructor(private trainerService: TrainerService,
-  //   private modalService: NgbModal, private fb: FormBuilder, private route: Router) { }
+
 
   constructor(private trainerService: TrainerService,
     private modalService: NgbModal, private fb: FormBuilder, private route: Router) { }
 
   ngOnInit() {
-    // this.trainerService.populateOnStart();
-    // this.trainerSubscription =
     this.trainerService.fetchAll().subscribe((resp) => {
       this.trainers = resp;
       console.log(this.trainers);
@@ -70,6 +64,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
       'firstName': ['', Validators.required],
       'lastName': ['', Validators.required],
       'email': ['', Validators.email],
+      'password': ['', Validators.email],
       'title': ['', Validators.required],
       'role': ['', Validators.required],
     });
@@ -79,14 +74,13 @@ export class TrainersComponent implements OnInit, OnDestroy {
    * adds a new trainer to the database
    * @param modal: modal from create trainer form
    */
-  addTrainer(modal: Trainer) {
+  addTrainer(modal: HydraTrainer) {
     this.newTrainer = modal;
     console.log(modal);
     console.log(modal.firstName);
     this.trainerService.create(this.newTrainer).subscribe((resp) => {
       this.trainerService.fetchAll();
     });
-    // this.trainers.push(this.newTrainer);
     this.initFormControl();
     this.ngOnInit();
   }
@@ -100,7 +94,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
    * @param content: modal form
    * @param modalTrainer: trainer belong to this modal
    */
-  editTrainer(content, modalTrainer: Trainer) {
+  editTrainer(content, modalTrainer: HydraTrainer) {
     this.currEditTrainer = modalTrainer;
     this.newRole = modalTrainer.role;
     this.newTitle = modalTrainer.title;
@@ -158,7 +152,7 @@ export class TrainersComponent implements OnInit, OnDestroy {
    */
   updateTrainer(modal) {
     // replacing the trainer's fields with the new ones
-    const temp = new Trainer();
+    const temp = new HydraTrainer();
     temp.trainerId = this.currEditTrainer.trainerId;
     temp.role = this.newRole;
     temp.title = this.newTitle;
@@ -194,9 +188,6 @@ export class TrainersComponent implements OnInit, OnDestroy {
    *
    * @memberof TrainersComponent
    */
-  ngOnDestroy() {
-    // this.trainerSubscription.unsubscribe();
-  }
 
   /**
    * set current trainer to clicked  trainer and navigates to trainer profile page

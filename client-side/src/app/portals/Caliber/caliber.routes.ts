@@ -70,10 +70,10 @@ export const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent,
-        // canActivate: [RoleGuard],
-        // data: {
-        //   roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
-        // },
+        canActivate: [RoleGuard],
+        data: {
+          roles: [roles.panelRole, roles.qcRole, roles.stagingRole, roles.trainerRole, roles.vpRole]
+        },
         children: [
           {
             path: 'categories',

@@ -9,9 +9,8 @@ import { Batch } from '../../entities/Batch';
 
 import { BatchService } from '../../services/batch.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs/Subscription';
 import { TrainerService } from '../../../../hydra-client/services/trainer/trainer.service';
-import { Trainer } from '../../../../hydra-client/entities/Trainer';
+import { HydraTrainer } from '../../../../hydra-client/entities/HydraTrainer';
 
 @Component({
   selector: 'app-trainer-profile',
@@ -24,7 +23,7 @@ export class TrainerProfilesComponent implements OnInit {
   * create variables for all batches,
   * current trainer and their batch
   */
-  currentTrainer: Trainer;
+  currentTrainer: HydraTrainer;
   batches: Array<Batch>;
   currentBatch: Batch;
 
@@ -32,12 +31,11 @@ export class TrainerProfilesComponent implements OnInit {
   * create variables for subscribing and trainers
   * and storing form data
   */
-  private trainerSubscription: Subscription;
-  trainers: Array<Trainer>;
+  trainers: Array<HydraTrainer>;
   titles: Array<any>;
   roles: Array<any>;
-  model = new Trainer();
-  currEditTrainer: Trainer;
+  model = new HydraTrainer();
+  currEditTrainer: HydraTrainer;
   newRole: string;
   newTitle: string;
   rForm: FormGroup;
@@ -65,7 +63,7 @@ export class TrainerProfilesComponent implements OnInit {
     );
 
   /**
-  * fetches all trainers, titles and tiers and pushes them onto the trainers, titles and tiers subjects
+  * fetches all trainers, titles and roles and pushes them onto the trainers, titles and roles observables
   */
     // this.trainerService.populateOnStart();
     this.trainerService.fetchAll().subscribe((resp) => {
@@ -124,7 +122,7 @@ export class TrainerProfilesComponent implements OnInit {
   * @param content: String
   * @param modalTrainer: Trainer
   */
-  editTrainer(content, modalTrainer: Trainer) {
+  editTrainer(content, modalTrainer: HydraTrainer) {
     this.currEditTrainer = modalTrainer;
     this.newRole = modalTrainer.role;
     this.newTitle = modalTrainer.title;
@@ -139,11 +137,11 @@ export class TrainerProfilesComponent implements OnInit {
   }
 
   /**
-  * When tier was changed
+  * When role was changed
   *
-  * @param newTier: string
+  * @param newRole: string
   */
-  tierChange(newRole) {
+  roleChange(newRole) {
     this.newRole = newRole;
   }
 
