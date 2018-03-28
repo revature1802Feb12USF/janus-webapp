@@ -121,6 +121,9 @@ import { DeleteBatchModalComponent } from './manage/delete-batch-modal/delete-ba
 import { CannotDeleteModalComponent } from './manage/cannot-delete-modal/cannot-delete-modal.component';
 import { DeleteTraineeModalComponent } from './manage/delete-trainee-modal/delete-trainee-modal.component';
 import { CannotDeleteTraineeModalComponent } from './manage/cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
+import { PDFService } from './services/pdf.service';
+import { ReportingService } from './services/reporting.service';
+import { HydraTraineeService } from '../../hydra-client/services/trainee/hydra-trainee.service';
 
 
 @NgModule({
@@ -226,6 +229,7 @@ import { CannotDeleteTraineeModalComponent } from './manage/cannot-delete-traine
     BatchService,
     TrainerService,
     TraineeService,
+    HydraTraineeService,
     AssessmentService,
     RouteService,
     PanelService,

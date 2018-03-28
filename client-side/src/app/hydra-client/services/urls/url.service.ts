@@ -19,6 +19,7 @@ export class UrlService {
  /**
    * Endpoints for batches
    */
+
  batch = {
     fetchAllByTrainer: () => `${this.context}batches/trainers`,
     fetchAllByTrainerId: (id: number) => `${this.context}batches/trainers/${id}`,
@@ -32,10 +33,10 @@ export class UrlService {
    * Endpoints for trainees
    */
   trainees = {
-    fetchAllByBatch: (batchId: number) => `${environment.context}trainees/batch/${batchId}`,
-    save: () => `${environment.context}trainees`,
-    update: () => `${environment.context}trainees`,
-    delete: (traineeId: number) => `${environment.context}trainees/${traineeId}`,
+    findAllByBatchAndStatus: (id: number, status: string) => `${this.context}trainees/batch/${id}/status/${status}`,
+    save: () => `${this.context}trainees`,
+    update: () => `${this.context}trainees`,
+    delete: (traineeId: number) => `${this.context}trainees/${traineeId}`,
   };
 
   /**

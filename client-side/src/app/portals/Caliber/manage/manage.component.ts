@@ -19,14 +19,18 @@ import { TrainingTypeService } from '../services/training-type.service';
 import { SkillService } from '../services/skill.service';
 import { TraineeService } from '../services/trainee.service';
 import { TraineeStatusService } from '../services/trainee-status.service';
+import { HydraTraineeService } from '../../../hydra-client/services/trainee/hydra-trainee.service';
 import { TrainerService } from '../../../hydra-client/services/trainer/trainer.service';
+
 
 // entities
 import { Location } from '../entities/Location';
 import { Batch } from '../../../hydra-client/entities/batch';
 import { Address } from '../entities/Address';
 import { Trainee } from '../entities/Trainee';
+import { HydraTrainee } from '../../../hydra-client/entities/HydraTrainee';
 import { HydraTrainer } from '../../../hydra-client/entities/HydraTrainer';
+
 
 // components
 import { BatchModalComponent } from './batch/batch-modal.component';
@@ -36,6 +40,7 @@ import { CannotDeleteModalComponent } from './cannot-delete-modal/cannot-delete-
 import { DeleteTraineeModalComponent } from './delete-trainee-modal/delete-trainee-modal.component';
 import { CannotDeleteTraineeModalComponent } from './cannot-delete-trainee-modal/cannot-delete-trainee-modal.component';
 import { DeleteBatchModalComponent } from './delete-batch-modal/delete-batch-modal.component';
+import { HydraBatch } from '../../../hydra-client/entities/HydraBatch';
 
 
 
@@ -49,14 +54,14 @@ import { DeleteBatchModalComponent } from './delete-batch-modal/delete-batch-mod
 export class ManageComponent implements OnInit {
   closeResult: string;
   batches: Batch[] = [];
-  trainees: Trainee[] = [];
+  trainees: HydraTrainee[] = [];
   batchModal: NgbModalRef;
   batchModalNested: NgbModalRef;
   batchByYear: Date[] = [];
   currentYear: number;
-  currentBatch: Batch = new Batch;
-  createNewBatch: Batch = new Batch;
-  batchToUpdate: Batch = new Batch;
+  currentBatch: HydraBatch = new HydraBatch;
+  createNewBatch: HydraBatch = new HydraBatch;
+  batchToUpdate: HydraBatch = new HydraBatch;
   traineeProfileUrl: string;
   test: string;
   trainers: HydraTrainer[] = [];
@@ -66,11 +71,11 @@ export class ManageComponent implements OnInit {
   skills: string[] = [];
   statuses: string[] = [];
   selectStatus = 'Select Status';
-  createNewTrainee: Trainee = new Trainee;
+  createNewTrainee: HydraTrainee = new HydraTrainee;
   isNew: Boolean;
   currentTrainees: any;
   showDropped: Boolean = false;
-  droppedTrainees: Trainee[] = [];
+  droppedTrainees: HydraTrainee[] = [];
 
   /* Subscriptions */
   batchListSub: Subscription;
@@ -86,7 +91,7 @@ export class ManageComponent implements OnInit {
   deletedTraineeSub: Subscription;
   updatedTraineeSub: Subscription;
 
-  traineeToBeDeleted: Trainee;
+  traineeToBeDeleted: HydraTrainee;
 
   constructor(
     private trainerService: TrainerService,
@@ -97,13 +102,22 @@ export class ManageComponent implements OnInit {
     private modalService: NgbModal,
     private datePipe: DatePipe,
     private fb: FormBuilder,
+
+    private traineeStatusService: TraineeStatusService,
+    private hydraTraineeService: HydraTraineeService
     private hydraBatchService: HydraBatchService
+
   ) {
     this.batches = [];
   }
 
   ngOnInit() {
-    /* keep an updated list of batches */
+    this.hydraTraineeService.findAllByBatchAndStatus(2, 'Dropped').forEach(element => {
+      element.forEach(trainee => {
+        console.log(trainee.traineeUserInfo);
+      });
+    });
+
     this.batchListSub = this.hydraBatchService.fetchAll()
       .subscribe((batches) => this.setBatches(batches));
 
@@ -227,7 +241,7 @@ export class ManageComponent implements OnInit {
    *
    * @param trainees
    */
-  private setBatchTrainees(trainees: Trainee[]): void {
+  private setBatchTrainees(trainees: HydraTrainee[]): void {
     this.trainees = trainees;
     this.currentBatch.trainees = trainees;
   }
@@ -278,7 +292,7 @@ export class ManageComponent implements OnInit {
   createNewTraineeFunction() {
     this.createNewTrainee.batch = this.currentBatch;
     console.log(this.createNewTrainee);
-    this.traineeService.create(this.createNewTrainee);
+    this.hydraTraineeService.create(this.createNewTrainee);
   }
 
   /** Updates the Trainee
@@ -293,7 +307,7 @@ export class ManageComponent implements OnInit {
     const emptyBatch = Object.assign({}, this.currentBatch);
     emptyBatch.trainees = [];
     this.createNewTrainee.batch = emptyBatch;
-    this.traineeService.update(this.createNewTrainee);
+    this.hydraTraineeService.update(this.createNewTrainee);
   }
 
   /**
@@ -342,7 +356,7 @@ export class ManageComponent implements OnInit {
 
     for (let i = 0; i < this.currentBatch.trainees.length; i++) {
       this.currentBatch.trainees[i].batch = null;
-      this.traineeService.delete(this.currentBatch.trainees[i]);
+      this.hydraTraineeService.delete(this.currentBatch.trainees[i]);
     }
   }
 
@@ -380,21 +394,23 @@ export class ManageComponent implements OnInit {
    *
    * @param createTrainee
    */
-    openCreateTraineeModal(createTrainee) {
-      this.isNew = true;
-      this.createNewTrainee = new Trainee;
-      this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
-      this.batchModalNested.result.then(a => {}, b => this.closeCreateTraineeModal());
-      this.batchModal.close();
-    }
 
-    openUpdateTraineeModal(createTrainee, trainee) {
-      this.isNew = false;
-      this.createNewTrainee = trainee;
-      this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
-      this.batchModalNested.result.then(a => {}, b => this.closeCreateTraineeModal());
-      this.batchModal.close();
-    }
+  openCreateTraineeModal(createTrainee) {
+    this.isNew = true;
+    this.createNewTrainee = new HydraTrainee;
+    this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
+    this.batchModalNested.result.then(a => { }, b => this.closeCreateTraineeModal());
+    this.batchModal.close();
+  }
+
+  openUpdateTraineeModal(createTrainee, trainee) {
+    this.isNew = false;
+    this.createNewTrainee = trainee;
+    this.batchModalNested = this.modalService.open(createTrainee, { size: 'lg', container: '.batch-trainee-modal-container2' });
+    this.batchModalNested.result.then(a => { }, b => this.closeCreateTraineeModal());
+    this.batchModal.close();
+  }
+
 
     closeCreateTraineeModal() {
       this.batchModalNested.close();
