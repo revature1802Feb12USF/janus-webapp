@@ -1,9 +1,12 @@
 export class HydraTrainer {
-    public static ROLE_INACTIVE = 'ROLE_INACTIVE';
-
+   // public static ROLE_INACTIVE = 'ROLE_INACTIVE';
+  
     trainerId: number;
-    name: string;
+    password: string;
+    firstName: string;
+    lastName: string;
     title: string;
     email: string;
-    tier: string;
+    role: any;
+
 }

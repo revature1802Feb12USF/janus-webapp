@@ -21,7 +21,6 @@ import { SpringInterceptor } from './interceptors/spring.interceptor';
 
 // services
 import { BatchService } from './services/batch.service';
-import { TrainerService } from './services/trainer.service';
 import { TraineeService } from './services/trainee.service';
 import { AssessmentService } from './services/assessment.service';
 import { RouteService } from './services/route.service';
@@ -43,6 +42,9 @@ import { AlertsService } from './services/alerts.service';
 import { EvaluationService } from './services/evaluation.service';
 import { QCStatusService } from './services/qcstatus.service';
 import { TraineeStatusService } from './services/trainee-status.service';
+import { PDFService } from './services/pdf.service';
+import { ReportingService } from './services/reporting.service';
+import { TrainerService } from '../../hydra-client/services/trainer/trainer.service';
 
 // N.T.
 import { ApiService } from './util/api.service';
@@ -122,6 +124,7 @@ import { CannotDeleteTraineeModalComponent } from './manage/cannot-delete-traine
 import { PDFService } from './services/pdf.service';
 import { ReportingService } from './services/reporting.service';
 import { HydraTraineeService } from '../../hydra-client/services/trainee/hydra-trainee.service';
+
 
 @NgModule({
   imports: [
@@ -237,7 +240,6 @@ import { HydraTraineeService } from '../../hydra-client/services/trainee/hydra-t
     VpHomeLineGraphService,
     VpHomeSelectorService,
     ColorService,
-    TrainerService,
     LocationService,
     CategoryService,
     CategoriesService,
