@@ -20,7 +20,7 @@ export class UrlService {
    * Endpoints for batches
    */
 
- batch = {
+ batches = {
     fetchAllByTrainer: () => `${this.context}batches/trainers`,
     fetchAllByTrainerId: (id: number) => `${this.context}batches/trainers/${id}`,
     fetchAll: () => `${this.context}batches`,
