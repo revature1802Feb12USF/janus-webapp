@@ -43,7 +43,7 @@ export class UrlService {
    * Endpoints for trainers
    */
   trainers = {
-    fetchByEmail: (email: string) => `${this.context}trainers/${email}`,
+    fetchByEmail: (email: string) => `${this.context}trainers/email/${email}/`,
     fetchAll: () => `${this.context}trainers`,
     save: () => `${this.context}trainers`,
     update: () => `${this.context}trainers`,
