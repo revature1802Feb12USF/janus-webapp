@@ -9,7 +9,6 @@ import { environment } from '../../../../environments/environment';
 
 fdescribe('HydraTraineeService', () => {
   const trainee = new HydraTrainee();
-  trainee.traineeId = 23;
   this.context = environment.hydraContext;
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -23,29 +22,29 @@ fdescribe('HydraTraineeService', () => {
     expect(service).toBeTruthy();
   }));
 
-  it(`should get all trainees with batch id 1 and status Dropped`,
+  it(`should findAllByBatchAndStatus and verify the response`,
     async(
       inject([HttpClient, HttpTestingController, HydraTraineeService],
         (http: HttpClient, backend: HttpTestingController, service: HydraTraineeService) => {
-          service.findAllByBatchAndStatus(1, 'Dropped').subscribe();
+          service.findAllByBatchAndStatus(1, trainee.trainingStatus).subscribe();
 
           backend.expectOne({
-            url: `${this.context}trainees/batch/1/status/Dropped`,
+            url: `${this.context}trainees/batch/1/status/${trainee.trainingStatus}`,
             method: 'GET'
           });
         })
     )
   );
 
-  it(`should findAllByBatchAndStatus and check the observable`,
+  it(`should findAllByBatchAndStatus and verify the observable`,
     async(
       inject([HttpClient, HttpTestingController, HydraTraineeService],
         (http: HttpClient, backend: HttpTestingController, service: HydraTraineeService) => {
-          service.findAllByBatchAndStatus(1, 'Dropped').subscribe(next => {
+          service.findAllByBatchAndStatus(1, trainee.trainingStatus).subscribe(next => {
             expect(next).toBeTruthy();
           });
 
-          backend.expectOne(`${this.context}trainees/batch/1/status/Dropped`).flush({});
+          backend.expectOne(`${this.context}trainees/batch/1/status/${trainee.trainingStatus}`).flush({});
         })
     )
   );
@@ -141,10 +140,10 @@ fdescribe('HydraTraineeService', () => {
     async(
       inject([HttpClient, HttpTestingController, HydraTraineeService],
         (http: HttpClient, backend: HttpTestingController, service: HydraTraineeService) => {
-          service.delete(23).subscribe();
+          service.delete(trainee.traineeId).subscribe();
 
           backend.expectOne({
-            url: `${this.context}trainees/23`,
+            url: `${this.context}trainees/${trainee.traineeId}`,
             method: 'DELETE'
           });
         })
