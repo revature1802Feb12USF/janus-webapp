@@ -5,10 +5,12 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HydraTrainee } from '../../entities/HydraTrainee';
 import { UrlService } from '../urls/url.service';
+import { environment } from '../../../../environments/environment';
 
 fdescribe('HydraTraineeService', () => {
   const trainee = new HydraTrainee();
-  trainee.traineeId = 104;
+  trainee.traineeId = 23;
+  this.context = environment.hydraContext;
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [HydraTraineeService, UrlService],
@@ -28,7 +30,7 @@ fdescribe('HydraTraineeService', () => {
           service.findAllByBatchAndStatus(1, 'Dropped').subscribe();
 
           backend.expectOne({
-            url: `http://localhost:8080/trainees/batch/1/status/Dropped`,
+            url: `${this.context}trainees/batch/1/status/Dropped`,
             method: 'GET'
           });
         })
@@ -42,7 +44,7 @@ fdescribe('HydraTraineeService', () => {
           service.create(trainee).subscribe();
 
           backend.expectOne({
-            url: `http://localhost:8080/trainees`,
+            url: `${this.context}trainees`,
             method: 'POST'
           });
         })
@@ -56,7 +58,7 @@ fdescribe('HydraTraineeService', () => {
           service.update(trainee).subscribe();
 
           backend.expectOne({
-            url: `http://localhost:8080/trainees`,
+            url: `${this.context}trainees`,
             method: 'PUT'
           });
         })
@@ -67,10 +69,10 @@ fdescribe('HydraTraineeService', () => {
     async(
       inject([HttpClient, HttpTestingController, HydraTraineeService],
         (http: HttpClient, backend: HttpTestingController, service: HydraTraineeService) => {
-          service.delete(104).subscribe();
+          service.delete(23).subscribe();
 
           backend.expectOne({
-            url: `http://localhost:8080/trainees/104`,
+            url: `${this.context}trainees/23`,
             method: 'DELETE'
           });
         })
