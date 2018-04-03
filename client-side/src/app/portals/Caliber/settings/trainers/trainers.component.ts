@@ -35,20 +35,16 @@ export class TrainersComponent implements OnInit {
   ngOnInit() {
     this.trainerService.fetchAll().subscribe((resp) => {
       this.trainers = resp;
-      console.log(this.trainers);
       if (resp) {
         this.filteredTrainers = resp.filter(s => {
-          if (this.activeStatus === 'ROLE_INACTIVE') {
-            return s.role === this.activeStatus;
-          } else {
-            return s.role !== 'ROLE_INACTIVE';
+            return s.role !== 'INACTIVE';
           }
-        });
+        );
       }
     });
     this.trainerService.fetchTitles().subscribe(res => this.titles = res);
     this.trainerService.fetchRoles().subscribe(res => {
-      this.roles = (res.filter(role => role !== 'ROLE_INACTIVE')); // filter out ROLE_INACTIVE
+      this.roles = (res.filter(role => role !== 'INACTIVE')); // filter out INACTIVE role
     });
     console.log(this.roles);
     this.initFormControl();
@@ -79,9 +75,8 @@ export class TrainersComponent implements OnInit {
     console.log(modal);
     console.log(modal.firstName);
     this.trainerService.create(this.newTrainer).subscribe((resp) => {
-      this.trainerService.fetchAll();
+      this.ngOnInit();
     });
-    this.ngOnInit();
   }
 
   open(content) {

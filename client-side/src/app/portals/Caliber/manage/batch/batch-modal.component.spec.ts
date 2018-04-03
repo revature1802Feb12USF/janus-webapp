@@ -1,4 +1,3 @@
-
 ///////Commented out in order to run hydra-batch.service.spec.ts
 //////(Address is not recognized in Batch Entity)
 
