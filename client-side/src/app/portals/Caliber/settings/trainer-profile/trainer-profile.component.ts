@@ -65,12 +65,13 @@ export class TrainerProfilesComponent implements OnInit {
   /**
   * fetches all trainers, titles and roles and pushes them onto the trainers, titles and roles observables
   */
-    // this.trainerService.populateOnStart();
     this.trainerService.fetchAll().subscribe((resp) => {
       this.trainers = resp;
     });
     this.trainerService.fetchTitles().subscribe(res => this.titles = res);
-    this.trainerService.fetchRoles().subscribe(res => this.roles = res);
+    this.trainerService.fetchRoles().subscribe(res => {
+      this.roles = (res.filter(role => role !== 'INACTIVE')); // filter out INACTIVE role
+    });
   }
 
   /**
@@ -173,7 +174,10 @@ export class TrainerProfilesComponent implements OnInit {
     this.currEditTrainer.lastName = modal.lastName;
     this.currEditTrainer.email = modal.email;
     // call trainerService to update
-    this.trainerService.update(this.currEditTrainer);
+    this.trainerService.update(this.currEditTrainer).subscribe((resp) => {
+      const temp = this.currEditTrainer;
+      this.trainerService.fetchAll();
+    });
   }
 
 }

@@ -31,7 +31,7 @@ add or edit a trainer-->
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let trainer of trainers">
+        <tr *ngFor="let trainer of filteredTrainers">
           <td>
             {{trainer.firstName}} {{trainer.lastName}}
           </td>
@@ -42,8 +42,7 @@ add or edit a trainer-->
             {{trainer.email}}
           </td>
           <td>
-            <span *ngIf="trainer.role === 2">Panel</span>
-            <span *ngIf="trainer.role === 1">Trainer</span>
+            {{trainer.role}}
 
           </td>
           <td>
