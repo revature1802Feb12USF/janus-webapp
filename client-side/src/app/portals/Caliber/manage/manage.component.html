@@ -50,12 +50,6 @@
               Skill Type
             </th>
             <th>
-              Trainer
-            </th>
-            <th>
-              Co-Trainer
-            </th>
-            <th>
               Location
             </th>
             <th>
@@ -81,17 +75,16 @@
             <td>{{batch.trainingName}}</td>
             <td>{{batch.trainingType}}</td>
             <td>{{batch.skillType}}</td>
-            <td>{{batch.trainer.name}}</td>
-            <td></td>
-            <td>{{batch.address | addressToString }}</td>
+            <!-- <td>{{batch.trainer.name}}</td> -->
+            <td>{{batch.location}}</td>
             <td>{{batch.startDate | date:'MMM d, y'}}</td>
             <td>{{batch.endDate | date:'MMM d, y'}}</td>
-            <!-- <td>{{batch.goodGradeThreshold}}</td>
-            <td>{{batch.borderlineGradeThreshold}}</td> -->
+            <td>80</td>
+            <td>70</td>
             <td>
               <i class="fa fa-users c-pointer" style="color:#fa7427; text-align: center;" (click)="openViewBatchTraineesModal(traineesInBatch, batch)"
-                [title]="batch.trainees.length + ' Trainees'">
-                <span class="badge" style="text-align: center;">{{batch.trainees.length}}</span>
+                [title]=' Trainees'>
+                <!-- <span class="badge" style="text-align: center;">{{batch.trainees.length}}</span> -->
               </i>
             </td>
             <td>
