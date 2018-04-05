@@ -15,14 +15,9 @@ export class SessionService {
   public selectedBatchSubject = new Subject<Batch>();
 
   constructor(private userService: UsersService, private batchService: BatchService) {
-    // Batch batch = new Batch(3, "Java", startDate: Date, endDate: Date, trainer: BamUser, type: BatchType);
+    
     this.batch = batchService.getBatchById(50);
-    // this.id = id;
-    // this.name = name;
-    // this.startDate = startDate;
-    // this.endDate = endDate;
-    // this.trainer = trainer;
-    // this.type = type;
+
     this.bamUser = {
       'userId': 50,
       'fName': 'Ryan',
