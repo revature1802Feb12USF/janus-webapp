@@ -132,7 +132,7 @@ export class CalendarComponent implements OnInit {
       });
   }
 
-  /*Date Picker Event*/
+
   jumpToDate(date) {
     this.fc.gotoDate(date);
     this.fc.changeView('agendaDay');
