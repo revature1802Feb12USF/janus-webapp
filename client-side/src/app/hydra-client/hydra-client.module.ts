@@ -23,6 +23,5 @@ import { HydraInterceptor } from './interceptors/hydra.interceptor';
     { provide: HTTP_INTERCEPTORS, useClass: HydraInterceptor, multi: true },  // interceptor for all HTTP requests
     UrlService
   ]
-
 })
 export class HydraClientModule { }
