@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { BamUser } from '../models/bamuser.model';
 import { environment } from '../../../../environments/environment';
+import { UrlService } from '../../../hydra-client/services/urls/url.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
@@ -11,7 +12,7 @@ const httpOptions = {
 @Injectable()
 export class UsersService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private urlService: UrlService) { }
 
   /**
    * Gets all users.
@@ -85,7 +86,7 @@ export class UsersService {
    * @param currentUser BamUser
    */
   updateUser(currentUser: BamUser): Observable<BamUser> {
-    return this.http.post<BamUser>(environment.users.updateUserUrl(), currentUser).map(
+    return this.http.post<BamUser>(this.urlService.users.updateUserUrl(), currentUser).map(
       data => {
         return data;
       }

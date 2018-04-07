@@ -1,5 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+
+const bam = 'http://localhost:9001/api/v2';
+
 @Injectable()
 export class UrlService {
   private context: string;
@@ -50,6 +53,29 @@ export class UrlService {
     getRoles: () => `${this.context}trainers/roles`,
 
   };
+
+  assessment = {
+    fetchByBatchIdByWeek: (batchId: number, week: number) => `${this.context}trainer/assessment/${batchId}/${week}`,
+    save: () => `${this.context}trainer/assessment/create`,
+    update: () => `${this.context}trainer/assessment/update`,
+    delete: (assessmentId: number) => `${this.context}trainer/assessment/delete/${assessmentId}`,
+  };
+
+  users = {
+    getAllUsersUrl: () => `${bam}/user/all`,
+    getAllTrainersUrl: () => `${bam}/user/alltrainers`,
+    getAllAssociatesUrl: () => `${bam}/user/allassociates`,
+    getUsersInBatchUrl: (batchId: number) => `${bam}/user/inbatch/${batchId}`,
+    dropUserFromBatchUrl: (userId: number) => `${bam}/user/drop/${userId}`,
+    updateUserUrl: () => `${bam}/user/update`,
+    addUserUrl: () => `${bam}/user/register`,
+    resetPasswordUrl: () => `${bam}/user/reset`,
+    removeUserUrl: (userId: number) => `${bam}/user/remove/${userId}`,
+    addUserToBatchUrl: (batchId: number, userId: number) => `${bam}/user/add/${userId}/${batchId}`,
+    getUsersNotInBatchUrl: () => `${bam}/user/notinabatch`,
+    recoverPasswordUrl: () => `${bam}/user/recovery`
+};
+
   constructor() {
     this.context = environment.hydraContext;
   }
