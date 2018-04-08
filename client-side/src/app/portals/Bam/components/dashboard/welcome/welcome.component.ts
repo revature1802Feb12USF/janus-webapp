@@ -25,9 +25,9 @@ export class WelcomeComponent implements OnInit {
   private batches: Batch [];
   private selectedBatch: Batch;
 
-  constructor(private batchService: BatchService, private sessionService: SessionService, private alertService: AlertService) {
-
-   }
+  constructor(private batchService: BatchService, 
+              private sessionService: SessionService, 
+              private alertService: AlertService) { }
 
   ngOnInit() {
     this.currentUser = this.sessionService.getUser();

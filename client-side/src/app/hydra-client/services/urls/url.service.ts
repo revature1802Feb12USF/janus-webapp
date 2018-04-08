@@ -61,13 +61,14 @@ export class UrlService {
     delete: (assessmentId: number) => `${this.context}trainer/assessment/delete/${assessmentId}`,
   };
 
+  //BAM Endpoints
   users = {
     getAllUsersUrl: () => `${bam}/users/all`,
     getAllTrainersUrl: () => `${bam}/users/alltrainers`,
     getAllAssociatesUrl: () => `${bam}/users/allassociates`,
     getUsersInBatchUrl: (batchId: number) => `${bam}/users/inbatch/${batchId}`,
     dropUserFromBatchUrl: (userId: number) => `${bam}/users/${userId}`,
-    updateUserUrl: (userId: number) => `${bam}/users/$userId`,
+    updateUserUrl: (userId: number) => `${bam}/users/${userId}`,
     addUserUrl: () => `${bam}/users`,
     removeUserUrl: (userId: number) => `${bam}/users/${userId}`,
     addUserToBatchUrl: (batchId: number, userId: number) => `${bam}/users/batches/${userId}/${batchId}`,
@@ -131,11 +132,11 @@ curriculum = {
 
 bambatch = {
   getBatchAllUrl: () => `${bam}/batches/all`,
-  getPastBatchesUrl: (email: string) => `${bam}/batches/past/${email}/`,
-  getFutureBatchesUrl: (email: string) => `${bam}/batches/future/${email}/`,
-  getBatchInProgressUrl: (email: string) => `${bam}/batches/inprogress/${email}/`,
-  getAllBatchesInProgressUrl: (email: string) => `${bam}/batches/allinprogress/${email}/`,
-  getBatchByIdURL: (batchId: number) => `${bam}/batches/byid/${batchId}/`,
+  getPastBatchesUrl: (email: string) => `${bam}/batches/past/${email}`,
+  getFutureBatchesUrl: (email: string) => `${bam}/batches/future/${email}`,
+  getBatchInProgressUrl: (email: string) => `${bam}/batches/inprogress/${email}`,
+  getAllBatchesInProgressUrl: (email: string) => `${bam}/batches/allinprogress/${email}`,
+  getBatchByIdURL: (batchId: number) => `${bam}/batches/byid/${batchId}`,
   updateBatchUrl: () => `${bam}/batches/batch`,
   getAllBatchTypesUrl: () => `${bam}/batches/types`,
   removeSubtopicFromBatchUrl: (subtopicId: number) => `${bam}/batch/${subtopicId}`,

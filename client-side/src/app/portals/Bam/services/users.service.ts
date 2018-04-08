@@ -86,7 +86,7 @@ export class UsersService {
    * @param currentUser BamUser
    */
   updateUser(currentUser: BamUser): Observable<BamUser> {
-    return this.http.post<BamUser>(this.urlService.users.updateUserUrl(currentUser.userId), currentUser).map(
+    return this.http.put<BamUser>(this.urlService.users.updateUserUrl(currentUser.userId), currentUser).map(
       data => {
         return data;
       }
