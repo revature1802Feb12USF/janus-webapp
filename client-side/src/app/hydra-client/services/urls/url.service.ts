@@ -66,26 +66,28 @@ export class UrlService {
     getAllTrainersUrl: () => `${bam}/users/alltrainers`,
     getAllAssociatesUrl: () => `${bam}/users/allassociates`,
     getUsersInBatchUrl: (batchId: number) => `${bam}/users/inbatch/${batchId}`,
-    dropUserFromBatchUrl: (userId: number) => `${bam}/users/drop/${userId}`,
+    dropUserFromBatchUrl: (userId: number) => `${bam}/users/${userId}`,
     updateUserUrl: (userId: number) => `${bam}/users/$userId`,
-    addUserUrl: () => `${bam}/user/register`,
+    addUserUrl: () => `${bam}/users`,
+    removeUserUrl: (userId: number) => `${bam}/users/${userId}`,
+    addUserToBatchUrl: (batchId: number, userId: number) => `${bam}/users/batches/${userId}/${batchId}`,
+    getUsersNotInBatchUrl: () => `${bam}/users/batches/none`,
     resetPasswordUrl: () => `${bam}/user/reset`,
-    removeUserUrl: (userId: number) => `${bam}/user/remove/${userId}`,
-    addUserToBatchUrl: (batchId: number, userId: number) => `${bam}/user/add/${userId}/${batchId}`,
-    getUsersNotInBatchUrl: () => `${bam}/user/notinabatch`,
     recoverPasswordUrl: () => `${bam}/user/recovery`
 };
 
 topic = {
-  addTopicName: (name: string) => `${bam}/topic/add/${name}`,
+  addTopicName: (name: string) => `${bam}/topics/${name}`,
+  changeTopicName: (name: string) => `${bam}/topics/topic`
 };
 
 subtopic = {
+  getSubtopics: () => `subtopic/subtopics`,
   addSubTopicName: (subtopicName: string, topicId: number, typeId: number) =>
-   `${bam}/subtopic/add/${typeId}/${topicId}/${subtopicName}`,
-  removeSubtopic: (subtopicId: number) => `${bam}/subtopic/remove/${subtopicId}`,
-  removeAllSubtopics: (batchId: number) => `${bam}/subtopic/removebybatch/${batchId}/`,
-  isPopulated: (batchId: number) => `${bam}/subtopic/ispopulated/${batchId}/`
+   `${bam}/subtopics/${typeId}/${topicId}/${subtopicName}`,
+  removeSubtopic: (subtopicId: number) => `${bam}/subtopics/${subtopicId}`,
+  removeAllSubtopics: (batchId: number) => `${bam}/subtopics/${batchId}/`,
+  isPopulated: (batchId: number) => `${bam}/subtopics/ispopulated/${batchId}/`
 };
 
 addsubtopics = {
@@ -128,16 +130,16 @@ curriculum = {
 };
 
 bambatch = {
-  getBatchAllUrl: () => `${bam}/batch/all`,
-  getPastBatchesUrl: (email: string) => `${bam}/batch/past/${email}/`,
-  getFutureBatchesUrl: (email: string) => `${bam}/batch/future/${email}/`,
-  getBatchInProgressUrl: (email: string) => `${bam}/batch/inprogress/${email}/`,
-  getAllBatchesInProgressUrl: (email: string) => `${bam}/batch/allinprogress/${email}/`,
-  getBatchByIdURL: (batchId: number) => `${bam}/batch/byid/${batchId}/`,
-  updateBatchUrl: () => `${bam}/batch/updatebatch`,
-  getAllBatchTypesUrl: () => `${bam}/batch/batchtypes`,
+  getBatchAllUrl: () => `${bam}/batches/all`,
+  getPastBatchesUrl: (email: string) => `${bam}/batches/past/${email}/`,
+  getFutureBatchesUrl: (email: string) => `${bam}/batches/future/${email}/`,
+  getBatchInProgressUrl: (email: string) => `${bam}/batches/inprogress/${email}/`,
+  getAllBatchesInProgressUrl: (email: string) => `${bam}/batches/allinprogress/${email}/`,
+  getBatchByIdURL: (batchId: number) => `${bam}/batches/byid/${batchId}/`,
+  updateBatchUrl: () => `${bam}/batches/batch`,
+  getAllBatchTypesUrl: () => `${bam}/batches/types`,
   removeSubtopicFromBatchUrl: (subtopicId: number) => `${bam}/batch/${subtopicId}`,
-  getAllInProgressUrl: () => `${bam}/batch/currentbatches`
+  getAllInProgressUrl: () => `${bam}/batches/current`
 };
 
   constructor() {
