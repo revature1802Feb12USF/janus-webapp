@@ -63,7 +63,7 @@ export class UrlService {
 
   //BAM Endpoints
   users = {
-    getAllUsersUrl: () => `${bam}/users/all`,
+    getAllUsersUrl: () => `${bam}/users`,
     getAllTrainersUrl: () => `${bam}/users/alltrainers`,
     getAllAssociatesUrl: () => `${bam}/users/allassociates`,
     getUsersInBatchUrl: (batchId: number) => `${bam}/users/inbatch/${batchId}`,
@@ -119,19 +119,19 @@ calendar = {
 };
 
 curriculum = {
-  getCurriculumAllUrl: () => `${bam}/curriculum/all`,
-  getCurriculumByIdUrl: (id: number) => `${bam}/curriculum/getcurriculum/${id}`,
-  getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curriculum/schedule/${id}`,
-  getTopicPoolAllUrl: () => `${bam}/curriculum/topicpool`,
-  getSubtopicPoolAllUrl: () => `${bam}/curriculum/subtopicpool`,
-  addCurriculumUrl: () => `${bam}/curriculum/addcurriculum`,
+  getCurriculumAllUrl: () => `${bam}/curriculums/`,
+  getCurriculumByIdUrl: (id: number) => `${bam}/curriculum/getcurriculums/${id}`,
+  getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curriculums/schedule/${id}`,
+  getTopicPoolAllUrl: () => `${bam}/curriculums/topicpool`,
+  getSubtopicPoolAllUrl: () => `${bam}/curriculums/subtopicpool`,
+  addCurriculumUrl: () => `${bam}/curriculums/addcurriculum`,
   makeCurriculumMasterByIdUrl: (id: number) => `${bam}/curriculum/makemaster/${id}`,
   syncBatchByIdUrl: (id: number) => `${bam}/curriculum/syncbatch/${id}`,
   deleteCurriculumVersionUrl: () => `${bam}/curriculum/deleteversion`
 };
 
 bambatch = {
-  getBatchAllUrl: () => `${bam}/batches/all`,
+  getBatchAllUrl: () => `${bam}/batches`,
   getPastBatchesUrl: (email: string) => `${bam}/batches/past/${email}`,
   getFutureBatchesUrl: (email: string) => `${bam}/batches/future/${email}`,
   getBatchInProgressUrl: (email: string) => `${bam}/batches/inprogress/${email}`,

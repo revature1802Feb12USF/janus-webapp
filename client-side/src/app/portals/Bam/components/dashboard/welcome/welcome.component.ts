@@ -46,8 +46,9 @@ export class WelcomeComponent implements OnInit {
    * and setting the response data to batches array.
    */
   getInProgressBatches() {
-    this.batchService.getAllBatchesInProgress(this.currentUser.email).subscribe(
-      response => {
+    //this.batchService.getAllBatchesInProgress(this.currentUser.email).subscribe(
+      
+    this.batchService.getBatchAll().subscribe(response => {
         this.batches = response;
         if (this.batches !== null) {
           this.batchCount =  this.batches.length;
