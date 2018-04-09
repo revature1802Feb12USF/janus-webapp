@@ -1,39 +1,28 @@
 webpackJsonp(["track-force.module"],{
 
-/***/ "../../../../../src/app/portals/Track-Force/components/associate-list/associate-list.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/associate-list/associate-list.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".pointer {\r\n  cursor: pointer;\r\n}\r\n\r\n.edit {\r\n  /* width: 4px; */\r\n  width: 4%;\r\n}\r\n\r\n.id {\r\n  /* width: 10px; */\r\n  width: 13%;\r\n}\r\n\r\n.first {\r\n  /* width: 10px; */\r\n  width: 10%;\r\n}\r\n\r\n.last {\r\n  /* width: 10px; */\r\n  width: 10%;\r\n}\r\n\r\n.status {\r\n  /* width: 20px; */\r\n  width: 20%;\r\n}\r\n\r\n.client {\r\n  /* width: 20%; */\r\n  width: 20%;\r\n}\r\n\r\n.batch {\r\n  /* width: 20px; */\r\n  width: 20%;\r\n}\r\n\r\n#info {\r\n  border-color: #c8c8c8;\r\n  border-width: 1px;\r\n  border-style: solid;\r\n}\r\n\r\n.pre-scrollable {\r\n  max-height: 300px !important;\r\n}\r\n\r\nlabel {\r\n  display: inline-block;\r\n  max-width: 100%;\r\n  margin-bottom: 5px;\r\n  font-weight: 700;\r\n}\r\n\r\n.well {\r\n  min-height: 20px;\r\n  padding: 19px;\r\n  margin-bottom: 20px;\r\n  background-color: #f5f5f5;\r\n  border: 1px solid #e3e3e3;\r\n  border-radius: 4px;\r\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n}\r\n\r\n.well {\r\n  padding-top: 0px;\r\n}\r\n\r\n.TrackforceAssociateListTable {\r\n  font-size: 14px;\r\n}\r\n\r\n#info tr:nth-child(odd) {background-color: #FFFFFF}\r\n\r\n#info tr:nth-child(even) {background-color: #F9F9F9}\r\n\r\n.bk-color{\r\n  font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  color: black;\r\n  background-color: #ebedea;\r\n}\r\n\r\n.max-dim{\r\nwidth: 100%!important;\r\nheight: 85vh!important;\r\npadding-top: 25px;\r\nmargin:0px;\r\n}\r\n\r\n.table-responsive {\r\n  height: 50vh;\r\n}\r\n\r\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ".pointer {\r\n  cursor: pointer;\r\n}\r\n\r\n.edit {\r\n  /* width: 4px; */\r\n  width: 4%;\r\n}\r\n\r\n.id {\r\n  /* width: 10px; */\r\n  width: 13%;\r\n}\r\n\r\n.first {\r\n  /* width: 10px; */\r\n  width: 10%;\r\n}\r\n\r\n.last {\r\n  /* width: 10px; */\r\n  width: 10%;\r\n}\r\n\r\n.status {\r\n  /* width: 20px; */\r\n  width: 20%;\r\n}\r\n\r\n.client {\r\n  /* width: 20%; */\r\n  width: 20%;\r\n}\r\n\r\n.batch {\r\n  /* width: 20px; */\r\n  width: 20%;\r\n}\r\n\r\n#info {\r\n  border-color: #c8c8c8;\r\n  border-width: 1px;\r\n  border-style: solid;\r\n}\r\n\r\n.pre-scrollable {\r\n  max-height: 300px !important;\r\n}\r\n\r\nlabel {\r\n  display: inline-block;\r\n  max-width: 100%;\r\n  margin-bottom: 5px;\r\n  font-weight: 700;\r\n}\r\n\r\n.well {\r\n  min-height: 20px;\r\n  padding: 19px;\r\n  margin-bottom: 20px;\r\n  background-color: #f5f5f5;\r\n  border: 1px solid #e3e3e3;\r\n  border-radius: 4px;\r\n  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n  box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n}\r\n\r\n.well {\r\n  padding-top: 0px;\r\n}\r\n\r\n.TrackforceAssociateListTable {\r\n  font-size: 14px;\r\n}\r\n\r\n#info tr:nth-child(odd) {background-color: #FFFFFF}\r\n\r\n#info tr:nth-child(even) {background-color: #F9F9F9}\r\n\r\n.bk-color{\r\n  font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  color: black;\r\n  background-color: #ebedea;\r\n}\r\n\r\n.max-dim{\r\nwidth: 100%!important;\r\nheight: 85vh!important;\r\npadding-top: 25px;\r\nmargin:0px;\r\n}\r\n\r\n.table-responsive {\r\n  height: 50vh;\r\n}\r\n\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/associate-list/associate-list.component.html":
+/***/ "./src/app/portals/Track-Force/components/associate-list/associate-list.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<app-navbar></app-navbar>\r\n\r\n<div class=\"bk-color max-dim\">\r\n\r\n  <div class=\"container\">\r\n    <div class=\"form-group\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-6\">\r\n          <label for=\"name\">Search by Text: </label>\r\n          <input type=\"text\" class=\"form-control\" id=\"name\" [(ngModel)]=\"searchByText\">\r\n        </div>\r\n        <div class=\"col-sm-2\">\r\n          <label for=\"mStatus\">Marketing Status: </label>\r\n          <select class=\"form-control\" id=\"mStatus\" [(ngModel)]=\"searchByStatus\">\r\n            <option label=\" \"></option>\r\n            <option value=\"MAPPED,  TRAINING\">MAPPED: TRAINING</option>\r\n            <option value=\"MAPPED,  RESERVED\">MAPPED: RESERVED</option>\r\n            <option value=\"MAPPED,  SELECTED\">MAPPED: SELECTED</option>\r\n            <option value=\"MAPPED,  CONFIRMED\">MAPPED: CONFIRMED</option>\r\n            <option value=\"MAPPED,  DEPLOYED\">MAPPED: DEPLOYED</option>\r\n            <option value=\"UNMAPPED,  TRAINING\">UNMAPPED: TRAINING</option>\r\n            <option value=\"UNMAPPED,  OPEN\">UNMAPPED: OPEN</option>\r\n            <option value=\"UNMAPPED,  SELECTED\">UNMAPPED: SELECTED</option>\r\n            <option value=\"UNMAPPED,  CONFIRMED\">UNMAPPED: CONFIRMED</option>\r\n            <option value=\"UNMAPPED,  DEPLOYED\">UNMAPPED: DEPLOYED</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"col-sm-2\">\r\n          <label for=\"curriculum\">Curriculum: </label>\r\n          <select class=\"form-control\" id=\"curriculum\" [(ngModel)]=\"searchByCurriculum\">\r\n            <option label=\"\"></option>\r\n            <option *ngFor=\"let curriculum of curriculums\" value=\"{{curriculum}}\">{{curriculum}}</option>\r\n          </select>\r\n        </div>\r\n        <div class=\"col-sm-2\">\r\n          <label for=\"client\">Client: </label>\r\n          <select class=\"form-control\" id=\"client\" [(ngModel)]=\"searchByClient\">\r\n            <option label=\"\"></option>\r\n            <option selected=\"selected\">None</option>\r\n            <option *ngFor=\"let client of clients\">{{client.tfClientName}}</option>\r\n          </select>\r\n        </div>\r\n\r\n      </div>\r\n    </div>\r\n\r\n\r\n    <div class=\"well\" style=\"position:relative;\">\r\n      <div class=\"table-responsive\">\r\n        \r\n        <div class=\"table-responsive pre-scrollable\" id=\"info\" style=\"overflow-x:none!important;\">\r\n          <table class=\"table table-striped table-hover table-bordered\" border-width=2px>\r\n                <thead class=\"pointer\">\r\n                    <tr>\r\n                      <th class=\"edit\">Edit</th>\r\n                      <th class=\"id\" (click)=\"sort('id')\">Associate ID</th>\r\n                      <th class=\"first\" (click)=\"sort('firstName')\">First Name</th>\r\n                      <th class=\"last\" (click)=\"sort('lastName')\">Last Name</th>\r\n                      <th class=\"status\" (click)=\"sort('marketingStatus')\">Marketing Status</th>\r\n                      <th class=\"client\" (click)=\"sort('client')\">Client Name</th>\r\n                      <th class=\"batch\" (click)=\"sort('batch')\">Batch Name</th>\r\n                    </tr>\r\n                  </thead>\r\n            <tr *ngFor=\"let associate of associates | filterByText:searchByText\">\r\n              <ng-container *ngIf=\"(searchByStatus === associate.marketingStatus || searchByStatus === '')\r\n              && (searchByClient === associate.client || searchByClient === '')\r\n              && (searchByCurriculum === associate.curriculumName || searchByCurriculum === '')\">\r\n                <td class=\"edit\">\r\n                  <input type=\"checkbox\" id={{associate.id}}>\r\n                </td>\r\n                <td>\r\n                  <a [routerLink]=\"['/TrackForce/form-comp', associate.id]\" class=\"id\">{{associate.id}}</a>\r\n                </td>\r\n                <td class=\"first\">{{associate.firstName}}</td>\r\n                <td class=\"last\">{{associate.lastName}}</td>\r\n                <td class=\"status\">{{associate.marketingStatus}}</td>\r\n                <td class=\"client\">{{associate.client}}</td>\r\n                <td class=\"batch\">\r\n                  <a [routerLink]=\"['/TrackForce/batch-details', associate.bid]\">{{associate.batchName}}</a>\r\n                </td>\r\n              </ng-container>\r\n            </tr>\r\n          </table>\r\n        </div>\r\n      </div>\r\n      <div class=\"form-group\" style=\"float:bottom;\">\r\n        <div class=\"row\">\r\n          <div class=\"col-sm-4\">\r\n            <br>\r\n            <label for=\"uStatus\">Update by Marketing Status: </label>\r\n            <select class=\"form-control\" id=\"uStatus\" [(ngModel)]=\"updateStatus\">\r\n              <option label=\"\"></option>\r\n              <option value=\"1\">MAPPED: TRAINING</option>\r\n              <option value=\"2\">MAPPED: RESERVED</option>\r\n              <option value=\"3\">MAPPED: SELECTED</option>\r\n              <option value=\"4\">MAPPED: CONFIRMED</option>\r\n              <option value=\"5\">MAPPED: DEPLOYED</option>\r\n              <option value=\"6\">UNMAPPED: TRAINING</option>\r\n              <option value=\"7\">UNMAPPED: OPEN</option>\r\n              <option value=\"8\">UNMAPPED: SELECTED</option>\r\n              <option value=\"9\">UNMAPPED: CONFIRMED</option>\r\n              <option value=\"10\">UNMAPPED: DEPLOYED</option>\r\n            </select>\r\n          </div>\r\n          <div class=\"col-sm-4\">\r\n            <br>\r\n            <label for=\"uclient\">Client: </label>\r\n            <select class=\"form-control\" id=\"uclient\" [(ngModel)]=\"updateClient\">\r\n              <option label=\"\"></option>\r\n              <option selected=\"selected\">None</option>\r\n              <option *ngFor=\"let client of clients\" [value]=\"client.id\">{{client.tfClientName}}</option>\r\n            </select>\r\n          </div>\r\n          <div class=\"col-sm-2\">\r\n            <br>\r\n            <br>\r\n            <button id=\"submit\" (click)=\"updateAssociates()\" class=\"btn\" style=\"cursor: pointer;\">Update</button>\r\n          </div>\r\n          <div class=\"col-sm-2\"></div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/associate-list/associate-list.component.ts":
+/***/ "./src/app/portals/Track-Force/components/associate-list/associate-list.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssociateListComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/associates-service/associates-service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_request_service_request_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/request-service/request.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("../../../../../src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__ = __webpack_require__("./src/app/portals/Track-Force/services/associates-service/associates-service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_request_service_request_service__ = __webpack_require__("./src/app/portals/Track-Force/services/request-service/request.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("./src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -169,8 +158,8 @@ AssociateListComponent = __decorate([
     __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__["a" /* AutoUnsubscribe */],
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-associate-list',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/associate-list/associate-list.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/associate-list/associate-list.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/associate-list/associate-list.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/associate-list/associate-list.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__["a" /* AssociateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__["a" /* AssociateService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_request_service_request_service__["a" /* RequestService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_request_service_request_service__["a" /* RequestService */]) === "function" && _b || Object])
 ], AssociateListComponent);
@@ -180,42 +169,31 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/associate-view/associate-view.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/associate-view/associate-view.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".pointer {\r\n  cursor: pointer;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ".pointer {\r\n  cursor: pointer;\r\n}"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/associate-view/associate-view.component.html":
+/***/ "./src/app/portals/Track-Force/components/associate-view/associate-view.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<nav class=\"navbar navbar-default custom-nav\">\r\n  <div class=\"container-fluid\">\r\n          <div class=\"navbar-header\">\r\n                  <a class=\"navbar-brand\"><img src=\"../../../assets/logo.png\" height=\"35\" width=\"100\"></a>\r\n          </div>\r\n          <ul class=\"nav navbar-nav navbar-right\">\r\n                  <li class=\"pointer\"><a (click)=\"logout()\">Logout</a></li>\r\n          </ul>\r\n          <ul class=\"nav navbar-nav navbar-right\">\r\n                  <li><a>Welcome, {{ associate.firstName }} {{ associate.lastName}}</a></li>\r\n      </ul>\r\n  </div>\r\n</nav>\r\n<div>\r\n<h2> Batch: {{ associate.batchName }}</h2>\r\n<h2> Marketing Status: {{ associate.marketingStatus }}</h2>\r\n<h2> End Client: {{ associate.endClientName }}</h2>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/associate-view/associate-view.component.ts":
+/***/ "./src/app/portals/Track-Force/components/associate-view/associate-view.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssociateViewComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/associates-service/associates-service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("../../../../../src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_associate_model__ = __webpack_require__("../../../../../src/app/portals/Track-Force/models/associate.model.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__ = __webpack_require__("./src/app/portals/Track-Force/services/associates-service/associates-service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__ = __webpack_require__("./src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("./src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_associate_model__ = __webpack_require__("./src/app/portals/Track-Force/models/associate.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -277,8 +255,8 @@ var AssociateViewComponent = (function () {
 AssociateViewComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-associate-view',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/associate-view/associate-view.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/associate-view/associate-view.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/associate-view/associate-view.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/associate-view/associate-view.component.css")]
     }),
     __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__["a" /* AutoUnsubscribe */],
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__["a" /* AssociateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__["a" /* AssociateService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_5__angular_router__["ActivatedRoute"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__angular_router__["ActivatedRoute"]) === "function" && _c || Object])
@@ -289,42 +267,31 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/batch-details/batch-details.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/batch-details/batch-details.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".data-status {\r\n  text-align: center;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n  table {\r\n    width: 100% !important;\r\n    padding-left: 0px;\r\n    padding-right: 0px;\r\n  }\r\n}\r\n\r\nthead {\r\n  display: block;\r\n  overflow-y: scroll;\r\n}\r\n\r\ntbody {\r\n  display: block;\r\n  overflow-y: scroll;\r\n  max-height: 350px !important;\r\n}\r\n\r\n.margintop {\r\n  margin-top: 5%;\r\n}\r\n\r\n.container {\r\n  padding-top: 35px;\r\n  padding-bottom: 35px;\r\n}\r\n\r\n.bk-color{\r\n  font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  color: black;\r\n  background-color: #ebedea;\r\n}\r\n\r\n.max-dim{\r\nwidth: 100%!important;\r\nheight: 100vh!important;\r\npadding-top: 25px;\r\nmargin:0px;\r\n}\r\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ".data-status {\r\n  text-align: center;\r\n}\r\n\r\n@media screen and (max-width: 1000px) {\r\n  table {\r\n    width: 100% !important;\r\n    padding-left: 0px;\r\n    padding-right: 0px;\r\n  }\r\n}\r\n\r\nthead {\r\n  display: block;\r\n  overflow-y: scroll;\r\n}\r\n\r\ntbody {\r\n  display: block;\r\n  overflow-y: scroll;\r\n  max-height: 350px !important;\r\n}\r\n\r\n.margintop {\r\n  margin-top: 5%;\r\n}\r\n\r\n.container {\r\n  padding-top: 35px;\r\n  padding-bottom: 35px;\r\n}\r\n\r\n.bk-color{\r\n  font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n  font-size: 14px;\r\n  line-height: 1.42857143;\r\n  color: black;\r\n  background-color: #ebedea;\r\n}\r\n\r\n.max-dim{\r\nwidth: 100%!important;\r\nheight: 100vh!important;\r\npadding-top: 25px;\r\nmargin:0px;\r\n}\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/batch-details/batch-details.component.html":
+/***/ "./src/app/portals/Track-Force/components/batch-details/batch-details.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<app-navbar></app-navbar>\r\n<div class=\"bk-color max-dim\">\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <div class=\"col-md-6 margintop\">\r\n        <canvas *ngIf=\"isDataReady && !isDataEmpty\" baseChart id=\"bar\"\r\n                [chartType]=\"chartType\"\r\n                [datasets]=\"dataSets\"\r\n                [labels]=\"statusNames\"\r\n                [options]=\"options\"\r\n                [colors]=\"mappedColors\">\r\n        </canvas>\r\n        <h3 class=\"data-status\" *ngIf=\"isDataReady && isDataEmpty\">\r\n          No Associates Found\r\n        </h3>\r\n        <h3 class=\"data-status\" *ngIf=\"!isDataReady\">\r\n          Loading ...\r\n        </h3>\r\n      </div>\r\n      <div class=\"col-md-6\">\r\n        <h3>Associates</h3>\r\n        <table class=\"table table-striped table-hover table-bordered\">\r\n          <thead>\r\n          <tr>\r\n            <th>ID</th>\r\n            <th>First Name</th>\r\n            <th>Last Name</th>\r\n            <th>Marketing Status</th>\r\n            <th>Client</th>\r\n          </tr>\r\n          </thead>\r\n          <tbody>\r\n          <ng-container *ngIf=\"associates\">\r\n            <tr *ngFor=\"let associate of associates | orderBy:'id'\">\r\n              <td><a href=\"#/TrackForce/form-comp/{{associate.id}}\">{{associate.id}}</a></td>\r\n              <td>{{associate.firstName}}</td>\r\n              <td>{{associate.lastName}}</td>\r\n              <td>{{associate.marketingStatus}}</td>\r\n              <td>{{associate.client}}</td>\r\n            </tr>\r\n          </ng-container>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/batch-details/batch-details.component.ts":
+/***/ "./src/app/portals/Track-Force/components/batch-details/batch-details.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* unused harmony export BarChartDataSet */
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BatchDetailsComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_batch_service_batch_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/batch-service/batch.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("../../../../../src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_theme_constants__ = __webpack_require__("../../../../../src/app/portals/Track-Force/constants/theme.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_batch_service_batch_service__ = __webpack_require__("./src/app/portals/Track-Force/services/batch-service/batch.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("./src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__constants_theme_constants__ = __webpack_require__("./src/app/portals/Track-Force/constants/theme.constants.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -454,8 +421,8 @@ var BatchDetailsComponent = (function () {
 BatchDetailsComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-batch-details',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/batch-details/batch-details.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/batch-details/batch-details.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/batch-details/batch-details.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/batch-details/batch-details.component.css")]
     }),
     __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__["a" /* AutoUnsubscribe */],
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["ActivatedRoute"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["ActivatedRoute"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_batch_service_batch_service__["a" /* BatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_batch_service_batch_service__["a" /* BatchService */]) === "function" && _b || Object])
@@ -466,41 +433,30 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/batch-list/batch-list.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/batch-list/batch-list.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "canvas {\r\n  padding: 0;\r\n  width: 100%;\r\n}\r\n\r\n\r\nform {\r\n  text-align: center;\r\n  margin-bottom: 50px;\r\n}\r\n\r\n\r\nthead {\r\n  display: block;\r\n  overflow-y: scroll;\r\n}\r\n\r\n\r\ntbody {\r\n  /* width: max-content; */\r\n  display: block;\r\n  overflow-y: scroll;\r\n  max-height: 350px !important;\r\n}\r\n\r\n\r\n.bk-color{\r\n\tfont-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n\tfont-size: 14px;\r\n\tline-height: 1.42857143;\r\n\tcolor: black;\r\n\tbackground-color: #ebedea;\r\n }\r\n\r\n\r\n.max-dim{\r\n  width: 100%!important;\r\n  height: 100%!important;\r\n  padding-top: 25px;\r\n  margin:0px;\r\n}\r\n\r\n\r\n.data-status {\r\n  text-align: center;\r\n}\r\n\r\n\r\n.table-row {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-flex: 1;\r\n      -ms-flex-positive: 1;\r\n          flex-grow: 1;\r\n}\r\n\r\n\r\n.mcolumn.left {\r\n  margin-left: 0px;\r\n  margin-bottom: 50px;\r\n  padding-left: 0px;\r\n}\r\n\r\n\r\n.mcolumn.right {\r\n  margin-right: 0px;\r\n  padding-right: 0px;\r\n  margin-bottom: 50px;\r\n}\r\n\r\n\r\nform > div {\r\n  display: inline-block;\r\n}\r\n\r\n\r\n.name-column {\r\n  width: 50%;\r\n}\r\n\r\n\r\n.date-column {\r\n  width: 25%;\r\n}\r\n\r\n\r\n@media screen and (max-width: 1000px) {\r\n  .table-width-adjust {\r\n    width: 100% !important;\r\n    padding-left: 20px;\r\n    padding-right: 20px;\r\n  }\r\n}\r\n\r\n\r\n.max-width {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = "canvas {\r\n  padding: 0;\r\n  width: 100%;\r\n}\r\n\r\n\r\nform {\r\n  text-align: center;\r\n  margin-bottom: 50px;\r\n}\r\n\r\n\r\nthead {\r\n  display: block;\r\n  overflow-y: scroll;\r\n}\r\n\r\n\r\ntbody {\r\n  /* width: max-content; */\r\n  display: block;\r\n  overflow-y: scroll;\r\n  max-height: 350px !important;\r\n}\r\n\r\n\r\n.bk-color{\r\n\tfont-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n\tfont-size: 14px;\r\n\tline-height: 1.42857143;\r\n\tcolor: black;\r\n\tbackground-color: #ebedea;\r\n }\r\n\r\n\r\n.max-dim{\r\n  width: 100%!important;\r\n  height: 100%!important;\r\n  padding-top: 25px;\r\n  margin:0px;\r\n}\r\n\r\n\r\n.data-status {\r\n  text-align: center;\r\n}\r\n\r\n\r\n.table-row {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n  -webkit-box-flex: 1;\r\n      -ms-flex-positive: 1;\r\n          flex-grow: 1;\r\n}\r\n\r\n\r\n.mcolumn.left {\r\n  margin-left: 0px;\r\n  margin-bottom: 50px;\r\n  padding-left: 0px;\r\n}\r\n\r\n\r\n.mcolumn.right {\r\n  margin-right: 0px;\r\n  padding-right: 0px;\r\n  margin-bottom: 50px;\r\n}\r\n\r\n\r\nform > div {\r\n  display: inline-block;\r\n}\r\n\r\n\r\n.name-column {\r\n  width: 50%;\r\n}\r\n\r\n\r\n.date-column {\r\n  width: 25%;\r\n}\r\n\r\n\r\n@media screen and (max-width: 1000px) {\r\n  .table-width-adjust {\r\n    width: 100% !important;\r\n    padding-left: 20px;\r\n    padding-right: 20px;\r\n  }\r\n}\r\n\r\n\r\n.max-width {\r\n  display: -webkit-box;\r\n  display: -ms-flexbox;\r\n  display: flex;\r\n}\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/batch-list/batch-list.component.html":
+/***/ "./src/app/portals/Track-Force/components/batch-list/batch-list.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<!-- @Author Princewill Ibe -->\r\n<app-navbar></app-navbar>\r\n<div class=\"bk-color max-dim\">\r\n<div class=\"container table-width-adjust\">\r\n  <div>\r\n    <title class=\"text-center text-primary\">Batch List</title>\r\n  </div>\r\n  <div class=\"row \">\r\n\r\n    <div class=\"col-lg-5 col-md-12 mcolumn left\">\r\n      <h3>All Batches</h3>\r\n      <table class=\"table table-striped table-hover table-bordered\">\r\n        <thead>\r\n        <tr class=\"max-width\">\r\n          <th class=\"name-column\">Batch Name</th>\r\n          <th class=\"date-column\">Start Date</th>\r\n          <th class=\"date-column\">End Date</th>\r\n        </tr>\r\n        </thead>\r\n        <tbody>\r\n        <ng-container *ngIf=\"dataReady\">\r\n          <tr *ngFor=\"let batch of batches\" class=\"max-width\">\r\n            <td class=\"name-column\"><a routerLink=\"/TrackForce/batch-details/{{batch.id}}\">{{batch.batchName}}</a></td>\r\n            <td class=\"date-column\">{{batch.startDate | date:'MM/dd/yyyy'}}</td>\r\n            <td class=\"date-column\">{{batch.endDate| date:'MM/dd/yyyy'}}</td>\r\n          </tr>\r\n        </ng-container>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n\r\n    <div class=\"col-lg-7 col-md-12 mcolumn right\">\r\n      <h3>Select Dates:</h3>\r\n      <form>\r\n        <div>\r\n          <label for=\"startDate\">From:</label>\r\n          <input type=\"date\" [(ngModel)]=\"startDate\" id=\"startDate\" name=\"startDate\" [max]=\"endDate\"/>\r\n        </div>\r\n        <div>\r\n          <label for=\"endDate\">To:</label>\r\n          <input type=\"date\" [(ngModel)]=\"endDate\" id=\"endDate\" name=\"startDate\" [min]=\"startDate\"/>\r\n        </div>\r\n        <div>\r\n          <input type=\"submit\" value=\"Submit\" (click)=\"applySelectedRange()\"/>\r\n        </div>\r\n      </form>\r\n      <ng-container *ngIf=\"dataReady && !dataEmpty\">\r\n        <canvas baseChart\r\n                id=\"pie\" class=\"chart chart-pie\"\r\n                [data]=\"curriculumCounts\"\r\n                [labels]=\"curriculumNames\"\r\n                [chartType]=\"pieChartType\"\r\n                [colors]=\"batchColors\"\r\n                [options]=\"chartOptions\">\r\n        </canvas>\r\n      </ng-container>\r\n      <h3 class=\"data-status\" *ngIf=\"dataReady && dataEmpty\">\r\n        No Batch Found\r\n      </h3>\r\n      <h3 class=\"data-status\" *ngIf=\"!dataReady\">\r\n        Loading ...\r\n      </h3>\r\n    </div>\r\n\r\n  </div>\r\n</div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/batch-list/batch-list.component.ts":
+/***/ "./src/app/portals/Track-Force/components/batch-list/batch-list.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BatchListComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_batch_service_batch_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/batch-service/batch.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_theme_constants__ = __webpack_require__("../../../../../src/app/portals/Track-Force/constants/theme.constants.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("../../../../../src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_ng2_charts_options_model__ = __webpack_require__("../../../../../src/app/portals/Track-Force/models/ng2-charts-options.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_batch_service_batch_service__ = __webpack_require__("./src/app/portals/Track-Force/services/batch-service/batch.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_theme_constants__ = __webpack_require__("./src/app/portals/Track-Force/constants/theme.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("./src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_ng2_charts_options_model__ = __webpack_require__("./src/app/portals/Track-Force/models/ng2-charts-options.model.ts");
 /** @Author Princewill Ibe **/
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -609,8 +565,8 @@ var BatchListComponent = (function () {
 BatchListComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-batch-list',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/batch-list/batch-list.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/batch-list/batch-list.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/batch-list/batch-list.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/batch-list/batch-list.component.css")]
     }),
     __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__["a" /* AutoUnsubscribe */],
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_batch_service_batch_service__["a" /* BatchService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_batch_service_batch_service__["a" /* BatchService */]) === "function" && _a || Object])
@@ -621,40 +577,29 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/client-list/client-list.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/client-list/client-list.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".max-dim{\r\n    width: 100%!important;\r\n    height: 100%!important;\r\n    padding: 0px;\r\n\tmargin:0px;\r\n}\r\n\r\n#clients-list{\r\n\tmargin-top: 20px;\r\n}\r\n\r\n.custom-btn{\r\n\tmargin-bottom: 20px;\r\n\tbackground-color: #f5f5f5;\r\n}\r\n\r\n.h1, h1 {\r\n   font-size: 36px;\r\n}\r\n\r\nli{\r\n\tpadding: 5px;\t\r\n\tmargin-top: 0px;\r\n}\r\n\r\nul{\r\n\tmargin: auto;\r\n\tmargin-top: 0px;\r\n\tpadding: 0;\r\n\tlist-style-type: none;\r\n}\r\n\r\n.well[_ngcontent-c6] {\r\n\tpadding-top: 0px;\r\n }\r\n\r\n.well[_ngcontent-c1] {\r\n\tpadding-top: 0px;\r\n }\r\n\r\n* {\r\n\t-webkit-box-sizing: border-box;\r\n\t        box-sizing: border-box;\r\n }\r\n\r\n.well {\r\n\tmin-height: 20px;\r\n\tpadding: 19px;\r\n\tmargin-bottom: 20px;\r\n\tbackground-color: #f5f5f5;\r\n\tborder: 1px solid #e3e3e3;\r\n\tborder-radius: 4px;\r\n\r\n\t-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n\r\n\t        box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n }\r\n\r\n.client-name{\r\n\tcolor: #757575;\r\n}\r\n\r\n:after, :before {\r\n   -webkit-box-sizing: border-box;\r\n           box-sizing: border-box;\r\n}\r\n\r\n.client-list-page{\r\n\tbackground-color: #ebedea;\r\n\tpadding: 20px;\r\n}\r\n\r\n.bk-color{\r\n\tfont-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n\tfont-size: 14px;\r\n\tline-height: 1.42857143;\r\n\tcolor: black;\r\n\tbackground-color: #ebedea;\r\n }\r\n\r\n.custom-btn[_ngcontent-c1] {\r\n   margin-bottom: 20px;\r\n   background-color: #f5f5f5;\r\n}\r\n\r\n.h3, h3 {\r\n   font-size: 24px;\r\n}\r\n\r\n.h1, .h2, .h3, h1, h2, h3 {\r\n   margin-top: 20px;\r\n   margin-bottom: 10px;\r\n}\r\n\r\n.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {\r\n   font-family: inherit;\r\n   font-weight: 500;\r\n   line-height: 1.1;\r\n   color: inherit;\r\n}\r\n\r\nh1 {\r\n\tdisplay: block;\r\n\tmargin: .67em 0;\r\n\t-webkit-margin-before: 0.67em;\r\n\t-webkit-margin-after: 0.67em;\r\n\t-webkit-margin-start: 0px;\r\n\t-webkit-margin-end: 0px;\r\n }\r\n\r\nh3 {\r\n   display: block;\r\n   -webkit-margin-before: 1em;\r\n   -webkit-margin-after: 1em;\r\n   -webkit-margin-start: 0px;\r\n   -webkit-margin-end: 0px;\r\n}\r\n\r\n.client-name:hover{\r\n\tcolor: #121212;\r\n\tcursor: pointer;\r\n\ttext-decoration: underline;\r\n}\r\n\r\n::before{\r\n\tdisplay: table;\r\n\tcontent: \" \";\r\n }\r\n\r\n::after{\r\n   clear: both;\r\n   display: table;\r\n   content: \" \";\r\n}\r\n\r\n.btn {\r\n\tdisplay: inline-block;\r\n\tpadding: 6px 12px;\r\n\tfont-size: 14px;\r\n\tfont-weight: 400;\r\n\tline-height: 1.42857143;\r\n\ttext-align: center;\r\n\twhite-space: nowrap;\r\n\tvertical-align: middle;\r\n\t-ms-touch-action: manipulation;\r\n\t    touch-action: manipulation;\r\n\tcursor: pointer;\r\n\t-webkit-user-select: none;\r\n\t   -moz-user-select: none;\r\n\t    -ms-user-select: none;\r\n\t        user-select: none;\r\n\tbackground-image: none;\r\n\tborder: 1px solid transparent;\r\n\tborder-radius: 4px;\r\n }", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ".max-dim{\r\n    width: 100%!important;\r\n    height: 100%!important;\r\n    padding: 0px;\r\n\tmargin:0px;\r\n}\r\n\r\n#clients-list{\r\n\tmargin-top: 20px;\r\n}\r\n\r\n.custom-btn{\r\n\tmargin-bottom: 20px;\r\n\tbackground-color: #f5f5f5;\r\n}\r\n\r\n.h1, h1 {\r\n   font-size: 36px;\r\n}\r\n\r\nli{\r\n\tpadding: 5px;\t\r\n\tmargin-top: 0px;\r\n}\r\n\r\nul{\r\n\tmargin: auto;\r\n\tmargin-top: 0px;\r\n\tpadding: 0;\r\n\tlist-style-type: none;\r\n}\r\n\r\n.well[_ngcontent-c6] {\r\n\tpadding-top: 0px;\r\n }\r\n\r\n.well[_ngcontent-c1] {\r\n\tpadding-top: 0px;\r\n }\r\n\r\n* {\r\n\t-webkit-box-sizing: border-box;\r\n\t        box-sizing: border-box;\r\n }\r\n\r\n.well {\r\n\tmin-height: 20px;\r\n\tpadding: 19px;\r\n\tmargin-bottom: 20px;\r\n\tbackground-color: #f5f5f5;\r\n\tborder: 1px solid #e3e3e3;\r\n\tborder-radius: 4px;\r\n\r\n\t-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n\r\n\t        box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n }\r\n\r\n.client-name{\r\n\tcolor: #757575;\r\n}\r\n\r\n:after, :before {\r\n   -webkit-box-sizing: border-box;\r\n           box-sizing: border-box;\r\n}\r\n\r\n.client-list-page{\r\n\tbackground-color: #ebedea;\r\n\tpadding: 20px;\r\n}\r\n\r\n.bk-color{\r\n\tfont-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n\tfont-size: 14px;\r\n\tline-height: 1.42857143;\r\n\tcolor: black;\r\n\tbackground-color: #ebedea;\r\n }\r\n\r\n.custom-btn[_ngcontent-c1] {\r\n   margin-bottom: 20px;\r\n   background-color: #f5f5f5;\r\n}\r\n\r\n.h3, h3 {\r\n   font-size: 24px;\r\n}\r\n\r\n.h1, .h2, .h3, h1, h2, h3 {\r\n   margin-top: 20px;\r\n   margin-bottom: 10px;\r\n}\r\n\r\n.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {\r\n   font-family: inherit;\r\n   font-weight: 500;\r\n   line-height: 1.1;\r\n   color: inherit;\r\n}\r\n\r\nh1 {\r\n\tdisplay: block;\r\n\tmargin: .67em 0;\r\n\t-webkit-margin-before: 0.67em;\r\n\t-webkit-margin-after: 0.67em;\r\n\t-webkit-margin-start: 0px;\r\n\t-webkit-margin-end: 0px;\r\n }\r\n\r\nh3 {\r\n   display: block;\r\n   -webkit-margin-before: 1em;\r\n   -webkit-margin-after: 1em;\r\n   -webkit-margin-start: 0px;\r\n   -webkit-margin-end: 0px;\r\n}\r\n\r\n.client-name:hover{\r\n\tcolor: #121212;\r\n\tcursor: pointer;\r\n\ttext-decoration: underline;\r\n}\r\n\r\n::before{\r\n\tdisplay: table;\r\n\tcontent: \" \";\r\n }\r\n\r\n::after{\r\n   clear: both;\r\n   display: table;\r\n   content: \" \";\r\n}\r\n\r\n.btn {\r\n\tdisplay: inline-block;\r\n\tpadding: 6px 12px;\r\n\tfont-size: 14px;\r\n\tfont-weight: 400;\r\n\tline-height: 1.42857143;\r\n\ttext-align: center;\r\n\twhite-space: nowrap;\r\n\tvertical-align: middle;\r\n\t-ms-touch-action: manipulation;\r\n\t    touch-action: manipulation;\r\n\tcursor: pointer;\r\n\t-webkit-user-select: none;\r\n\t   -moz-user-select: none;\r\n\t    -ms-user-select: none;\r\n\t        user-select: none;\r\n\tbackground-image: none;\r\n\tborder: 1px solid transparent;\r\n\tborder-radius: 4px;\r\n }"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/client-list/client-list.component.html":
+/***/ "./src/app/portals/Track-Force/components/client-list/client-list.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<app-navbar></app-navbar>\r\n<div class=\"bk-color max-dim\">\r\n  <div class=\"container\">\r\n  <div class=\"row align-items-center\">\r\n    <!-- Clients List column -->\r\n    <div class=\"col-md-3\">\r\n      <div class=\"form-group\">\r\n        <input type=\"text\" [(ngModel)]=\"searchName\" (keyup)=\"getAllClients()\" class=\"form-control\" id=\"clientSearch\" placeholder=\"Search by client name...\">\r\n      </div>\r\n      <h3>Clients</h3>\r\n      <button (click)=\"getTotalChartData()\" class=\"btn custom-btn\">View Data for All Clients</button>\r\n      <div id=\"clients-list-well\" class=\"well\">\r\n        <ul id=\"clients-list\">\r\n          <!-- populate list of company names -->\r\n          <li *ngFor=\"let clientName of clientNames | searchFilter : searchName\" (click)=\"getOneClient(clientName)\">\r\n            <span class=\"client-name\">{{clientName}}</span>\r\n          </li>\r\n\r\n        </ul>\r\n      </div>\r\n    </div>\r\n    <!-- end of Client List Column -->\r\n    <!-- Display Client name and bar chart regarding client -->\r\n    <div class=\"col-md-9\">\r\n      <h1>{{selectedCompany}}</h1>\r\n      <canvas baseChart id=\"bar-chart\" class=\"chart chart-bar\" \r\n      *ngIf=\"barChartLabel && barChartLabel.length && barChartData && barChartData.length\"\r\n      [datasets] = \"barChartData\"\r\n      [chartType]=\"barChartType\"\r\n      [labels]=\"barChartLabel\"\r\n      [legend]=\"barChartLegend\"\r\n      [options]=\"barChartOptions\"\r\n      [colors]=\"barChartColors\"\r\n       ></canvas>\r\n     <!-- chart-series=\"clientSeries\" -->\r\n    </div>\r\n    <!-- end of col-md-9 -->\r\n</div>\r\n</div>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/client-list/client-list.component.ts":
+/***/ "./src/app/portals/Track-Force/components/client-list/client-list.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClientListComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_request_service_request_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/request-service/request.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_selected_status_constants__ = __webpack_require__("../../../../../src/app/portals/Track-Force/constants/selected-status.constants.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_theme_constants__ = __webpack_require__("../../../../../src/app/portals/Track-Force/constants/theme.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_request_service_request_service__ = __webpack_require__("./src/app/portals/Track-Force/services/request-service/request.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_selected_status_constants__ = __webpack_require__("./src/app/portals/Track-Force/constants/selected-status.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__constants_theme_constants__ = __webpack_require__("./src/app/portals/Track-Force/constants/theme.constants.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -795,8 +740,8 @@ var ClientListComponent = (function () {
 ClientListComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-client-list',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/client-list/client-list.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/client-list/client-list.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/client-list/client-list.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/client-list/client-list.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_request_service_request_service__["a" /* RequestService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_request_service_request_service__["a" /* RequestService */]) === "function" && _a || Object])
 ], ClientListComponent);
@@ -806,41 +751,30 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/client-mapped/client-mapped.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/client-mapped/client-mapped.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ""
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/client-mapped/client-mapped.component.html":
+/***/ "./src/app/portals/Track-Force/components/client-mapped/client-mapped.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<app-navbar></app-navbar>\r\n<script src=\"node_modules/chart.js/src/chart.js\"></script>\r\n<div class=\"row\">\r\n  <div class=\"col-md-4\">\r\n     <button (click)=\"changeChartType('bar')\" class=\"btn btn-default\">Bar Chart</button>\r\n     <button (click)=\"changeChartType('pie')\" class=\"btn btn-default\">Pie Chart</button>\r\n     <button (click)=\"changeChartType('polarArea')\" class=\"btn btn-default\">Polar Chart</button>\r\n  </div>\r\n</div>\r\n<div class=\"row\">\r\n  <!-- Display chart -->\r\n  <div class=\"col-md-10\">\r\n    <canvas id=\"the_graph\" baseChart *ngIf=\"clientMappedData && clientMappedLabels\"\r\n          [data]=\"clientMappedData\"\r\n          [labels]=\"clientMappedLabels\"\r\n          [chartType]=\"chartType\"\r\n          [options]=\"chartOptions\"\r\n          [colors]=\"clientTheme\"\r\n          (chartHover)=\"chartHovered($event)\"\r\n          (chartClick)=\"chartClicked($event)\">\r\n    </canvas>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/client-mapped/client-mapped.component.ts":
+/***/ "./src/app/portals/Track-Force/components/client-mapped/client-mapped.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClientMappedComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_client_mapped_service_client_mapped_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/client-mapped-service/client-mapped-service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_theme_constants__ = __webpack_require__("../../../../../src/app/portals/Track-Force/constants/theme.constants.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("../../../../../src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_client_mapped_service_client_mapped_service__ = __webpack_require__("./src/app/portals/Track-Force/services/client-mapped-service/client-mapped-service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__constants_theme_constants__ = __webpack_require__("./src/app/portals/Track-Force/constants/theme.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("./src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -988,8 +922,8 @@ var ClientMappedComponent = (function () {
 ClientMappedComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-client-mapped',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/client-mapped/client-mapped.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/client-mapped/client-mapped.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/client-mapped/client-mapped.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/client-mapped/client-mapped.component.css")]
     }),
     __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__["a" /* AutoUnsubscribe */],
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_client_mapped_service_client_mapped_service__["a" /* ClientMappedService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_client_mapped_service_client_mapped_service__["a" /* ClientMappedService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["Router"]) === "function" && _b || Object])
@@ -1000,40 +934,29 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/create-user/create-user.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/create-user/create-user.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".partial { \r\n    height: 79vh;\r\n    background-color: #EBEDEA;\r\n}\r\n\r\n.bk-color{\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    font-size: 14px;\r\n    line-height: 1.42857143;\r\n    color: black;\r\n    background-color: #ebedea;\r\n}\r\n\r\n.max-dim{\r\n    width: 100%!important;\r\n    height: 100%!important;\r\n    padding-top: 25px;\r\n    margin:0px;\r\n}\r\n\r\n.TrackForcecreateUserContainer {\r\n    margin-top: 3%;\r\n    width: 1170px;\r\n    padding-right: 15px;\r\n    padding-left: 15px;\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n    display: block;\r\n}\r\n\r\n.TrackforceH3Title {\r\n    font-size: 24px;\r\n}\r\n\r\nlabel {\r\n    display: inline-block;\r\n    max-width: 100%;\r\n    margin-bottom: 5px;\r\n    font-weight: 700;\r\n    cursor: default;\r\n}\r\n\r\n.well {\r\n    padding-top: 0px;\r\n}\r\n\r\n.well {\r\n    min-height: 20px;\r\n    padding: 19px;\r\n    margin-bottom: 20px;\r\n    background-color: #f5f5f5;\r\n    border: 1px solid #e3e3e3;\r\n    border-radius: 4px;\r\n    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n}\r\n\r\n.col-md-6 {\r\n    -ms-flex: 0 0 50%;\r\n    width: 50%;\r\n    float: left;\r\n}\r\n\r\np {\r\n    margin: 0 0 10px;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ".partial { \r\n    height: 79vh;\r\n    background-color: #EBEDEA;\r\n}\r\n\r\n.bk-color{\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    font-size: 14px;\r\n    line-height: 1.42857143;\r\n    color: black;\r\n    background-color: #ebedea;\r\n}\r\n\r\n.max-dim{\r\n    width: 100%!important;\r\n    height: 100%!important;\r\n    padding-top: 25px;\r\n    margin:0px;\r\n}\r\n\r\n.TrackForcecreateUserContainer {\r\n    margin-top: 3%;\r\n    width: 1170px;\r\n    padding-right: 15px;\r\n    padding-left: 15px;\r\n    margin-right: auto;\r\n    margin-left: auto;\r\n    display: block;\r\n}\r\n\r\n.TrackforceH3Title {\r\n    font-size: 24px;\r\n}\r\n\r\nlabel {\r\n    display: inline-block;\r\n    max-width: 100%;\r\n    margin-bottom: 5px;\r\n    font-weight: 700;\r\n    cursor: default;\r\n}\r\n\r\n.well {\r\n    padding-top: 0px;\r\n}\r\n\r\n.well {\r\n    min-height: 20px;\r\n    padding: 19px;\r\n    margin-bottom: 20px;\r\n    background-color: #f5f5f5;\r\n    border: 1px solid #e3e3e3;\r\n    border-radius: 4px;\r\n    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);\r\n}\r\n\r\n.col-md-6 {\r\n    -ms-flex: 0 0 50%;\r\n    width: 50%;\r\n    float: left;\r\n}\r\n\r\np {\r\n    margin: 0 0 10px;\r\n}"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/create-user/create-user.component.html":
+/***/ "./src/app/portals/Track-Force/components/create-user/create-user.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<app-navbar></app-navbar>\r\n\r\n<div class=\"partial\">\r\n\r\n  <br>\r\n\r\n  <div class=\"container\">\r\n    <div class=\"col-md-6\">\r\n      <h3>Roles</h3>\r\n      <label>Vice President</label>\r\n      <p>Can only view information.</p>\r\n      <label>Director or Manager</label>\r\n      <p>Can view information and edit associates' information</p>\r\n      <label>Administrator</label>\r\n      <p>Can do everything a director or manager can do in addition to creating a new user.</p>\r\n    </div>\r\n    <div class=\"well col-md-6\">\r\n      <h3 class=\"TrackforceH3Title\">Create New User:</h3>\r\n      <form>\r\n        <label for=\"username\" class=\"sr-only\">Username: </label>\r\n        <input class=\"form-control\" type=\"text\" placeholder=\"Username\" name=\"username\" id=\"username\" required [(ngModel)]=\"username\"\r\n        />\r\n        <br>\r\n        <label for=\"password\" class=\"sr-only\">Password: </label>\r\n        <input class=\"form-control\" type=\"password\" placeholder=\"Password\" name=\"password\" id=\"password\" required [(ngModel)]=\"password\"\r\n        />\r\n        <label for=\"password\" class=\"sr-only\">Confirm Password: </label>\r\n        <input class=\"form-control\" type=\"password\" placeholder=\"Confirm Password\" name=\"password2\" id=\"password2\" [(ngModel)]=\"password2\"\r\n        />\r\n        <br>\r\n        <div class=\"form-group\">\r\n          <label for=\"RoleType\">Please Select Role Type:</label>\r\n          <br>\r\n          <input type=\"radio\" name=\"optradio\" value=\"1\" [(ngModel)]=\"roleId\">Administrator\r\n          <br>\r\n          <input type=\"radio\" name=\"optradio\" value=\"2\" [(ngModel)]=\"roleId\">Manager\r\n          <br>\r\n          <input type=\"radio\" name=\"optradio\" value=\"3\" [(ngModel)]=\"roleId\">Vice President\r\n          <br>\r\n          <!--<input type=\"radio\" name=\"optradio\" value=\"4\" [(ngModel)]=\"roleId\">Associate<br>-->\r\n        </div>\r\n        <br>\r\n        <input (click)=\"createUser()\" type=\"submit\" value=\"Submit\">\r\n\r\n      </form>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/create-user/create-user.component.ts":
+/***/ "./src/app/portals/Track-Force/components/create-user/create-user.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateUserComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_create_user_service_create_user_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/create-user-service/create-user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_create_user_service_create_user_service__ = __webpack_require__("./src/app/portals/Track-Force/services/create-user-service/create-user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__ = __webpack_require__("./src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1084,8 +1007,8 @@ var CreateUserComponent = (function () {
 CreateUserComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-create-user',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/create-user/create-user.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/create-user/create-user.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/create-user/create-user.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/create-user/create-user.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__["a" /* AuthenticationService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_router__["Router"]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1__services_create_user_service_create_user_service__["a" /* CreateUserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_create_user_service_create_user_service__["a" /* CreateUserService */]) === "function" && _c || Object])
 ], CreateUserComponent);
@@ -1095,37 +1018,26 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/footer/footer/footer.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/footer/footer/footer.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ""
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/footer/footer/footer.component.html":
+/***/ "./src/app/portals/Track-Force/components/footer/footer/footer.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<!-- <footer class=\"footer\">\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <div class=\"footer-margin\">\r\n        <div class=\"col-sm-4\">\r\n          <img class=\"img-responsive footer-img\" src=\"./assets/rev-footer.png\" alt=\"Revature\" height=\"175\" width=\"175\" />\r\n        </div>\r\n        <div class=\"col-sm-3 col-sm-offset-5 contact-info\">\r\n          <span class=\"glyphicon glyphicon-home\"></span>\r\n          <span>&nbsp;11730 Plaza America Drive\r\n            <br>Reston, VA 20190\r\n          </span>\r\n          <br>\r\n          <span class=\"glyphicon glyphicon-earphone\"></span>\r\n          <a href=\"tel:(703) 570-8282\">&nbsp;(703) 570-8282</a>\r\n          <br>\r\n          <span class=\"glyphicon glyphicon-envelope\"></span>\r\n          <a href=\"mailto:info@revature.com\">&nbsp;info@revature.com</a>\r\n          <br>\r\n          <span class=\"glyphicon glyphicon-link\"></span>\r\n          <a target=\"_blank\" href=\"http://revature.com\">&nbsp;revature.com</a>\r\n          <br>\r\n          <span class=\"copyright\">\r\n            <i class=\"fa fa-copyright\" aria-hidden=\"true\"></i>2017 Revature\r\n          </span>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</footer> -->\r\ntrack-force footer"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/footer/footer/footer.component.ts":
+/***/ "./src/app/portals/Track-Force/components/footer/footer/footer.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FooterComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1146,8 +1058,8 @@ var FooterComponent = (function () {
 FooterComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-footer',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/footer/footer/footer.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/footer/footer/footer.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/footer/footer/footer.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/footer/footer/footer.component.css")]
     }),
     __metadata("design:paramtypes", [])
 ], FooterComponent);
@@ -1156,41 +1068,30 @@ FooterComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/form-component/form.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/form-component/form.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".bk-color{\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    font-size: 14px;\r\n    line-height: 1.42857143;\r\n    color: black;\r\n    background-color: #ebedea;\r\n  }\r\n  \r\n.max-dim{\r\n  width: 100%!important;\r\n  height: 73vh!important;\r\n  padding-top: 25px;\r\n  margin:0px;\r\n}\r\n  \r\n.container{\r\n    padding-top: 35px;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ".bk-color{\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    font-size: 14px;\r\n    line-height: 1.42857143;\r\n    color: black;\r\n    background-color: #ebedea;\r\n  }\r\n  \r\n.max-dim{\r\n  width: 100%!important;\r\n  height: 73vh!important;\r\n  padding-top: 25px;\r\n  margin:0px;\r\n}\r\n  \r\n.container{\r\n    padding-top: 35px;\r\n}"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/form-component/form.component.html":
+/***/ "./src/app/portals/Track-Force/components/form-component/form.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<app-navbar></app-navbar>\r\n<div class=\"bk-color max-dim\">\r\n    <div class=\"container\" ng-init=\"\">\r\n        <h3 class=\"text-default text-center\">Change Associate Marketing Status</h3>\r\n\r\n        <div class=\"row\">\r\n            <div class=\"col-sm-1\"></div>\r\n            <div class=\"col-sm-5\">\r\n                <div class=\"table-responsive\">\r\n                    <table class=\"table table-hover table-bordered\">\r\n                        <thead>\r\n                            <tr>\r\n                                <th>Associate ID</th>\r\n                                <td>{{associate.id}}</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <th>First Name</th>\r\n                                <td>{{associate.firstName}}</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <th>Last Name</th>\r\n                                <td>{{associate.lastName}}</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <th>Marketing Status</th>\r\n                                <td>{{associate.marketingStatus}}</td>\r\n                            </tr>\r\n                            <tr>\r\n                                <th>Batch Name</th>\r\n                                <td>\r\n                                    <a [routerLink]=\"['/TrackForce/batch-details', associate.bid]\">{{associate.batchName}}</a>\r\n                                </td>\r\n                            </tr>\r\n                            <tr>\r\n                                <th>Client Name</th>\r\n                                <td>{{associate.client}}</td>\r\n                            </tr>\r\n                        </thead>\r\n                    </table>\r\n                </div>\r\n            </div>\r\n            <div class=\"col-sm-5\">\r\n                <div class=\"form-group\">\r\n                    <label for=\"mStatus\">Choose Status:</label>\r\n                    <select class=\"form-control\" [(ngModel)]=\"selectedMarketingStatus\">\r\n                        <option value=\"1\">UNMAPPED: TRAINING</option>\r\n                        <option value=\"2\">UNMAPPED: OPEN</option>\r\n                        <option value=\"3\">UNMAPPED: SELECTED</option>\r\n                        <option value=\"4\">UNMAPPED: CONFIRMED</option>\r\n                        <option value=\"5\">UNMAPPED: DEPLOYED</option>\r\n                        <option value=\"6\">MAPPED: TRAINING</option>\r\n                        <option value=\"7\">MAPPED: RESERVED</option>\r\n                        <option value=\"8\">MAPPED: SELECTED</option>\r\n                        <option value=\"9\">MAPPED: CONFIRMED</option>\r\n                        <option value=\"10\">MAPPED: DEPLOYED</option>\r\n                    </select>\r\n                    <p> </p>\r\n                    <label for=\"client\">Assign Client:</label>\r\n                    <select class=\"form-control\" id=\"client\" [(ngModel)]=\"selectedClient\">\r\n                        <option selected=\"selected\">None</option>\r\n                        <option *ngFor=\"let client of clients\">{{client.name}}</option>\r\n                    </select>\r\n                    <p> </p>\r\n                    <button (click)=\"updateAssociate()\" class=\"btn btn-default\" style=\"float: right\">Update Status</button>\r\n                    <h5 class=\"text-success\">{{message}}</h5>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/form-component/form.component.ts":
+/***/ "./src/app/portals/Track-Force/components/form-component/form.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/associates-service/associates-service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_associate_model__ = __webpack_require__("../../../../../src/app/portals/Track-Force/models/associate.model.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("../../../../../src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_request_service_request_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/request-service/request.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__ = __webpack_require__("./src/app/portals/Track-Force/services/associates-service/associates-service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_associate_model__ = __webpack_require__("./src/app/portals/Track-Force/models/associate.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("./src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_request_service_request_service__ = __webpack_require__("./src/app/portals/Track-Force/services/request-service/request.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1244,8 +1145,8 @@ var FormComponent = (function () {
 FormComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-form-comp',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/form-component/form.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/form-component/form.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/form-component/form.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/form-component/form.component.css")]
     }),
     __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__["a" /* AutoUnsubscribe */],
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__["a" /* AssociateService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_associates_service_associates_service__["a" /* AssociateService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_4__services_request_service_request_service__["a" /* RequestService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__services_request_service_request_service__["a" /* RequestService */]) === "function" && _b || Object])
@@ -1256,44 +1157,33 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/home/home.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/home/home.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, ".partial{\r\n    /* height: 550px; */\r\n    height: 100%!important;\r\n    background-color: #EBEDEA;   \r\n}\r\n\r\n.container{\r\n    background-color: #ebedea;\r\n    background-size: cover;\r\n    /* height: 100%!important; */\r\n}\r\n\r\n.well{\r\n    background-color: #f5f5f5;\r\n    padding-top: 0px;\r\n    margin-top: 20px;\r\n}\r\n\r\n.col-sm-3{\r\n    margin-top: 20px;\r\n}\r\n\r\n.bk-color{\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    font-size: 14px;\r\n    line-height: 1.42857143;\r\n    color: black;\r\n    background-color: #ebedea;\r\n    height: 100vh;\r\n}\r\n\r\n.max-dim{\r\n    width: 100%!important;\r\n    height: 73vh;\r\n    margin: 0px;\r\n}\r\n\r\n.btn{\r\n    cursor: pointer;\r\n}\r\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ".partial{\r\n    /* height: 550px; */\r\n    height: 100%!important;\r\n    background-color: #EBEDEA;   \r\n}\r\n\r\n.container{\r\n    background-color: #ebedea;\r\n    background-size: cover;\r\n    /* height: 100%!important; */\r\n}\r\n\r\n.well{\r\n    background-color: #f5f5f5;\r\n    padding-top: 0px;\r\n    margin-top: 20px;\r\n}\r\n\r\n.col-sm-3{\r\n    margin-top: 20px;\r\n}\r\n\r\n.bk-color{\r\n    font-family: \"Helvetica Neue\",Helvetica,Arial,sans-serif;\r\n    font-size: 14px;\r\n    line-height: 1.42857143;\r\n    color: black;\r\n    background-color: #ebedea;\r\n    height: 100vh;\r\n}\r\n\r\n.max-dim{\r\n    width: 100%!important;\r\n    height: 73vh;\r\n    margin: 0px;\r\n}\r\n\r\n.btn{\r\n    cursor: pointer;\r\n}\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/home/home.component.html":
+/***/ "./src/app/portals/Track-Force/components/home/home.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"bk-color max-dim\">\r\n  <div class=\"max-dim\">\r\n    <div class=\"container\">\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-1\"></div>\r\n        <div class=\"col-sm-4\">\r\n\r\n          <div class=\"well\">\r\n            <canvas baseChart id=\"pie\" class=\"chart chart-pie\" [data]=\"getUndeployedData()\" [colors]=\"mappedColors\" [chartType]=\"undeployedChartType\"\r\n              [labels]=\"undeployedLabels\" [options]=\"undeployedOptions\"></canvas>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-4\">\r\n          <div class=\"well\">\r\n            <canvas baseChart id=\"pie\" class=\"chart chart-pie\" [data]=\"getDeployedData()\" [colors]=\"mappedColors\" [chartType]=\"deployedChartType\"\r\n              [options]=\"deployedOptions\" [labels]=\"deployedLabels\"></canvas>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-3\">\r\n          <button (click)=\"populateDB();;\" class=\"btn btn-block\">Populate Database</button>\r\n          <button (click)=\"populateDBSF();;\" class=\"btn btn-block\">Populate Static Salesforce</button>\r\n          <button (click)=\"deleteDB();\" class=\"btn btn-block\">Empty Database</button>\r\n          <p>{{dbMessage}}</p>\r\n\r\n        </div>\r\n      </div>\r\n      <div class=\"row\">\r\n        <div class=\"col-sm-1\"></div>\r\n        <div class=\"col-sm-4\">\r\n\r\n          <div class=\"well\">\r\n            <canvas baseChart id=\"pie\" class=\"chart chart-pie\" [data]=\"getMappedData()\" [labels]=\"mappedLabels\" [chartType]=\"mappedChartType\"\r\n              (chartClick)=\"mappedOnClick($event)\" [colors]=\"clientColors\" [options]=\"mappedOptions\"></canvas>\r\n          </div>\r\n        </div>\r\n        <div class=\"col-sm-4\">\r\n          <div class=\"well\">\r\n            <canvas baseChart id=\"pie\" class=\"chart chart-pie\" [data]=\"getUnmappedData()\" [labels]=\"unmappedLabels\" [chartType]=\"unmappedChartType\"\r\n              [colors]=\"skillColors\" [options]=\"unmappedOptions\" (chartClick)=\"unmappedOnClick($event)\"></canvas>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"col-sm-4\"></div>\r\n    </div>\r\n  </div>\r\n\r\n</div>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/home/home.component.ts":
+/***/ "./src/app/portals/Track-Force/components/home/home.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_request_service_request_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/request-service/request.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_datasync_service_data_sync_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/datasync-service/data-sync.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_theme_constants__ = __webpack_require__("../../../../../src/app/portals/Track-Force/constants/theme.constants.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_ng2_charts_options_model__ = __webpack_require__("../../../../../src/app/portals/Track-Force/models/ng2-charts-options.model.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_selected_status_constants__ = __webpack_require__("../../../../../src/app/portals/Track-Force/constants/selected-status.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_request_service_request_service__ = __webpack_require__("./src/app/portals/Track-Force/services/request-service/request.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_datasync_service_data_sync_service__ = __webpack_require__("./src/app/portals/Track-Force/services/datasync-service/data-sync.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_theme_constants__ = __webpack_require__("./src/app/portals/Track-Force/constants/theme.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__models_ng2_charts_options_model__ = __webpack_require__("./src/app/portals/Track-Force/models/ng2-charts-options.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__constants_selected_status_constants__ = __webpack_require__("./src/app/portals/Track-Force/constants/selected-status.constants.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1579,8 +1469,8 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-home',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/home/home.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/home/home.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/home/home.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/home/home.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_request_service_request_service__["a" /* RequestService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_request_service_request_service__["a" /* RequestService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_datasync_service_data_sync_service__["a" /* DataSyncService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_datasync_service_data_sync_service__["a" /* DataSyncService */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_4__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__angular_router__["Router"]) === "function" && _c || Object])
 ], HomeComponent);
@@ -1590,40 +1480,29 @@ var _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/login/login.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/login/login.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "@charset \"ISO-8859-1\";\r\n\r\n/*\r\nover-ride \"Weak\" message, show font in dark grey\r\n*/\r\n\r\n.progress-bar {\r\n\tcolor: #333;\r\n}\r\n\r\n/*\r\nReference:\r\nhttp://www.bootstrapzen.com/item/135/simple-login-form-logo/\r\n*/\r\n\r\n* {\r\n\t-webkit-box-sizing: border-box;\r\n\tbox-sizing: border-box;\r\n\toutline: none;\r\n}\r\n\r\n.form-control {\r\n\tposition: relative;\r\n\tfont-size: 16px;\r\n\theight: auto;\r\n\tpadding: 10px;\r\n\t@include box-sizing(border-box);\r\n\t&:focus {\r\n\tz-index:2;\r\n\t}\r\n}\r\n\r\n#background {\r\n\tposition: fixed;\r\n\ttop: -50%;\r\n\tleft: -50%;\r\n\twidth: 200%;\r\n\theight: 200%;\r\n\tz-index: -1;\r\n}\r\n\r\n#background img{\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tmargin: auto;\r\n\tmin-width: 50%;\r\n\tmin-height: 50%;\r\n\tmax-height: 100%;\r\n\tmax-width: 50%;\r\n}\r\n\r\n.login-form {\r\n\tmargin-top: 60px;\r\n}\r\n\r\nform[role=login] {\r\n\tcolor: #5d5d5d;\r\n\tbackground: #f2f2f2;\r\n\tpadding: 26px;\r\n\tborder-radius: 10px;\r\n\t-moz-border-radius: 10px;\r\n\t-webkit-border-radius: 10px;\r\n}\r\n\r\nform[role=login] img {\r\n\tdisplay: block;\r\n\tmargin: 0 auto;\r\n\tmargin-bottom: 35px;\r\n}\r\n\r\nform[role=login] input, form[role=login] button {\r\n\tfont-size: 18px;\r\n\tmargin: 16px 0;\r\n}\r\n\r\nform[role=login]>div {\r\n\ttext-align: center;\r\n}\r\n\r\n.form-links {\r\n\ttext-align: center;\r\n\tmargin-top: 1em;\r\n\tmargin-bottom: 50px;\r\n}\r\n\r\n.form-links a {\r\n\tcolor: #fff;\r\n}\r\n", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = "@charset \"ISO-8859-1\";\r\n\r\n/*\r\nover-ride \"Weak\" message, show font in dark grey\r\n*/\r\n\r\n.progress-bar {\r\n\tcolor: #333;\r\n}\r\n\r\n/*\r\nReference:\r\nhttp://www.bootstrapzen.com/item/135/simple-login-form-logo/\r\n*/\r\n\r\n* {\r\n\t-webkit-box-sizing: border-box;\r\n\tbox-sizing: border-box;\r\n\toutline: none;\r\n}\r\n\r\n.form-control {\r\n\tposition: relative;\r\n\tfont-size: 16px;\r\n\theight: auto;\r\n\tpadding: 10px;\r\n\t@include box-sizing(border-box);\r\n\t&:focus {\r\n\tz-index:2;\r\n\t}\r\n}\r\n\r\n#background {\r\n\tposition: fixed;\r\n\ttop: -50%;\r\n\tleft: -50%;\r\n\twidth: 200%;\r\n\theight: 200%;\r\n\tz-index: -1;\r\n}\r\n\r\n#background img{\r\n\tposition: absolute;\r\n\ttop: 0;\r\n\tleft: 0;\r\n\tright: 0;\r\n\tbottom: 0;\r\n\tmargin: auto;\r\n\tmin-width: 50%;\r\n\tmin-height: 50%;\r\n\tmax-height: 100%;\r\n\tmax-width: 50%;\r\n}\r\n\r\n.login-form {\r\n\tmargin-top: 60px;\r\n}\r\n\r\nform[role=login] {\r\n\tcolor: #5d5d5d;\r\n\tbackground: #f2f2f2;\r\n\tpadding: 26px;\r\n\tborder-radius: 10px;\r\n\t-moz-border-radius: 10px;\r\n\t-webkit-border-radius: 10px;\r\n}\r\n\r\nform[role=login] img {\r\n\tdisplay: block;\r\n\tmargin: 0 auto;\r\n\tmargin-bottom: 35px;\r\n}\r\n\r\nform[role=login] input, form[role=login] button {\r\n\tfont-size: 18px;\r\n\tmargin: 16px 0;\r\n}\r\n\r\nform[role=login]>div {\r\n\ttext-align: center;\r\n}\r\n\r\n.form-links {\r\n\ttext-align: center;\r\n\tmargin-top: 1em;\r\n\tmargin-bottom: 50px;\r\n}\r\n\r\n.form-links a {\r\n\tcolor: #fff;\r\n}\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/login/login.component.html":
+/***/ "./src/app/portals/Track-Force/components/login/login.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<!-- <div id=\"background\">\r\n  <img src=\"../../../assets/23.jpg\"/>\r\n</div>\r\n<div class=\"container\">\r\n  <div class=\"row\" id=\"pwd-container\">\r\n    <div class=\"col-md-4\"></div>\r\n      <div class=\"col-md-4\">\r\n        <section class=\"login-form\">\r\n          <form class=\"form-signin\" role=\"login\">\r\n            <img src=\"../../../assets/logo.png\" class=\"img-responsive\" alt=\"\" />\r\n            <label for=\"username\" class=\"sr-only\">Username: </label>\r\n            <input class=\"form-control\" type=\"text\" placeholder=\"Username\" name=\"username\" id=\"username\" required class=\"form-control input-lg\" [(ngModel)]=\"username\"/>\r\n            <label for=\"password\" class=\"sr-only\">Password: </label>\r\n            <input class=\"form-control\" type=\"password\" placeholder=\"Password\" name=\"password\" id=\"password\" required [(ngModel)]=\"password\"/>\r\n            <button class=\"btn btn-lg btn-primary btn-block\" type=\"submit\" (click)='login()'>Sign in</button>\r\n          </form>\r\n        </section>\r\n      </div>\r\n    </div>\r\n</div> -->login component\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/login/login.component.ts":
+/***/ "./src/app/portals/Track-Force/components/login/login.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_authentication_service_authentication_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("../../../../../src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_authentication_service_authentication_service__ = __webpack_require__("./src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__ = __webpack_require__("./src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1700,8 +1579,8 @@ var LoginComponent = (function () {
 LoginComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-login',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/login/login.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/login/login.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/login/login.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/login/login.component.css")]
     }),
     __WEBPACK_IMPORTED_MODULE_3__decorators_auto_unsubscribe_decorator__["a" /* AutoUnsubscribe */],
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_authentication_service_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_authentication_service_authentication_service__["a" /* AuthenticationService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["Router"]) === "function" && _b || Object])
@@ -1712,39 +1591,28 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/navbar/navbar.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/navbar/navbar.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ""
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/navbar/navbar.component.html":
+/***/ "./src/app/portals/Track-Force/components/navbar/navbar.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<!-- <nav class=\"navbar navbar-default custom-nav\">\r\n        <div class=\"container-fluid\">\r\n                <div class=\"navbar-header\">\r\n                        <a class=\"navbar-brand\"><img src=\"../../../assets/logo.png\" height=\"35\" width=\"100\"></a>\r\n                </div>\r\n                <ul class=\"nav navbar-nav\">\r\n                        <li><a routerLink=\"/root\">Home</a></li>\r\n                        <li><a *ngIf=\"!isAssociate\" routerLink=\"/client-listing\">Client List</a></li>\r\n                        <li><a routerLink=\"/batch-listing\">Batch List</a></li>\r\n                        <li><a routerLink=\"/associate-listing\">Associate List</a></li>\r\n                        <li><a *ngIf=\"isAdmin\" routerLink=\"/create-user\">Create User</a></li>\r\n                        <li><a (click)=\"logout()\">Logout</a></li>\r\n                </ul>\r\n                <ul class=\"nav navbar-nav navbar-right\">\r\n                        <li><a>Welcome, {{user.username}}</a></li>\r\n            </ul>\r\n        </div>\r\n</nav> -->"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/navbar/navbar.component.ts":
+/***/ "./src/app/portals/Track-Force/components/navbar/navbar.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NavbarComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__ = __webpack_require__("./src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1783,8 +1651,8 @@ var NavbarComponent = (function () {
 NavbarComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-navbar',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/navbar/navbar.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/navbar/navbar.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/navbar/navbar.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/navbar/navbar.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_router__["Router"]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__["a" /* AuthenticationService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__services_authentication_service_authentication_service__["a" /* AuthenticationService */]) === "function" && _b || Object])
 ], NavbarComponent);
@@ -1794,37 +1662,26 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/root/root.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/root/root.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "body > .wrapper{\r\n\tbackground-color: #ebedea;\r\n\tbackground-size: cover;\r\n}\r\n\r\n.footer {\r\n\tbackground-color: #4b4b4b;\r\n\tcolor: #aaaaaa;\r\n}\r\n\r\n.footer-img{\r\n\tmargin-top: 20px;\r\n}\r\n\r\n.custom-nav{\r\n\tbackground-color: #ffffff;\r\n}\r\n\r\n.navbar-default .navbar-nav > li > a, .navbar-header > .navbar-brand {\r\n\tmargin-top: 20px;\r\n\tcolor: #9e9e9e;\r\n\tfont-size: 1.2em;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{\r\n\tcolor: #000000;\r\n}\r\n\r\n.navbar-default .navbar-brand{\r\n\tcolor: #FF8D3F;\r\n\tmargin-bottom: 20px;\r\n}\r\n\r\n.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {\r\n    color:#000000;\r\n/*     background-color: transparent; */\r\n}\r\n\r\n#clientList{\r\n\tmargin-top: 20px;\r\n}\r\n\r\n.custom-btn{\r\n\tmargin-bottom: 20px;\r\n\tbackground-color: #f5f5f5;\r\n}\r\n\r\nli{\r\n\tpadding: 5px;\t\r\n\tmargin-top: 0px;\r\n}\r\n\r\nul{\r\n\tmargin: auto;\r\n\tmargin-top: 0px;\r\n\tpadding: 0;\r\n\tlist-style-type: none;\r\n}\r\n\r\n.well{\r\n\tpadding-top: 0px;\r\n}\r\n\r\nli > a{\r\n\tcolor: #757575;\r\n}\r\n\r\nli[_ngcontent-c6] {\r\n   padding: 5px;\r\n   margin-top: 0px;\r\n}\r\n\r\nul, menu, dir {\r\n\tdisplay: block;\r\n\t-webkit-margin-before: 1em;\r\n\t-webkit-margin-after: 1em;\r\n\t-webkit-margin-start: 0px;\r\n\t-webkit-margin-end: 0px;\r\n\t-webkit-padding-start: 40px;\r\n }\r\n\r\nul[_ngcontent-c6] {\r\n   margin: auto;\r\n   margin-top: 0px;\r\n   padding: 0;\r\n   list-style-type: none;\r\n}\r\n\r\nli {\r\n   display: list-item;\r\n   text-align: -webkit-match-parent;\r\n}\r\n\r\nli > a:hover{\r\n\tcolor: #121212;\r\n}", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = "body > .wrapper{\r\n\tbackground-color: #ebedea;\r\n\tbackground-size: cover;\r\n}\r\n\r\n.footer {\r\n\tbackground-color: #4b4b4b;\r\n\tcolor: #aaaaaa;\r\n}\r\n\r\n.footer-img{\r\n\tmargin-top: 20px;\r\n}\r\n\r\n.custom-nav{\r\n\tbackground-color: #ffffff;\r\n}\r\n\r\n.navbar-default .navbar-nav > li > a, .navbar-header > .navbar-brand {\r\n\tmargin-top: 20px;\r\n\tcolor: #9e9e9e;\r\n\tfont-size: 1.2em;\r\n\tfont-weight: bold;\r\n}\r\n\r\n.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{\r\n\tcolor: #000000;\r\n}\r\n\r\n.navbar-default .navbar-brand{\r\n\tcolor: #FF8D3F;\r\n\tmargin-bottom: 20px;\r\n}\r\n\r\n.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {\r\n    color:#000000;\r\n/*     background-color: transparent; */\r\n}\r\n\r\n#clientList{\r\n\tmargin-top: 20px;\r\n}\r\n\r\n.custom-btn{\r\n\tmargin-bottom: 20px;\r\n\tbackground-color: #f5f5f5;\r\n}\r\n\r\nli{\r\n\tpadding: 5px;\t\r\n\tmargin-top: 0px;\r\n}\r\n\r\nul{\r\n\tmargin: auto;\r\n\tmargin-top: 0px;\r\n\tpadding: 0;\r\n\tlist-style-type: none;\r\n}\r\n\r\n.well{\r\n\tpadding-top: 0px;\r\n}\r\n\r\nli > a{\r\n\tcolor: #757575;\r\n}\r\n\r\nli[_ngcontent-c6] {\r\n   padding: 5px;\r\n   margin-top: 0px;\r\n}\r\n\r\nul, menu, dir {\r\n\tdisplay: block;\r\n\t-webkit-margin-before: 1em;\r\n\t-webkit-margin-after: 1em;\r\n\t-webkit-margin-start: 0px;\r\n\t-webkit-margin-end: 0px;\r\n\t-webkit-padding-start: 40px;\r\n }\r\n\r\nul[_ngcontent-c6] {\r\n   margin: auto;\r\n   margin-top: 0px;\r\n   padding: 0;\r\n   list-style-type: none;\r\n}\r\n\r\nli {\r\n   display: list-item;\r\n   text-align: -webkit-match-parent;\r\n}\r\n\r\nli > a:hover{\r\n\tcolor: #121212;\r\n}"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/root/root.component.html":
+/***/ "./src/app/portals/Track-Force/components/root/root.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<!-- This is in essence the new app.component. Add your embedded app \r\n modules here -->\r\n <div style=\"height:100%;width:100%;position:relative;\">\r\n    <app-navbar></app-navbar>\r\n    <app-home></app-home>\r\n    <div style=\"bottom: 0px!important; position: absolute; width:100%;\">\r\n        <app-footer></app-footer>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/root/root.component.ts":
+/***/ "./src/app/portals/Track-Force/components/root/root.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RootComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1846,8 +1703,8 @@ var RootComponent = (function () {
 RootComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-root',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/root/root.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/root/root.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/root/root.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/root/root.component.css")]
     }),
     __metadata("design:paramtypes", [])
 ], RootComponent);
@@ -1856,43 +1713,32 @@ RootComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/skillset/skillset.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/components/skillset/skillset.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ""
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/skillset/skillset.component.html":
+/***/ "./src/app/portals/Track-Force/components/skillset/skillset.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<app-navbar></app-navbar>\r\n<div class=\"container\">\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-md-6\">\r\n\t\t\t<button (click)=\"changeChartType('bar')\" class=\"btn btn-default\">Bar Chart</button>\r\n\t\t\t<button (click)=\"changeChartType('pie')\" class=\"btn btn-default\">Pie Chart</button>\r\n\t\t\t<button (click)=\"changeChartType('polarArea')\" class=\"btn btn-default\">Polar Chart</button>\r\n\t\t</div>\r\n\t</div>\r\n\t<div class=\"row\">\r\n\t\t<div class=\"col-lg-6\">\r\n\t\t\t<h3 class=\"text-center text-primary\">{{selectedStatus}}</h3><br/>\r\n\t\t\t<!-- TODO: figure out how to convert this['chart-click'],this['chart-colors'] to TypeScript -->\r\n\t\t\t<canvas baseChart\r\n\t\t\t\tid=\"skillset\"\r\n\t\t\t\tclass=\"chart chart-bar\"\r\n\t\t\t\t*ngIf=\"skillsetData && skillsetData.length && skillsetLabels && skillsetLabels.length; else noData\"\r\n\t\t\t\t[chartType]=\"chartType\"\r\n\t\t\t\t[data]=\"skillsetData\"\r\n\t\t\t\t[labels]=\"skillsetLabels\"\r\n\t\t\t\t[colors]=\"batchColors\"\r\n\t\t\t\t[options]=\"chartOptions\"\r\n\t\t\t\t(chartClick)=\"goToAssociateList($event)\"\r\n\t\t\t\t>\r\n\t\t\t</canvas>\r\n\t\t\t<ng-template #noData>\r\n\t\t\t\t<div class=\"centerBoth\">\r\n\t\t\t\t\t{{status}}\r\n\t\t\t\t</div>\r\n\t\t\t\t\r\n\t\t\t</ng-template>\r\n\t\t</div>\r\n\t</div>\r\n</div>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/components/skillset/skillset.component.ts":
+/***/ "./src/app/portals/Track-Force/components/skillset/skillset.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SkillsetComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_selected_status_constants__ = __webpack_require__("../../../../../src/app/portals/Track-Force/constants/selected-status.constants.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__decorators_auto_unsubscribe_decorator__ = __webpack_require__("../../../../../src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_chart_scale_model__ = __webpack_require__("../../../../../src/app/portals/Track-Force/models/chart-scale.model.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_skill_set_service_skill_set_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/skill-set-service/skill-set.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_theme_constants__ = __webpack_require__("../../../../../src/app/portals/Track-Force/constants/theme.constants.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__constants_selected_status_constants__ = __webpack_require__("./src/app/portals/Track-Force/constants/selected-status.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__decorators_auto_unsubscribe_decorator__ = __webpack_require__("./src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__models_chart_scale_model__ = __webpack_require__("./src/app/portals/Track-Force/models/chart-scale.model.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__services_skill_set_service_skill_set_service__ = __webpack_require__("./src/app/portals/Track-Force/services/skill-set-service/skill-set.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__constants_theme_constants__ = __webpack_require__("./src/app/portals/Track-Force/constants/theme.constants.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2093,8 +1939,8 @@ __decorate([
 SkillsetComponent = SkillsetComponent_1 = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-skillset',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/components/skillset/skillset.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/components/skillset/skillset.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/components/skillset/skillset.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/components/skillset/skillset.component.css")]
     })
     /**
      * The skillset component
@@ -2110,7 +1956,7 @@ var SkillsetComponent_1, _a, _b, _c;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/constants/selected-status.constants.ts":
+/***/ "./src/app/portals/Track-Force/constants/selected-status.constants.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2168,7 +2014,7 @@ SelectedStatusConstants.CLIENT_LABELS = [
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/constants/theme.constants.ts":
+/***/ "./src/app/portals/Track-Force/constants/theme.constants.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2196,7 +2042,7 @@ ThemeConstants.BATCH_DETAILS_COLORS = [
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts":
+/***/ "./src/app/portals/Track-Force/decorators/auto-unsubscribe.decorator.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2237,12 +2083,12 @@ ThemeConstants.BATCH_DETAILS_COLORS = [
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/interceptors/jwt.interceptor.ts":
+/***/ "./src/app/portals/Track-Force/interceptors/jwt.interceptor.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return JwtInterceptor; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2293,7 +2139,7 @@ JwtInterceptor = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/models/associate.model.ts":
+/***/ "./src/app/portals/Track-Force/models/associate.model.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2312,7 +2158,7 @@ var Associate = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/models/chart-scale.model.ts":
+/***/ "./src/app/portals/Track-Force/models/chart-scale.model.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2333,7 +2179,7 @@ var ChartScale = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/models/ng2-charts-options.model.ts":
+/***/ "./src/app/portals/Track-Force/models/ng2-charts-options.model.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -2413,12 +2259,12 @@ var ChartOptions = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/pipes/associate-search-by-text-filter/associate-search-by-text-filter.pipes.ts":
+/***/ "./src/app/portals/Track-Force/pipes/associate-search-by-text-filter/associate-search-by-text-filter.pipes.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssociateSearchByTextFilter; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2466,12 +2312,12 @@ AssociateSearchByTextFilter = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/pipes/search-filter/search-filter.pipe.ts":
+/***/ "./src/app/portals/Track-Force/pipes/search-filter/search-filter.pipe.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SearchFilterPipe; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2510,23 +2356,23 @@ SearchFilterPipe = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/routing/routes.ts":
+/***/ "./src/app/portals/Track-Force/routing/routes.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_component_form_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/form-component/form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_home_home_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_client_list_client_list_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/client-list/client-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_client_mapped_client_mapped_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/client-mapped/client-mapped.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_associate_list_associate_list_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/associate-list/associate-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_batch_list_batch_list_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/batch-list/batch-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_create_user_create_user_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/create-user/create-user.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_root_root_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/root/root.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_skillset_skillset_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/skillset/skillset.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_batch_details_batch_details_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/batch-details/batch-details.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_associate_view_associate_view_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/associate-view/associate-view.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_form_component_form_component__ = __webpack_require__("./src/app/portals/Track-Force/components/form-component/form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_home_home_component__ = __webpack_require__("./src/app/portals/Track-Force/components/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_client_list_client_list_component__ = __webpack_require__("./src/app/portals/Track-Force/components/client-list/client-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_login_login_component__ = __webpack_require__("./src/app/portals/Track-Force/components/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_client_mapped_client_mapped_component__ = __webpack_require__("./src/app/portals/Track-Force/components/client-mapped/client-mapped.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_associate_list_associate_list_component__ = __webpack_require__("./src/app/portals/Track-Force/components/associate-list/associate-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_batch_list_batch_list_component__ = __webpack_require__("./src/app/portals/Track-Force/components/batch-list/batch-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_create_user_create_user_component__ = __webpack_require__("./src/app/portals/Track-Force/components/create-user/create-user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_root_root_component__ = __webpack_require__("./src/app/portals/Track-Force/components/root/root.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_skillset_skillset_component__ = __webpack_require__("./src/app/portals/Track-Force/components/skillset/skillset.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_batch_details_batch_details_component__ = __webpack_require__("./src/app/portals/Track-Force/components/batch-details/batch-details.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_associate_view_associate_view_component__ = __webpack_require__("./src/app/portals/Track-Force/components/associate-view/associate-view.component.ts");
 /**
  * @author Antony Lulciuc
  * @description Defines all possible navigatable routes for TrackForce application
@@ -2609,15 +2455,15 @@ var routes = [
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/services/associates-service/associates-service.ts":
+/***/ "./src/app/portals/Track-Force/services/associates-service/associates-service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssociateService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2674,15 +2520,15 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/services/authentication-service/authentication.service.ts":
+/***/ "./src/app/portals/Track-Force/services/authentication-service/authentication.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthenticationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__request_service_request_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/request-service/request.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__request_service_request_service__ = __webpack_require__("./src/app/portals/Track-Force/services/request-service/request.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2763,14 +2609,14 @@ var _a, _b;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/services/batch-service/batch.service.ts":
+/***/ "./src/app/portals/Track-Force/services/batch-service/batch.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return BatchService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
 /** @Author Princewill Ibe */
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2836,14 +2682,14 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/services/client-list-service/client-list.service.ts":
+/***/ "./src/app/portals/Track-Force/services/client-list-service/client-list.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClientListService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2889,14 +2735,14 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/services/client-mapped-service/client-mapped-service.ts":
+/***/ "./src/app/portals/Track-Force/services/client-mapped-service/client-mapped-service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ClientMappedService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http___ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http___ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2940,14 +2786,14 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/services/create-user-service/create-user.service.ts":
+/***/ "./src/app/portals/Track-Force/services/create-user-service/create-user.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CreateUserService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("../../../../rxjs/_esm5/add/operator/map.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__request_service_request_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/request-service/request.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/map.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__request_service_request_service__ = __webpack_require__("./src/app/portals/Track-Force/services/request-service/request.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3002,14 +2848,14 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/services/datasync-service/data-sync.service.ts":
+/***/ "./src/app/portals/Track-Force/services/datasync-service/data-sync.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DataSyncService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__request_service_request_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/request-service/request.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("../../../../rxjs/_esm5/Rx.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__request_service_request_service__ = __webpack_require__("./src/app/portals/Track-Force/services/request-service/request.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Rx__ = __webpack_require__("./node_modules/rxjs/_esm5/Rx.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3157,14 +3003,14 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/services/request-service/request.service.ts":
+/***/ "./src/app/portals/Track-Force/services/request-service/request.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RequestService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3248,14 +3094,14 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/services/skill-set-service/skill-set.service.ts":
+/***/ "./src/app/portals/Track-Force/services/skill-set-service/skill-set.service.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SkillsetService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__("./src/environments/environment.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3290,7 +3136,7 @@ var _a;
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/testing-helpers/router-stubs.ts":
+/***/ "./src/app/portals/Track-Force/testing-helpers/router-stubs.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3298,13 +3144,13 @@ var _a;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return RouterOutletStubComponent; });
 /* unused harmony export RouterStub */
 /* unused harmony export ActivatedRouteStub */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
 /* unused harmony reexport ActivatedRoute */
 /* unused harmony reexport Router */
 /* unused harmony reexport RouterLink */
 /* unused harmony reexport RouterOutlet */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__ = __webpack_require__("../../../../rxjs/_esm5/BehaviorSubject.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_BehaviorSubject__ = __webpack_require__("./node_modules/rxjs/_esm5/BehaviorSubject.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3402,37 +3248,26 @@ can be found in the LICENSE file at http://angular.io/license
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/track-force.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Track-Force/track-force.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ""
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/track-force.component.html":
+/***/ "./src/app/portals/Track-Force/track-force.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "\r\n<!--The content below is only a placeholder and can be replaced.-->\r\n<div class=\"container-fluid max-dim\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/track-force.component.ts":
+/***/ "./src/app/portals/Track-Force/track-force.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TrackForceComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3449,8 +3284,8 @@ var TrackForceComponent = (function () {
 TrackForceComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-track-force',
-        template: __webpack_require__("../../../../../src/app/portals/Track-Force/track-force.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Track-Force/track-force.component.css")]
+        template: __webpack_require__("./src/app/portals/Track-Force/track-force.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Track-Force/track-force.component.css")]
     })
 ], TrackForceComponent);
 
@@ -3458,50 +3293,50 @@ TrackForceComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Track-Force/track-force.module.ts":
+/***/ "./src/app/portals/Track-Force/track-force.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TrackForceModule", function() { return TrackForceModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/@angular/common/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_charts__ = __webpack_require__("../../../../ng2-charts/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/@angular/common/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_charts__ = __webpack_require__("./node_modules/ng2-charts/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ng2_charts___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_ng2_charts__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_order_pipe__ = __webpack_require__("../../../../ng2-order-pipe/dist/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_order_pipe__ = __webpack_require__("./node_modules/ng2-order-pipe/dist/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_ng2_order_pipe___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_ng2_order_pipe__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__track_force_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/track-force.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_associate_list_associate_list_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/associate-list/associate-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_batch_list_batch_list_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/batch-list/batch-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_client_mapped_client_mapped_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/client-mapped/client-mapped.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_create_user_create_user_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/create-user/create-user.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_login_login_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/login/login.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_client_list_client_list_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/client-list/client-list.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_form_component_form_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/form-component/form.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_navbar_navbar_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/navbar/navbar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_home_home_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_root_root_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/root/root.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_skillset_skillset_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/skillset/skillset.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_batch_details_batch_details_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/batch-details/batch-details.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_associate_view_associate_view_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/associate-view/associate-view.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_request_service_request_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/request-service/request.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_associates_service_associates_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/associates-service/associates-service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_client_list_service_client_list_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/client-list-service/client-list.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_client_mapped_service_client_mapped_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/client-mapped-service/client-mapped-service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_authentication_service_authentication_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pipes_search_filter_search_filter_pipe__ = __webpack_require__("../../../../../src/app/portals/Track-Force/pipes/search-filter/search-filter.pipe.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_batch_service_batch_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/batch-service/batch.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_skill_set_service_skill_set_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/skill-set-service/skill-set.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_datasync_service_data_sync_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/datasync-service/data-sync.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_create_user_service_create_user_service__ = __webpack_require__("../../../../../src/app/portals/Track-Force/services/create-user-service/create-user.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pipes_associate_search_by_text_filter_associate_search_by_text_filter_pipes__ = __webpack_require__("../../../../../src/app/portals/Track-Force/pipes/associate-search-by-text-filter/associate-search-by-text-filter.pipes.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__interceptors_jwt_interceptor__ = __webpack_require__("../../../../../src/app/portals/Track-Force/interceptors/jwt.interceptor.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__routing_routes__ = __webpack_require__("../../../../../src/app/portals/Track-Force/routing/routes.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__testing_helpers_router_stubs__ = __webpack_require__("../../../../../src/app/portals/Track-Force/testing-helpers/router-stubs.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_footer_footer_footer_component__ = __webpack_require__("../../../../../src/app/portals/Track-Force/components/footer/footer/footer.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__track_force_component__ = __webpack_require__("./src/app/portals/Track-Force/track-force.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_associate_list_associate_list_component__ = __webpack_require__("./src/app/portals/Track-Force/components/associate-list/associate-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_batch_list_batch_list_component__ = __webpack_require__("./src/app/portals/Track-Force/components/batch-list/batch-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_client_mapped_client_mapped_component__ = __webpack_require__("./src/app/portals/Track-Force/components/client-mapped/client-mapped.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_create_user_create_user_component__ = __webpack_require__("./src/app/portals/Track-Force/components/create-user/create-user.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_login_login_component__ = __webpack_require__("./src/app/portals/Track-Force/components/login/login.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__components_client_list_client_list_component__ = __webpack_require__("./src/app/portals/Track-Force/components/client-list/client-list.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__components_form_component_form_component__ = __webpack_require__("./src/app/portals/Track-Force/components/form-component/form.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__components_navbar_navbar_component__ = __webpack_require__("./src/app/portals/Track-Force/components/navbar/navbar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__components_home_home_component__ = __webpack_require__("./src/app/portals/Track-Force/components/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__components_root_root_component__ = __webpack_require__("./src/app/portals/Track-Force/components/root/root.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__components_skillset_skillset_component__ = __webpack_require__("./src/app/portals/Track-Force/components/skillset/skillset.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__components_batch_details_batch_details_component__ = __webpack_require__("./src/app/portals/Track-Force/components/batch-details/batch-details.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__components_associate_view_associate_view_component__ = __webpack_require__("./src/app/portals/Track-Force/components/associate-view/associate-view.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__services_request_service_request_service__ = __webpack_require__("./src/app/portals/Track-Force/services/request-service/request.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__services_associates_service_associates_service__ = __webpack_require__("./src/app/portals/Track-Force/services/associates-service/associates-service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__services_client_list_service_client_list_service__ = __webpack_require__("./src/app/portals/Track-Force/services/client-list-service/client-list.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__services_client_mapped_service_client_mapped_service__ = __webpack_require__("./src/app/portals/Track-Force/services/client-mapped-service/client-mapped-service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__services_authentication_service_authentication_service__ = __webpack_require__("./src/app/portals/Track-Force/services/authentication-service/authentication.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__pipes_search_filter_search_filter_pipe__ = __webpack_require__("./src/app/portals/Track-Force/pipes/search-filter/search-filter.pipe.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__services_batch_service_batch_service__ = __webpack_require__("./src/app/portals/Track-Force/services/batch-service/batch.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__services_skill_set_service_skill_set_service__ = __webpack_require__("./src/app/portals/Track-Force/services/skill-set-service/skill-set.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__services_datasync_service_data_sync_service__ = __webpack_require__("./src/app/portals/Track-Force/services/datasync-service/data-sync.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__services_create_user_service_create_user_service__ = __webpack_require__("./src/app/portals/Track-Force/services/create-user-service/create-user.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__pipes_associate_search_by_text_filter_associate_search_by_text_filter_pipes__ = __webpack_require__("./src/app/portals/Track-Force/pipes/associate-search-by-text-filter/associate-search-by-text-filter.pipes.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__interceptors_jwt_interceptor__ = __webpack_require__("./src/app/portals/Track-Force/interceptors/jwt.interceptor.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__routing_routes__ = __webpack_require__("./src/app/portals/Track-Force/routing/routes.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__testing_helpers_router_stubs__ = __webpack_require__("./src/app/portals/Track-Force/testing-helpers/router-stubs.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__components_footer_footer_footer_component__ = __webpack_require__("./src/app/portals/Track-Force/components/footer/footer/footer.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__angular_common__ = __webpack_require__("./node_modules/@angular/common/@angular/common.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
