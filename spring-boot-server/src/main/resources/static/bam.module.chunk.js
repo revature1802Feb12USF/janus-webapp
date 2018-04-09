@@ -57251,6 +57251,7 @@ var AllBatchesComponent = (function () {
         var _this = this;
         this.batchService.getBatchAll()
             .subscribe(function (batches) { return _this.batches = batches; }, function (err) { return _this.batches = []; });
+        console.log("Loaded all batches");
     };
     /**
      * Sets [this.filterText] to the text in the search box

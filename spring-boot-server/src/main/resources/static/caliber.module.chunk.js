@@ -10378,7 +10378,7 @@ var SpringInterceptor = (function () {
     function SpringInterceptor() {
     }
     /*
-    * intercept each HTTP rquest and return a modified request
+    * intercept each HTTP request and return a modified request
     */
     SpringInterceptor.prototype.intercept = function (request, next) {
         var modifiedRequest = request.clone({
