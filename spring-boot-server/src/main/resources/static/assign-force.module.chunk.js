@@ -1,36 +1,25 @@
 webpackJsonp(["assign-force.module"],{
 
-/***/ "../../../../../src/app/portals/Assign-Force/assign-force.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Assign-Force/assign-force.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ""
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/assign-force.component.html":
+/***/ "./src/app/portals/Assign-Force/assign-force.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<router-outlet></router-outlet>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/assign-force.component.ts":
+/***/ "./src/app/portals/Assign-Force/assign-force.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AssignForceComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -47,8 +36,8 @@ var AssignForceComponent = (function () {
 AssignForceComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-assign-force',
-        template: __webpack_require__("../../../../../src/app/portals/Assign-Force/assign-force.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Assign-Force/assign-force.component.css")]
+        template: __webpack_require__("./src/app/portals/Assign-Force/assign-force.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Assign-Force/assign-force.component.css")]
     })
 ], AssignForceComponent);
 
@@ -56,22 +45,22 @@ AssignForceComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/assign-force.module.ts":
+/***/ "./src/app/portals/Assign-Force/assign-force.module.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AssignForceModule", function() { return AssignForceModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_bootstrap_ng_bootstrap__ = __webpack_require__("../../../../@ng-bootstrap/ng-bootstrap/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("../../../router/@angular/router.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__assign_force_routes__ = __webpack_require__("../../../../../src/app/portals/Assign-Force/assign-force.routes.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__assign_force_component__ = __webpack_require__("../../../../../src/app/portals/Assign-Force/assign-force.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_home_component__ = __webpack_require__("../../../../../src/app/portals/Assign-Force/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common__ = __webpack_require__("../../../common/@angular/common.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__calendar_calendar_component__ = __webpack_require__("../../../../../src/app/portals/Assign-Force/calendar/calendar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("./node_modules/@angular/http/@angular/http.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ng_bootstrap_ng_bootstrap__ = __webpack_require__("./node_modules/@ng-bootstrap/ng-bootstrap/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_router__ = __webpack_require__("./node_modules/@angular/router/@angular/router.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_forms__ = __webpack_require__("./node_modules/@angular/forms/@angular/forms.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__assign_force_routes__ = __webpack_require__("./src/app/portals/Assign-Force/assign-force.routes.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__assign_force_component__ = __webpack_require__("./src/app/portals/Assign-Force/assign-force.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__home_home_component__ = __webpack_require__("./src/app/portals/Assign-Force/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__angular_common__ = __webpack_require__("./node_modules/@angular/common/@angular/common.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__calendar_calendar_component__ = __webpack_require__("./src/app/portals/Assign-Force/calendar/calendar.component.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -115,14 +104,14 @@ AssignForceModule = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/assign-force.routes.ts":
+/***/ "./src/app/portals/Assign-Force/assign-force.routes.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home_component__ = __webpack_require__("../../../../../src/app/portals/Assign-Force/home/home.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__calendar_calendar_component__ = __webpack_require__("../../../../../src/app/portals/Assign-Force/calendar/calendar.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assign_force_component__ = __webpack_require__("../../../../../src/app/portals/Assign-Force/assign-force.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__home_home_component__ = __webpack_require__("./src/app/portals/Assign-Force/home/home.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__calendar_calendar_component__ = __webpack_require__("./src/app/portals/Assign-Force/calendar/calendar.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__assign_force_component__ = __webpack_require__("./src/app/portals/Assign-Force/assign-force.component.ts");
 
 
 
@@ -151,37 +140,26 @@ var routes = [
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/calendar/calendar.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Assign-Force/calendar/calendar.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ""
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/calendar/calendar.component.html":
+/***/ "./src/app/portals/Assign-Force/calendar/calendar.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<p>\r\n  calendar works!\r\n</p>\r\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/calendar/calendar.component.ts":
+/***/ "./src/app/portals/Assign-Force/calendar/calendar.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalendarComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -202,8 +180,8 @@ var CalendarComponent = (function () {
 CalendarComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-calendar',
-        template: __webpack_require__("../../../../../src/app/portals/Assign-Force/calendar/calendar.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Assign-Force/calendar/calendar.component.css")]
+        template: __webpack_require__("./src/app/portals/Assign-Force/calendar/calendar.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Assign-Force/calendar/calendar.component.css")]
     }),
     __metadata("design:paramtypes", [])
 ], CalendarComponent);
@@ -212,38 +190,27 @@ CalendarComponent = __decorate([
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/home/home.component.css":
-/***/ (function(module, exports, __webpack_require__) {
+/***/ "./src/app/portals/Assign-Force/home/home.component.css":
+/***/ (function(module, exports) {
 
-exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "", ""]);
-
-// exports
-
-
-/*** EXPORTS FROM exports-loader ***/
-module.exports = module.exports.toString();
+module.exports = ""
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/home/home.component.html":
+/***/ "./src/app/portals/Assign-Force/home/home.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<p>\r\n  assign force home works!\r\n</p>\r\n{{ joke.value.joke }}\r\n<button class=\"btn btn-primary\" (click)=\"newJoke()\">New Joke</button>"
 
 /***/ }),
 
-/***/ "../../../../../src/app/portals/Assign-Force/home/home.component.ts":
+/***/ "./src/app/portals/Assign-Force/home/home.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomeComponent; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/@angular/core.es5.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_chuck_norris_service__ = __webpack_require__("../../../../../src/app/services/chuck-norris.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__services_chuck_norris_service__ = __webpack_require__("./src/app/services/chuck-norris.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -277,8 +244,8 @@ var HomeComponent = (function () {
 HomeComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
         selector: 'app-home',
-        template: __webpack_require__("../../../../../src/app/portals/Assign-Force/home/home.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/portals/Assign-Force/home/home.component.css")]
+        template: __webpack_require__("./src/app/portals/Assign-Force/home/home.component.html"),
+        styles: [__webpack_require__("./src/app/portals/Assign-Force/home/home.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_chuck_norris_service__["a" /* ChuckNorrisService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_chuck_norris_service__["a" /* ChuckNorrisService */]) === "function" && _a || Object])
 ], HomeComponent);

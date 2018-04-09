@@ -1,6 +1,6 @@
 webpackJsonp(["common"],{
 
-/***/ "../../../../ng2-order-pipe/dist/index.js":
+/***/ "./node_modules/ng2-order-pipe/dist/index.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11,13 +11,13 @@ function __export(m) {
 /**
  * Created by vadimdez on 20/01/2017.
  */
-__export(__webpack_require__("../../../../ng2-order-pipe/dist/src/ng2-order.module.js"));
-__export(__webpack_require__("../../../../ng2-order-pipe/dist/src/ng2-order.pipe.js"));
+__export(__webpack_require__("./node_modules/ng2-order-pipe/dist/src/ng2-order.module.js"));
+__export(__webpack_require__("./node_modules/ng2-order-pipe/dist/src/ng2-order.pipe.js"));
 //# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "../../../../ng2-order-pipe/dist/src/ng2-order.module.js":
+/***/ "./node_modules/ng2-order-pipe/dist/src/ng2-order.module.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31,8 +31,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 /**
  * Created by vadimdez on 20/01/2017.
  */
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
-var ng2_order_pipe_1 = __webpack_require__("../../../../ng2-order-pipe/dist/src/ng2-order.pipe.js");
+var core_1 = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
+var ng2_order_pipe_1 = __webpack_require__("./node_modules/ng2-order-pipe/dist/src/ng2-order.pipe.js");
 var Ng2OrderModule = (function () {
     function Ng2OrderModule() {
     }
@@ -49,7 +49,7 @@ exports.Ng2OrderModule = Ng2OrderModule;
 
 /***/ }),
 
-/***/ "../../../../ng2-order-pipe/dist/src/ng2-order.pipe.js":
+/***/ "./node_modules/ng2-order-pipe/dist/src/ng2-order.pipe.js":
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60,7 +60,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var core_1 = __webpack_require__("../../../core/@angular/core.es5.js");
+var core_1 = __webpack_require__("./node_modules/@angular/core/@angular/core.es5.js");
 var Ng2OrderPipe = Ng2OrderPipe_1 = (function () {
     function Ng2OrderPipe() {
     }
@@ -175,7 +175,7 @@ var Ng2OrderPipe_1;
 
 /***/ }),
 
-/***/ "../../../../process/browser.js":
+/***/ "./node_modules/process/browser.js":
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -366,7 +366,7 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "../../../../webpack/buildin/amd-define.js":
+/***/ "./node_modules/webpack/buildin/amd-define.js":
 /***/ (function(module, exports) {
 
 module.exports = function() {
@@ -376,7 +376,7 @@ module.exports = function() {
 
 /***/ }),
 
-/***/ "../../../../webpack/buildin/amd-options.js":
+/***/ "./node_modules/webpack/buildin/amd-options.js":
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */

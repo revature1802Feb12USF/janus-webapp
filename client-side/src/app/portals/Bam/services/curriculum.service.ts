@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '../../../../environments/environment';
 import { Curriculum } from '../models/curriculum.model';
 import { CurriculumSubtopic } from '../models/curriculumSubtopic.model';
 import { SubtopicName } from '../models/subtopicname.model';
@@ -9,6 +8,7 @@ import { Subtopic } from '../models/subtopic.model';
 import { CurriculumSubtopicDTO } from '../models/curriculumSubtopicDTO.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { UrlService } from '../../../hydra-client/services/urls/url.service';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -30,7 +30,7 @@ export class CurriculumService {
   private selectedCurrData = new BehaviorSubject<Curriculum>(null);
   currentSelectedCurr = this.selectedCurrData.asObservable();
 
-  constructor(private http: HttpClient, private modalService: NgbModal) { }
+  constructor(private http: HttpClient, private modalService: NgbModal, private urlService: UrlService) { }
 
   changeData(data: CurriculumSubtopic[]) {
     this.dataSource.next(data);
@@ -50,7 +50,7 @@ export class CurriculumService {
     *  @return: Observable<Curriculum[]>
     */
   getAllCurriculums(): Observable<Curriculum[]> {
-    return this.http.get<Curriculum[]>(environment.curriculum.getCurriculumAllUrl()).map(
+    return this.http.get<Curriculum[]>(this.urlService.curriculum.getCurriculumAllUrl()).map(
       data => {
         return data;
       }
@@ -64,7 +64,7 @@ export class CurriculumService {
     * @param: Curriculum Id
     */
   getCurriculumById(cid: number): Observable<Curriculum> {
-    return this.http.get<Curriculum>(environment.curriculum.getCurriculumByIdUrl(cid)).map(
+    return this.http.get<Curriculum>(this.urlService.curriculum.getCurriculumByIdUrl(cid)).map(
       data => {
         return data;
       }
@@ -78,7 +78,7 @@ export class CurriculumService {
     * @param: Curriculum Id
     */
   getSchedualeByCurriculumId(cid: number): Observable<CurriculumSubtopic[]> {
-    return this.http.get<CurriculumSubtopic[]>(environment.curriculum.getSchedulesByCurriculumIdUrl(cid)).map(
+    return this.http.get<CurriculumSubtopic[]>(this.urlService.curriculum.getSchedulesByCurriculumIdUrl(cid)).map(
       data => {
         return data;
       }
@@ -91,7 +91,7 @@ export class CurriculumService {
     * @return: Observable<SubtopicName[]>
     */
   getAllTopicPool(): Observable<SubtopicName[]> {
-    return this.http.get<SubtopicName[]>(environment.curriculum.getTopicPoolAllUrl()).map(
+    return this.http.get<SubtopicName[]>(this.urlService.curriculum.getTopicPoolAllUrl()).map(
       data => {
         this.allTopicPoolData.next(data);
         return data;
@@ -105,7 +105,7 @@ export class CurriculumService {
     * @return: Observable<Subtopic[]>
     */
   getSubtopicPool(): Observable<Subtopic[]> {
-    return this.http.get<Subtopic[]>(environment.curriculum.getSubtopicPoolAllUrl()).map(
+    return this.http.get<Subtopic[]>(this.urlService.curriculum.getSubtopicPoolAllUrl()).map(
       data => {
         return data;
       }
@@ -118,7 +118,7 @@ export class CurriculumService {
     * @param: CurriculumSubtopicDTO
     */
    addCurriculum(curriculum: CurriculumSubtopicDTO) {
-    return this.http.post(environment.curriculum.addCurriculumUrl(), curriculum, httpOptions).map(
+    return this.http.post(this.urlService.curriculum.addCurriculumUrl(), curriculum, httpOptions).map(
       data => {
         return data;
       }
@@ -131,7 +131,7 @@ export class CurriculumService {
     * @param: Curriculum Id
     */
   markCurriculumAsMaster(curriculumId: number) {
-    return this.http.get(environment.curriculum.makeCurriculumMasterByIdUrl(curriculumId)).map(
+    return this.http.get(this.urlService.curriculum.makeCurriculumMasterByIdUrl(curriculumId)).map(
       data => {
         return data;
       }
@@ -144,7 +144,7 @@ export class CurriculumService {
     * @param:  Batch Id
     */
   syncBatch(batchId: number) {
-    return this.http.get(environment.curriculum.syncBatchByIdUrl(batchId)).map(
+    return this.http.get(this.urlService.curriculum.syncBatchByIdUrl(batchId)).map(
       data => {
         return data;
       }
@@ -157,7 +157,7 @@ export class CurriculumService {
     * @param: Curriculum
     */
     deleteCurriculumVersion(curriculumVersion: Curriculum) {
-      return this.http.post(environment.curriculum.deleteCurriculumVersionUrl(), curriculumVersion, {
+      return this.http.post(this.urlService.curriculum.deleteCurriculumVersionUrl(), curriculumVersion, {
         responseType: 'text',
       });
     }
