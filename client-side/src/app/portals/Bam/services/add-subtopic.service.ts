@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { environment } from '../../../../environments/environment';
 import { Subtopic } from '../models/subtopic.model';
 import { Batch } from '../models/batch.model';
+import { UrlService } from '../../../hydra-client/services/urls/url.service';
 
 
 const httpOptions = {
@@ -18,7 +18,7 @@ const httpOptionsJson = {
 @Injectable()
 export class AddSubtopicService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private urlService: UrlService) { }
 
   /**
    * Retrieves current batch information
@@ -26,7 +26,7 @@ export class AddSubtopicService {
    */
   getBatchById(id: number): Observable<Batch> {
     return this.http
-        .get<Batch>(environment.addsubtopics.getBatchIdUrl(id))
+        .get<Batch>(this.urlService.addsubtopics.getBatchIdUrl(id))
         .map( data => {
           return data;
         });
@@ -38,7 +38,7 @@ export class AddSubtopicService {
    */
   getBatchSubtopics(id: number): Observable<Subtopic[]> {
     return this.http
-        .get<Subtopic[]>(environment.addsubtopics.getBatchSubtopicsUrl(id, 34, 0))
+        .get<Subtopic[]>(this.urlService.addsubtopics.getBatchSubtopicsUrl(id, 34, 0))
         .map( data => {
           return data;
         });
@@ -52,7 +52,7 @@ export class AddSubtopicService {
    * @param date date of the subtopic
    */
   updateDate(subtopicId, batchId, date): Observable<any> {
-    return this.http.post<any>(environment.addsubtopics.updateDateUrl(subtopicId, batchId, date), '' , httpOptions);
+    return this.http.post<any>(this.urlService.addsubtopics.updateDateUrl(subtopicId, batchId, date), '' , httpOptions);
   }
 
   /**
@@ -61,7 +61,7 @@ export class AddSubtopicService {
    */
   getSubtopicPool(): Observable<any> {
     return this.http
-        .get<any>(environment.addsubtopics.getSubtopicPoolUrl())
+        .get<any>(this.urlService.addsubtopics.getSubtopicPoolUrl())
         .map( data => {
           return data;
         });
@@ -72,7 +72,7 @@ export class AddSubtopicService {
    * @param subtopic subtopic object
    */
   addSubtopic(subtopic): Observable<Subtopic> {
-    return this.http.post<Subtopic>(environment.addsubtopics.addSubtopicUrl(), JSON.stringify(subtopic), httpOptionsJson);
+    return this.http.post<Subtopic>(this.urlService.addsubtopics.addSubtopicUrl(), JSON.stringify(subtopic), httpOptionsJson);
   }
 
 }
