@@ -49,3 +49,6 @@ Servers/
 
 # node modules
 node_modules/
+
+#Spring Boot Static Folder
+spring-boot-server/src/main/resources/static/

@@ -25,6 +25,7 @@ export class AllBatchesComponent implements OnInit {
   loadAll() {
     this.batchService.getBatchAll()
     .subscribe(batches => this.batches = batches, err => this.batches = []);
+
   }
 
   /**

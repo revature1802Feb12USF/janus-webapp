@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
 import { SubtopicName } from '../models/subtopicname.model';
+import { UrlService } from '../../../hydra-client/services/urls/url.service';
 
 
 const httpOptions = {
@@ -12,7 +12,7 @@ const httpOptions = {
 
 @Injectable()
 export class SubtopicService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private urlService: UrlService) { }
 
   /**
    * Adds a subtopic to a topic.
@@ -22,7 +22,7 @@ export class SubtopicService {
    * @param typeId number
    */
   addSubTopicName(subtopicName: string, topicId: number, typeId: number) {
-    return this.http.post<SubtopicName>(environment.subtopic.addSubTopicName(subtopicName, topicId, typeId), httpOptions).map(
+    return this.http.post<SubtopicName>(this.urlService.subtopic.addSubTopicName(subtopicName, topicId, typeId), httpOptions).map(
       data => {
         return data;
       }
@@ -36,7 +36,7 @@ export class SubtopicService {
    * @author Sean Sung | Batch: 1712-dec10-java-steve
    */
   removeSubtopicFromBatch(subtopicId: number) {
-    return this.http.post(environment.subtopic.removeSubtopic(subtopicId), httpOptions).map(
+    return this.http.post(this.urlService.subtopic.removeSubtopic(subtopicId), httpOptions).map(
       data => {
         return data;
       }
@@ -49,7 +49,7 @@ export class SubtopicService {
    * @author Charlie Harris | Batch: 1712-dec11-java-steve
    */
   removeAllSubtopicsFromBatch(batchId: number) {
-    return this.http.post(environment.subtopic.removeAllSubtopics(batchId), httpOptions);
+    return this.http.post(this.urlService.subtopic.removeAllSubtopics(batchId), httpOptions);
   }
 
   /**
@@ -59,6 +59,6 @@ export class SubtopicService {
    * @author Charlie Harris | Batch: 1712-dec11-java-steve
    */
   isPopulated(batchId: number) {
-    return this.http.get(environment.subtopic.isPopulated(batchId), httpOptions);
+    return this.http.get(this.urlService.subtopic.isPopulated(batchId), httpOptions);
   }
 }
