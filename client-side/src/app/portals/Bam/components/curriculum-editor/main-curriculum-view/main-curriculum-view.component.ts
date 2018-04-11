@@ -366,9 +366,9 @@ areYouSurePopulateCalendar(isMaster) {
     if (isMaster === 1) {
         (<any>$('#areYouSurePopulateCalendar')).modal('show');
     } else {
-        const batchType = this.sessionService.getSelectedBatch().type.name;
-        this.alertService.alert('danger',
-            `You can only populate your calendar with the master version of your batch type, ${batchType}`);
+        // const batchType = this.sessionService.getSelectedBatch().type.name; //NO TYPE
+        this.alertService.alert('danger', 'NO TYPE');
+            // `You can only populate your calendar with the master version of your batch type, ${batchType}`);
     }
 }
 
