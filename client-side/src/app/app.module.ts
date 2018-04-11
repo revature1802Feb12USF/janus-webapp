@@ -27,6 +27,11 @@ import { HydraClientModule } from './hydra-client/hydra-client.module';
 import { environment } from '../environments/environment';
 import { HydraBatchUtilService } from './services/hydra-batch-util.service';
 
+// Error Alert
+import { ErrorAlertComponent } from './hydra-client/ui/error-alert/error-alert.component';
+import { SimpleNotificationsModule } from 'angular2-notifications-lite';
+import { HydraInterceptor } from './hydra-client/interceptors/hydra.interceptor';
+
 // loading routes from child modules this way will lazy load them
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -55,19 +60,22 @@ const routes: Routes = [
     RouterModule.forRoot(routes, { useHash: true }),
     ChartsModule,
     HttpClientModule,
-    HydraClientModule
+    HydraClientModule,
+    SimpleNotificationsModule.forRoot()
   ],
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
     JanusComponent,
+    ErrorAlertComponent
   ],
   providers: [
     ChuckNorrisService,
     RoleGuard,
     CookieService,
-    HydraBatchUtilService
+    HydraBatchUtilService,
+    HydraInterceptor
   ],
   bootstrap: [AppComponent]
 })

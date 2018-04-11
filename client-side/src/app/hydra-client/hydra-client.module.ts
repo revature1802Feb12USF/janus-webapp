@@ -7,12 +7,16 @@ import { HydraSkillService } from './services/skill/hydra-skill.service';
 import { UrlService } from './services/urls/url.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HydraInterceptor } from './interceptors/hydra.interceptor';
+import { ErrorAlertComponent } from './ui/error-alert/error-alert.component';
+import { SimpleNotificationsModule } from 'angular2-notifications-lite';
 
 @NgModule({
   imports: [
     HttpModule,
+    SimpleNotificationsModule.forRoot()
   ],
   declarations: [
+  // ErrorAlertComponent
   ],
   providers: [
     HydraBatchService,
