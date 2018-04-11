@@ -5,6 +5,7 @@ import { Batch } from '../../models/batch.model';
 import { Subtopic } from '../../models/subtopic.model';
 import { CalendarService } from '../../services/calendar.service';
 import { Boom } from '../../models/boom.model';
+import { CurriculumService } from '../../services/curriculum.service';
 
 @Component({
   selector: 'app-boom',
@@ -61,11 +62,12 @@ export class BoomComponent implements OnInit {
   public batchSelectionList: Batch[] = [];
   public allBatchSubtopics: Subtopic[][] = [];
 
-  constructor(private batchService: BatchService, private calendarService: CalendarService) { }
+  constructor(private batchService: BatchService, private calendarService: CalendarService, private curriculumService: CurriculumService) { }
 
   ngOnInit() {
     this.batchService.getAllInProgress().subscribe(
       getBatches => {
+        console.log(getBatches);
         this.currentBatches = getBatches;
         this.currentBatches.sort((n1, n2) => {
           if (n1.startDate > n2.startDate) {
@@ -87,6 +89,9 @@ export class BoomComponent implements OnInit {
   getBatchSubtopics() {
     let count = 1;
     this.currentBatches.forEach((batch, index) => {
+
+      // this.curriculumService.getScheduleById(batch.scheduleId)
+
       this.calendarService.getSubtopicsByBatch(batch.id).subscribe(   //need to be able to do this (through batch)
         subtopicsService => {
           if (subtopicsService != null) {

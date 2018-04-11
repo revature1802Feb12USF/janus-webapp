@@ -161,4 +161,16 @@ export class CurriculumService {
         responseType: 'text',
       });
     }
+
+    /** Get schedule object by ID
+     * @author: Trevor Fortner (1802-Matt)
+     * @param: number - id - int to get the schedule of
+     */
+    getScheduleById(id: number) {
+      return this.http.get(this.urlService.curriculum.getScheduleById(id)).map(
+        data => {
+          return data;
+        }
+      )
+    }
 }

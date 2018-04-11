@@ -20,7 +20,7 @@ import { AlertService } from '../../../services/alert.service';
  */
 export class EditBatchComponent implements OnInit {
   // Specific to batch
-  @Input() batch: Batch = new Batch(null, null, null, null, null, new BatchType(null, null, null));
+  @Input() batch: Batch = new Batch(null, null, null, null, null, null, null);
   batchTypes: BatchType[];
 
   // Specific to associates that are apart of the batch.
@@ -54,7 +54,7 @@ export class EditBatchComponent implements OnInit {
       }
     }
 
-    this.batch.type = selectedType;
+    // this.batch.type = selectedType;    //BATCH TYPE DOESN'T EXIST ANY MORE
     this.batchService.updateBatch(this.batch).subscribe( status => {
       this.batchAlert('success', `Updated:  ${this.batch.name} successfully! `);
       this.sessionService.putSelectedBatchIntoSession(this.batch);

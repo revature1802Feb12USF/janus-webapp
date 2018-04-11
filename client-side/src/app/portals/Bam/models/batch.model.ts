@@ -7,14 +7,16 @@ export class Batch {
     startDate: Date;
     endDate: Date;
     trainer: BamUser;
-    type: BatchType;
+    curriculumID: number;
+    scheduleID: number;
 
-    constructor (id: number, name: string, startDate: Date, endDate: Date, trainer: BamUser, type: BatchType) {
+    constructor (id: number, name: string, startDate: Date, endDate: Date, trainer: BamUser, curriculumID: number, scheduleID: number) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
         this.trainer = trainer;
-        this.type = type;
+        this.curriculumID = curriculumID;
+        this.scheduleID = scheduleID;
     }
 }
