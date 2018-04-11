@@ -119,15 +119,16 @@ calendar = {
 };
 
 curriculum = {
-  getCurriculumAllUrl: () => `${bam}/curriculums/`,
-  getCurriculumByIdUrl: (id: number) => `${bam}/curriculum/getcurriculums/${id}`,
-  getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curriculums/schedule/${id}`,
-  getTopicPoolAllUrl: () => `${bam}/curriculums/topicpool`,
-  getSubtopicPoolAllUrl: () => `${bam}/curriculums/subtopicpool`,
-  addCurriculumUrl: () => `${bam}/curriculums/addcurriculum`,
-  makeCurriculumMasterByIdUrl: (id: number) => `${bam}/curriculum/makemaster/${id}`,
-  syncBatchByIdUrl: (id: number) => `${bam}/curriculum/syncbatch/${id}`,
-  deleteCurriculumVersionUrl: () => `${bam}/curriculum/deleteversion`
+  getCurriculumAllUrl: () => `${bam}/curricula/`,
+  getCurriculumByIdUrl: (id: number) => `${bam}/curricula/getcurriculums/${id}`,
+  getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curricula/schedule/${id}`,
+  getTopicPoolAllUrl: () => `${bam}/curricula/topicpool`,
+  getSubtopicPoolAllUrl: () => `${bam}/curricula/subtopicpool`,
+  addCurriculumUrl: () => `${bam}/curricula/addcurriculum`,
+  makeCurriculumMasterByIdUrl: (id: number) => `${bam}/curricula/makemaster/${id}`,
+  syncBatchByIdUrl: (id: number) => `${bam}/curricula/syncbatch/${id}`,
+  deleteCurriculumVersionUrl: () => `${bam}/curricula/deleteversion`,
+  getScheduleById: (id: number) => `${bam}/curricula/schedules/${id}`
 };
 
 bambatch = {
@@ -140,7 +141,7 @@ bambatch = {
   updateBatchUrl: () => `${bam}/batches/batch`,
   getAllBatchTypesUrl: () => `${bam}/batches/types`,
   removeSubtopicFromBatchUrl: (subtopicId: number) => `${bam}/batch/${subtopicId}`,
-  getAllInProgressUrl: () => `${bam}/batches/current`
+  getAllInProgressUrl: () => `${bam}/batches/current/`
 };
 
   constructor() {
