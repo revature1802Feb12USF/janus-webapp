@@ -87,11 +87,13 @@ export class BoomComponent implements OnInit {
   getBatchSubtopics() {
     let count = 1;
     this.currentBatches.forEach((batch, index) => {
-      this.calendarService.getSubtopicsByBatch(batch.id).subscribe(
+      this.calendarService.getSubtopicsByBatch(batch.id).subscribe(   //need to be able to do this (through batch)
         subtopicsService => {
           if (subtopicsService != null) {
             subtopicsService.sort((n1, n2) => {
-              if (n1.subtopicDate > n2.subtopicDate) {
+              if (n1.subtopicDate > n2.subtopicDate) {    
+                  //there's no more date in subtopic
+                  //go through batch -> Schedule -> ScheduledSubtopics -> ScheduledDate
                 return 1;
               }
               if (n1.subtopicDate < n2.subtopicDate) {
@@ -116,16 +118,19 @@ export class BoomComponent implements OnInit {
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    * @param date
    */
-  getWeek(date) {
+  getWeek(date) {   //put in the batch's start date instead of jan 4th? when is this used?
+//shouldn't any instance of this just be able to be replaced by Schedule.ScheduledSubtopic.ScheduledDate.week?
     const thisYear = new Date().getFullYear();
     const subtopicDate: any = new Date(date);
     const jan4th: any = new Date(`04/jan/${thisYear}`);
-    return Math.ceil((((subtopicDate.setHours(0, 0, 0, 0) -
-          jan4th.setHours(0, 0, 0, 0)) / 86400000) + jan4th.getDay() + 1) / 7);
+    return Math.ceil((((subtopicDate.setHours(0, 0, 0, 0) - jan4th.setHours(0, 0, 0, 0)) 
+                                  / 86400000) + jan4th.getDay() + 1) / 7);
+      //set the time on that day to the first ms of the day, then divide by (hrs in day * s in hr * ms in s)
+      //set hours returns the difference between January 1, 1970 00:00:00 UTC and the new date
   }
   /**
    * Method generates all the statistics of all current active batches and
-   * their completedted and missed subtopics
+   * their completeted and missed subtopics
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
   setBatchStats () {
@@ -141,17 +146,17 @@ export class BoomComponent implements OnInit {
         let checkWeek = this.getWeek(startDate);
         for (let week = 1; week <= currentWeek; week++) {
           for (let y = 0; y < this.allBatchSubtopics[i].length; y++) {
-            if (checkWeek === this.getWeek(this.allBatchSubtopics[i][y].subtopicDate)) {
-              if (this.allBatchSubtopics[i][y].status.id === 2) {
+            if (checkWeek === this.getWeek(this.allBatchSubtopics[i][y].subtopicDate)) {  //no subtopic date
+              if (this.allBatchSubtopics[i][y].status.id === 2) {   //if the status is "completed"
                 totalSubtopics++;
                 completedSubtopics++;
-              } else if (this.allBatchSubtopics[i][y].status.id === 4) {
+              } else if (this.allBatchSubtopics[i][y].status.id === 4) {  //if the status is "missed"
                 totalSubtopics++;
                 missedSubtopics++;
               }
             }
           }
-          checkWeek = this.getWeek(startDate.setDate(startDate.getDate() + 7));
+          checkWeek = this.getWeek(startDate.setDate(startDate.getDate() + 7)); //go to next week?
         }
         const batch: Boom = new Boom();
         batch.batchName = this.currentBatches[i].name;
@@ -174,8 +179,10 @@ export class BoomComponent implements OnInit {
     const missedSubTop: any[] = [];
     for (let i = 0; i < this.currentBatches.length; i++) {
       if (this.allBatchSubtopics[i] != null && this.currentBatches[i].id === id) {
-        if ( this.currentBatches[i].id === id) {
-          const today = new Date();
+        if ( this.currentBatches[i].id === id) {    //this is literally checked the line above
+          const today = new Date();     //is this repeated code from setBatchStats?
+                                        //can we use info from the batch stats like in pie chart?
+                                        //prolly not, it goes through each week individually...
           const startDate = new Date(this.currentBatches[i].startDate);
           const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
           const currentWeek = Math.ceil(diffDays / 7);
@@ -186,7 +193,8 @@ export class BoomComponent implements OnInit {
             let missedSubtopics = 0;
             this.barChartLabels.push('Week ' + (week));
             for (let y = 0; y < this.allBatchSubtopics[i].length; y++) {
-              if (checkWeek === this.getWeek(this.allBatchSubtopics[i][y].subtopicDate)) {
+              if (checkWeek === this.getWeek(this.allBatchSubtopics[i][y].subtopicDate)) {  
+                                            //again, no date in subtopic anymore
                 if (this.allBatchSubtopics[i][y].status.id === 2) {
                   totalSubtopics++;
                   completedSubtopics++;
@@ -195,9 +203,9 @@ export class BoomComponent implements OnInit {
                   missedSubtopics++;
                 }
               }
-            }
+            }   //after tallying up the week's subtopics
             checkWeek = this.getWeek(startDate.setDate(startDate.getDate() + 7));
-            completedSubtop.push(Number(completedSubtopics / totalSubtopics * 100).toFixed(2));
+            completedSubtop.push(Number(completedSubtopics / totalSubtopics * 100).toFixed(2)); //to 2 decimal places
             missedSubTop.push(Number(missedSubtopics / totalSubtopics * 100).toFixed(2));
           }
         }
@@ -244,18 +252,18 @@ export class BoomComponent implements OnInit {
         week: this.batches[i].week
       };
 
-      this.batchOverallArray.push(trainer);
+      this.batchOverallArray.push(trainer); //used to populate the table on the right side
 
-      if (totalCompletedAvg >= percent) {
+      if (totalCompletedAvg >= percent) {   //if meets the percentage, add to the list of ones that meet it
         labelComplete.push(this.batches[i].batchName + ' ' + totalCompletedAvg + '%');
-      } else {
+      } else {        //else, add to the list of batches that don't meet the percent
         labelMissed.push(this.batches[i].batchName + ' ' + totalCompletedAvg + '%');
       }
 
     }
     this.pieChartLabels = [labelComplete, labelMissed];
-    this.pieChartData.push(labelComplete.length - 1);
-    this.pieChartData.push(labelMissed.length - 1);
+    this.pieChartData.push(labelComplete.length - 1);   //plot the total batches that meet the %
+    this.pieChartData.push(labelMissed.length - 1);     //versus the total batches that don't meet it
 
     this.pieChartDatasets = [{ data : this.pieChartData}];
   }
