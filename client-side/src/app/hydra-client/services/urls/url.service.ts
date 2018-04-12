@@ -134,7 +134,7 @@ curriculum = {
 };
 
 bambatch = {
-  getBatchAllUrl: () => `${bam}/batches`,
+  getBatchAllUrl: () => `${bam}/batches/`,
   getPastBatchesUrl: (email: string) => `${bam}/batches/past/${email}`,
   getFutureBatchesUrl: (email: string) => `${bam}/batches/future/${email}`,
   getBatchInProgressUrl: (email: string) => `${bam}/batches/inprogress/${email}`,
