@@ -5,6 +5,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpResponse, Htt
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
+import { ErrorAlertComponent } from '../ui/error-alert/error-alert.component';
 
 /**
  * this class intercepts each HTTP request, clones it,
@@ -14,9 +15,7 @@ import 'rxjs/add/observable/of';
 @Injectable()
 export class HydraInterceptor implements HttpInterceptor {
 
-    private messages = "woohoo, you got the message";
-
-    constructor() { }
+    constructor(private alert: ErrorAlertComponent) { }
 
     /*
     * intercept each HTTP rquest and return a modified request
@@ -31,16 +30,10 @@ export class HydraInterceptor implements HttpInterceptor {
 
         return next.handle(modifiedRequest).do((event: HttpEvent<any>) => {}, (err: any) => {
             if(err instanceof HttpErrorResponse) {
-                //do error handling
-                console.log("This is an error yay");
                 console.log("this is the error url:" + err.url);
-                //do we want to put a variable in this ts to add the messages to and then send that variable?
-                //or, like.... ugh... idk
+                this.alert.showError(err.url);
             }
         });
     }
 
-    getMessages() {
-        return this.messages;
-    }
 }

@@ -29,7 +29,6 @@ import { HydraBatchUtilService } from './services/hydra-batch-util.service';
 
 // Error Alert
 import { ErrorAlertComponent } from './hydra-client/ui/error-alert/error-alert.component';
-import { SimpleNotificationsModule } from 'angular2-notifications-lite';
 import { HydraInterceptor } from './hydra-client/interceptors/hydra.interceptor';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
