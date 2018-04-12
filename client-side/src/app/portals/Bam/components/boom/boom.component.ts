@@ -109,9 +109,10 @@ export class BoomComponent implements OnInit {
       this.curriculumService.getScheduleById(batch.scheduleID).subscribe(
         schedule => {
           if(schedule != null){
+            this.allSchedules.push(schedule);
             let subtopicIDs: number[] = [];
             for(let i=0; i<schedule.subtopics.length; i++){
-              subtopicIDs.push(schedule.subtopics[i].subtopicID);
+              subtopicIDs.push(schedule.subtopics[i].subtopicId);
             }
 
             this.subtopicService.getSubtopicByIDs(subtopicIDs).subscribe(
@@ -120,43 +121,13 @@ export class BoomComponent implements OnInit {
                 count++;
 
                 if(count > this.currentBatches.length){ //if we're on the last batch...
-                  this.setBatchStats();    
+                  this.setBatchStats();
                   this.plotBatch(this.batchSelectionList[0].id);
                   this.pieChartPercent(this.percent);
                 }
               }
             );
           }
-          else{ //get some default values up in here
-            let testSS: ScheduledSubtopic[] = [];
-            testSS.push(new ScheduledSubtopic(1, 1000, new ScheduledDate(1, 1, 1, 1524196800000, 1518584400000)));
-            testSS.push(new ScheduledSubtopic(1, 1001, new ScheduledDate(1, 1, 1, 1524196800000, 1518584400000)));
-            testSS.push(new ScheduledSubtopic(1, 1002, new ScheduledDate(1, 1, 2, 1524196800000, 1518584400000)));
-            testSS.push(new ScheduledSubtopic(1, 1003, new ScheduledDate(1, 1, 2, 1524196800000, 1518584400000)));
-            let testSchedule = new Schedule(1, testSS, new Curriculum(null, null, null, null, null, null, null, null));
-            this.allSchedules.push(testSchedule);
-  
-            let subtopicIDs: number[] = [];
-            for(let i=0; i<testSchedule.subtopics.length; i++){
-              subtopicIDs.push(testSchedule.subtopics[i].subtopicID);
-            }
-            
-            this.subtopicService.getSubtopicByIDs(subtopicIDs).subscribe(
-              subtopic => {
-                this.allBatchSubtopics[index] = subtopic;
-                count++;
-  
-                if(count > this.currentBatches.length){ //if we're on the last batch...
-                  this.setBatchStats();    
-                  this.plotBatch(this.batchSelectionList[0].id);
-                  this.pieChartPercent(this.percent);
-                }
-              }
-            );
-          }
-          
-
-          
       });
     });
   }
