@@ -3,7 +3,8 @@ import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { SubtopicName } from '../models/subtopicname.model';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
-
+import { Observable } from 'rxjs/Observable';
+import { Subtopic } from '../models/subtopic.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-type': 'application/json'}),
@@ -13,6 +14,19 @@ const httpOptions = {
 @Injectable()
 export class SubtopicService {
   constructor(private http: HttpClient, private urlService: UrlService) { }
+
+  /**
+   * Gets a subtopic using a list of IDs
+   * @author Trevor Fortner (1802-Matt)
+   * @param subtopicId number
+   */
+  getSubtopicByIDs(subtopicIdList: number[]): Observable<Subtopic[]>  {
+    return this.http.get(this.urlService.subtopic.getSubtopicByIDs(subtopicIdList)).map(
+      data => {
+        return data;
+      }
+    )
+  }
 
   /**
    * Adds a subtopic to a topic.

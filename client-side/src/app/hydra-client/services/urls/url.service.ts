@@ -63,6 +63,7 @@ export class UrlService {
 
   //BAM Endpoints
   users = {
+    getUserByID: (userId: number) => `${bam}/users/${userId}`,
     getAllUsersUrl: () => `${bam}/users`,
     getAllTrainersUrl: () => `${bam}/users/alltrainers`,
     getAllAssociatesUrl: () => `${bam}/users/allassociates`,
@@ -83,6 +84,7 @@ topic = {
 };
 
 subtopic = {
+  getSubtopicByIDs: (subtopicIdList: number[]) => `${bam}/topics/subtopics?ids=${subtopicIdList}`,
   getSubtopics: () => `subtopic/subtopics`,
   addSubTopicName: (subtopicName: string, topicId: number, typeId: number) =>
    `${bam}/subtopics/${typeId}/${topicId}/${subtopicName}`,

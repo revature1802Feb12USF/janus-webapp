@@ -6,6 +6,12 @@ import { Subtopic } from '../../models/subtopic.model';
 import { CalendarService } from '../../services/calendar.service';
 import { Boom } from '../../models/boom.model';
 import { CurriculumService } from '../../services/curriculum.service';
+import { SubtopicService } from '../../services/subtopic.service';
+import { UsersService } from '../../services/users.service';
+import { Curriculum } from '../../models/curriculum.model';
+import { Schedule } from '../../models/schedule.model';
+import { ScheduledDate } from '../../models/scheduleddate.model';
+import { ScheduledSubtopic } from '../../models/scheduledsubtopic.model';
 
 @Component({
   selector: 'app-boom',
@@ -61,13 +67,13 @@ export class BoomComponent implements OnInit {
   public currentBatches: Batch[] = [];
   public batchSelectionList: Batch[] = [];
   public allBatchSubtopics: Subtopic[][] = [];
+  public allSchedules: Schedule[] = [];
 
-  constructor(private batchService: BatchService, private calendarService: CalendarService, private curriculumService: CurriculumService) { }
+  constructor(private batchService: BatchService, private calendarService: CalendarService, private curriculumService: CurriculumService, private subtopicService: SubtopicService, private usersService: UsersService) { }
 
   ngOnInit() {
     this.batchService.getAllInProgress().subscribe(
       getBatches => {
-        console.log(getBatches);
         this.currentBatches = getBatches;
         this.currentBatches.sort((n1, n2) => {
           if (n1.startDate > n2.startDate) {
@@ -78,6 +84,16 @@ export class BoomComponent implements OnInit {
           }
           return 0;
         });
+
+        for(let i = 0; i < getBatches.length; i++){
+          this.usersService.getUserByID(getBatches[i].trainerID).subscribe(
+            trainer => {
+              //get all the trainer infos from user service and add them into the variable that stores all the batch info on this component
+              this.currentBatches[i].trainer = trainer;
+            }
+          );
+        }
+
         this.getBatchSubtopics();
       }
     );
@@ -85,39 +101,66 @@ export class BoomComponent implements OnInit {
 /**
  * Gets all currently active batches from Bam DB
  * @author Francisco Palomino | Batch: 1712-dec10-java-steve
+ *  Last updated by: Trevor Fortner (1802-Matt)
  */
   getBatchSubtopics() {
     let count = 1;
     this.currentBatches.forEach((batch, index) => {
+      this.curriculumService.getScheduleById(batch.scheduleID).subscribe(
+        schedule => {
+          if(schedule != null){
+            let subtopicIDs: number[] = [];
+            for(let i=0; i<schedule.subtopics.length; i++){
+              subtopicIDs.push(schedule.subtopics[i].subtopicID);
+            }
 
-      // this.curriculumService.getScheduleById(batch.scheduleId)
+            this.subtopicService.getSubtopicByIDs(subtopicIDs).subscribe(
+              subtopic => {
+                this.allBatchSubtopics[index] = subtopic;
+                count++;
 
-      this.calendarService.getSubtopicsByBatch(batch.id).subscribe(   //need to be able to do this (through batch)
-        subtopicsService => {
-          if (subtopicsService != null) {
-            subtopicsService.sort((n1, n2) => {
-              if (n1.subtopicDate > n2.subtopicDate) {    
-                  //there's no more date in subtopic
-                  //go through batch -> Schedule -> ScheduledSubtopics -> ScheduledDate
-                return 1;
+                if(count > this.currentBatches.length){ //if we're on the last batch...
+                  this.setBatchStats();    
+                  this.plotBatch(this.batchSelectionList[0].id);
+                  this.pieChartPercent(this.percent);
+                }
               }
-              if (n1.subtopicDate < n2.subtopicDate) {
-                return -1;
+            );
+          }
+          else{ //get some default values up in here
+            let testSS: ScheduledSubtopic[] = [];
+            testSS.push(new ScheduledSubtopic(1, 1000, new ScheduledDate(1, 1, 1, 1524196800000, 1518584400000)));
+            testSS.push(new ScheduledSubtopic(1, 1001, new ScheduledDate(1, 1, 1, 1524196800000, 1518584400000)));
+            testSS.push(new ScheduledSubtopic(1, 1002, new ScheduledDate(1, 1, 2, 1524196800000, 1518584400000)));
+            testSS.push(new ScheduledSubtopic(1, 1003, new ScheduledDate(1, 1, 2, 1524196800000, 1518584400000)));
+            let testSchedule = new Schedule(1, testSS, new Curriculum(null, null, null, null, null, null, null, null));
+            this.allSchedules.push(testSchedule);
+  
+            let subtopicIDs: number[] = [];
+            for(let i=0; i<testSchedule.subtopics.length; i++){
+              subtopicIDs.push(testSchedule.subtopics[i].subtopicID);
+            }
+            
+            this.subtopicService.getSubtopicByIDs(subtopicIDs).subscribe(
+              subtopic => {
+                this.allBatchSubtopics[index] = subtopic;
+                count++;
+  
+                if(count > this.currentBatches.length){ //if we're on the last batch...
+                  this.setBatchStats();    
+                  this.plotBatch(this.batchSelectionList[0].id);
+                  this.pieChartPercent(this.percent);
+                }
               }
-              return 0;
-            });
+            );
           }
-          this.allBatchSubtopics[index] = subtopicsService;
-          count++;
-          if (count > this.currentBatches.length) {
-            this.setBatchStats();
-            this.plotBatch(this.batchSelectionList[0].id);
-            this.pieChartPercent(this.percent);
-          }
-        }
-      );
+          
+
+          
+      });
     });
   }
+
   /**
    * Method returns the week of a current date
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
@@ -128,8 +171,7 @@ export class BoomComponent implements OnInit {
     const thisYear = new Date().getFullYear();
     const subtopicDate: any = new Date(date);
     const jan4th: any = new Date(`04/jan/${thisYear}`);
-    return Math.ceil((((subtopicDate.setHours(0, 0, 0, 0) - jan4th.setHours(0, 0, 0, 0)) 
-                                  / 86400000) + jan4th.getDay() + 1) / 7);
+    return Math.ceil((((subtopicDate.setHours(0, 0, 0, 0) - jan4th.setHours(0, 0, 0, 0))    / 86400000) + jan4th.getDay() + 1) / 7);
       //set the time on that day to the first ms of the day, then divide by (hrs in day * s in hr * ms in s)
       //set hours returns the difference between January 1, 1970 00:00:00 UTC and the new date
   }
@@ -137,6 +179,7 @@ export class BoomComponent implements OnInit {
    * Method generates all the statistics of all current active batches and
    * their completeted and missed subtopics
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
+   *  Last updated by: Trevor Fortner (1802-Matt)
    */
   setBatchStats () {
     for (let i = 0; i < this.currentBatches.length; i++) {
@@ -144,28 +187,29 @@ export class BoomComponent implements OnInit {
       let currentWeek;
       if (this.allBatchSubtopics[i] != null) {
         this.batchSelectionList.push(this.currentBatches[i]);
+
         const today = new Date();
         const startDate = new Date(this.currentBatches[i].startDate);
         const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
         currentWeek = Math.ceil(diffDays / 7);
-        let checkWeek = this.getWeek(startDate);
-        for (let week = 1; week <= currentWeek; week++) {
-          for (let y = 0; y < this.allBatchSubtopics[i].length; y++) {
-            if (checkWeek === this.getWeek(this.allBatchSubtopics[i][y].subtopicDate)) {  //no subtopic date
-              if (this.allBatchSubtopics[i][y].status.id === 2) {   //if the status is "completed"
+
+        for (let checkweek = 1; checkweek <= currentWeek; checkweek++) {
+          for (let y = 0; y < this.allSchedules[i].subtopics.length; y++) {
+            if (checkweek === this.allSchedules[i].subtopics[y].date.week) {
+              if (this.allBatchSubtopics[i][y].status == 'Completed') {   //if the status is "completed"
                 totalSubtopics++;
                 completedSubtopics++;
-              } else if (this.allBatchSubtopics[i][y].status.id === 4) {  //if the status is "missed"
+              } else if (this.allBatchSubtopics[i][y].status == 'Missed') {  //if the status is "missed"
                 totalSubtopics++;
                 missedSubtopics++;
               }
             }
           }
-          checkWeek = this.getWeek(startDate.setDate(startDate.getDate() + 7)); //go to next week?
         }
+
         const batch: Boom = new Boom();
         batch.batchName = this.currentBatches[i].name;
-        batch.trainerName  = this.currentBatches[i].trainer.fName + ' ' + this.currentBatches[i].trainer.lName;
+        batch.trainerName = this.currentBatches[i].trainer.firstName + ' ' + this.currentBatches[i].trainer.lastName;
         batch.missed = missedSubtopics;
         batch.completed = completedSubtopics;
         batch.total = totalSubtopics;
@@ -183,36 +227,31 @@ export class BoomComponent implements OnInit {
     const completedSubtop: any[] = [];
     const missedSubTop: any[] = [];
     for (let i = 0; i < this.currentBatches.length; i++) {
-      if (this.allBatchSubtopics[i] != null && this.currentBatches[i].id === id) {
-        if ( this.currentBatches[i].id === id) {    //this is literally checked the line above
-          const today = new Date();     //is this repeated code from setBatchStats?
-                                        //can we use info from the batch stats like in pie chart?
-                                        //prolly not, it goes through each week individually...
-          const startDate = new Date(this.currentBatches[i].startDate);
-          const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
-          const currentWeek = Math.ceil(diffDays / 7);
-          let checkWeek = this.getWeek(startDate);
-          for (let week = 1; week <= currentWeek; week++) {
-            let totalSubtopics = 0;
-            let completedSubtopics = 0;
-            let missedSubtopics = 0;
-            this.barChartLabels.push('Week ' + (week));
-            for (let y = 0; y < this.allBatchSubtopics[i].length; y++) {
-              if (checkWeek === this.getWeek(this.allBatchSubtopics[i][y].subtopicDate)) {  
-                                            //again, no date in subtopic anymore
-                if (this.allBatchSubtopics[i][y].status.id === 2) {
-                  totalSubtopics++;
-                  completedSubtopics++;
-                } else if (this.allBatchSubtopics[i][y].status.id === 4) {
-                  totalSubtopics++;
-                  missedSubtopics++;
-                }
+      if (this.allBatchSubtopics[i] != null && this.currentBatches[i].id == id) {
+        const today = new Date();
+        const startDate = new Date(this.currentBatches[i].startDate);
+        const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
+        const currentWeek = Math.ceil(diffDays / 7);
+        
+        for (let checkWeek = 1; checkWeek <= currentWeek; checkWeek++) {
+          let totalSubtopics = 0;
+          let completedSubtopics = 0;
+          let missedSubtopics = 0;
+          this.barChartLabels.push('Week ' + (checkWeek));
+          for (let y = 0; y < this.allBatchSubtopics[i].length; y++) {
+            if (checkWeek === this.allSchedules[i].subtopics[y].date.week) {  
+              if (this.allBatchSubtopics[i][y].status == 'Completed') {
+                totalSubtopics++;
+                completedSubtopics++;
+              } else if (this.allBatchSubtopics[i][y].status == 'Missed') {
+                totalSubtopics++;
+                missedSubtopics++;
               }
-            }   //after tallying up the week's subtopics
-            checkWeek = this.getWeek(startDate.setDate(startDate.getDate() + 7));
-            completedSubtop.push(Number(completedSubtopics / totalSubtopics * 100).toFixed(2)); //to 2 decimal places
-            missedSubTop.push(Number(missedSubtopics / totalSubtopics * 100).toFixed(2));
-          }
+            }
+          }   //after tallying up the week's subtopics
+
+          completedSubtop.push(Number(completedSubtopics / totalSubtopics * 100).toFixed(2)); //to 2 decimal places
+          missedSubTop.push(Number(missedSubtopics / totalSubtopics * 100).toFixed(2));
         }
         this.barChartData = [
           { data: completedSubtop, label: 'Completed', fill: true,
@@ -316,10 +355,11 @@ export class BoomComponent implements OnInit {
   /**
    * Recreates Bar chart with the selected trainer/batch
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
+   *  Last updated by: Trevor Fortner (1802-Matt)
    * @param id selected batch/trainer
    */
   changeBatch(id) {
-    this.chartHeight = $(this.barChart.nativeElement.lastElementChild).height();
+    this.chartHeight = 355;
     $(this.barChart.nativeElement).css('min-height', this.chartHeight + 'px');
     this.barChartData = [];
     this.barChartLabels = [];

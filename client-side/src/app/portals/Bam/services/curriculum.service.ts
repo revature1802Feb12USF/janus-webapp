@@ -9,6 +9,7 @@ import { CurriculumSubtopicDTO } from '../models/curriculumSubtopicDTO.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
+import { Schedule } from '../models/schedule.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -166,7 +167,7 @@ export class CurriculumService {
      * @author: Trevor Fortner (1802-Matt)
      * @param: number - id - int to get the schedule of
      */
-    getScheduleById(id: number) {
+    getScheduleById(id: number): Observable<Schedule> {
       return this.http.get(this.urlService.curriculum.getScheduleById(id)).map(
         data => {
           return data;
