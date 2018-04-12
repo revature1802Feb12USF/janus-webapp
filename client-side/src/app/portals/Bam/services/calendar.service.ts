@@ -148,7 +148,7 @@ export class CalendarService {
     calendarEvent.subtopicId = subtopic.subtopicId;
     calendarEvent.title = subtopic.subtopicName.name;
     calendarEvent.start = new Date(subtopic.subtopicDate);
-    calendarEvent.status = subtopic.status.name;
+    calendarEvent.status = subtopic.status;
     calendarEvent.color = this.statusService.getStatusColor(calendarEvent.status);
 
     return calendarEvent;
