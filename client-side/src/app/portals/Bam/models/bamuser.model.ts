@@ -3,8 +3,11 @@ import { Batch } from './batch.model';
 export class BamUser {
     userId: number;
     fName: string;
+    firstName: string;
     mName: string;
+    middleName: string;
     lName: string;
+    lastName: string;
     email: string;
     pwd: string;
     role: number;

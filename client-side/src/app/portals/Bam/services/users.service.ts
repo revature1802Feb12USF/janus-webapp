@@ -14,6 +14,14 @@ export class UsersService {
 
   constructor(private http: HttpClient, private urlService: UrlService) { }
 
+  getUserByID(userId: number): Observable<BamUser> {
+    return this.http.get<BamUser>(this.urlService.users.getUserByID(userId)).map(
+      data => {
+        return data;
+      }
+    );
+  }
+
   /**
    * Gets all users.
    * @author Cristian Hermida | Batch: 1712-dec10-java-steve
