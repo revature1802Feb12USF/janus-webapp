@@ -6,9 +6,10 @@ export class Subtopic {
     subtopicId: number;
     subtopicName: SubtopicName;
     batch: Batch;
-    status: SubtopicStatus;
+    status: string;
     subtopicDate: Date;
-    constructor(subtopicId: number, subtopicName: SubtopicName, batch: Batch, status: SubtopicStatus, subtopicDate: Date) {
+    
+    constructor(subtopicId: number, subtopicName: SubtopicName, batch: Batch, status: string, subtopicDate: Date) {
         this.subtopicId = subtopicId;
         this.subtopicName = subtopicName;
         this.batch = batch;

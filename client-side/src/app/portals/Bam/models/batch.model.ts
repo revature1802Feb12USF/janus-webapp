@@ -7,6 +7,7 @@ export class Batch {
     startDate: Date;
     endDate: Date;
     trainer: BamUser;
+    trainerID: number;
     curriculumID: number;
     scheduleID: number;
 

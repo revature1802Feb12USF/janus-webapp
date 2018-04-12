@@ -62,7 +62,7 @@ export class AddSubtopicComponent implements OnInit {
   private topicName: TopicName;
   private subtopicType: SubtopicType;
   private subtopicName: SubtopicName;
-  private status: SubtopicStatus;
+  private status: string;
   private subtopic: Subtopic;
   private slectedDateMiliseconds: any;
 
@@ -195,15 +195,9 @@ export class AddSubtopicComponent implements OnInit {
     } else {
       const today = new Date().setHours(0, 0, 0, 0);
       if (this.slectedDateMiliseconds >= today) {
-        this.status = {
-          id: 1,
-          name: 'Pending'
-        };
+        this.status = 'Pending';
       } else {
-        this.status = {
-          id: 4,
-          name: 'Missed'
-        };
+        this.status = 'Missed';
       }
 
       this.setSubtopicObject();
