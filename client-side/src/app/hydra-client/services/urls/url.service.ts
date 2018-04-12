@@ -63,6 +63,7 @@ export class UrlService {
 
   //BAM Endpoints
   users = {
+    getUserByID: (userId: number) => `${bam}/users/${userId}`,
     getAllUsersUrl: () => `${bam}/users`,
     getAllTrainersUrl: () => `${bam}/users/alltrainers`,
     getAllAssociatesUrl: () => `${bam}/users/allassociates`,
@@ -83,6 +84,7 @@ topic = {
 };
 
 subtopic = {
+  getSubtopicByIDs: (subtopicIdList: number[]) => `${bam}/topics/subtopics?ids=${subtopicIdList}`,
   getSubtopics: () => `subtopic/subtopics`,
   addSubTopicName: (subtopicName: string, topicId: number, typeId: number) =>
    `${bam}/subtopics/${typeId}/${topicId}/${subtopicName}`,
@@ -137,7 +139,7 @@ bambatch = {
   getFutureBatchesUrl: (email: string) => `${bam}/batches/future/${email}`,
   getBatchInProgressUrl: (email: string) => `${bam}/batches/inprogress/${email}`,
   getAllBatchesInProgressUrl: (email: string) => `${bam}/batches/allinprogress/${email}`,
-  getBatchByIdURL: (batchId: number) => `${bam}/batches/byid/${batchId}`,
+  getBatchByIdURL: (batchId: number) => `${bam}/batches/batch/${batchId}`,
   updateBatchUrl: () => `${bam}/batches/batch`,
   getAllBatchTypesUrl: () => `${bam}/batches/types`,
   removeSubtopicFromBatchUrl: (subtopicId: number) => `${bam}/batch/${subtopicId}`,

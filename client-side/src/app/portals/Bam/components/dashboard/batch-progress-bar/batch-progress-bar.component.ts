@@ -84,10 +84,10 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
             this.subPercentCompleted = 0;
             this.subTopicTotal = data2.length;
             for (let i = 0; i < data2.length; i++) {
-              if ( data2[i].status.id === 2 || data2[i].status.id === 3) {
+              if ( data2[i].status == 'Planned' || data2[i].status == 'Completed') {
                 this.subTopicCompleted += 1;
               }
-              if ( data2[i].status.id === 4) {
+              if ( data2[i].status == 'Missed') {
                 const subTopicName = data2[i].subtopicName.name;
                 const topicName = data2[i].subtopicName.topic.name;
                 this.subTopicMissed += 1;
