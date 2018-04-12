@@ -16,7 +16,7 @@ import { SimpleNotificationsModule } from 'angular2-notifications-lite';
     SimpleNotificationsModule.forRoot()
   ],
   declarations: [
-  // ErrorAlertComponent
+    ErrorAlertComponent
   ],
   providers: [
     HydraBatchService,
@@ -26,6 +26,9 @@ import { SimpleNotificationsModule } from 'angular2-notifications-lite';
 
     { provide: HTTP_INTERCEPTORS, useClass: HydraInterceptor, multi: true },  // interceptor for all HTTP requests
     UrlService
+  ], 
+  exports: [
+    ErrorAlertComponent
   ]
 })
 export class HydraClientModule { }

@@ -1,8 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications-lite';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { animate, state, transition, trigger, style, keyframes } from '@angular/animations';
 import { HydraInterceptor } from '../../interceptors/hydra.interceptor';
 
+// old notif import
+import { NotificationsService, SimpleNotificationsComponent } from 'angular2-notifications-lite';
+
+// new notif imports
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-error-alert',
@@ -14,36 +19,22 @@ import { HydraInterceptor } from '../../interceptors/hydra.interceptor';
 export class ErrorAlertComponent implements OnInit {
 
 
-  @Input() messages = []; // want to append a string containing the endpoint with the error every time a new error
-  // occurs on a page.
+  @Input() messages = [];
 
-  /**
-   * global config for notification
-   */
-  public options = {
-    position: ['bottom', 'left'],
-    timeOut: 2500,
-    maxStack: 10,
-    maxLength: 36,
-    lastOnBottom: true,
-    showProgressBar: false,
-    preventDuplicates: true,
-  };
-
-  constructor(private notif: NotificationsService, private interceptor: HydraInterceptor) {
+  constructor(private notif: NotificationsService, private interceptor: HydraInterceptor, public toastr: ToastsManager, vcr: ViewContainerRef) {
     console.log("in error-alert constructor");
-    // this.showNotif();
+    this.toastr.setRootViewContainerRef(vcr);
+    this.showError();
+
   }
 
 
   ngOnInit() {
-    this.showNotif();
+    
   }
 
-  showNotif() {
-    this.notif.alert('Error', this.interceptor.getMessages());
-    console.log("notif error message: " + this.interceptor.getMessages());
+  showError() {
+    this.toastr.error("If this shows up, that means it's working!", 'OMG YAY!');
   }
-
 
 }

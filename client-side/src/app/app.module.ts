@@ -32,6 +32,10 @@ import { ErrorAlertComponent } from './hydra-client/ui/error-alert/error-alert.c
 import { SimpleNotificationsModule } from 'angular2-notifications-lite';
 import { HydraInterceptor } from './hydra-client/interceptors/hydra.interceptor';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { ToastrOptions } from './hydra-client/ui/error-alert/toastr-options';
+
 // loading routes from child modules this way will lazy load them
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -53,6 +57,7 @@ const routes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpModule,
     NgbModule.forRoot(),
     FormsModule,
@@ -61,21 +66,21 @@ const routes: Routes = [
     ChartsModule,
     HttpClientModule,
     HydraClientModule,
-    SimpleNotificationsModule.forRoot()
+    ToastModule.forRoot()
   ],
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
     JanusComponent,
-    ErrorAlertComponent
   ],
   providers: [
     ChuckNorrisService,
     RoleGuard,
     CookieService,
     HydraBatchUtilService,
-    HydraInterceptor
+    HydraInterceptor,
+    {provide: ToastOptions, useClass: ToastrOptions}
   ],
   bootstrap: [AppComponent]
 })
