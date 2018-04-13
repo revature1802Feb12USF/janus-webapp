@@ -12,7 +12,7 @@
     <description>Spring and Angular</description>
 
     <modules>
-        <module>Janus-Angular</module>
-        <module>Janus-Server</module>
+        <module>client-side</module>
+        <module>spring-boot-server</module>
     </modules>
 </project>
