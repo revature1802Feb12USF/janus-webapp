@@ -16,7 +16,7 @@ import { AlertService } from '../services/alerts/alerts.service';
  */
 @Injectable()
 export class HydraInterceptor implements HttpInterceptor {
-        
+
     constructor(private alertServ: AlertService) {
 
     }
@@ -34,7 +34,7 @@ export class HydraInterceptor implements HttpInterceptor {
 
         return next.handle(modifiedRequest).do((event: HttpEvent<any>) => {}, (err: any) => {
             if(err instanceof HttpErrorResponse) {
-                this.alertServ.publishAlert(err.url)
+                this.alertServ.publishAlert(err.url);
             }
         });
     }

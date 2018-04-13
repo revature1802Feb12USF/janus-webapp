@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewContainerRef, OnChanges, Injectable } fro
 import { animate, state, transition, trigger, style, keyframes } from '@angular/animations';
 import { HydraInterceptor } from '../../interceptors/hydra.interceptor';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
 // new notif imports
@@ -24,7 +24,7 @@ export class ErrorAlertComponent implements OnInit {
     this.toastr.setRootViewContainerRef(this.vcr);
     this.subscription = this.alertServ.alerts$.subscribe( err => {
       this.showError(err);
-    })
+    });
   }
 
   ngOnInit() {
