@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ScheduleModule, Schedule, } from 'primeng/primeng';
+import { ScheduleModule, Schedule } from 'primeng/primeng';
 import { CalendarModule, Calendar } from 'primeng/primeng';
 import { Subtopic } from '../../../models/subtopic.model';
 import { CalendarEvent } from '../../../models/calendar-event.model';
@@ -9,6 +9,9 @@ import { AddSubtopicService } from '../../../services/add-subtopic.service';
 import { SubtopicService } from '../../../services/subtopic.service';
 import { Batch } from '../../../models/batch.model';
 import { SessionService } from '../../../services/session.service';
+import { Schedule as BatchSchedule} from '../../../models/schedule.model';
+import { ScheduledSubtopic } from '../../../models/scheduledsubtopic.model';
+
 
 /**
     *	This component will serve as the main calendar view.
@@ -48,6 +51,9 @@ export class CalendarComponent implements OnInit {
   statusTooltip: string;
   timeTooltip: string;
 
+  schedule: BatchSchedule;
+  scheduledSubtopics: ScheduledSubtopic[];
+  subtopics: Subtopic[];
 
   trashOpacity: number;
 
@@ -56,16 +62,43 @@ export class CalendarComponent implements OnInit {
     private sessionService: SessionService) { }
 
   ngOnInit() {
-    this.selectedBatch = this.sessionService.getSelectedBatch();
-    this.calendarService.getSubtopicsByBatchPagination(this.selectedBatch.id, 0, 300).subscribe(
-      subtopics => {
-        for (const subtopic of subtopics) {
-          const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
-          this.events.push(calendarEvent);
-        }
-        this.overridenDate = this.events[0].start;
+    this.selectedBatch = JSON.parse(sessionStorage.getItem('batch'));
+    this.calendarService.getScheduleByScheduleId(this.selectedBatch.scheduleID).subscribe(
+      schedule => {
+        this.schedule = schedule;
+        this.scheduledSubtopics = this.schedule.subtopics;
+        let subtopicIds: number[] = [];
+        this.scheduledSubtopics.forEach(element => {
+          subtopicIds.push(element.subtopicId);
+        });
+
+        this.subtopicService.getSubtopicByIDs(subtopicIds).subscribe(subtopics => {
+          this.subtopics = subtopics;
+          for (let i = 0; i < this.scheduledSubtopics.length; i++) {
+            let topicDate = new Date(this.selectedBatch.startDate);
+            topicDate.setDate(topicDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day);
+            subtopics[i].date = topicDate;
+          }
+          this.subtopics.forEach(subtopic => {
+            const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
+            this.events.push(calendarEvent);
+          });
+          this.overridenDate = this.events[0].start;
+        });
+
+        
       }
     );
+    
+    // this.calendarService.getSubtopicsByBatchPagination(this.selectedBatch.id, 0, 300).subscribe(
+    //   subtopics => {
+    //     for (const subtopic of subtopics) {
+    //       const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
+    //       this.events.push(calendarEvent);
+    //     }
+    //     this.overridenDate = this.events[0].start;
+    //   }
+    // );
 
     // event handler for newly added topics
     this.calendarService.addCalendarEvent
@@ -173,7 +206,7 @@ export class CalendarComponent implements OnInit {
   handleEventDrop(calendar) {
     const droppedTopic = calendar.event;
     const calendarEvent = this.mapSubtopicFromEvent(droppedTopic);
-    const milliDate = calendarEvent.start.getTime();
+    const milliDate = calendarEvent.start;
 
     droppedTopic.status = this.statusService.updateMovedStatus(calendarEvent);
     droppedTopic.color = this.statusService.getStatusColor(droppedTopic.status);
@@ -271,13 +304,13 @@ export class CalendarComponent implements OnInit {
    */
   mapSubtopicFromEvent(event): CalendarEvent {
     const calendarEvent = new CalendarEvent();
-    calendarEvent.subtopicNameId = event.subtopicNameId;
+    calendarEvent.subtopicName = event.subtopicName;
     calendarEvent.subtopicId = event.subtopicId;
     calendarEvent.title = event.title;
     calendarEvent.color = event.color;
     calendarEvent.status = event.status;
     // convert from moment to date
-    calendarEvent.start = new Date(event.start.format());
+    calendarEvent.start = new Date(event.start);
 
     return calendarEvent;
   }
@@ -336,7 +369,7 @@ export class CalendarComponent implements OnInit {
    */
   eventExists(calendarEvent: CalendarEvent): number {
     for (let i = 0; i < this.events.length; i++) {
-      if (this.events[i].subtopicNameId === calendarEvent.subtopicNameId) {
+      if (this.events[i].subtopicName === calendarEvent.subtopicName) {
         return i;
       }
     }
@@ -363,7 +396,7 @@ export class CalendarComponent implements OnInit {
    */
   handleAddExistingSubtopic(subtopic: Subtopic) {
     const index = this.addEvent(this.calendarService.mapSubtopicToEvent(subtopic));
-    this.calendarService.changeTopicDate(subtopic.subtopicId, this.selectedBatch.id, subtopic.subtopicDate.getTime())
+    this.calendarService.changeTopicDate(subtopic.subtopicId, this.selectedBatch.id, subtopic.date)
       .subscribe();
   }
 

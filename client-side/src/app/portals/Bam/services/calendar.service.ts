@@ -8,6 +8,9 @@ import { CalendarEvent } from '../models/calendar-event.model';
 import { of } from 'rxjs/observable/of';
 import { CalendarStatusService } from './calendar-status.service';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
+import { Schedule } from '../models/schedule.model';
+import { ScheduledSubtopic } from '../models/scheduledsubtopic.model';
+import { CALENDAR_VALUE_ACCESSOR } from 'primeng/primeng';
 
 
 const httpOptions = {
@@ -39,6 +42,7 @@ export class CalendarService {
     );
   }
 
+
   /**
    * Retrieves subtopic by batchId
    * @author James Holzer | Batch: 1712-dec10-java-steve
@@ -53,6 +57,21 @@ export class CalendarService {
     );
   }
 
+    /**
+   * Retrieves schedule by scheduleId
+   * @author Scott Bennett | Batch: 1802-feb12-Matt
+   * @returns Schedule
+   * @param batchId number
+   */
+  getScheduleByScheduleId(scheduleId: number): Observable<Schedule> {
+    return this.http.get<Schedule>(this.urlService.calendar.getScheduleById(scheduleId)).map(
+      data => {
+        return data;
+      }
+    );
+  }
+
+  
   /**
    * Retrieves the number of subtopics by batchId
    * @author James Holzer | Batch: 1712-dec10-java-steve
@@ -89,7 +108,7 @@ export class CalendarService {
    * @param batchId: number
    * @param status: number
    */
-  changeTopicDate(subtopicId: number, batchId: number, date: number) {
+  changeTopicDate(subtopicId: number, batchId: number, date: Date) {
     return this.http.post(this.urlService.calendar.changeTopicDateUrl(subtopicId, batchId, date), null, httpOptions).map(
       data => {
         return data;
@@ -144,13 +163,23 @@ export class CalendarService {
    */
   mapSubtopicToEvent(subtopic: Subtopic): CalendarEvent {
     const calendarEvent = new CalendarEvent();
-    calendarEvent.subtopicNameId = subtopic.subtopicName.id;
-    calendarEvent.subtopicId = subtopic.subtopicId;
-    calendarEvent.title = subtopic.subtopicName.name;
-    calendarEvent.start = new Date(subtopic.subtopicDate);
+    calendarEvent.color = this.statusService.getStatusColor(subtopic.status);
+    calendarEvent.start = subtopic.date;
     calendarEvent.status = subtopic.status;
-    calendarEvent.color = this.statusService.getStatusColor(calendarEvent.status);
+    calendarEvent.subtopicId = subtopic.subtopicId;
+    
 
     return calendarEvent;
   }
+  // mapSubtopicToEvent(subtopic: Subtopic): CalendarEvent {
+  //   const calendarEvent = new CalendarEvent();
+  //   calendarEvent.subtopicNameId = subtopic.subtopicName.id;
+  //   calendarEvent.subtopicId = subtopic.subtopicId;
+  //   calendarEvent.title = subtopic.subtopicName.name;
+  //   calendarEvent.start = new Date(subtopic.subtopicDate);
+  //   calendarEvent.status = subtopic.status;
+  //   calendarEvent.color = this.statusService.getStatusColor(calendarEvent.status);
+
+  //   return calendarEvent;
+  // }
 }

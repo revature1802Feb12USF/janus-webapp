@@ -7,13 +7,13 @@ export class Subtopic {
     subtopicName: SubtopicName;
     batch: Batch;
     status: string;
-    subtopicDate: Date;
+    date: Date;
     
     constructor(subtopicId: number, subtopicName: SubtopicName, batch: Batch, status: string, subtopicDate: Date) {
         this.subtopicId = subtopicId;
         this.subtopicName = subtopicName;
         this.batch = batch;
         this.status = status;
-        this.subtopicDate = subtopicDate;
+        this.date = subtopicDate;
     }
 }

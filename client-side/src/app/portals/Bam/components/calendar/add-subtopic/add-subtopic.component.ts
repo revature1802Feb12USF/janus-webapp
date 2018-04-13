@@ -228,7 +228,7 @@ export class AddSubtopicComponent implements OnInit {
   checkSubtopics() {
     for (let i = 0; i < this.batchSubtopics.length; i++) {
       if (this.subtopic.subtopicName.name === this.batchSubtopics[i].subtopicName.name) {
-        const date = new Date(this.batchSubtopics[i].subtopicDate);
+        const date = new Date(this.batchSubtopics[i].date);
         this.newDate = new Date(this.slectedDateMiliseconds);
         this.newDate = this.newDate.toDateString();
         this.prevDate = date.toDateString();
@@ -278,7 +278,7 @@ export class AddSubtopicComponent implements OnInit {
       subtopicName: this.subtopicName,
       batch: this.currentBatch,
       status: this.status,
-      subtopicDate: this.slectedDateMiliseconds
+      date: this.slectedDateMiliseconds
     };
   }
   /**
@@ -300,7 +300,7 @@ export class AddSubtopicComponent implements OnInit {
               this.changeSuccessMessage(`Successfully updated!`);
               for (let i = 0; i < this.batchSubtopics.length; i++) {
                 if (this.batchSubtopics[i].subtopicId === this.subtopicId) {
-                  this.batchSubtopics[i].subtopicDate = this.slectedDateMiliseconds;
+                  this.batchSubtopics[i].date = this.slectedDateMiliseconds;
                 }
               }
             },
