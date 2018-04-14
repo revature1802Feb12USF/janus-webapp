@@ -88,10 +88,10 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
                 this.subTopicCompleted += 1;
               }
               if ( data2[i].status == 'Missed') {
-                const subTopicName = data2[i].subtopicName.name;
-                const topicName = data2[i].subtopicName.topic.name;
+                const subTopicName = data2[i].subtopicName;
+                const topicName = data2[i].parentTopic.topicName;
                 this.subTopicMissed += 1;
-                if (data2[i].subtopicName.topic) {
+                if (data2[i].parentTopic) {
                   // if topicArray is null;
                   if (this.topicArray == null) {
                     const listModel = new ListModel(topicName);
