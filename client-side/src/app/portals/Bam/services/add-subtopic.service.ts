@@ -36,13 +36,13 @@ export class AddSubtopicService {
    * Retrieves all the subtopics of the current batch
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
-  getBatchSubtopics(id: number): Observable<Subtopic[]> {
-    return this.http
-        .get<Subtopic[]>(this.urlService.addsubtopics.getBatchSubtopicsUrl(id, 34, 0))
-        .map( data => {
-          return data;
-        });
-  }
+  // getBatchSubtopics(id: number): Observable<Subtopic[]> {
+  //   return this.http
+  //       .get<Subtopic[]>(this.urlService.addsubtopics.getBatchSubtopicsUrl(id, 34, 0))
+  //       .map( data => {
+  //         return data;
+  //       });
+  // }
 
   /**
    * Updates old date on the database with the new date selected

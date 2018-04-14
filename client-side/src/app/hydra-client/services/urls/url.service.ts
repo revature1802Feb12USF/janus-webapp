@@ -94,8 +94,8 @@ export class UrlService {
   };
 
   addsubtopics = {
-    getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
-      `${bam}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
+    // getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
+    //   `${bam}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
     getBatchIdUrl: (batchId: number) => `${bam}/batches/batch/${batchId}`,
     addSubtopicUrl: () => `${bam}/subtopics/`,
     getSubtopicPoolUrl: (curriculumId: number) => `${bam}/curricula/${curriculumId}/subtopics`,
@@ -108,16 +108,15 @@ export class UrlService {
   };
 
   calendar = {
-    getSubtopicsByBatchPaginationUrl: (batchId: number, pageNumber: number, pageSize: number) =>
-      `${bam}/calendar/subtopicspagination/${batchId}/${pageNumber}/${pageSize}/`,
+    // getSubtopicsByBatchPaginationUrl: (batchId: number, pageNumber: number, pageSize: number) =>
+    //   `${bam}/calendar/subtopicspagination/${batchId}/${pageNumber}/${pageSize}/`,
     getScheduleById: (scheduleId: number) => `${bam}/curricula/schedules/${scheduleId}`,
     getSubtopicsByBatchUrl: (batchId: number) => `${bam}/calendar/subtopics/${batchId}`,
     getNumberOfSubTopicsByBatchUrl: (batchId: number) => `${bam}/calendar/getnumberofsubtopics/${batchId}`,
     getTopicsByBatchPagUrl: (batchId: number) => `${bam}/calendar/topics/${batchId}`,
-    changeTopicDateUrl: (subtopicId: number, batchId: number, date: Date) =>
-      `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
+    changeTopicDateUrl: `${bam}/curricula/schedules`,
     updateTopicStatusUrl: (subtopicId: number, batchId: number, status: string) =>
-      `${bam}/calendar/statusupdate/${subtopicId}/${batchId}/${status}`,
+      `${bam}/curricula/schedules`,
     addTopicsUrl: () => `${bam}/calendar/addtopics`,
   };
 

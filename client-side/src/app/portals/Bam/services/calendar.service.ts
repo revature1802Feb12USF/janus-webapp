@@ -11,6 +11,7 @@ import { UrlService } from '../../../hydra-client/services/urls/url.service';
 import { Schedule } from '../models/schedule.model';
 import { ScheduledSubtopic } from '../models/scheduledsubtopic.model';
 import { CALENDAR_VALUE_ACCESSOR } from 'primeng/primeng';
+import { Curriculum } from '../models/curriculum.model';
 
 
 const httpOptions = {
@@ -34,13 +35,13 @@ export class CalendarService {
    * @param pageNumber: number
    * @param pageSize: number
    */
-  getSubtopicsByBatchPagination(batchId: number, pageNumber: number, pageSize: number): Observable<Subtopic[]> {
-    return this.http.get<Subtopic[]>(this.urlService.calendar.getSubtopicsByBatchPaginationUrl(batchId, pageNumber, pageSize)).map(
-      data => {
-        return data;
-      }
-    );
-  }
+  // getSubtopicsByBatchPagination(batchId: number, pageNumber: number, pageSize: number): Observable<Subtopic[]> {
+  //   return this.http.get<Subtopic[]>(this.urlService.calendar.getSubtopicsByBatchPaginationUrl(batchId, pageNumber, pageSize)).map(
+  //     data => {
+  //       return data;
+  //     }
+  //   );
+  // }
 
 
   /**
@@ -108,12 +109,15 @@ export class CalendarService {
    * @param batchId: number
    * @param status: number
    */
-  changeTopicDate(subtopicId: number, batchId: number, date: Date) {
-    return this.http.post(this.urlService.calendar.changeTopicDateUrl(subtopicId, batchId, date), null, httpOptions).map(
-      data => {
-        return data;
-      }
-    );
+  // changeTopicDate(subtopicId: number, batchId: number, date: Date) {
+  //   return this.http.post(this.urlService.calendar.changeTopicDateUrl(subtopicId, batchId, date), null, httpOptions).map(
+  //     data => {
+  //       return data;
+  //     }
+  //   );
+  // }
+  changeTopicDate(schedule: Schedule) {
+    return this.http.patch<Schedule>(this.urlService.calendar.changeTopicDateUrl, schedule);
   }
 
   /**

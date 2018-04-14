@@ -103,10 +103,10 @@ export class AddSubtopicComponent implements OnInit {
         this.currentBatch = service;
       }
     );
-    this.subtopicsService.getBatchSubtopics(this.sessionService.getSelectedBatch().id).subscribe(
-      service => {
-        this.batchSubtopics = service;
-      });
+    // this.subtopicsService.getBatchSubtopics(this.sessionService.getSelectedBatch().id).subscribe(
+    //   service => {
+    //     this.batchSubtopics = service;
+    //   });
   }
 
   /**

@@ -9,7 +9,7 @@ import { AddSubtopicService } from '../../../services/add-subtopic.service';
 import { SubtopicService } from '../../../services/subtopic.service';
 import { Batch } from '../../../models/batch.model';
 import { SessionService } from '../../../services/session.service';
-import { Schedule as BatchSchedule} from '../../../models/schedule.model';
+import { Schedule as BatchSchedule } from '../../../models/schedule.model';
 import { ScheduledSubtopic } from '../../../models/scheduledsubtopic.model';
 
 
@@ -66,6 +66,7 @@ export class CalendarComponent implements OnInit {
     this.calendarService.getScheduleByScheduleId(this.selectedBatch.scheduleID).subscribe(
       schedule => {
         this.schedule = schedule;
+        sessionStorage.setItem('schedule', JSON.stringify(schedule));
         this.scheduledSubtopics = this.schedule.subtopics;
         let subtopicIds: number[] = [];
         this.scheduledSubtopics.forEach(element => {
@@ -79,24 +80,18 @@ export class CalendarComponent implements OnInit {
             topicDate.setDate(topicDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 2);
             subtopics[i].date = topicDate;
           }
+          //hard coded hour values!
+          var hourItr = 9;
           this.subtopics.forEach(subtopic => {
             const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
+            calendarEvent.start.setHours(hourItr, 0, 0, 0);
+            hourItr++;
             this.events.push(calendarEvent);
           });
           this.overridenDate = this.events[0].start;
         });
       }
     );
-    
-    // this.calendarService.getSubtopicsByBatchPagination(this.selectedBatch.id, 0, 300).subscribe(
-    //   subtopics => {
-    //     for (const subtopic of subtopics) {
-    //       const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
-    //       this.events.push(calendarEvent);
-    //     }
-    //     this.overridenDate = this.events[0].start;
-    //   }
-    // );
 
     // event handler for newly added topics
     this.calendarService.addCalendarEvent
@@ -202,8 +197,10 @@ export class CalendarComponent implements OnInit {
    * @param calendar
    */
   handleEventDrop(calendar) {
+
     const droppedTopic = calendar.event;
     const calendarEvent = this.mapSubtopicFromEvent(droppedTopic);
+    this.updateSchedule(calendarEvent);
     const milliDate = calendarEvent.start;
 
     droppedTopic.status = this.statusService.updateMovedStatus(calendarEvent);
@@ -211,17 +208,37 @@ export class CalendarComponent implements OnInit {
     calendarEvent.color = droppedTopic.color;
 
     // update date and status synchronously
-    this.calendarService.changeTopicDate(droppedTopic.subtopicId, this.selectedBatch.id, milliDate)
+    this.calendarService.changeTopicDate(this.schedule)
       .subscribe(
-      response => {
-        this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
-      },
-      error => {
-        this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
-      }
+        response => {
+          this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
+        },
+        error => {
+          console.log(error);
+          //this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
+        }
       );
     this.updateEvent(calendarEvent);
     this.fc.updateEvent(droppedTopic);
+  }
+  /**
+   * Updates this.schedule based on new selected date.
+   * This is used to send request to schedule controller
+   * @param calendarEvent
+   */
+  updateSchedule(calendarEvent) {
+    this.schedule.subtopics.forEach(element => {
+      if (element.subtopicId === calendarEvent.subtopicId) {
+        //update week and day
+        let duration = element.date.endTime - element.date.startTime;
+        let date = new Date(element.date.startTime);
+        let newWeek = Math.abs(Math.floor((date.getDate() - calendarEvent.start.getDate()) / 7));
+        let newDay = calendarEvent.start.getDay() + 1;
+        element.date.day = newDay;
+        element.date.week = newWeek; //this is wrong and needs to be changed
+
+      }
+    });
   }
 
   /**
@@ -394,7 +411,7 @@ export class CalendarComponent implements OnInit {
    */
   handleAddExistingSubtopic(subtopic: Subtopic) {
     const index = this.addEvent(this.calendarService.mapSubtopicToEvent(subtopic));
-    this.calendarService.changeTopicDate(subtopic.subtopicId, this.selectedBatch.id, subtopic.date)
+    this.calendarService.changeTopicDate(this.schedule)
       .subscribe();
   }
 
