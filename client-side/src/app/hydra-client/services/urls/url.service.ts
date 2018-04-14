@@ -1,4 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
+import { Curriculum } from '../../../portals/Track-Force/models/curriculum.model';
 
 const bam = 'http://localhost:9001/api/v2';
 const context = 'http://localhost:9001/api/v2';
@@ -121,13 +122,13 @@ calendar = {
 };
 
 curriculum = {
-  getCurriculumAllUrl: () => `${bam}/curricula/`,
-  getCurriculumByIdUrl: (id: number) => `${bam}/curricula/getcurriculums/${id}`,
+  getCurriculumAllUrl: () => `${bam}/curricula/all`,
+  getCurriculumByIdUrl: (id: number) => `${bam}/curricula/${id}`,
   getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curricula/schedule/${id}`,
-  getTopicPoolAllUrl: () => `${bam}/curricula/topicpool`,
+  getTopicPoolAllUrl: () => `${bam}/topics/`,
   getSubtopicPoolAllUrl: () => `${bam}/curricula/subtopicpool`,
-  addCurriculumUrl: () => `${bam}/curricula/addcurriculum`,
-  makeCurriculumMasterByIdUrl: (id: number) => `${bam}/curricula/makemaster/${id}`,
+  addCurriculumUrl: () => `${bam}/curricula/`,
+  makeCurriculumMasterByIdUrl: () => `${bam}/curricula/`,
   syncBatchByIdUrl: (id: number) => `${bam}/curricula/syncbatch/${id}`,
   deleteCurriculumVersionUrl: () => `${bam}/curricula/deleteversion`,
   getScheduleById: (id: number) => `${bam}/curricula/schedules/${id}`

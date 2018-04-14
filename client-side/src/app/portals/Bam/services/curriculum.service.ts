@@ -118,7 +118,8 @@ export class CurriculumService {
     * @batch: 1712-Dec11-2017
     * @param: CurriculumSubtopicDTO
     */
-   addCurriculum(curriculum: CurriculumSubtopicDTO) {
+   addCurriculum(curriculum: Curriculum) {
+    console.log("addCurriculum:"+JSON.stringify(curriculum));
     return this.http.post(this.urlService.curriculum.addCurriculumUrl(), curriculum, httpOptions).map(
       data => {
         return data;
@@ -131,8 +132,9 @@ export class CurriculumService {
     * @batch: 1712-Dec11-2017
     * @param: Curriculum Id
     */
-  markCurriculumAsMaster(curriculumId: number) {
-    return this.http.get(this.urlService.curriculum.makeCurriculumMasterByIdUrl(curriculumId)).map(
+  markCurriculumAsMaster(curriculum: Curriculum) {
+    console.log(JSON.stringify(curriculum));
+    return this.http.patch(this.urlService.curriculum.makeCurriculumMasterByIdUrl(),JSON.stringify(curriculum)).map(
       data => {
         return data;
       }
@@ -157,8 +159,8 @@ export class CurriculumService {
     * @batch: 1712-Dec11-2017
     * @param: Curriculum
     */
-    deleteCurriculumVersion(curriculumVersion: Curriculum) {
-      return this.http.post(this.urlService.curriculum.deleteCurriculumVersionUrl(), curriculumVersion, {
+    deleteCurriculumVersion(version: Curriculum) {
+      return this.http.post(this.urlService.curriculum.deleteCurriculumVersionUrl(), version, {
         responseType: 'text',
       });
     }

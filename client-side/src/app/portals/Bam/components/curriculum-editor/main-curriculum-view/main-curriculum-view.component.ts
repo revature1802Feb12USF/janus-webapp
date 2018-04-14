@@ -114,7 +114,7 @@ export class MainCurriculumViewComponent implements OnInit {
             this.isNewVer = false;
         }
 
-        if (event.curriculumVersion === 1) {
+        if (event.version === 1) {
             this.isFirstVer = true;
             this.allWeeks = [];
         } else {
@@ -149,22 +149,23 @@ export class MainCurriculumViewComponent implements OnInit {
      * @param makeMaster: boolean
      */
     saveCurr(makeMaster: boolean) {
-        this.selectedCurr.curriculumNumberOfWeeks = this.weeks.length;
-        this.selectedCurr.curriculumCreator = this.sessionService.getUser();
-        this.selectedCurr.curriculumdateCreated = this.getCurrentDate();
+        this.selectedCurr.weekDuration = this.weeks.length;
+        this.selectedCurr.creatorId = this.sessionService.getUser().userId;
+        this.selectedCurr.modifierId=0;
+        this.selectedCurr.dateCreated = Date.now();
         if (makeMaster) {
-            this.selectedCurr.isMaster = 1;
+            this.selectedCurr.masterVersion = 1;
         }
         const meta = new MetaDTO(this.selectedCurr);
 
         const weeksDTO: WeeksDTO[] = [];
         this.weeks.forEach(elem => weeksDTO.push(elem.weekDTO));
 
-        const curriculumSubtopicDTO = new CurriculumSubtopicDTO(meta, weeksDTO);
-        this.curriculumService.addCurriculum(curriculumSubtopicDTO).subscribe(
+        
+        this.curriculumService.addCurriculum(this.selectedCurr).subscribe(
             response => {
                 this.alertService.alert('success', 'Successfully saved ' +
-                    (<Curriculum>response.body).curriculumName + ' version #' + (<Curriculum>response.body).curriculumVersion);
+                    (<Curriculum>response.body).name + ' version #' + (<Curriculum>response.body).version);
                 this.refreshList(<Curriculum>response.body);
                 this.isNewVer = false;
             },
@@ -184,11 +185,11 @@ export class MainCurriculumViewComponent implements OnInit {
      */
     refreshList(curr: Curriculum) {
         const currList = this.curriculumService.allCurriculumData.getValue();
-        if (curr.isMaster === 1) {
+        if (curr.masterVersion === 1) {
             const masterIndex = currList.findIndex(
-                elem => (elem.isMaster === 1 && elem.curriculumName === curr.curriculumName));
+                elem => (elem.masterVersion === 1 && elem.name === curr.name));
             if (masterIndex !== -1) {
-                currList[masterIndex].isMaster = 0;
+                currList[masterIndex].masterVersion = 0;
             }
         }
         currList.push(curr);
@@ -360,10 +361,10 @@ export class MainCurriculumViewComponent implements OnInit {
 /**
  * Opens the modal with id areYouSurePopulateCalendar
  * @author Charlie Harris | 1712-dec11-java-steve
- * @param isMaster
+ * @param masterVersion
  */
-areYouSurePopulateCalendar(isMaster) {
-    if (isMaster === 1) {
+areYouSurePopulateCalendar(masterVersion) {
+    if (masterVersion === 1) {
         (<any>$('#areYouSurePopulateCalendar')).modal('show');
     } else {
         // const batchType = this.sessionService.getSelectedBatch().type.name; //NO TYPE
@@ -393,8 +394,8 @@ areYouReallySurePopulateCalendar() {
  * @author James Holzer (1712-Steve)
  * Opens the modal with the id areYouSure
  */
-areYouSureDeleteCurr(isMaster) {
-    if (isMaster === 0) {
+areYouSureDeleteCurr(masterVersion) {
+    if (masterVersion === 0) {
         (<any>$('#areYouSure')).modal('show');
     } else {
         this.alertService.alert('danger', 'You Cannot Delete a Master Curriculum');
@@ -433,7 +434,7 @@ deleteVersions(selectedCurr) {
  */
 download() {
     let ourWeeks: WeeksExportDTO;
-    ourWeeks = new WeeksExportDTO((this.allWeeks), this.selectedCurr.curriculumName + ' v' + this.selectedCurr.curriculumVersion);
+    ourWeeks = new WeeksExportDTO((this.allWeeks), this.selectedCurr.name + ' v' + this.selectedCurr.version);
     const worksheet: XLSX.WorkSheet = XLSX.utils.json_to_sheet(ourWeeks.data);
     const workbook: XLSX.WorkBook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
     const excelBuffer: any = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });

@@ -35,6 +35,7 @@ export class CourseStructureComponent implements OnInit {
   * @param currVersion - curriculum object selected from view
   */
   viewCurrSchedule(currVersion: Curriculum) {
+    console.log("currVersion in viewSchedule:"+JSON.stringify(currVersion))
     this.curriculumService.getSchedualeByCurriculumId(currVersion.id).subscribe(
       data => {
         this.curriculumService.changeData(data);
@@ -54,7 +55,7 @@ export class CourseStructureComponent implements OnInit {
   getCurriculumNames() {
     this.allCurriculumNames = [];
     for (let i = 0; i < this.allCurriculums.length; i++) {
-      this.allCurriculumNames.push(this.allCurriculums[i].curriculumName);
+      this.allCurriculumNames.push(this.allCurriculums[i].name);
     }
   }
 
@@ -77,7 +78,7 @@ export class CourseStructureComponent implements OnInit {
   getCurriculumVersions() {
     this.allCurrVersions = [];
     for (let i = 0; i < this.uniqCurrNames.length; i++) {
-      this.allCurrVersions.push(this.allCurriculums.filter(e => this.uniqCurrNames[i] === e.curriculumName));
+      this.allCurrVersions.push(this.allCurriculums.filter(e => this.uniqCurrNames[i] === e.name));
     }
   }
 
@@ -105,12 +106,12 @@ export class CourseStructureComponent implements OnInit {
     for (let i = 0; i < this.allCurrVersions.length; i++) {
       let version = 1;
       this.allCurrVersions[i].forEach(e => {
-        if (e.curriculumVersion > version) {
-          version = e.curriculumVersion;
+        if (e.version > version) {
+          version = e.version;
         }
       });
       for (let j = 0; j < this.allCurrVersions[i].length; j++) {
-        if (this.allCurrVersions[i][j].curriculumVersion === version) {
+        if (this.allCurrVersions[i][j].version === version) {
           currs.push(this.allCurrVersions[i][j]);
           version--;
           if (version !== 0) {
@@ -171,7 +172,7 @@ export class CourseStructureComponent implements OnInit {
         this.getCurriculumVersions();
         this.getUniqCurrVersions();
         this.uniqCurrVersions[0].forEach(e => {
-          if (e.isMaster === 1) {
+          if (e.masterVersion === 1) {
             this.viewCurrSchedule(e);
           }
         });
@@ -199,13 +200,13 @@ export class CourseStructureComponent implements OnInit {
    */
   makeMaster() {
     for (let j = 0; j < this.uniqCurrVersions[this.selectedTypeIndex].length; j++) {
-      if (this.uniqCurrVersions[this.selectedTypeIndex][j].isMaster === 1) {
-        this.uniqCurrVersions[this.selectedTypeIndex][j].isMaster = 0;
+      if (this.uniqCurrVersions[this.selectedTypeIndex][j].masterVersion === 1) {
+        this.uniqCurrVersions[this.selectedTypeIndex][j].masterVersion = 0;
       }
     }
 
-    this.selectedCurrVer.isMaster = 1;
-    this.curriculumService.markCurriculumAsMaster(this.selectedCurrVer.id).subscribe(
+    this.selectedCurrVer.masterVersion = 1;
+    this.curriculumService.markCurriculumAsMaster(this.selectedCurrVer).subscribe(
       data => {
         console.log(data);
       },
@@ -216,9 +217,11 @@ export class CourseStructureComponent implements OnInit {
 
 
   createCurr(curTitle: string) {
-    const curric = new Curriculum(null, null, 0, null, null, null, null, 1);
-    curric.curriculumName = curTitle;
-    curric.curriculumVersion = 1;
+    const curric = new Curriculum;
+    curric.version=0;
+    curric.masterVersion=1;
+    curric.name = curTitle;
+    curric.version = 1;
     this.messageEvent.emit(curric);
   }
 
@@ -233,17 +236,20 @@ export class CourseStructureComponent implements OnInit {
   newVersion(currName: string, typeIndex: number) {
     event.stopPropagation();
     let newVersionNum = 0;
+    console.log("hey");
     this.uniqCurrVersions[typeIndex].forEach(elem => {
-      if (elem.curriculumVersion > newVersionNum) {
-        newVersionNum = elem.curriculumVersion;
+      if (elem.version > newVersionNum) {
+        newVersionNum = elem.version;
       }
     });
-
-    const master = this.uniqCurrVersions[typeIndex].filter(e => e.isMaster === 1);
+    console.log(this.uniqCurrVersions);
+    const master = this.uniqCurrVersions[typeIndex].filter(e => e.masterVersion == 1);
     this.viewCurrSchedule(master[0]);
 
-    const newCurrVer: Curriculum = new Curriculum(null, currName, ++newVersionNum,
-      null, null, null, null, 0);
+    const newCurrVer: Curriculum = new Curriculum;
+      newCurrVer.name=currName;
+      newCurrVer.version=++newVersionNum;
+      newCurrVer.masterVersion=0;
     this.messageEvent.emit(newCurrVer);
   }
 }
