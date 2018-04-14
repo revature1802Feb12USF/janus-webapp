@@ -227,7 +227,7 @@ export class AddSubtopicComponent implements OnInit {
    */
   checkSubtopics() {
     for (let i = 0; i < this.batchSubtopics.length; i++) {
-      if (this.subtopic.subtopicName.name === this.batchSubtopics[i].subtopicName.name) {
+      if (this.subtopic.subtopicName === this.batchSubtopics[i].subtopicName) {
         const date = new Date(this.batchSubtopics[i].date);
         this.newDate = new Date(this.slectedDateMiliseconds);
         this.newDate = this.newDate.toDateString();
@@ -275,7 +275,7 @@ export class AddSubtopicComponent implements OnInit {
     };
     this.subtopic = {
       subtopicId: null,
-      subtopicName: this.subtopicName,
+      subtopicName: this.selectedSubtopic,
       batch: this.currentBatch,
       status: this.status,
       date: this.slectedDateMiliseconds
@@ -359,7 +359,7 @@ export class AddSubtopicComponent implements OnInit {
   setDraggableOnSubtopic(event, subtopic: string) {
     const subtopicData = new Subtopic(
       null,
-      this.getSubtopicName(subtopic),
+      this.selectedSubtopic,
       this.currentBatch,
       this.statusService.getDefaultStatus(),
       null
