@@ -9,6 +9,7 @@ import { TopicService } from '../../../services/topic.service';
 import { SubtopicService } from '../../../services/subtopic.service';
 import { SearchTextService } from '../../../services/search-text.service';
 import { AlertService } from '../../../services/alert.service';
+import { Topic } from '../../../models/topic.model';
 
 // Used below to toggle add subtopic modal
 declare let $: any;
@@ -24,9 +25,9 @@ export class TopicPoolComponent implements OnInit {
   uniqarr: string[];
   uniqarrFiltered: string[];
   searchText: string;
-  subArray: Array<SubtopicName[]> = new Array<SubtopicName[]>();
-  subTopicName: SubtopicName[] = [];
-  topicPoolCacheData: SubtopicName[] = [];
+  subArray: Array<Topic[]> = new Array<Topic[]>();
+  subTopicName: Topic[] = [];
+  topicPoolCacheData: Topic[] = [];
   @Input() readOnly: boolean;
   selectedTopicId: number;
 
@@ -88,7 +89,8 @@ export class TopicPoolComponent implements OnInit {
      */
   initTopics() {
     for (let i = 0; i < this.subTopicName.length; i++) {
-      this.topics.push(this.subTopicName[i].topic.name);
+      console.log(JSON.stringify(this.subTopicName))
+      this.topics.push(this.subTopicName[i].topicName);
     }
   }
 
@@ -108,6 +110,7 @@ export class TopicPoolComponent implements OnInit {
     *  @batch 1712-Dec11-2017
     */
   uniqueTopics() {
+    console.log("topics:"+this.topics);
     this.uniqarr = this.topics.filter(this.onlyUnique);
     this.uniqarrFiltered = this.uniqarr;
   }
@@ -128,7 +131,7 @@ export class TopicPoolComponent implements OnInit {
         this.uniqarrFiltered = this.uniqarr.filter(i => {
           return i.toLowerCase().includes(topicSearch.toString());
         });
-        this.subArray = new Array<SubtopicName[]>();
+        this.subArray = new Array<Topic[]>();
         this.getSubTopics();
       } else if (data.type === 'subtopic') {
         this.searchText = data.text.toString().toLowerCase();
@@ -168,7 +171,7 @@ export class TopicPoolComponent implements OnInit {
     */
   getSubTopics() {
     for (let i = 0; i < this.uniqarrFiltered.length; i++) {
-      this.subArray.push(this.subTopicName.filter(e => this.uniqarrFiltered[i] === e.topic.name));
+      this.subArray.push(this.subTopicName.filter(e => this.uniqarrFiltered[i] === e.topicName));
     }
   }
 
@@ -200,7 +203,7 @@ export class TopicPoolComponent implements OnInit {
         this.subtopicService.addSubTopicName(newSubTopic, topic.id, 1).subscribe(
           data => {
             this.uniqarrFiltered.push(topic.name);
-            this.subArray = new Array<SubtopicName[]>();
+            this.subArray = new Array<Topic[]>();
             this.topicPoolCacheData.push(data);
             this.getSubTopics();
             this.alertService.alert('success', 'Successfully added Topic');
@@ -224,7 +227,7 @@ export class TopicPoolComponent implements OnInit {
   getNewSubTopicReady(index: number) {
     event.stopPropagation();
     $('#addSubTopicModel').modal('show');
-    this.selectedTopicId = this.subArray[index][0].topic.id;
+    this.selectedTopicId = this.subArray[index][0].topicID;
   }
 
   /**
@@ -241,7 +244,7 @@ export class TopicPoolComponent implements OnInit {
     if (newSubTopic.length > 1) {
       this.subtopicService.addSubTopicName(newSubTopic, this.selectedTopicId, 1).subscribe(
         data => {
-          this.subArray = new Array<SubtopicName[]>();
+          this.subArray = new Array<Topic[]>();
           this.topicPoolCacheData.push(data);
           this.getSubTopics();
           this.alertService.alert('success', 'Successfully added Subtopic');

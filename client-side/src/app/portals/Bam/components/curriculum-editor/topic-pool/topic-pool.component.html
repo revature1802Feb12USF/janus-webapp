@@ -12,7 +12,7 @@
     <div class="col-sm-11 col-md-11 col-lg-11" *ngFor="let topic of uniqarrFiltered; let i = index">
       <div (click)="clearSubtopicSearch()" class="topic" data-toggle="collapse" [attr.data-target]="'#'+i" aria-expanded="true" aria-controls="collapseOne">
         <p class="mb-0">
-          {{topic}} <span (click)="getNewSubTopicReady(i)">
+          {{"HEY"+topic}} <span (click)="getNewSubTopicReady(i)">
             <i class="fa fa-plus-circle mt-1" data-toggle="modal" data-target="#addSubTopicModel"></i>
           </span>
         </p>
@@ -22,7 +22,7 @@
         <div *ngFor="let sub of subArray[i] | search : 'name' : searchText">
           <div pDraggable="subtopicdrag" (onDragStart)="sendCurrentlyDragged(sub)" [ngClass]="{'noTouch':readOnly}" class="subtopic col-sm-10 col-md-10 col-lg-10 offset-1 rounded">
             <p placement="top" [ngbTooltip]="sub.name" class="mb-0 subtopic-text text-truncate text-center">
-              {{sub.name}}
+              {{"HI"+ sub.name}}
             </p>
           </div>
         </div>

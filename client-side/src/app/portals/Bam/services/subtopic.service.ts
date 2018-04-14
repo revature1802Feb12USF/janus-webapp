@@ -5,6 +5,7 @@ import { SubtopicName } from '../models/subtopicname.model';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
 import { Observable } from 'rxjs/Observable';
 import { Subtopic } from '../models/subtopic.model';
+import { Topic } from '../models/topic.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-type': 'application/json'}),
@@ -36,7 +37,7 @@ export class SubtopicService {
    * @param typeId number
    */
   addSubTopicName(subtopicName: string, topicId: number, typeId: number) {
-    return this.http.post<SubtopicName>(this.urlService.subtopic.addSubTopicName(subtopicName, topicId, typeId), httpOptions).map(
+    return this.http.post<Topic>(this.urlService.subtopic.addSubTopicName(subtopicName, topicId, typeId), httpOptions).map(
       data => {
         return data;
       }

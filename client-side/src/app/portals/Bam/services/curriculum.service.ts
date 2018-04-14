@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
 import { Schedule } from '../models/schedule.model';
+import { Topic } from '../models/topic.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -25,7 +26,7 @@ export class CurriculumService {
   public allCurriculumData = new BehaviorSubject<Curriculum[]>([]);
   currentAllCurriculumData = this.allCurriculumData.asObservable();
 
-  private allTopicPoolData = new BehaviorSubject<SubtopicName[]>([]);
+  private allTopicPoolData = new BehaviorSubject<Topic[]>([]);
   currentTopicPoolData = this.allTopicPoolData.asObservable();
 
   private selectedCurrData = new BehaviorSubject<Curriculum>(null);
@@ -91,9 +92,10 @@ export class CurriculumService {
     * @batch:  1712-Dec11-2017
     * @return: Observable<SubtopicName[]>
     */
-  getAllTopicPool(): Observable<SubtopicName[]> {
-    return this.http.get<SubtopicName[]>(this.urlService.curriculum.getTopicPoolAllUrl()).map(
+  getAllTopicPool(): Observable<Topic[]> {
+    return this.http.get<Topic[]>(this.urlService.curriculum.getTopicPoolAllUrl()).map(
       data => {
+        console.log(data);
         this.allTopicPoolData.next(data);
         return data;
       }
