@@ -96,9 +96,9 @@ export class UrlService {
   addsubtopics = {
     getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
       `${bam}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
-    getBatchIdUrl: (batchId: number) => `${bam}/batches/byid/${batchId}`,
+    getBatchIdUrl: (batchId: number) => `${bam}/batches/batch/${batchId}`,
     addSubtopicUrl: () => `${bam}/subtopics/`,
-    getSubtopicPoolUrl: () => `${bam}/curriculum/topicpool`,
+    getSubtopicPoolUrl: (curriculumId: number) => `${bam}/curricula/${curriculumId}/subtopics`,
     updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
       `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`
   };

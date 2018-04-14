@@ -85,8 +85,6 @@ export class CalendarComponent implements OnInit {
           });
           this.overridenDate = this.events[0].start;
         });
-
-        
       }
     );
     
