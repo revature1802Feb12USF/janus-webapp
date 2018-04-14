@@ -167,7 +167,7 @@ export class CalendarService {
     calendarEvent.start = subtopic.date;
     calendarEvent.status = subtopic.status;
     calendarEvent.subtopicId = subtopic.subtopicId;
-    
+    calendarEvent.title = subtopic.subtopicName;
 
     return calendarEvent;
   }

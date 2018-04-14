@@ -76,7 +76,7 @@ export class CalendarComponent implements OnInit {
           this.subtopics = subtopics;
           for (let i = 0; i < this.scheduledSubtopics.length; i++) {
             let topicDate = new Date(this.selectedBatch.startDate);
-            topicDate.setDate(topicDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day);
+            topicDate.setDate(topicDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 2);
             subtopics[i].date = topicDate;
           }
           this.subtopics.forEach(subtopic => {
