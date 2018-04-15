@@ -128,6 +128,7 @@ export class TopicPoolComponent implements OnInit {
    */
   initFilterTopicListener() {
     this.searchTextService.getMessage().subscribe(data => {
+      console.log("THIS IS THE SEARCH DATA:"+JSON.stringify(data));
       if (data.type === 'topic') {
         const topicSearch = data.text.toString().toLowerCase();
         this.uniqarrFiltered = this.uniqarr.filter(i => {

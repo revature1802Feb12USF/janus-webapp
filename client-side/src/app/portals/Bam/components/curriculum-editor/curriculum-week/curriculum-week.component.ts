@@ -105,6 +105,7 @@ export class CurriculumWeekComponent implements OnInit {
   dropIt(dayNum: number) {
     this.dndService.currentSubtopic.subscribe(
       data => {
+        console.log("DATA:"+JSON.stringify(data));
         this.weekDTO.days[dayNum].subtopics.push(data);
       }
     ).unsubscribe();
