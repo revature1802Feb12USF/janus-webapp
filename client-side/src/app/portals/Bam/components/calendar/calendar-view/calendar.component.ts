@@ -426,7 +426,6 @@ export class CalendarComponent implements OnInit {
         this.addSubtopicService.updateSchedule(this.schedule).subscribe();
       }
     }
-    // this.subtopicService.removeSubtopicFromBatch(calendarEvent.subtopicId).subscribe();
   }
 
   /**
