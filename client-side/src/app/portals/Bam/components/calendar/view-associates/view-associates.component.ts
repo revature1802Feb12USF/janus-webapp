@@ -23,7 +23,7 @@ export class ViewAssociatesComponent implements OnInit {
   p = 1;
   associateList: BamUser[] = [] ;
   searchTerm: string;
-  order = 'lName';
+  order = 'lastName';
   reverse = false;
   sessionUser: BamUser;
   currentBatch: Batch;
