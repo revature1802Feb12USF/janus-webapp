@@ -199,11 +199,12 @@ export class CourseStructureComponent implements OnInit {
    * @author Carter Taylor, Olayinka Ewumi (1712-Steve)
    */
   makeMaster() {
+    console.log("Unique:"+JSON.stringify(this.uniqCurrVersions[this.selectedTypeIndex]));
     for (let j = 0; j < this.uniqCurrVersions[this.selectedTypeIndex].length; j++) {
-      if (this.uniqCurrVersions[this.selectedTypeIndex][j].masterVersion === 1) {
         this.uniqCurrVersions[this.selectedTypeIndex][j].masterVersion = 0;
-      }
     }
+    console.log("After Unique:"+JSON.stringify(this.uniqCurrVersions[this.selectedTypeIndex]))
+
 
     this.selectedCurrVer.masterVersion = 1;
     this.curriculumService.markCurriculumAsMaster(this.selectedCurrVer).subscribe(

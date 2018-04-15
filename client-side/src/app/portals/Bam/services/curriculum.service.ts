@@ -136,7 +136,7 @@ export class CurriculumService {
     */
   markCurriculumAsMaster(curriculum: Curriculum) {
     console.log(JSON.stringify(curriculum));
-    return this.http.patch(this.urlService.curriculum.makeCurriculumMasterByIdUrl(),JSON.stringify(curriculum)).map(
+    return this.http.patch(this.urlService.curriculum.makeCurriculumMasterByIdUrl(curriculum.id),httpOptions).map(
       data => {
         return data;
       }
@@ -172,7 +172,7 @@ export class CurriculumService {
      * @param: number - id - int to get the schedule of
      */
     getScheduleById(id: number): Observable<Schedule> {
-      return this.http.get(this.urlService.curriculum.getScheduleById(id)).map(
+      return this.http.get<Schedule>(this.urlService.curriculum.getScheduleById(id)).map(
         data => {
           return data;
         }
