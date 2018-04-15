@@ -59,10 +59,9 @@ export class AddSubtopicService {
    * Obtains all the subtopics from the database
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
-  getSubtopicPool(): Observable<any> {
+  getSubtopicPool(curriculumId: number): Observable<Subtopic[]> {
     return this.http
-        .get<any>(this.urlService.addsubtopics.getSubtopicPoolUrl())
-        .map( data => {
+        .get<Subtopic[]>(this.urlService.addsubtopics.getSubtopicPoolUrl(curriculumId)).map( data => {
           return data;
         });
   }

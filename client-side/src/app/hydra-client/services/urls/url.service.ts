@@ -18,18 +18,18 @@ export class UrlService {
     update: () => `${this.context}skills`,
   };
 
- /**
-   * Endpoints for batches
-   */
+  /**
+    * Endpoints for batches
+    */
 
- batches = {
+  batches = {
     fetchAllByTrainer: () => `${this.context}batches/trainers`,
     fetchAllByTrainerId: (id: number) => `${this.context}batches/trainers/${id}`,
     fetchAll: () => `${this.context}batches`,
     save: () => `${this.context}batches`,
     update: () => `${this.context}batches`,
     delete: (batchId) => `${this.context}batches/${batchId}`
-};
+  };
 
   /**
    * Endpoints for trainees
@@ -76,75 +76,76 @@ export class UrlService {
     getUsersNotInBatchUrl: () => `${bam}/users/batches/none`,
     resetPasswordUrl: () => `${bam}/user/reset`,
     recoverPasswordUrl: () => `${bam}/user/recovery`
-};
+  };
 
-topic = {
-  addTopicName: (name: string) => `${bam}/topics/${name}`,
-  changeTopicName: (name: string) => `${bam}/topics/topic`
-};
+  topic = {
+    addTopicName: (name: string) => `${bam}/topics/${name}`,
+    changeTopicName: (name: string) => `${bam}/topics/topic`
+  };
 
-subtopic = {
-  getSubtopicByIDs: (subtopicIdList: number[]) => `${bam}/topics/subtopics?ids=${subtopicIdList}`,
-  getSubtopics: () => `subtopic/subtopics`,
-  addSubTopicName: (subtopicName: string, topicId: number, typeId: number) =>
-   `${bam}/subtopics/${typeId}/${topicId}/${subtopicName}`,
-  removeSubtopic: (subtopicId: number) => `${bam}/subtopics/${subtopicId}`,
-  removeAllSubtopics: (batchId: number) => `${bam}/subtopics/${batchId}/`,
-  isPopulated: (batchId: number) => `${bam}/subtopics/ispopulated/${batchId}/`
-};
+  subtopic = {
+    getSubtopicByIDs: (subtopicIdList: number[]) => `${bam}/topics/subtopics?ids=${subtopicIdList}`,
+    getSubtopics: () => `subtopic/subtopics`,
+    addSubTopicName: (subtopicName: string, topicId: number, typeId: number) =>
+      `${bam}/subtopics/${typeId}/${topicId}/${subtopicName}`,
+    removeSubtopic: (subtopicId: number) => `${bam}/subtopics/${subtopicId}`,
+    removeAllSubtopics: (batchId: number) => `${bam}/subtopics/${batchId}/`,
+    isPopulated: (batchId: number) => `${bam}/subtopics/ispopulated/${batchId}/`
+  };
 
-addsubtopics = {
-  getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
-                  `${bam}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
-  getBatchIdUrl: (batchId: number) => `${bam}/batches/byid/${batchId}`,
-  addSubtopicUrl: () => `${bam}/subtopic/addsubtopic`,
-  getSubtopicPoolUrl: () => `${bam}/curriculum/topicpool`,
-  updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
-                  `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`
-};
+  addsubtopics = {
+    getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
+      `${bam}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
+    getBatchIdUrl: (batchId: number) => `${bam}/batches/batch/${batchId}`,
+    addSubtopicUrl: () => `${bam}/subtopics/`,
+    getSubtopicPoolUrl: (curriculumId: number) => `${bam}/curricula/${curriculumId}/subtopics`,
+    updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
+      `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`
+  };
 
-assignForce = {
-  refreshBatches: () => `${bam}/refreshbatches`
-};
+  assignForce = {
+    refreshBatches: () => `${bam}/refreshbatches`
+  };
 
-calendar = {
-  getSubtopicsByBatchPaginationUrl: (batchId: number, pageNumber: number, pageSize: number) =>
+  calendar = {
+    getSubtopicsByBatchPaginationUrl: (batchId: number, pageNumber: number, pageSize: number) =>
       `${bam}/calendar/subtopicspagination/${batchId}/${pageNumber}/${pageSize}/`,
-  getSubtopicsByBatchUrl: (batchId: number) => `${bam}/calendar/subtopics/${batchId}`,
-  getNumberOfSubTopicsByBatchUrl: (batchId: number) => `${bam}/calendar/getnumberofsubtopics/${batchId}`,
-  getTopicsByBatchPagUrl: (batchId: number) => `${bam}/calendar/topics/${batchId}`,
-  changeTopicDateUrl: (subtopicId: number, batchId: number, date: number) =>
+    getScheduleById: (scheduleId: number) => `${bam}/curricula/schedules/${scheduleId}`,
+    getSubtopicsByBatchUrl: (batchId: number) => `${bam}/calendar/subtopics/${batchId}`,
+    getNumberOfSubTopicsByBatchUrl: (batchId: number) => `${bam}/calendar/getnumberofsubtopics/${batchId}`,
+    getTopicsByBatchPagUrl: (batchId: number) => `${bam}/calendar/topics/${batchId}`,
+    changeTopicDateUrl: (subtopicId: number, batchId: number, date: Date) =>
       `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
-  updateTopicStatusUrl: (subtopicId: number, batchId: number, status: string) =>
+    updateTopicStatusUrl: (subtopicId: number, batchId: number, status: string) =>
       `${bam}/calendar/statusupdate/${subtopicId}/${batchId}/${status}`,
-  addTopicsUrl: () => `${bam}/calendar/addtopics`,
-};
+    addTopicsUrl: () => `${bam}/calendar/addtopics`,
+  };
 
-curriculum = {
-  getCurriculumAllUrl: () => `${bam}/curricula/`,
-  getCurriculumByIdUrl: (id: number) => `${bam}/curricula/getcurriculums/${id}`,
-  getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curricula/schedule/${id}`,
-  getTopicPoolAllUrl: () => `${bam}/curricula/topicpool`,
-  getSubtopicPoolAllUrl: () => `${bam}/curricula/subtopicpool`,
-  addCurriculumUrl: () => `${bam}/curricula/addcurriculum`,
-  makeCurriculumMasterByIdUrl: (id: number) => `${bam}/curricula/makemaster/${id}`,
-  syncBatchByIdUrl: (id: number) => `${bam}/curricula/syncbatch/${id}`,
-  deleteCurriculumVersionUrl: () => `${bam}/curricula/deleteversion`,
-  getScheduleById: (id: number) => `${bam}/curricula/schedules/${id}`
-};
+  curriculum = {
+    getCurriculumAllUrl: () => `${bam}/curricula/`,
+    getCurriculumByIdUrl: (id: number) => `${bam}/curricula/getcurriculums/${id}`,
+    getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curricula/schedule/${id}`,
+    getTopicPoolAllUrl: () => `${bam}/curricula/topicpool`,
+    getSubtopicPoolAllUrl: () => `${bam}/curricula/subtopicpool`,
+    addCurriculumUrl: () => `${bam}/curricula/addcurriculum`,
+    makeCurriculumMasterByIdUrl: (id: number) => `${bam}/curricula/makemaster/${id}`,
+    syncBatchByIdUrl: (id: number) => `${bam}/curricula/syncbatch/${id}`,
+    deleteCurriculumVersionUrl: () => `${bam}/curricula/deleteversion`,
+    getScheduleById: (id: number) => `${bam}/curricula/schedules/${id}`
+  };
 
-bambatch = {
-  getBatchAllUrl: () => `${bam}/batches/`,
-  getPastBatchesUrl: (email: string) => `${bam}/batches/past/${email}`,
-  getFutureBatchesUrl: (email: string) => `${bam}/batches/future/${email}`,
-  getBatchInProgressUrl: (email: string) => `${bam}/batches/inprogress/${email}`,
-  getAllBatchesInProgressUrl: (email: string) => `${bam}/batches/allinprogress/${email}`,
-  getBatchByIdURL: (batchId: number) => `${bam}/batches/batch/${batchId}`,
-  updateBatchUrl: () => `${bam}/batches/batch`,
-  getAllBatchTypesUrl: () => `${bam}/batches/types`,
-  removeSubtopicFromBatchUrl: (subtopicId: number) => `${bam}/batch/${subtopicId}`,
-  getAllInProgressUrl: () => `${bam}/batches/current/`
-};
+  bambatch = {
+    getBatchAllUrl: () => `${bam}/batches/`,
+    getPastBatchesUrl: (email: string) => `${bam}/batches/past/${email}`,
+    getFutureBatchesUrl: (email: string) => `${bam}/batches/future/${email}`,
+    getBatchInProgressUrl: (email: string) => `${bam}/batches/inprogress/${email}`,
+    getAllBatchesInProgressUrl: (email: string) => `${bam}/batches/allinprogress/${email}`,
+    getBatchByIdURL: (batchId: number) => `${bam}/batches/batch/${batchId}`,
+    updateBatchUrl: () => `${bam}/batches/batch`,
+    getAllBatchTypesUrl: () => `${bam}/batches/types`,
+    removeSubtopicFromBatchUrl: (subtopicId: number) => `${bam}/batch/${subtopicId}`,
+    getAllInProgressUrl: () => `${bam}/batches/current/`
+  };
 
   constructor() {
     this.context = context;

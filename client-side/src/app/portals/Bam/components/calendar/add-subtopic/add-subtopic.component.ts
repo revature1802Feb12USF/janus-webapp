@@ -40,7 +40,7 @@ export class AddSubtopicComponent implements OnInit {
   public loading: Boolean = true;
   public closeResult: string;
 
-  public subtopics: SubtopicName[] = [];
+  public subtopics: Subtopic[] = [];
   public currentlyAddedSubtopic: Subtopic[] = [];
 
   public uniqueTopics = new Set();
@@ -72,8 +72,7 @@ export class AddSubtopicComponent implements OnInit {
   public alertMessage: string;
   public successMessage: string;
 
-  constructor(private subtopicsService: AddSubtopicService, private statusService: CalendarStatusService,
-    private modalService: NgbModal, private calendarService: CalendarService, private sessionService: SessionService) { }
+  constructor(private subtopicsService: AddSubtopicService, private statusService: CalendarStatusService, private modalService: NgbModal, private calendarService: CalendarService, private sessionService: SessionService) { }
 
   ngOnInit() {
     this.selectedTopic = 'Select a Topic';
@@ -84,10 +83,12 @@ export class AddSubtopicComponent implements OnInit {
     this._alertSuccess.subscribe((message) => this.successMessage = message);
     debounceTime.call(this._alertSuccess, 5000).subscribe(() => this.successMessage = null);
 
-    this.subtopicsService.getSubtopicPool().subscribe(
+    let selectedBatch = JSON.parse(sessionStorage.getItem("batch"));
+    this.subtopicsService.getSubtopicPool(selectedBatch.curriculumID).subscribe(
       (subtopicsService) => {
         this.getCurrentBatch();
-        this.subtopics = this.getSubtopics(subtopicsService);
+        this.subtopics = subtopicsService;
+        this.loading = false;
       }
     );
   }
@@ -107,32 +108,7 @@ export class AddSubtopicComponent implements OnInit {
         this.batchSubtopics = service;
       });
   }
-  /**
-    * The endpoint used returns the subtopics with their topic.
-    * The following iterations creates a set of unique Topics to filter
-    * out the topics from the Subtopics List and maps them to the 'topicMap' property.
-    * The loading property is set to false here beacuse once this method is called
-    * All the subtopics have been loaded
-    *	@author Francisco Palomino | Batch: 1712-dec10-java-steve
-    * @param subtopics holds the subtopics result from the database call
-		*/
-  getSubtopics(subtopics) {
-    for (const i in subtopics) {
-      if (!this.uniqueTopics.has(subtopics[i].topic.name)) {
-        this.uniqueTopics.add(subtopics[i].topic.name);
-        const array = [];
-        array.push(subtopics[i].name);
-        this.topicMap.set(subtopics[i].topic.name, array);
-      } else {
-        const array = this.topicMap.get(subtopics[i].topic.name);
-        this.topicMap.delete(subtopics[i].topic.name);
-        array.push(subtopics[i].name);
-        this.topicMap.set(subtopics[i].topic.name, array);
-      }
-    }
-    this.loading = false;
-    return subtopics;
-  }
+
   /**
    * Method called when a topic is changed. It generates the subtopic list
    * of the current Topic selected and sorts them alphabetically
@@ -166,13 +142,9 @@ export class AddSubtopicComponent implements OnInit {
   onChangeGetSubtopicInfo() {
     if (this.selectedSubtopic !== '' && this.selectedSubtopic !== 'Select a Subtopic') {
       for (const i in this.subtopics) {
-        if (this.selectedSubtopic === this.subtopics[i].name) {
-          this.topicId = this.subtopics[i].topic.id;
-          this.subtopicId = this.subtopics[i].id;
-          this.subtopicType = {
-            id: this.subtopics[i].type.id,
-            name: this.subtopics[i].type.name
-          };
+        if (this.selectedSubtopic === this.subtopics[i].subtopicName) {
+          this.topicId = this.subtopics[i].parentTopic.topicId;
+          this.subtopicId = this.subtopics[i].subtopicId;
         }
       }
     }
@@ -227,11 +199,8 @@ export class AddSubtopicComponent implements OnInit {
    */
   checkSubtopics() {
     for (let i = 0; i < this.batchSubtopics.length; i++) {
-      if (this.subtopic.subtopicName.name === this.batchSubtopics[i].subtopicName.name) {
-        const date = new Date(this.batchSubtopics[i].subtopicDate);
+      if (this.subtopic.subtopicName === this.batchSubtopics[i].subtopicName) {
         this.newDate = new Date(this.slectedDateMiliseconds);
-        this.newDate = this.newDate.toDateString();
-        this.prevDate = date.toDateString();
         this.subtopicId = this.batchSubtopics[i].subtopicId;
         return false;
       }
@@ -275,12 +244,13 @@ export class AddSubtopicComponent implements OnInit {
     };
     this.subtopic = {
       subtopicId: null,
-      subtopicName: this.subtopicName,
-      batch: this.currentBatch,
+      subtopicName: this.selectedSubtopic,
+      date: new Date(),
       status: this.status,
-      subtopicDate: this.slectedDateMiliseconds
+      parentTopic: null
     };
   }
+
   /**
    * Opens a modal to ask the user if they would like to reset
    * the date of a subtopic currently in their calendar. It allows the user
@@ -298,11 +268,6 @@ export class AddSubtopicComponent implements OnInit {
                                           this.slectedDateMiliseconds).subscribe(
             () => {
               this.changeSuccessMessage(`Successfully updated!`);
-              for (let i = 0; i < this.batchSubtopics.length; i++) {
-                if (this.batchSubtopics[i].subtopicId === this.subtopicId) {
-                  this.batchSubtopics[i].subtopicDate = this.slectedDateMiliseconds;
-                }
-              }
             },
             response => {
               if (response.status = 200) {
@@ -334,21 +299,6 @@ export class AddSubtopicComponent implements OnInit {
   }
 
   /**
-   * Returns the SubtopicName object associated with the subtopic name
-   * Returns null if it cannot find it.
-   * @param subtopic
-   * @author Sean Sung | Batch: 1712-dec10-java-steve
-   */
-  getSubtopicName(subtopic: string): SubtopicName {
-    for (const subtopicName of this.subtopics) {
-      if (subtopic === subtopicName.name) {
-        return subtopicName;
-      }
-    }
-    return null;
-  }
-
-  /**
    * Sets draggable on subtopic elements in the DOM to be dragged onto the calendar
    * Date is not known until it is placed on the calendar
    *
@@ -359,14 +309,15 @@ export class AddSubtopicComponent implements OnInit {
   setDraggableOnSubtopic(event, subtopic: string) {
     const subtopicData = new Subtopic(
       null,
-      this.getSubtopicName(subtopic),
-      this.currentBatch,
+      this.selectedSubtopic,
+      new Date(),
       this.statusService.getDefaultStatus(),
       null
     );
 
     // attach data to draggable element
     // -Blake - Why are we using jquery?
+    // -Trevor - idk dude but I can't fix it
     $(event.target).data('subtopic', subtopicData);
     // set draggable
     $(event.target).draggable(
