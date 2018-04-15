@@ -35,13 +35,13 @@
           </execution>
 
           <execution>
-            <id>ng build --verbose</id>
+            <id>npm run build-dev</id>
             <goals>
-              <goal>ng</goal>
+              <goal>npm</goal>
             </goals>
 
             <configuration>
-              <arguments>build --verbose</arguments>
+              <arguments>run build-dev</arguments>
             </configuration>
           </execution>
         </executions>
