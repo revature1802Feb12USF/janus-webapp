@@ -21,7 +21,7 @@ export class SubtopicService {
    * @author Trevor Fortner (1802-Matt)
    * @param subtopicId number
    */
-  getSubtopicByIDs(subtopicIdList: number[]): Observable<Subtopic[]>  {
+  getSubtopicByIDs(subtopicIdList: number[]): Observable<Subtopic[]> {
     return this.http.get(this.urlService.subtopic.getSubtopicByIDs(subtopicIdList)).map(
       data => {
         return data;

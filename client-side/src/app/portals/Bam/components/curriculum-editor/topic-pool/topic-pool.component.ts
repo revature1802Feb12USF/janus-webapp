@@ -25,7 +25,7 @@ export class TopicPoolComponent implements OnInit {
   uniqarr: string[];
   uniqarrFiltered: string[];
   searchText: string;
-  subArray: Array<Topic[]> = new Array<Topic[]>();
+  subArray: any=new Array<Topic[]>();
   subTopicName: Topic[] = [];
   topicPoolCacheData: Topic[] = [];
   @Input() readOnly: boolean;
@@ -54,6 +54,12 @@ export class TopicPoolComponent implements OnInit {
    *   @author Mohamad Alhindi
     *  @batch 1712-Dec11-2017
     */
+
+  sayhi(topic : Topic) : string
+  {
+    console.log("THIS IS IT:"+JSON.stringify(topic));
+    return topic.topicName;
+  }
   getTopics() {
     this.curriculumService.currentTopicPoolData.subscribe(
       data => this.topicPoolCacheData = data
@@ -131,7 +137,6 @@ export class TopicPoolComponent implements OnInit {
         this.uniqarrFiltered = this.uniqarr.filter(i => {
           return i.toLowerCase().includes(topicSearch.toString());
         });
-        this.subArray = new Array<Topic[]>();
         this.getSubTopics();
       } else if (data.type === 'subtopic') {
         this.searchText = data.text.toString().toLowerCase();
@@ -171,7 +176,8 @@ export class TopicPoolComponent implements OnInit {
     */
   getSubTopics() {
     for (let i = 0; i < this.uniqarrFiltered.length; i++) {
-      this.subArray.push(this.subTopicName.filter(e => this.uniqarrFiltered[i] === e.topicName));
+      //this.subArray.push(this.subTopicName.filter(e => this.uniqarrFiltered[i] === e.topicName));
+      console.log("array"+this.uniqarrFiltered[i]);
     }
   }
 
@@ -203,7 +209,6 @@ export class TopicPoolComponent implements OnInit {
         this.subtopicService.addSubTopicName(newSubTopic, topic.id, 1).subscribe(
           data => {
             this.uniqarrFiltered.push(topic.name);
-            this.subArray = new Array<Topic[]>();
             this.topicPoolCacheData.push(data);
             this.getSubTopics();
             this.alertService.alert('success', 'Successfully added Topic');
@@ -227,7 +232,7 @@ export class TopicPoolComponent implements OnInit {
   getNewSubTopicReady(index: number) {
     event.stopPropagation();
     $('#addSubTopicModel').modal('show');
-    this.selectedTopicId = this.subArray[index][0].topicID;
+    //this.selectedTopicId = this.subArray[index][0].topicID;
   }
 
   /**
@@ -244,7 +249,6 @@ export class TopicPoolComponent implements OnInit {
     if (newSubTopic.length > 1) {
       this.subtopicService.addSubTopicName(newSubTopic, this.selectedTopicId, 1).subscribe(
         data => {
-          this.subArray = new Array<Topic[]>();
           this.topicPoolCacheData.push(data);
           this.getSubTopics();
           this.alertService.alert('success', 'Successfully added Subtopic');
