@@ -97,10 +97,11 @@ export class UrlService {
     // getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
     //   `${bam}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
     getBatchIdUrl: (batchId: number) => `${bam}/batches/batch/${batchId}`,
-    addSubtopicUrl: () => `${bam}/subtopics/`,
+    addSubtopicUrl: () => `${bam}/curricula/schedules`,
     getSubtopicPoolUrl: (curriculumId: number) => `${bam}/curricula/${curriculumId}/subtopics`,
     updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
-      `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`
+      `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
+    updateScheduleURL: `${bam}/curricula/schedules`
   };
 
   assignForce = {
@@ -117,12 +118,12 @@ export class UrlService {
     changeTopicDateUrl: `${bam}/curricula/schedules`,
     updateTopicStatusUrl: (subtopicId: number, batchId: number, status: string) =>
       `${bam}/curricula/schedules`,
-    addTopicsUrl: () => `${bam}/calendar/addtopics`,
+    addTopicsUrl: () => `${bam}/calendar/addtopics`
   };
 
   curriculum = {
-    getCurriculumAllUrl: () => `${bam}/curricula/`,
-    getCurriculumByIdUrl: (id: number) => `${bam}/curricula/getcurriculums/${id}`,
+    getCurriculumAllUrl: () => `${bam}/curricula/all`,
+    getCurriculumByIdUrl: (id: number) => `${bam}/curricula/${id}`,
     getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curricula/schedule/${id}`,
     getTopicPoolAllUrl: () => `${bam}/curricula/topicpool`,
     getSubtopicPoolAllUrl: () => `${bam}/curricula/subtopicpool`,

@@ -259,6 +259,9 @@ export class CalendarComponent implements OnInit {
   */
   handleDrop(event) {
     const newSubtopic = $(event.jsEvent.target).data('subtopic');
+
+    console.log(newSubtopic);
+    
     // time not needed for non-month views
     if (event.resourceId.name !== 'month') {
       newSubtopic.subtopicDate = new Date(event.date.format());

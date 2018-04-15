@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subtopic } from '../models/subtopic.model';
 import { Batch } from '../models/batch.model';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
+import { ScheduledSubtopic } from '../models/scheduledsubtopic.model';
+import { Schedule } from '../models/schedule.model';
 
 
 const httpOptions = {
@@ -73,5 +75,13 @@ export class AddSubtopicService {
   addSubtopic(subtopic): Observable<Subtopic> {
     return this.http.post<Subtopic>(this.urlService.addsubtopics.addSubtopicUrl(), JSON.stringify(subtopic), httpOptionsJson);
   }
-
+  
+  /**
+   * Updates a Schedule object on the backend
+   * @author Scott Bennett - (Batch 1802-Matt)
+   * @author Trevor Fortner - (Batch 1802-Matt)
+   */
+  updateSchedule(schedule: Schedule){
+    return this.http.patch<Schedule>(this.urlService.addsubtopics.updateScheduleURL, schedule);
+  }
 }

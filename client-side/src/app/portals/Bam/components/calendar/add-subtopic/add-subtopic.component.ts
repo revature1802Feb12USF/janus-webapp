@@ -14,6 +14,10 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Subtopic } from '../../../models/subtopic.model';
 import { AddSubtopicService } from '../../../services/add-subtopic.service';
 import { CalendarStatusService } from '../../../services/calendar-status.service';
+import { Topic } from '../../../models/topic.model';
+import { Schedule } from '../../../models/schedule.model';
+import { ScheduledDate } from '../../../models/scheduleddate.model';
+import { ScheduledSubtopic } from '../../../models/scheduledsubtopic.model';
 
 // for jquery
 declare var $: any;
@@ -45,7 +49,7 @@ export class AddSubtopicComponent implements OnInit {
 
   public uniqueTopics = new Set();
   public topicMap = new Map();
-  public subtopicList: Object[] = []; // strings
+  public subtopicNameList: Object[] = []; // strings
   public selectedTopic: string;
   public selectedSubtopic: string;
   public selectedDate: any;
@@ -58,13 +62,10 @@ export class AddSubtopicComponent implements OnInit {
 
   public currentBatch: Batch;
   private batchSubtopics: Subtopic[] = [];
-
-  private topicName: TopicName;
-  private subtopicType: SubtopicType;
-  private subtopicName: SubtopicName;
+  
   private status: string;
   private subtopic: Subtopic;
-  private slectedDateMiliseconds: any;
+  private selectedDateMiliseconds: any;
 
   private _alert: Subject<string> = new Subject<string>();
   private _alertSuccess: Subject<string> = new Subject<string>();
@@ -85,28 +86,13 @@ export class AddSubtopicComponent implements OnInit {
 
     let selectedBatch = JSON.parse(sessionStorage.getItem("batch"));
     this.subtopicsService.getSubtopicPool(selectedBatch.curriculumID).subscribe(
-      (subtopicsService) => {
-        this.getCurrentBatch();
-        this.subtopics = subtopicsService;
+      (subtopicList) => {
+        this.getTopics(subtopicList);
+        this.subtopics = subtopicList;
+        this.currentBatch = selectedBatch;
         this.loading = false;
       }
     );
-  }
-
-  /**
-    * Loads current batch information and all the subtopics of the batch
-		*	@author Francisco Palomino | Batch: 1712-dec10-java-steve
-		*/
-  getCurrentBatch() {
-    this.subtopicsService.getBatchById(this.sessionService.getSelectedBatch().id).subscribe(
-      (service) => {
-        this.currentBatch = service;
-      }
-    );
-    // this.subtopicsService.getBatchSubtopics(this.sessionService.getSelectedBatch().id).subscribe(
-    //   service => {
-    //     this.batchSubtopics = service;
-    //   });
   }
 
   /**
@@ -115,14 +101,13 @@ export class AddSubtopicComponent implements OnInit {
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
   onChangeLoadSubtopics() {
-    this.subtopicList = [];
-    this.selectedSubtopic = 'Select a Subtopic';
-    if (this.selectedTopic !== '' && this.selectedTopic !== 'Select a Topic') {
+    this.subtopicNameList = [];
+    if (this.selectedTopic !== '') {
       for (const subtopic of Array.from(this.topicMap.get(this.selectedTopic))) {
-        this.subtopicList.push(subtopic);
+        this.subtopicNameList.push(subtopic);
       }
     }
-    this.subtopicList.sort((n1, n2) => {
+    this.subtopicNameList.sort((n1, n2) => {
       if (n1 > n2) {
         return 1;
       }
@@ -131,6 +116,32 @@ export class AddSubtopicComponent implements OnInit {
       }
       return 0;
     });
+  }
+
+   /**
+    * The endpoint used returns the subtopics with their topic.
+    * The following iterations creates a set of unique Topics to filter
+    * out the topics from the Subtopics List and maps them to the 'topicMap' property.
+    * The loading property is set to false here beacuse once this method is called
+    * All the subtopics have been loaded
+    *	@author Francisco Palomino | Batch: 1712-dec10-java-steve
+    * @param subtopics holds the subtopics result from the database call
+		*/
+  getTopics(subtopics) {
+      for (const i in subtopics) {
+        if (!this.uniqueTopics.has(subtopics[i].parentTopic.topicName)) {
+          this.uniqueTopics.add(subtopics[i].parentTopic.topicName);
+          const array = [];
+          array.push(subtopics[i].subtopicName);
+          this.topicMap.set(subtopics[i].parentTopic.topicName, array);
+        } else {
+          const array = this.topicMap.get(subtopics[i].parentTopic.topicName);
+          this.topicMap.delete(subtopics[i].parentTopic.topicName);
+          array.push(subtopics[i].subtopicName);
+          this.topicMap.set(subtopics[i].parentTopic.topicName, array);
+        }
+      }
+      this.loading = false;
   }
 
   /**
@@ -157,37 +168,67 @@ export class AddSubtopicComponent implements OnInit {
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
   saveSubtopic() {
-    this.slectedDateMiliseconds = new Date(this.selectedDate + 'T09:00:00-05:00').getTime();
+    this.selectedDateMiliseconds = new Date(this.selectedDate + 'T09:00:00-05:00').getTime();
 
-    if (this.selectedTopic === 'Select a Topic' || this.selectedSubtopic === 'Select a Subtopic'
-      || this.selectedTopic === '' || this.selectedSubtopic === '') {
+    if (this.selectedTopic === 'Select a Topic' || this.selectedSubtopic === 'Select a Subtopic' || this.selectedTopic === '' || this.selectedSubtopic === '') {
       this.changeAlertMessage(`Select topic and subtopic`);
-    } else if (isNaN(this.slectedDateMiliseconds)) {
+    } else if (isNaN(this.selectedDateMiliseconds)) {
       this.changeAlertMessage(`Date input error.`);
     } else {
       const today = new Date().setHours(0, 0, 0, 0);
-      if (this.slectedDateMiliseconds >= today) {
+      if (this.selectedDateMiliseconds >= today) {
         this.status = 'Pending';
       } else {
         this.status = 'Missed';
       }
 
-      this.setSubtopicObject();
+      this.setSubtopicObject(); //sets this.subtopic to the one clicked
+
       if (this.checkSubtopics()) {
-        this.subtopicsService.addSubtopic(this.subtopic).subscribe(
-          (service) => {
-            const arr = [];
-            this.batchSubtopics.push(service);
-            this.currentlyAddedSubtopic.push(service);
-            this.changeSuccessMessage(`Successfully added!`);
-            this.calendarService.addSubtopicToCalendar(service);
-          }, error => this.changeAlertMessage(`Failed to add Subtopic, check all inputs`)
-        );
+        let selectedBatchSchedule: Schedule = JSON.parse(sessionStorage.getItem("schedule"));
+
+        selectedBatchSchedule.subtopics.forEach((scheduledSubtopic, index) => {
+          if(scheduledSubtopic.subtopicId == this.subtopic.subtopicId){
+            let batchStartDate = new Date(this.currentBatch.startDate);
+
+            let newWeek = Math.floor((this.subtopic.startTime.getDate() - batchStartDate.getDate()) / 7 + 1);
+
+            let newScheduledDate = new ScheduledDate(scheduledSubtopic.date.id, this.subtopic.startTime.getDay(), newWeek, this.subtopic.startTime.getTime(), this.subtopic.endTime.getTime());
+            // ^ lol sorry next batch
+            // use whatever's in it currently to populate basically the same thing, but with a new day number, week number, and start/end times
+
+            selectedBatchSchedule.subtopics[index].date = newScheduledDate;
+
+            this.subtopicsService.updateSchedule(selectedBatchSchedule).subscribe(
+              success => {
+                const arr = [];
+                console.log(this.subtopic);
+                this.batchSubtopics.push(this.subtopic);
+                // this.currentlyAddedSubtopic.push(this.subtopic);
+                this.changeSuccessMessage(`Successfully added!`);
+                this.calendarService.addSubtopicToCalendar(this.subtopic);
+              },
+              error => this.changeAlertMessage(`Failed to add subtopic, check all inputs`)
+            );
+          }
+        });
+
+        // this.subtopicsService.addSubtopic(selectedBatchSchedule).subscribe(
+        //   (service) => {
+        //     const arr = [];
+        //     this.batchSubtopics.push(service);
+        //     this.currentlyAddedSubtopic.push(service);
+        //     this.changeSuccessMessage(`Successfully added!`);
+        //     this.calendarService.addSubtopicToCalendar(service);
+        //   }, 
+        //   error => this.changeAlertMessage(`Failed to add Subtopic, check all inputs`)
+        // );
       } else {
         this.open(this.modalRef);
       }
     }
   }
+
   /**
    * Verifies if the subtopic being added to the calendar currently
    * exists on the batch's calendar. If the calendar does have the
@@ -200,7 +241,7 @@ export class AddSubtopicComponent implements OnInit {
   checkSubtopics() {
     for (let i = 0; i < this.batchSubtopics.length; i++) {
       if (this.subtopic.subtopicName === this.batchSubtopics[i].subtopicName) {
-        this.newDate = new Date(this.slectedDateMiliseconds);
+        this.newDate = new Date(this.selectedDateMiliseconds);
         this.subtopicId = this.batchSubtopics[i].subtopicId;
         return false;
       }
@@ -232,26 +273,23 @@ export class AddSubtopicComponent implements OnInit {
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
   setSubtopicObject() {
-    this.topicName = {
-      id: this.topicId,
-      name: this.selectedTopic,
-    };
-    this.subtopicName = {
-      id: this.subtopicId,
-      name: this.selectedSubtopic,
-      topic: this.topicName,
-      type: this.subtopicType
-    };
-    let endTime: Date = new Date();
-    endTime.setHours(endTime.getHours() + 1);
-    this.subtopic = {
-      subtopicId: null,
-      subtopicName: this.selectedSubtopic,
-      startTime: new Date(),
-      endTime: endTime,
-      status: this.status,
-      parentTopic: null
-    };
+    for(let sub of this.subtopics){
+      if(sub.subtopicName == this.selectedSubtopic){
+        let startTime: Date = new Date(this.selectedDateMiliseconds);
+        let endTime: Date = new Date(this.selectedDateMiliseconds);
+        endTime.setHours(endTime.getHours() + 1);
+    
+        this.subtopic = {
+          subtopicId: sub.subtopicId,
+          subtopicName: sub.subtopicName,
+          startTime: startTime,
+          endTime: endTime,
+          status: this.status,
+          parentTopic: new Topic(this.topicId, this.selectedTopic)
+        };
+        break;
+      }
+    }
   }
 
   /**
@@ -267,8 +305,7 @@ export class AddSubtopicComponent implements OnInit {
         if (result === 'ok') {
           this.subtopic.subtopicId = this.subtopicId;
           this.calendarService.addSubtopicToCalendar(this.subtopic);
-          this.subtopicsService.updateDate(this.subtopicId, this.sessionService.getSelectedBatch().id,
-                                          this.slectedDateMiliseconds).subscribe(
+          this.subtopicsService.updateDate(this.subtopicId, this.sessionService.getSelectedBatch().id, this.selectedDateMiliseconds).subscribe(
             () => {
               this.changeSuccessMessage(`Successfully updated!`);
             },
