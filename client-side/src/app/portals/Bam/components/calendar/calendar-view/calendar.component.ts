@@ -266,10 +266,18 @@ export class CalendarComponent implements OnInit {
     
     // time not needed for non-month views
     if (event.resourceId.name !== 'month') {
-      newSubtopic.subtopicDate = new Date(event.date.format());
+      newSubtopic.startTime = new Date(event.date.format());
     } else {
-      newSubtopic.subtopicDate = new Date(event.date.format() + 'T09:00:00-05:00');
+      newSubtopic.startTime = new Date(event.date.format() + 'T09:00:00-05:00');
     }
+
+    const rightNow = new Date();
+    if (event.date >= rightNow) {
+      newSubtopic.status = 'Pending';
+    } else {
+      newSubtopic.status = 'Missed';
+    }
+
     const calendarEvent = this.calendarService.mapSubtopicToEvent(newSubtopic);
     let existingIndex;
 
@@ -399,7 +407,7 @@ export class CalendarComponent implements OnInit {
    */
   eventExists(calendarEvent: CalendarEvent): number {
     for (let i = 0; i < this.events.length; i++) {
-      if (this.events[i].subtopicName === calendarEvent.subtopicName) {
+      if (this.events[i].title === calendarEvent.title) {
         return i;
       }
     }
@@ -421,7 +429,6 @@ export class CalendarComponent implements OnInit {
       if(scheduledSubtopic.subtopicId == calendarEvent.subtopicId){
         let index = this.schedule.subtopics.indexOf(scheduledSubtopic);
         this.schedule.subtopics.splice(index, 1);
-        console.log(this.schedule);
 
         this.addSubtopicService.updateSchedule(this.schedule).subscribe();
       }

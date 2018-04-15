@@ -61,6 +61,7 @@ export class AddSubtopicComponent implements OnInit {
 
   public currentBatch: Batch;
   private batchSubtopics: Subtopic[] = [];
+  private allSubtopicsForCurriculum: Subtopic[] = [];
   
   private status: string;
   private subtopic: Subtopic;
@@ -84,12 +85,21 @@ export class AddSubtopicComponent implements OnInit {
     debounceTime.call(this._alertSuccess, 5000).subscribe(() => this.successMessage = null);
 
     let selectedBatch = JSON.parse(sessionStorage.getItem("batch"));
+    let selectedBatchSchedule = JSON.parse(sessionStorage.getItem("schedule"));
     this.subtopicsService.getSubtopicPool(selectedBatch.curriculumID).subscribe(
       (subtopicList) => {
+        this.allSubtopicsForCurriculum = subtopicList;
         this.getTopics(subtopicList);
-        this.batchSubtopics = subtopicList;
+
+        for(let subtopic of subtopicList){
+          for(let scheduledSub of selectedBatchSchedule.subtopics){
+            if(subtopic.subtopicId == scheduledSub.subtopicId){
+              this.batchSubtopics.push(subtopic);
+            }
+          }
+        }
+
         this.currentBatch = selectedBatch;
-        this.loading = false;
       }
     );
   }
@@ -283,7 +293,6 @@ export class AddSubtopicComponent implements OnInit {
         this.subtopicsService.updateSchedule(selectedBatchSchedule).subscribe(
           success => {
             const arr = [];
-            console.log(this.subtopic);
             this.batchSubtopics.push(this.subtopic);
             this.currentlyAddedSubtopic.push(this.subtopic);
             this.changeSuccessMessage(`Successfully `+message+`!`);
@@ -338,29 +347,34 @@ export class AddSubtopicComponent implements OnInit {
    * @param subtopic
    * @author Sean Sung | Batch: 1712-dec10-java-steve
    */
-  setDraggableOnSubtopic(event, subtopic: string) {
-    const subtopicData = new Subtopic(
-      null,
-      this.selectedSubtopic,
-      new Date(),
-      new Date(),
-      this.statusService.getDefaultStatus(),
-      null
-    );
-
-    // attach data to draggable element
-    // -Blake - Why are we using jquery?
-    // -Trevor - idk dude but I can't fix it
-    $(event.target).data('subtopic', subtopicData);
-    // set draggable
-    $(event.target).draggable(
-      {
-        revert: true,
-        revertDuration: 0,
-        zIndex: 999,
-        scroll: false,
-        helper: 'clone'
+  setDraggableOnSubtopic(event, subtopicName: string) {
+    for(let subChosen of this.allSubtopicsForCurriculum){
+      if(subChosen.subtopicName == subtopicName){
+        const subtopicData = new Subtopic(
+          subChosen.subtopicId,
+          subChosen.subtopicName,
+          new Date(),
+          new Date(),
+          this.statusService.getDefaultStatus(),
+          subChosen.parentTopic
+        );
+    
+        // attach data to draggable element
+        // -Blake - Why are we using jquery?
+        // -Trevor - idk dude but I can't fix it
+        $(event.target).data('subtopic', subtopicData);
+        // set draggable
+        $(event.target).draggable(
+          {
+            revert: true,
+            revertDuration: 0,
+            zIndex: 999,
+            scroll: false,
+            helper: 'clone'
+          }
+        );
+        break;
       }
-    );
+    }
   }
 }
