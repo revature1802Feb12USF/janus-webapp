@@ -153,9 +153,7 @@ export class MainCurriculumViewComponent implements OnInit {
         this.selectedCurr.creatorId = this.sessionService.getUser().userId;
         this.selectedCurr.modifierId=0;
         this.selectedCurr.dateCreated = Date.now();
-        if (makeMaster) {
-            this.selectedCurr.masterVersion = 1;
-        }
+
         const meta = new MetaDTO(this.selectedCurr);
 
         const weeksDTO: WeeksDTO[] = [];
