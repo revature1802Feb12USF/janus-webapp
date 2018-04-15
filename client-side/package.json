@@ -5,7 +5,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --env=prod",
+    "build": "ng build --prod --env=prod --verbose",
+    "build-dev":"ng build --dev --env=dev --verbose",
     "build-uat": "ng build --prod --env=uat",
     "test": "ng test",
     "hydra-test": "ng test --config.file=hydra.karma.conf.ts",
