@@ -10,7 +10,7 @@ import { environment } from '../../../../environments/environment';
 
 fdescribe('HydraBatchService', () => {
   const batch = new HydraBatch();
-  this.context = environment.hydraContext;
+  this.context = environment.context;
   batch.trainer = 100;
   beforeEach(() => {
     TestBed.configureTestingModule({
