@@ -35,24 +35,17 @@
           </execution>
 
           <execution>
-            <id>npm run build</id>
+            <id>ng build --verbose</id>
             <goals>
-              <goal>npm</goal>
+              <goal>ng</goal>
             </goals>
 
             <configuration>
-              <arguments>run build</arguments>
+              <arguments>build --verbose</arguments>
             </configuration>
           </execution>
         </executions>
       </plugin>
     </plugins>
-	<!-- Check what this is for -->
-    <resources>
-      <resource>
-        <directory>target/client</directory>
-        <targetPath>static</targetPath>
-      </resource>
-    </resources>
   </build>
  </project>
