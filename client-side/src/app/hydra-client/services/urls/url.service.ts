@@ -86,7 +86,7 @@ topic = {
 
 subtopic = {
   getSubtopicByIDs: (subtopicIdList: number[]) => `${bam}/topics/subtopics?ids=${subtopicIdList}`,
-  getSubtopics: () => `${bam}/topics/subtopics`,
+  getSubtopics: () => `subtopic/subtopics`,
   addSubTopicName: (subtopicName: string, topicId: number, typeId: number) =>
    `${bam}/subtopics/${typeId}/${topicId}/${subtopicName}`,
   removeSubtopic: (subtopicId: number) => `${bam}/subtopics/${subtopicId}`,
