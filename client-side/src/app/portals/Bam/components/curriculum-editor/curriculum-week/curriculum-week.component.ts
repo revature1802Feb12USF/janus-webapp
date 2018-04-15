@@ -57,11 +57,11 @@ export class CurriculumWeekComponent implements OnInit {
 
     this.weekDTO.days.forEach(element => {
       element.subtopics.forEach(subtopic => {
-        if (this.percentageMap[subtopic.topic.name] === undefined) {
-          this.percentageMap[subtopic.topic.name] = 1 ;
+        if (this.percentageMap[subtopic.parentTopic.topicName] === undefined) {
+          this.percentageMap[subtopic.parentTopic.topicName] = 1 ;
           this.total++;
           }else {
-            this.percentageMap[subtopic.topic.name] += 1 ;
+            this.percentageMap[subtopic.parentTopic.topicName] += 1 ;
             this.total++;
           }
       });
