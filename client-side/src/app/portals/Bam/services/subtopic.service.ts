@@ -6,6 +6,7 @@ import { UrlService } from '../../../hydra-client/services/urls/url.service';
 import { Observable } from 'rxjs/Observable';
 import { Subtopic } from '../models/subtopic.model';
 import { Topic } from '../models/topic.model';
+import { SubtopicCurric } from '../models/subtopicCurric.model';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-type': 'application/json'}),
@@ -22,7 +23,7 @@ export class SubtopicService {
    * @param subtopicId number
    */
   getSubtopicByIDs(subtopicIdList: number[]): Observable<Subtopic[]>  {
-    return this.http.get(this.urlService.subtopic.getSubtopicByIDs(subtopicIdList)).map(
+    return this.http.get<Subtopic[]>(this.urlService.subtopic.getSubtopicByIDs(subtopicIdList)).map(
       data => {
         return data;
       }
@@ -65,6 +66,14 @@ export class SubtopicService {
    */
   removeAllSubtopicsFromBatch(batchId: number) {
     return this.http.post(this.urlService.subtopic.removeAllSubtopics(batchId), httpOptions);
+  }
+
+  getAllSubtopics() : Observable<SubtopicCurric[]>
+  {
+    return this.http.get<SubtopicCurric[]>(this.urlService.subtopic.getSubtopics()).map(data => {
+      console.log("HEYYYYY:"+JSON.stringify(data));
+      return data;
+    });    
   }
 
   /**

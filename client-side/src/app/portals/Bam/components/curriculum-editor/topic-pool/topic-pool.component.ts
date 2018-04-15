@@ -10,6 +10,7 @@ import { SubtopicService } from '../../../services/subtopic.service';
 import { SearchTextService } from '../../../services/search-text.service';
 import { AlertService } from '../../../services/alert.service';
 import { Topic } from '../../../models/topic.model';
+import { SubtopicCurric } from '../../../models/subtopicCurric.model';
 
 // Used below to toggle add subtopic modal
 declare let $: any;
@@ -26,6 +27,7 @@ export class TopicPoolComponent implements OnInit {
   uniqarrFiltered: string[];
   searchText: string;
   subArray: Array<Topic[]> = new Array<Topic[]>();
+  subTopicArray: Array<SubtopicCurric[]> = new Array<SubtopicCurric[]>();
   subTopicName: Topic[] = [];
   topicPoolCacheData: Topic[] = [];
   @Input() readOnly: boolean;
@@ -170,11 +172,27 @@ export class TopicPoolComponent implements OnInit {
     * @batch 1712-Dec11-2017
     */
   getSubTopics() {
-    for (let i = 0; i < this.uniqarrFiltered.length; i++) {
-      this.subArray.push(this.subTopicName.filter(e => this.uniqarrFiltered[i] === e.topicName));
-    }
-  }
+    //get all subtopics
+    this.subtopicService.getAllSubtopics().subscribe(
+      arrayOfAllSubtopics =>
+      {
+        let i=0;
+        this.subTopicName.forEach(topic => 
+        {
+          this.subTopicArray.push(arrayOfAllSubtopics.filter( match => topic.topicName == match.parentTopic.topicName))
+          //if topic name equals subtopic.parentname
+          //add it to subtopicarray first index
+          //++i;
+          //after that, iterate the index
+          
+        });
+        console.log("HEY LOOK AT ME:"+JSON.stringify(this.subTopicArray));
+      }
+    );
 
+    //for each in subtopic name
+    
+  }
 
   /**
    * This method is used to send the currently dragged object
