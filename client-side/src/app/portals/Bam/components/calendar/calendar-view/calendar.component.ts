@@ -81,6 +81,10 @@ export class CalendarComponent implements OnInit {
             topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24) - 4); //- 4 to adjust for EST from GMT
             subtopics[i].startTime = topicStartDate;
 
+            if(subtopics[i].status == 'Planned'){
+              subtopics[i].status = 'Pending';
+            }
+
             // let topicLengthInHours = 
             // ((this.scheduledSubtopics[i].date.endTime/1000/3600) % 24) -
             // ((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24);
@@ -89,6 +93,8 @@ export class CalendarComponent implements OnInit {
             // topicEndDate.setHours(topicStartDate.getHours() + topicLengthInHours);
             // subtopics[i].endTime = topicEndDate;
           }
+          sessionStorage.setItem('subtopics', JSON.stringify(this.subtopics));
+          
           this.subtopics.forEach((subtopic, index) => {
             const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
             this.events.push(calendarEvent);
@@ -185,7 +191,6 @@ export class CalendarComponent implements OnInit {
     this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
     this.updateEvent(calendarEvent);
     this.fc.updateEvent(event.calEvent);
-
   }
 
   /**
@@ -244,7 +249,6 @@ export class CalendarComponent implements OnInit {
 
         element.date.day = newDay;
         element.date.week = newWeek;
-        console.log(element.date.week);
 
         this.subtopics[index].startTime.setDate(calendarEvent.start.getDate());
       }
@@ -259,8 +263,6 @@ export class CalendarComponent implements OnInit {
   */
   handleDrop(event) {
     const newSubtopic = $(event.jsEvent.target).data('subtopic');
-
-    console.log(newSubtopic);
     
     // time not needed for non-month views
     if (event.resourceId.name !== 'month') {
@@ -414,7 +416,17 @@ export class CalendarComponent implements OnInit {
   trashDropEvent(event, ui, calendarEvent: CalendarEvent) {
     event.target.style.opacity = 1;
     this.removeEvent(this.eventExists(calendarEvent));
-    this.subtopicService.removeSubtopicFromBatch(calendarEvent.subtopicId).subscribe();
+
+    for(let scheduledSubtopic of this.scheduledSubtopics){
+      if(scheduledSubtopic.subtopicId == calendarEvent.subtopicId){
+        let index = this.schedule.subtopics.indexOf(scheduledSubtopic);
+        this.schedule.subtopics.splice(index, 1);
+        console.log(this.schedule);
+
+        this.addSubtopicService.updateSchedule(this.schedule).subscribe();
+      }
+    }
+    // this.subtopicService.removeSubtopicFromBatch(calendarEvent.subtopicId).subscribe();
   }
 
   /**
@@ -429,10 +441,7 @@ export class CalendarComponent implements OnInit {
   }
 
   handleViewRender($event) {
-
     this.gotoDateValue = new Date(this.fc.getDate().stripTime().format() + 'T09:00:00-05:00');
-
   }
-
 
 }

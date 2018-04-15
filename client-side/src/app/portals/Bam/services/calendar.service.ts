@@ -176,15 +176,4 @@ export class CalendarService {
 
     return calendarEvent;
   }
-  // mapSubtopicToEvent(subtopic: Subtopic): CalendarEvent {
-  //   const calendarEvent = new CalendarEvent();
-  //   calendarEvent.subtopicNameId = subtopic.subtopicName.id;
-  //   calendarEvent.subtopicId = subtopic.subtopicId;
-  //   calendarEvent.title = subtopic.subtopicName.name;
-  //   calendarEvent.start = new Date(subtopic.subtopicDate);
-  //   calendarEvent.status = subtopic.status;
-  //   calendarEvent.color = this.statusService.getStatusColor(calendarEvent.status);
-
-  //   return calendarEvent;
-  // }
 }

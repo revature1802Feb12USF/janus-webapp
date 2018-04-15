@@ -78,6 +78,7 @@ export class AddSubtopicService {
   
   /**
    * Updates a Schedule object on the backend
+   * @param schedule - new version of a schedule to be updated
    * @author Scott Bennett - (Batch 1802-Matt)
    * @author Trevor Fortner - (Batch 1802-Matt)
    */

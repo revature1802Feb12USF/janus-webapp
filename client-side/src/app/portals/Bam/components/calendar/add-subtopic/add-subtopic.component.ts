@@ -44,7 +44,6 @@ export class AddSubtopicComponent implements OnInit {
   public loading: Boolean = true;
   public closeResult: string;
 
-  public subtopics: Subtopic[] = [];
   public currentlyAddedSubtopic: Subtopic[] = [];
 
   public uniqueTopics = new Set();
@@ -54,7 +53,7 @@ export class AddSubtopicComponent implements OnInit {
   public selectedSubtopic: string;
   public selectedDate: any;
 
-  public prevDate: string;
+  public prevDate: any;
   public newDate: any;
 
   private topicId: number;
@@ -88,7 +87,7 @@ export class AddSubtopicComponent implements OnInit {
     this.subtopicsService.getSubtopicPool(selectedBatch.curriculumID).subscribe(
       (subtopicList) => {
         this.getTopics(subtopicList);
-        this.subtopics = subtopicList;
+        this.batchSubtopics = subtopicList;
         this.currentBatch = selectedBatch;
         this.loading = false;
       }
@@ -152,10 +151,10 @@ export class AddSubtopicComponent implements OnInit {
    */
   onChangeGetSubtopicInfo() {
     if (this.selectedSubtopic !== '' && this.selectedSubtopic !== 'Select a Subtopic') {
-      for (const i in this.subtopics) {
-        if (this.selectedSubtopic === this.subtopics[i].subtopicName) {
-          this.topicId = this.subtopics[i].parentTopic.topicId;
-          this.subtopicId = this.subtopics[i].subtopicId;
+      for (const i in this.batchSubtopics) {
+        if (this.selectedSubtopic === this.batchSubtopics[i].subtopicName) {
+          this.topicId = this.batchSubtopics[i].parentTopic.topicId;
+          this.subtopicId = this.batchSubtopics[i].subtopicId;
         }
       }
     }
@@ -170,7 +169,7 @@ export class AddSubtopicComponent implements OnInit {
   saveSubtopic() {
     this.selectedDateMiliseconds = new Date(this.selectedDate + 'T09:00:00-05:00').getTime();
 
-    if (this.selectedTopic === 'Select a Topic' || this.selectedSubtopic === 'Select a Subtopic' || this.selectedTopic === '' || this.selectedSubtopic === '') {
+    if (this.selectedTopic === 'Select a Topic' || this.selectedSubtopic === 'Select a Subtopic') {
       this.changeAlertMessage(`Select topic and subtopic`);
     } else if (isNaN(this.selectedDateMiliseconds)) {
       this.changeAlertMessage(`Date input error.`);
@@ -185,44 +184,7 @@ export class AddSubtopicComponent implements OnInit {
       this.setSubtopicObject(); //sets this.subtopic to the one clicked
 
       if (this.checkSubtopics()) {
-        let selectedBatchSchedule: Schedule = JSON.parse(sessionStorage.getItem("schedule"));
-
-        selectedBatchSchedule.subtopics.forEach((scheduledSubtopic, index) => {
-          if(scheduledSubtopic.subtopicId == this.subtopic.subtopicId){
-            let batchStartDate = new Date(this.currentBatch.startDate);
-
-            let newWeek = Math.floor((this.subtopic.startTime.getDate() - batchStartDate.getDate()) / 7 + 1);
-
-            let newScheduledDate = new ScheduledDate(scheduledSubtopic.date.id, this.subtopic.startTime.getDay(), newWeek, this.subtopic.startTime.getTime(), this.subtopic.endTime.getTime());
-            // ^ lol sorry next batch
-            // use whatever's in it currently to populate basically the same thing, but with a new day number, week number, and start/end times
-
-            selectedBatchSchedule.subtopics[index].date = newScheduledDate;
-
-            this.subtopicsService.updateSchedule(selectedBatchSchedule).subscribe(
-              success => {
-                const arr = [];
-                console.log(this.subtopic);
-                this.batchSubtopics.push(this.subtopic);
-                // this.currentlyAddedSubtopic.push(this.subtopic);
-                this.changeSuccessMessage(`Successfully added!`);
-                this.calendarService.addSubtopicToCalendar(this.subtopic);
-              },
-              error => this.changeAlertMessage(`Failed to add subtopic, check all inputs`)
-            );
-          }
-        });
-
-        // this.subtopicsService.addSubtopic(selectedBatchSchedule).subscribe(
-        //   (service) => {
-        //     const arr = [];
-        //     this.batchSubtopics.push(service);
-        //     this.currentlyAddedSubtopic.push(service);
-        //     this.changeSuccessMessage(`Successfully added!`);
-        //     this.calendarService.addSubtopicToCalendar(service);
-        //   }, 
-        //   error => this.changeAlertMessage(`Failed to add Subtopic, check all inputs`)
-        // );
+        this.tryToAddSelectedSubtopic('added');
       } else {
         this.open(this.modalRef);
       }
@@ -235,12 +197,14 @@ export class AddSubtopicComponent implements OnInit {
    * the subtopic it saves its properties just in case the
    * user wants to override the date.
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
-   * @return I used the false value to idenetify that it can't be
+   * @return I used the false value to identify that it can't be
    * added because it exists on the current batch.
    */
   checkSubtopics() {
+    let subtopicsOnCalendar: Subtopic[] = JSON.parse(sessionStorage.getItem("subtopics"));
     for (let i = 0; i < this.batchSubtopics.length; i++) {
-      if (this.subtopic.subtopicName === this.batchSubtopics[i].subtopicName) {
+      if (this.subtopic.subtopicName == this.batchSubtopics[i].subtopicName) {
+        this.prevDate = subtopicsOnCalendar[i].startTime;
         this.newDate = new Date(this.selectedDateMiliseconds);
         this.subtopicId = this.batchSubtopics[i].subtopicId;
         return false;
@@ -273,7 +237,7 @@ export class AddSubtopicComponent implements OnInit {
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
   setSubtopicObject() {
-    for(let sub of this.subtopics){
+    for(let sub of this.batchSubtopics){
       if(sub.subtopicName == this.selectedSubtopic){
         let startTime: Date = new Date(this.selectedDateMiliseconds);
         let endTime: Date = new Date(this.selectedDateMiliseconds);
@@ -293,6 +257,45 @@ export class AddSubtopicComponent implements OnInit {
   }
 
   /**
+   * Tries to add or update the selected subtopic into the database
+   * On success -> shows "Successfully " + message
+   * On failure -> shows error message
+   * 
+   * @author Scott Bennett - (Batch Matt-1802)
+   * @author Trevor Fortner - (Batch Matt-1802)
+   * @param message - String to put in response alert
+   */
+  tryToAddSelectedSubtopic(message: string){
+    let selectedBatchSchedule: Schedule = JSON.parse(sessionStorage.getItem("schedule"));
+
+    selectedBatchSchedule.subtopics.forEach((scheduledSubtopic, index) => {
+      if(scheduledSubtopic.subtopicId == this.subtopic.subtopicId){
+        let batchStartDate = new Date(this.currentBatch.startDate);
+
+        let newWeek = Math.floor((this.subtopic.startTime.getDate() - batchStartDate.getDate()) / 7 + 1);
+
+        let newScheduledDate = new ScheduledDate(scheduledSubtopic.date.id, this.subtopic.startTime.getDay(), newWeek, this.subtopic.startTime.getTime(), this.subtopic.endTime.getTime());
+        // ^ lol sorry next batch
+        // use whatever's in it currently to populate basically the same thing, but with a new day number, week number, and start/end times
+
+        selectedBatchSchedule.subtopics[index].date = newScheduledDate;
+
+        this.subtopicsService.updateSchedule(selectedBatchSchedule).subscribe(
+          success => {
+            const arr = [];
+            console.log(this.subtopic);
+            this.batchSubtopics.push(this.subtopic);
+            this.currentlyAddedSubtopic.push(this.subtopic);
+            this.changeSuccessMessage(`Successfully `+message+`!`);
+            this.calendarService.addSubtopicToCalendar(this.subtopic);
+          },
+          error => this.changeAlertMessage(`Failed to add subtopic, check all inputs`)
+        );
+      }
+    });
+  }
+
+  /**
    * Opens a modal to ask the user if they would like to reset
    * the date of a subtopic currently in their calendar. It allows the user
    * to cancel or save the new change.
@@ -305,18 +308,7 @@ export class AddSubtopicComponent implements OnInit {
         if (result === 'ok') {
           this.subtopic.subtopicId = this.subtopicId;
           this.calendarService.addSubtopicToCalendar(this.subtopic);
-          this.subtopicsService.updateDate(this.subtopicId, this.sessionService.getSelectedBatch().id, this.selectedDateMiliseconds).subscribe(
-            () => {
-              this.changeSuccessMessage(`Successfully updated!`);
-            },
-            response => {
-              if (response.status = 200) {
-                this.changeSuccessMessage(`Successfully updated!`);
-              } else {
-                this.changeAlertMessage(`Failed to add Subtopic, verify all inputs`);
-              }
-            }
-          );
+          this.tryToAddSelectedSubtopic('updated');
         }
       }, (reason) => { });
   }

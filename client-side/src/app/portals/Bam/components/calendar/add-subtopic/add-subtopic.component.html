@@ -42,8 +42,8 @@
   </div>
   <div class="modal-body">
     <h5>Would you like to override the date?</h5>
-    <p>Previous date: {{prevDate}}</p>
-    <p>Date selected: {{newDate}}</p>
+    <p>Previous date: {{prevDate | date:'short'}}</p>
+    <p>Date selected: {{newDate | date:'short'}}</p>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-primary" (click)="c('ok')">OK</button>
