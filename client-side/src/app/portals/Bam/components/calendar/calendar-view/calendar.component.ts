@@ -76,16 +76,21 @@ export class CalendarComponent implements OnInit {
         this.subtopicService.getSubtopicByIDs(subtopicIds).subscribe(subtopics => {
           this.subtopics = subtopics;
           for (let i = 0; i < this.scheduledSubtopics.length; i++) {
-            let topicDate = new Date(this.selectedBatch.startDate);
-            topicDate.setDate(topicDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 2);
-            subtopics[i].date = topicDate;
+            let topicStartDate = new Date(this.selectedBatch.startDate);
+            topicStartDate.setDate(topicStartDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 1);
+            topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24) - 4); //- 4 to adjust for EST from GMT
+            subtopics[i].startTime = topicStartDate;
+
+            // let topicLengthInHours = 
+            // ((this.scheduledSubtopics[i].date.endTime/1000/3600) % 24) -
+            // ((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24);
+
+            // let topicEndDate: Date = topicStartDate;
+            // topicEndDate.setHours(topicStartDate.getHours() + topicLengthInHours);
+            // subtopics[i].endTime = topicEndDate;
           }
-          //hard coded hour values!
-          var hourItr = 9;
-          this.subtopics.forEach(subtopic => {
+          this.subtopics.forEach((subtopic, index) => {
             const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
-            calendarEvent.start.setHours(hourItr, 0, 0, 0);
-            hourItr++;
             this.events.push(calendarEvent);
           });
           this.overridenDate = this.events[0].start;
@@ -99,21 +104,21 @@ export class CalendarComponent implements OnInit {
         this.addEvent(calendarEvent);
       });
 
-    if (window.innerWidth < 1000) {
-      this.fc.defaultView = 'listMonth';
-      this.fc.header = {
-        left: 'agendaDay,agendaWeek,listMonth',
-        center: 'title',
-        right: 'today prev,next'
-      };
-    } else {
+    // if (window.innerWidth < 1000) {
+    //   this.fc.defaultView = 'listMonth';
+    //   this.fc.header = {
+    //     left: 'agendaDay,agendaWeek,listMonth',
+    //     center: 'title',
+    //     right: 'today prev,next'
+    //   };
+    // } else {
       this.fc.defaultView = 'month';
       this.fc.header = {
         left: 'agendaDay,agendaWeek,month listMonth',
         center: 'title',
         right: 'today prev,next'
       };
-    }
+    // }
     this.fc.allDaySlot = false;
     this.fc.eventDurationEditable = false;
     this.fc.options = {
@@ -227,16 +232,21 @@ export class CalendarComponent implements OnInit {
    * @param calendarEvent
    */
   updateSchedule(calendarEvent) {
-    this.schedule.subtopics.forEach(element => {
+    this.schedule.subtopics.forEach((element, index) => {
       if (element.subtopicId === calendarEvent.subtopicId) {
         //update week and day
         let duration = element.date.endTime - element.date.startTime;
-        let date = new Date(element.date.startTime);
-        let newWeek = Math.abs(Math.floor((date.getDate() - calendarEvent.start.getDate()) / 7));
-        let newDay = calendarEvent.start.getDay() + 1;
-        element.date.day = newDay;
-        element.date.week = newWeek; //this is wrong and needs to be changed
+        let date  = this.subtopics[index].startTime;
+        let batchStartDate = new Date(this.selectedBatch.startDate);
 
+        let newWeek = Math.floor((calendarEvent.start.getDate() - batchStartDate.getDate()) / 7 + 1);
+        let newDay = calendarEvent.start.getDay();
+
+        element.date.day = newDay;
+        element.date.week = newWeek;
+        console.log(element.date.week);
+
+        this.subtopics[index].startTime.setDate(calendarEvent.start.getDate());
       }
     });
   }

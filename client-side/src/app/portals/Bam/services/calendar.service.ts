@@ -168,7 +168,8 @@ export class CalendarService {
   mapSubtopicToEvent(subtopic: Subtopic): CalendarEvent {
     const calendarEvent = new CalendarEvent();
     calendarEvent.color = this.statusService.getStatusColor(subtopic.status);
-    calendarEvent.start = subtopic.date;
+    calendarEvent.start = subtopic.startTime;
+    // calendarEvent.end = subtopic.endTime;
     calendarEvent.status = subtopic.status;
     calendarEvent.subtopicId = subtopic.subtopicId;
     calendarEvent.title = subtopic.subtopicName;

@@ -242,10 +242,13 @@ export class AddSubtopicComponent implements OnInit {
       topic: this.topicName,
       type: this.subtopicType
     };
+    let endTime: Date = new Date();
+    endTime.setHours(endTime.getHours() + 1);
     this.subtopic = {
       subtopicId: null,
       subtopicName: this.selectedSubtopic,
-      date: new Date(),
+      startTime: new Date(),
+      endTime: endTime,
       status: this.status,
       parentTopic: null
     };
@@ -310,6 +313,7 @@ export class AddSubtopicComponent implements OnInit {
     const subtopicData = new Subtopic(
       null,
       this.selectedSubtopic,
+      new Date(),
       new Date(),
       this.statusService.getDefaultStatus(),
       null
