@@ -9,6 +9,9 @@ export class CalendarEvent {
     subtopicId: number;
     title: string;
     start: Date;
+
+    // end: Date;
+    
     status: string;
     color: string;
     constructor() { }

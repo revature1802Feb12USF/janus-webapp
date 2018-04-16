@@ -5,6 +5,8 @@ import { Observable } from 'rxjs/Observable';
 import { Subtopic } from '../models/subtopic.model';
 import { Batch } from '../models/batch.model';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
+import { ScheduledSubtopic } from '../models/scheduledsubtopic.model';
+import { Schedule } from '../models/schedule.model';
 
 
 const httpOptions = {
@@ -36,13 +38,13 @@ export class AddSubtopicService {
    * Retrieves all the subtopics of the current batch
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
-  getBatchSubtopics(id: number): Observable<Subtopic[]> {
-    return this.http
-        .get<Subtopic[]>(this.urlService.addsubtopics.getBatchSubtopicsUrl(id, 34, 0))
-        .map( data => {
-          return data;
-        });
-  }
+  // getBatchSubtopics(id: number): Observable<Subtopic[]> {
+  //   return this.http
+  //       .get<Subtopic[]>(this.urlService.addsubtopics.getBatchSubtopicsUrl(id, 34, 0))
+  //       .map( data => {
+  //         return data;
+  //       });
+  // }
 
   /**
    * Updates old date on the database with the new date selected
@@ -59,9 +61,9 @@ export class AddSubtopicService {
    * Obtains all the subtopics from the database
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
-  getSubtopicPool(curriculumId: number): Observable<Subtopic[]> {
+  getSubtopicPool(curriculumId: number): Observable<number[]> {
     return this.http
-        .get<Subtopic[]>(this.urlService.addsubtopics.getSubtopicPoolUrl(curriculumId)).map( data => {
+        .get<number[]>(this.urlService.addsubtopics.getSubtopicPoolUrl(curriculumId)).map( data => {
           return data;
         });
   }
@@ -73,5 +75,14 @@ export class AddSubtopicService {
   addSubtopic(subtopic): Observable<Subtopic> {
     return this.http.post<Subtopic>(this.urlService.addsubtopics.addSubtopicUrl(), JSON.stringify(subtopic), httpOptionsJson);
   }
-
+  
+  /**
+   * Updates a Schedule object on the backend
+   * @param schedule - new version of a schedule to be updated
+   * @author Scott Bennett - (Batch 1802-Matt)
+   * @author Trevor Fortner - (Batch 1802-Matt)
+   */
+  updateSchedule(schedule: Schedule){
+    return this.http.patch<Schedule>(this.urlService.addsubtopics.updateScheduleURL, schedule);
+  }
 }
