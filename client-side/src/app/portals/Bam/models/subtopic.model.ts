@@ -4,13 +4,15 @@ export class Subtopic {
     subtopicId: number;
     subtopicName: string;
     status: string;
-    date: Date;
+    startTime: Date;
+    endTime: Date;
     parentTopic: Topic;
     
-    constructor(subtopicId: number, subtopicName: string, date: Date, status: string, parentTopic: Topic) {
+    constructor(subtopicId: number, subtopicName: string, startTime: Date, endTime: Date, status: string, parentTopic: Topic) {
         this.subtopicId = subtopicId;
         this.subtopicName = subtopicName;
-        this.date = date;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.status = status;
         this.parentTopic = parentTopic;
     }

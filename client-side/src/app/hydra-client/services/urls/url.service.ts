@@ -94,13 +94,14 @@ export class UrlService {
   };
 
   addsubtopics = {
-    getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
-      `${bam}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
+    // getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
+    //   `${bam}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
     getBatchIdUrl: (batchId: number) => `${bam}/batches/batch/${batchId}`,
-    addSubtopicUrl: () => `${bam}/subtopics/`,
+    addSubtopicUrl: () => `${bam}/curricula/schedules`,
     getSubtopicPoolUrl: (curriculumId: number) => `${bam}/curricula/${curriculumId}/subtopics`,
     updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
-      `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`
+      `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
+    updateScheduleURL: `${bam}/curricula/schedules`
   };
 
   assignForce = {
@@ -108,22 +109,21 @@ export class UrlService {
   };
 
   calendar = {
-    getSubtopicsByBatchPaginationUrl: (batchId: number, pageNumber: number, pageSize: number) =>
-      `${bam}/calendar/subtopicspagination/${batchId}/${pageNumber}/${pageSize}/`,
+    // getSubtopicsByBatchPaginationUrl: (batchId: number, pageNumber: number, pageSize: number) =>
+    //   `${bam}/calendar/subtopicspagination/${batchId}/${pageNumber}/${pageSize}/`,
     getScheduleById: (scheduleId: number) => `${bam}/curricula/schedules/${scheduleId}`,
     getSubtopicsByBatchUrl: (batchId: number) => `${bam}/calendar/subtopics/${batchId}`,
     getNumberOfSubTopicsByBatchUrl: (batchId: number) => `${bam}/calendar/getnumberofsubtopics/${batchId}`,
     getTopicsByBatchPagUrl: (batchId: number) => `${bam}/calendar/topics/${batchId}`,
-    changeTopicDateUrl: (subtopicId: number, batchId: number, date: Date) =>
-      `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
+    changeTopicDateUrl: `${bam}/curricula/schedules`,
     updateTopicStatusUrl: (subtopicId: number, batchId: number, status: string) =>
-      `${bam}/calendar/statusupdate/${subtopicId}/${batchId}/${status}`,
-    addTopicsUrl: () => `${bam}/calendar/addtopics`,
+      `${bam}/curricula/schedules`,
+    addTopicsUrl: () => `${bam}/calendar/addtopics`
   };
 
   curriculum = {
-    getCurriculumAllUrl: () => `${bam}/curricula/`,
-    getCurriculumByIdUrl: (id: number) => `${bam}/curricula/getcurriculums/${id}`,
+    getCurriculumAllUrl: () => `${bam}/curricula/all`,
+    getCurriculumByIdUrl: (id: number) => `${bam}/curricula/${id}`,
     getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curricula/schedule/${id}`,
     getTopicPoolAllUrl: () => `${bam}/curricula/topicpool`,
     getSubtopicPoolAllUrl: () => `${bam}/curricula/subtopicpool`,

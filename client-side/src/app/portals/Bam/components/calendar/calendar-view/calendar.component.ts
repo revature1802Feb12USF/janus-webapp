@@ -9,7 +9,7 @@ import { AddSubtopicService } from '../../../services/add-subtopic.service';
 import { SubtopicService } from '../../../services/subtopic.service';
 import { Batch } from '../../../models/batch.model';
 import { SessionService } from '../../../services/session.service';
-import { Schedule as BatchSchedule} from '../../../models/schedule.model';
+import { Schedule as BatchSchedule } from '../../../models/schedule.model';
 import { ScheduledSubtopic } from '../../../models/scheduledsubtopic.model';
 
 
@@ -66,6 +66,7 @@ export class CalendarComponent implements OnInit {
     this.calendarService.getScheduleByScheduleId(this.selectedBatch.scheduleID).subscribe(
       schedule => {
         this.schedule = schedule;
+        sessionStorage.setItem('schedule', JSON.stringify(schedule));
         this.scheduledSubtopics = this.schedule.subtopics;
         let subtopicIds: number[] = [];
         this.scheduledSubtopics.forEach(element => {
@@ -75,11 +76,26 @@ export class CalendarComponent implements OnInit {
         this.subtopicService.getSubtopicByIDs(subtopicIds).subscribe(subtopics => {
           this.subtopics = subtopics;
           for (let i = 0; i < this.scheduledSubtopics.length; i++) {
-            let topicDate = new Date(this.selectedBatch.startDate);
-            topicDate.setDate(topicDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 2);
-            subtopics[i].date = topicDate;
+            let topicStartDate = new Date(this.selectedBatch.startDate);
+            topicStartDate.setDate(topicStartDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 1);
+            topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24) - 4); //- 4 to adjust for EST from GMT
+            subtopics[i].startTime = topicStartDate;
+
+            if(subtopics[i].status == 'Planned'){
+              subtopics[i].status = 'Pending';
+            }
+
+            // let topicLengthInHours = 
+            // ((this.scheduledSubtopics[i].date.endTime/1000/3600) % 24) -
+            // ((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24);
+
+            // let topicEndDate: Date = topicStartDate;
+            // topicEndDate.setHours(topicStartDate.getHours() + topicLengthInHours);
+            // subtopics[i].endTime = topicEndDate;
           }
-          this.subtopics.forEach(subtopic => {
+          sessionStorage.setItem('subtopics', JSON.stringify(this.subtopics));
+          
+          this.subtopics.forEach((subtopic, index) => {
             const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
             this.events.push(calendarEvent);
           });
@@ -87,16 +103,6 @@ export class CalendarComponent implements OnInit {
         });
       }
     );
-    
-    // this.calendarService.getSubtopicsByBatchPagination(this.selectedBatch.id, 0, 300).subscribe(
-    //   subtopics => {
-    //     for (const subtopic of subtopics) {
-    //       const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
-    //       this.events.push(calendarEvent);
-    //     }
-    //     this.overridenDate = this.events[0].start;
-    //   }
-    // );
 
     // event handler for newly added topics
     this.calendarService.addCalendarEvent
@@ -104,21 +110,21 @@ export class CalendarComponent implements OnInit {
         this.addEvent(calendarEvent);
       });
 
-    if (window.innerWidth < 1000) {
-      this.fc.defaultView = 'listMonth';
-      this.fc.header = {
-        left: 'agendaDay,agendaWeek,listMonth',
-        center: 'title',
-        right: 'today prev,next'
-      };
-    } else {
+    // if (window.innerWidth < 1000) {
+    //   this.fc.defaultView = 'listMonth';
+    //   this.fc.header = {
+    //     left: 'agendaDay,agendaWeek,listMonth',
+    //     center: 'title',
+    //     right: 'today prev,next'
+    //   };
+    // } else {
       this.fc.defaultView = 'month';
       this.fc.header = {
         left: 'agendaDay,agendaWeek,month listMonth',
         center: 'title',
         right: 'today prev,next'
       };
-    }
+    // }
     this.fc.allDaySlot = false;
     this.fc.eventDurationEditable = false;
     this.fc.options = {
@@ -185,7 +191,6 @@ export class CalendarComponent implements OnInit {
     this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
     this.updateEvent(calendarEvent);
     this.fc.updateEvent(event.calEvent);
-
   }
 
   /**
@@ -202,8 +207,10 @@ export class CalendarComponent implements OnInit {
    * @param calendar
    */
   handleEventDrop(calendar) {
+
     const droppedTopic = calendar.event;
     const calendarEvent = this.mapSubtopicFromEvent(droppedTopic);
+    this.updateSchedule(calendarEvent);
     const milliDate = calendarEvent.start;
 
     droppedTopic.status = this.statusService.updateMovedStatus(calendarEvent);
@@ -211,17 +218,41 @@ export class CalendarComponent implements OnInit {
     calendarEvent.color = droppedTopic.color;
 
     // update date and status synchronously
-    this.calendarService.changeTopicDate(droppedTopic.subtopicId, this.selectedBatch.id, milliDate)
+    this.calendarService.changeTopicDate(this.schedule)
       .subscribe(
-      response => {
-        this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
-      },
-      error => {
-        this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
-      }
+        response => {
+          this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
+        },
+        error => {
+          console.log(error);
+          //this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
+        }
       );
     this.updateEvent(calendarEvent);
     this.fc.updateEvent(droppedTopic);
+  }
+  /**
+   * Updates this.schedule based on new selected date.
+   * This is used to send request to schedule controller
+   * @param calendarEvent
+   */
+  updateSchedule(calendarEvent) {
+    this.schedule.subtopics.forEach((element, index) => {
+      if (element.subtopicId === calendarEvent.subtopicId) {
+        //update week and day
+        let duration = element.date.endTime - element.date.startTime;
+        let date  = this.subtopics[index].startTime;
+        let batchStartDate = new Date(this.selectedBatch.startDate);
+
+        let newWeek = Math.floor((calendarEvent.start.getDate() - batchStartDate.getDate()) / 7 + 1);
+        let newDay = calendarEvent.start.getDay();
+
+        element.date.day = newDay;
+        element.date.week = newWeek;
+
+        this.subtopics[index].startTime.setDate(calendarEvent.start.getDate());
+      }
+    });
   }
 
   /**
@@ -232,12 +263,21 @@ export class CalendarComponent implements OnInit {
   */
   handleDrop(event) {
     const newSubtopic = $(event.jsEvent.target).data('subtopic');
+    
     // time not needed for non-month views
     if (event.resourceId.name !== 'month') {
-      newSubtopic.subtopicDate = new Date(event.date.format());
+      newSubtopic.startTime = new Date(event.date.format());
     } else {
-      newSubtopic.subtopicDate = new Date(event.date.format() + 'T09:00:00-05:00');
+      newSubtopic.startTime = new Date(event.date.format() + 'T09:00:00-05:00');
     }
+
+    const rightNow = new Date();
+    if (event.date >= rightNow) {
+      newSubtopic.status = 'Pending';
+    } else {
+      newSubtopic.status = 'Missed';
+    }
+
     const calendarEvent = this.calendarService.mapSubtopicToEvent(newSubtopic);
     let existingIndex;
 
@@ -367,7 +407,7 @@ export class CalendarComponent implements OnInit {
    */
   eventExists(calendarEvent: CalendarEvent): number {
     for (let i = 0; i < this.events.length; i++) {
-      if (this.events[i].subtopicName === calendarEvent.subtopicName) {
+      if (this.events[i].title === calendarEvent.title) {
         return i;
       }
     }
@@ -384,7 +424,15 @@ export class CalendarComponent implements OnInit {
   trashDropEvent(event, ui, calendarEvent: CalendarEvent) {
     event.target.style.opacity = 1;
     this.removeEvent(this.eventExists(calendarEvent));
-    this.subtopicService.removeSubtopicFromBatch(calendarEvent.subtopicId).subscribe();
+
+    for(let scheduledSubtopic of this.scheduledSubtopics){
+      if(scheduledSubtopic.subtopicId == calendarEvent.subtopicId){
+        let index = this.schedule.subtopics.indexOf(scheduledSubtopic);
+        this.schedule.subtopics.splice(index, 1);
+
+        this.addSubtopicService.updateSchedule(this.schedule).subscribe();
+      }
+    }
   }
 
   /**
@@ -394,15 +442,12 @@ export class CalendarComponent implements OnInit {
    */
   handleAddExistingSubtopic(subtopic: Subtopic) {
     const index = this.addEvent(this.calendarService.mapSubtopicToEvent(subtopic));
-    this.calendarService.changeTopicDate(subtopic.subtopicId, this.selectedBatch.id, subtopic.date)
+    this.calendarService.changeTopicDate(this.schedule)
       .subscribe();
   }
 
   handleViewRender($event) {
-
     this.gotoDateValue = new Date(this.fc.getDate().stripTime().format() + 'T09:00:00-05:00');
-
   }
-
 
 }

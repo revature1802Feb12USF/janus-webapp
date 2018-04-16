@@ -9,7 +9,7 @@ import { environment } from '../../../../environments/environment';
 
 fdescribe('HydraTraineeService', () => {
   const trainee = new HydraTrainee();
-  this.context = environment.hydraContext;
+  this.context = environment.context;
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [HydraTraineeService, UrlService],
