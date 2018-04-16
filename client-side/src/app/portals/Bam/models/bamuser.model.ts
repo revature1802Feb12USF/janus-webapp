@@ -2,11 +2,8 @@ import { Batch } from './batch.model';
 
 export class BamUser {
     userId: number;
-    fName: string;
     firstName: string;
-    mName: string;
     middleName: string;
-    lName: string;
     lastName: string;
     email: string;
     pwd: string;
@@ -19,9 +16,9 @@ export class BamUser {
     assignForceID: number;
 
     constructor(userId: number,
-        fName: string,
-        mName: string,
-        lName: string,
+        firstName: string,
+        middleName: string,
+        lastName: string,
         email: string,
         pwd: string,
         role: number,
@@ -32,9 +29,9 @@ export class BamUser {
         pwd2: string,
         assignForceID: number) {
             this.userId = userId;
-            this.fName = fName;
-            this.mName = mName;
-            this.lName = lName;
+            this.firstName = firstName;
+            this.middleName = middleName;
+            this.lastName = lastName;
             this.email = email;
             this.pwd = pwd;
             this.role = role;

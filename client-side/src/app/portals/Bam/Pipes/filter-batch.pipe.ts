@@ -31,7 +31,7 @@ export class FilterBatchPipe implements PipeTransform {
         }
         searchText = searchText.toLowerCase();
         return items.filter((batch: Batch) => {
-            const trainerName = `${batch.trainer.fName} ${batch.trainer.lName}`;
+            const trainerName = `${batch.trainer.firstName} ${batch.trainer.lastName}`;
             return (
                 // batch.type.name.toLowerCase().includes(searchText) || //NO TYPE
                 batch.name.toLowerCase().includes(searchText) ||

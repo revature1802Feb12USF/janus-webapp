@@ -317,6 +317,7 @@ export class CalendarComponent implements OnInit {
     // update date and status synchronously
     this.addSubtopicService.addNewScheduledSubtopic(this.schedule.id, scheduledSubtopic).subscribe(
         response => {
+          this.schedule.subtopics[this.schedule.subtopics.length-1].parentSchedule = this.schedule;
           this.calendarService.updateTopicStatus(event, this.selectedBatch.id).subscribe();
         },
         error => {
