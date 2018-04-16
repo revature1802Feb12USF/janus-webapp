@@ -60,7 +60,7 @@ export class UrlService {
     delete: (assessmentId: number) => `${this.context}trainer/assessment/delete/${assessmentId}`,
   };
 
-  //BAM Endpoints
+  // BAM Endpoints
   users = {
     getUserByID: (userId: number) => `${this.context}/users/${userId}`,
     getAllUsersUrl: () => `${this.context}/users`,
