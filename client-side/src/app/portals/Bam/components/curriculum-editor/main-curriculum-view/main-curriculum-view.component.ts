@@ -14,6 +14,8 @@ import * as XLSX from 'xlsx';
 import * as XLSXStyle from 'xlsx-style';
 import { WeeksExportDTO } from '../../../models/weeksExportDTO';
 import { SubtopicService } from '../../../services/subtopic.service';
+import { Schedule } from '../../../models/scheduleZ.model';
+import { SubtopicCurric } from '../../../models/subtopicCurric.model';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -164,8 +166,17 @@ export class MainCurriculumViewComponent implements OnInit {
             response => {
                 this.alertService.alert('success', 'Successfully saved ' +
                     (<Curriculum>response.body).name + ' version #' + (<Curriculum>response.body).version);
+
+                     this.selectedCurr=<Curriculum>response.body;
+                     let unformatted_JSON = JSON.parse(JSON.stringify(weeksDTO));
+                     let formatted_schedule = this.formatSchedule(unformatted_JSON);
+                     this.curriculumService.addSchedule(formatted_schedule);
+
+
                 this.refreshList(<Curriculum>response.body);
                 this.isNewVer = false;
+
+               
             },
             error => {
                 this.alertService.alert('danger', 'Unable to save curriculum');
@@ -173,6 +184,47 @@ export class MainCurriculumViewComponent implements OnInit {
                 this.isNewVer = false;
             }
         );
+    }
+
+    formatSchedule( unformatted_JSON : any) : Schedule
+    {
+        let schedule : Schedule = new Schedule();
+        schedule.curriculum=this.selectedCurr;
+        console.log("hey george"+JSON.stringify(this.selectedCurr.id))
+        let i,j,k;
+        for(i=0;i<unformatted_JSON.length;i++) //for every week
+        {
+            for(j=0;j<5;j++) //for every day
+            {
+                let hour=9;
+                
+                for(k=0;k<unformatted_JSON[i].days[j].subtopics.length;k++) //for every hour (or subtopic)
+                {
+                    if(unformatted_JSON[i].days[j].subtopics[k])
+                    {
+                        console.log(unformatted_JSON[i].days[j].subtopics[k]);
+                        let subtopic : SubtopicCurric=new SubtopicCurric();
+                        subtopic.subtopicId=unformatted_JSON[i].days[j].subtopics[k].subtopicId;
+                        subtopic.subtopicName=unformatted_JSON[i].days[j].subtopics[k].subtopicName;
+                        subtopic.parentTopic=unformatted_JSON[i].days[j].subtopics[k].parentTopic;
+                        subtopic.status=unformatted_JSON[i].days[j].subtopics[k].status;
+
+                        console.log("now im here"+JSON.stringify(subtopic));
+                        subtopic.date.day=j+1;
+                        let arbitraryTime = new Date("1970-01-01");
+                        arbitraryTime.setHours(hour+k); 
+                        subtopic.date.startTime=arbitraryTime.getTime();
+                        arbitraryTime.setHours(hour+k+1);
+                        subtopic.date.endTime=arbitraryTime.getTime();
+                        subtopic.date.week=i+1;
+                        schedule.subtopics.push(subtopic);
+                    }
+                }
+            }
+        }
+
+        console.log("HEY"+JSON.stringify(schedule));
+        return schedule;
     }
 
     /**

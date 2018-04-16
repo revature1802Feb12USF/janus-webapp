@@ -131,7 +131,8 @@ curriculum = {
   makeCurriculumMasterByIdUrl: (id: number) => `${bam}/curricula/${id}/master`,
   syncBatchByIdUrl: (id: number) => `${bam}/curricula/syncbatch/${id}`,
   deleteCurriculumVersionUrl: () => `${bam}/curricula/deleteversion`,
-  getScheduleById: (id: number) => `${bam}/curricula/schedules/${id}`
+  getScheduleById: (id: number) => `${bam}/curricula/schedules/${id}`,
+  addSchedule: () => `${bam}/curricula/schedules`
 };
 
 bambatch = {

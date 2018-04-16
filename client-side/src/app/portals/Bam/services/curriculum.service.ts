@@ -80,8 +80,10 @@ export class CurriculumService {
     * @param: Curriculum Id
     */
   getSchedualeByCurriculumId(cid: number): Observable<CurriculumSubtopic[]> {
+    console.log("the cid:"+cid);
     return this.http.get<CurriculumSubtopic[]>(this.urlService.curriculum.getSchedulesByCurriculumIdUrl(cid)).map(
       data => {
+        console.log("We in this bitch"+JSON.stringify(data));
         return data;
       }
     );
@@ -177,5 +179,13 @@ export class CurriculumService {
           return data;
         }
       )
+    }
+
+    addSchedule(json : any)
+    {
+      return this.http.post(this.urlService.curriculum.addSchedule(),json).map(
+        data => {
+          return data;
+        });
     }
 }

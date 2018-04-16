@@ -8,4 +8,10 @@ export class SubtopicCurric {
     subtopicName: string;
     status: string;
     parentTopic: Topic;
+    date = {
+        endTime : 0,
+        startTime : 0,
+        day: 0,
+        week: 0,
+    }
 }
