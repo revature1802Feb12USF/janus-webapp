@@ -9,7 +9,7 @@
     "build-dev": "ng build --dev --env=dev --progress --verbose",
     "build-uat": "ng build --prod --env=uat --progress --verbose",
     "test": "ng test --single-run",
-    "ciDevBuild": "ng test --single-run --code-coverage --browsers ChromeHeadless && ng build --dev --progress --verbose",
+    "ciDevBuild": "ng test --single-run --code-coverage --browsers ChromeHeadless && ng build --dev --env=prod --progress --verbose",
     "ciProdBuild": "ng test --single-run --code-coverage -=browsers ChromeHeadless && ng build --prod --env=prod --progress",
     "hydra-test": "ng test --config.file=hydra.karma.conf.ts",
     "lint": "ng lint",

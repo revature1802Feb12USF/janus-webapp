@@ -1,4 +1,4 @@
-const context = 'http://localhost:9999/';
+const context = 'http://hydra-gateway-service-dev.cfapps.io/api/v2';
 const bam = 'http://18.219.59.193:9001/api/v2';
 export const environment = {
   production: true,
