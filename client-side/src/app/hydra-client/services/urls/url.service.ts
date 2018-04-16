@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
+import { environment } from '../../../../environments/environment';
 
-const context = 'http://localhost:9001/api/v2';
+const context = environment.context;
 
 @Injectable()
 export class UrlService {
