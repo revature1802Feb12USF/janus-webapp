@@ -18,6 +18,7 @@ import { Topic } from '../../../models/topic.model';
 import { Schedule } from '../../../models/schedule.model';
 import { ScheduledDate } from '../../../models/scheduleddate.model';
 import { ScheduledSubtopic } from '../../../models/scheduledsubtopic.model';
+import { SubtopicService } from '../../../services/subtopic.service';
 
 // for jquery
 declare var $: any;
@@ -73,7 +74,7 @@ export class AddSubtopicComponent implements OnInit {
   public alertMessage: string;
   public successMessage: string;
 
-  constructor(private subtopicsService: AddSubtopicService, private statusService: CalendarStatusService, private modalService: NgbModal, private calendarService: CalendarService, private sessionService: SessionService) { }
+  constructor(private addSubtopicService: AddSubtopicService, private statusService: CalendarStatusService, private modalService: NgbModal, private calendarService: CalendarService, private sessionService: SessionService, private subtopicService: SubtopicService) { }
 
   ngOnInit() {
     this.selectedTopic = 'Select a Topic';
@@ -86,20 +87,24 @@ export class AddSubtopicComponent implements OnInit {
 
     let selectedBatch = JSON.parse(sessionStorage.getItem("batch"));
     let selectedBatchSchedule = JSON.parse(sessionStorage.getItem("schedule"));
-    this.subtopicsService.getSubtopicPool(selectedBatch.curriculumID).subscribe(
-      (subtopicList) => {
-        this.allSubtopicsForCurriculum = subtopicList;
-        this.getTopics(subtopicList);
-
-        for(let subtopic of subtopicList){
-          for(let scheduledSub of selectedBatchSchedule.subtopics){
-            if(subtopic.subtopicId == scheduledSub.subtopicId){
-              this.batchSubtopics.push(subtopic);
+    this.addSubtopicService.getSubtopicPool(selectedBatch.curriculumID).subscribe(
+      (subtopicIdList) => {
+        this.subtopicService.getSubtopicByIDs(subtopicIdList).subscribe(
+          subtopicList => {
+            this.allSubtopicsForCurriculum = subtopicList;
+            this.getTopics(subtopicList);
+    
+            for(let subtopic of subtopicList){
+              for(let scheduledSub of selectedBatchSchedule.subtopics){
+                if(subtopic.subtopicId == scheduledSub.subtopicId){
+                  this.batchSubtopics.push(subtopic);
+                }
+              }
             }
+    
+            this.currentBatch = selectedBatch;
           }
-        }
-
-        this.currentBatch = selectedBatch;
+        )
       }
     );
   }
@@ -290,7 +295,7 @@ export class AddSubtopicComponent implements OnInit {
 
         selectedBatchSchedule.subtopics[index].date = newScheduledDate;
 
-        this.subtopicsService.updateSchedule(selectedBatchSchedule).subscribe(
+        this.addSubtopicService.updateSchedule(selectedBatchSchedule).subscribe(
           success => {
             const arr = [];
             this.batchSubtopics.push(this.subtopic);
