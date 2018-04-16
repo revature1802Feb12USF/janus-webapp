@@ -11,6 +11,7 @@ import { Batch } from '../../../models/batch.model';
 import { SessionService } from '../../../services/session.service';
 import { Schedule as BatchSchedule } from '../../../models/schedule.model';
 import { ScheduledSubtopic } from '../../../models/scheduledsubtopic.model';
+import { ScheduledDate } from '../../../models/scheduleddate.model';
 
 
 /**
@@ -240,8 +241,7 @@ export class CalendarComponent implements OnInit {
     this.schedule.subtopics.forEach((element, index) => {
       if (element.subtopicId === calendarEvent.subtopicId) {
         //update week and day
-        let duration = element.date.endTime - element.date.startTime;
-        let date  = this.subtopics[index].startTime;
+        let date = this.subtopics[index].startTime;
         let batchStartDate = new Date(this.selectedBatch.startDate);
 
         let newWeek = Math.floor((calendarEvent.start.getDate() - batchStartDate.getDate()) / 7 + 1);
@@ -251,8 +251,28 @@ export class CalendarComponent implements OnInit {
         element.date.week = newWeek;
 
         this.subtopics[index].startTime.setDate(calendarEvent.start.getDate());
+        return;
       }
     });
+  }
+
+  /**
+   * Adds a new ScheduledSubtopic to the Schedule object currently displayed
+   * @param calendarEvent
+   * @author Scott Bennett - (1802-Matt)
+   * @author Trevor Fortner - (1802-Matt)
+   */
+  addSubtopicToSchedule(calendarEvent): ScheduledSubtopic{
+    let batchStartDate = new Date(this.selectedBatch.startDate);
+
+    let newWeek = Math.floor((calendarEvent.start.getDate() - batchStartDate.getDate()) / 7 + 1);
+    let newDay = calendarEvent.start.getDay();
+
+    let newScheduledSub = new ScheduledSubtopic(0, calendarEvent.subtopicId, new ScheduledDate(0, newDay, newWeek, calendarEvent.start.getTime(), calendarEvent.start.getTime() + 1));
+
+    this.schedule.subtopics.push(newScheduledSub);
+
+    return newScheduledSub;
   }
 
   /**
@@ -278,7 +298,7 @@ export class CalendarComponent implements OnInit {
       newSubtopic.status = 'Missed';
     }
 
-    const calendarEvent = this.calendarService.mapSubtopicToEvent(newSubtopic);
+    let calendarEvent = this.calendarService.mapSubtopicToEvent(newSubtopic);
     let existingIndex;
 
     if ((existingIndex = this.eventExists(calendarEvent)) > -1) {
@@ -288,11 +308,24 @@ export class CalendarComponent implements OnInit {
       return;
     }
 
-    const index = this.addEvent(calendarEvent);
-    this.addSubtopicService.addSubtopic(newSubtopic)
-      .subscribe(subtopic => {
-        this.addEvent(this.calendarService.mapSubtopicToEvent(subtopic));
-      });
+    let scheduledSubtopic = this.addSubtopicToSchedule(calendarEvent);
+    const milliDate = event.start;
+
+    newSubtopic.color = this.statusService.getStatusColor(newSubtopic.status);
+    event.color = newSubtopic.color;
+
+    // update date and status synchronously
+    this.addSubtopicService.addNewScheduledSubtopic(this.schedule.id, scheduledSubtopic).subscribe(
+        response => {
+          this.calendarService.updateTopicStatus(event, this.selectedBatch.id).subscribe();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+      
+    this.updateEvent(calendarEvent);
+    this.fc.updateEvent(newSubtopic);
   }
 
   /**
@@ -358,17 +391,22 @@ export class CalendarComponent implements OnInit {
    * This is called on internal drop events
    * @param changedSubtopic
    */
-  updateEvent(changedSubtopic: CalendarEvent) {
-    const index = this.eventExists(changedSubtopic);
+  updateEvent(changedSubtopicEvent: CalendarEvent) {
+    const index = this.eventExists(changedSubtopicEvent);
     if (index === 0) {
-      this.overridenDate = changedSubtopic.start;
+      this.overridenDate = changedSubtopicEvent.start;
     }
     // reset the first index date that gets overriden on drops
     this.events[0].start = this.overridenDate;
 
-    this.events[index].start = changedSubtopic.start;
-    this.events[index].status = changedSubtopic.status;
-    this.events[index].color = changedSubtopic.color;
+    if(index === -1){   //if it doesn't exist yet
+      this.events.push(changedSubtopicEvent);
+      return;
+    }
+
+    this.events[index].start = changedSubtopicEvent.start;
+    this.events[index].status = changedSubtopicEvent.status;
+    this.events[index].color = changedSubtopicEvent.color;
   }
 
   /**

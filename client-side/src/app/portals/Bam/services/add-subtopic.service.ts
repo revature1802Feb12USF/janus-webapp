@@ -85,4 +85,15 @@ export class AddSubtopicService {
   updateSchedule(schedule: Schedule){
     return this.http.patch<Schedule>(this.urlService.addsubtopics.updateScheduleURL, schedule);
   }
+
+  /**
+   * Adds a new ScheduledSubtopic object to the schedule with the given id
+   * @param scheduleId - id for the schedule to add the ScheduledSubtopic to
+   * @param scheduledSubtopic - new ScheduledSubtopic to add
+   * @author Scott Bennett - (Batch 1802-Matt)
+   * @author Trevor Fortner - (Batch 1802-Matt)
+   */
+  addNewScheduledSubtopic(scheduleId: number, scheduledSubtopic: ScheduledSubtopic){
+    return this.http.post<ScheduledSubtopic>(this.urlService.addsubtopics.addNewScheduledSubtopic(scheduleId), scheduledSubtopic);
+  }
 }

@@ -199,7 +199,7 @@ export class AddSubtopicComponent implements OnInit {
       this.setSubtopicObject(); //sets this.subtopic to the one clicked
 
       if (this.checkSubtopics()) {
-        this.tryToAddSelectedSubtopic('added');
+        this.updateSelectedSubtopic('added');
       } else {
         this.open(this.modalRef);
       }
@@ -280,7 +280,7 @@ export class AddSubtopicComponent implements OnInit {
    * @author Trevor Fortner - (Batch Matt-1802)
    * @param message - String to put in response alert
    */
-  tryToAddSelectedSubtopic(message: string){
+  updateSelectedSubtopic(message: string){
     let selectedBatchSchedule: Schedule = JSON.parse(sessionStorage.getItem("schedule"));
 
     selectedBatchSchedule.subtopics.forEach((scheduledSubtopic, index) => {
@@ -322,7 +322,7 @@ export class AddSubtopicComponent implements OnInit {
         if (result === 'ok') {
           this.subtopic.subtopicId = this.subtopicId;
           this.calendarService.addSubtopicToCalendar(this.subtopic);
-          this.tryToAddSelectedSubtopic('updated');
+          this.updateSelectedSubtopic('updated');
         }
       }, (reason) => { });
   }

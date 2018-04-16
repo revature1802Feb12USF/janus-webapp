@@ -101,7 +101,8 @@ export class UrlService {
     getSubtopicPoolUrl: (curriculumId: number) => `${bam}/curricula/${curriculumId}/subtopics`,
     updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
       `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
-    updateScheduleURL: `${bam}/curricula/schedules`
+    updateScheduleURL: `${bam}/curricula/schedules`,
+    addNewScheduledSubtopic: (scheduleId: number) => `${bam}/curricula/scheduled-subtopics/${scheduleId}`
   };
 
   assignForce = {
