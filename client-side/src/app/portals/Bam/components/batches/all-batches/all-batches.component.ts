@@ -41,6 +41,10 @@ export class AllBatchesComponent implements OnInit {
           this.batches[i].trainer = trainer;
         }, err => this.batches[i].trainer = null);
 
+        this.currService.getCurriculumById(currID).subscribe(curriculum => {
+          this.batches[i].curriculum = curriculum[0];
+        })
+
       }
 
     }, err => this.batches = []);

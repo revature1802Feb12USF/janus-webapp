@@ -2,7 +2,7 @@ import { BamUser } from './bamuser.model';
 
 export class Curriculum {
     id: number;
-    curriculumName: string;
+    name: string;
     curriculumVersion: number;
     curriculumCreator: BamUser;
     curriculumModifier: BamUser;
@@ -20,7 +20,7 @@ export class Curriculum {
         curriculumNumberOfWeeks: number,
         isMaster: number) {
             this.id = id;
-            this.curriculumName = curriculumName;
+            this.name = curriculumName;
             this.curriculumVersion = curriculumVersion;
             this.curriculumCreator = curriculumCreator;
             this.curriculumModifier = curriculumModifier;
