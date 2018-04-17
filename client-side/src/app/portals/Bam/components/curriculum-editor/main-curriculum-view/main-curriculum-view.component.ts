@@ -16,6 +16,7 @@ import { WeeksExportDTO } from '../../../models/weeksExportDTO';
 import { SubtopicService } from '../../../services/subtopic.service';
 import { Schedulez } from '../../../models/scheduleZ.model';
 import { SubtopicCurric } from '../../../models/subtopicCurric.model';
+import { formArrayNameProvider } from '@angular/forms';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -169,7 +170,9 @@ export class MainCurriculumViewComponent implements OnInit {
 
                      this.selectedCurr=<Curriculum>response.body;
                      let unformatted_JSON = JSON.parse(JSON.stringify(weeksDTO));
+                     console.log("UNFORMATTED:\n"+JSON.stringify(unformatted_JSON));
                      let formatted_schedule = this.formatSchedule(unformatted_JSON);
+                     console.log("FORMATTED:\n"+JSON.stringify(formatted_schedule));
                      this.curriculumService.addSchedule(formatted_schedule);
 
 
@@ -282,7 +285,6 @@ export class MainCurriculumViewComponent implements OnInit {
                 week = [];
             }
         }
-        this.allWeeks.forEach( week => {console.log("A week"+JSON.stringify(week))});
 
     }
     /**
