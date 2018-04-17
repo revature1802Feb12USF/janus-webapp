@@ -20,6 +20,7 @@ import { SubtopicCurric } from '../../../models/subtopicCurric.model';
 })
 export class CourseStructureComponent implements OnInit {
 
+
   allCurriculums: Curriculum[];
   allCurriculumNames: string[] = [];
   uniqCurrNames: string[];
@@ -60,9 +61,9 @@ export class CourseStructureComponent implements OnInit {
           let subtopic=subtopics[i];
           let week=subtopic.date.week;
           let day=subtopic.date.day;
-          let subtopicID=subtopic.subtopicId
-          this.subtopicService.getSubtopicByID(subtopic.subtopicId).subscribe(
-            result => {
+          let subtopicID=subtopic.subtopicId;
+          let result=this.getSubtopic(subtopicID);
+          
               subtopicName=result.subtopicName;
               parentName=result.parentTopic.topicName;
                //need topic id
@@ -70,13 +71,13 @@ export class CourseStructureComponent implements OnInit {
               let type : SubtopicType = new SubtopicType(subtopicID,"blah");
               let subtopicname : SubtopicName = new SubtopicName(subtopicID,subtopicName,topicname,type);
               let curriculumsubtopic : CurriculumSubtopic = new CurriculumSubtopic(subtopicID,subtopicname,week,day);
+              console.log("In the loop:"+JSON.stringify(curriculumsubtopic));
               weeks.push(curriculumsubtopic);
               if(weeks.length==subtopics.length)
               {
               this.update(weeks)
               }
-            }
-          );
+            
           
         }
         //turn data into an array of curriculumsubtopics and send to data
@@ -88,6 +89,24 @@ export class CourseStructureComponent implements OnInit {
       }
     );
     this.curriculumService.changeCurriculum(currVersion);
+  }
+
+  getSubtopic(subtopicID : number): any 
+  {
+    let hit : boolean=false,returned : boolean=false;
+    let subtopic : any;
+    while(!returned)
+    {
+      if(!hit)
+      this.subtopicService.getSubtopicByID(subtopicID).subscribe(
+        result => {
+          subtopic=result;
+          returned=true;
+        }
+      )
+      hit=true;
+    }
+    return subtopic;
   }
 
   update(weeks: CurriculumSubtopic[])
