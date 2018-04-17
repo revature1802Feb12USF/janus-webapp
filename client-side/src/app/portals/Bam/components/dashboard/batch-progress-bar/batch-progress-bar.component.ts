@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 
 import { BatchService } from '../../../services/batch.service';
 import { Observable } from 'rxjs/Observable';
@@ -21,6 +21,7 @@ import { SubtopicService } from '../../../services/subtopic.service';
   templateUrl: './batch-progress-bar.component.html',
   styleUrls: ['./batch-progress-bar.component.css']
 })
+@Injectable()
 export class BatchProgressBarComponent implements OnInit, OnChanges {
 
   //batchObs: Observable<Batch>;
@@ -58,7 +59,8 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
     
   }
   ngOnInit() {
-    this.selectedBatch = JSON.parse(sessionStorage.getItem('batch'));
+  this.selectedBatch = JSON.parse(sessionStorage.getItem('batch'));
+    if (this.selectedBatch) {
       this.batchId = this.selectedBatch.id;
       //this.batchObs = this.batchService.getBatchById(this.batchId);
 
@@ -145,13 +147,13 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
             }
 
 
-
-            this.subTopicTotalObs.subscribe(
-              data3 => {
-                this.subTopicTotal = data3;
-              }
-            );
-            // find subtomics completed
+            this.subTopicTotal = this.schedule.subtopics.length;
+            // this.subTopicTotalObs.subscribe(
+            //   data3 => {
+            //     this.subTopicTotal = data3;
+            //   }
+            // );
+            // find subtopics completed
             this.subTopicCompleted = 0;
 
 
@@ -161,6 +163,6 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
           });
         }
       );
-
+    }
   }
 }

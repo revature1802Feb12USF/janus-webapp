@@ -6,6 +6,7 @@ import { BatchService } from '../../../services/batch.service';
 import { SessionService } from '../../../services/session.service';
 import { Observable } from 'rxjs/Observable';
 import { AlertService } from '../../../services/alert.service';
+import { BatchProgressBarComponent } from '../batch-progress-bar/batch-progress-bar.component';
 
 /**
  * @author Mohamed Swelam -- batch: 1712-dec11-Java-Steve
@@ -27,7 +28,8 @@ export class WelcomeComponent implements OnInit {
 
   constructor(private batchService: BatchService, 
               private sessionService: SessionService, 
-              private alertService: AlertService) { }
+              private alertService: AlertService,
+              private batchProgressBar: BatchProgressBarComponent) { }
 
   ngOnInit() {
     this.currentUser = this.sessionService.getUser();
@@ -37,6 +39,7 @@ export class WelcomeComponent implements OnInit {
       this.getInProgressBatches();
     } else {
       this.getInProgressBatches();
+
     }
   }
 
@@ -65,6 +68,7 @@ export class WelcomeComponent implements OnInit {
    */
   setSelected() {
     this.sessionService.putSelectedBatchIntoSession(this.selectedBatch);
+    this.batchProgressBar.ngOnInit();
   }
 
 
