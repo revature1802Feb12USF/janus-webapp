@@ -63,15 +63,15 @@
                     <button class="btn btn-block btn-primary" (click)="download()">Export Curriculum</button>
                 </div>
                 <div class="col" *ngIf="selectedCurr">
-                    <button class="btn btn-block btn-default" (click)="areYouSurePopulateCalendar(selectedCurr.masterVersion)">Populate my Calendar</button>
+                    <!-- <button class="btn btn-block btn-default" (click)="areYouSurePopulateCalendar(selectedCurr.masterVersion)">Populate my Calendar</button> -->
                 </div>
                 <div class="text-center" *ngIf="populatingCalendar">
                     <i class="fa fa-spinner fa-pulse fa-5x"></i>
                 </div>
                 <div class="col text-right">
-                    <span (click)="areYouSureDeleteCurr(selectedCurr.masterVersion)">
+                    <!-- <span (click)="areYouSureDeleteCurr(selectedCurr.masterVersion)">
                         <i class="cursor fa fa-trash fa-2x"></i>
-                    </span>
+                    </span> -->
                 </div>
             </div>
         </div>

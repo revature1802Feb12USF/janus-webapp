@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-sm-12 col-md-12 col-lg-12">
-    <button class="btn btn-block topic new-topic" data-toggle="modal" data-target="#addTopicModel">Add New Topic</button>    
+    <!-- <button class="btn btn-block topic new-topic" data-toggle="modal" data-target="#addTopicModel">Add New Topic</button>     -->
   </div>
 </div>
 
 <div class="row justify-content-center">
   <img src="../../../../../../assets/revatureLoad.gif" class="text-center" *ngIf="subTopicName.length === 0">
   <div class="col-sm-12 col-md-12 col-lg-12" id="accordian">
-    <app-topic-search class="mt-1"></app-topic-search>
+    <!-- <app-topic-search class="mt-1"></app-topic-search> -->
   </div>
     <div class="col-sm-11 col-md-11 col-lg-11" *ngFor="let topic of uniqarrFiltered; let i = index">
       <div (click)="clearSubtopicSearch()" class="topic" data-toggle="collapse" [attr.data-target]="'#'+i" aria-expanded="true" aria-controls="collapseOne">

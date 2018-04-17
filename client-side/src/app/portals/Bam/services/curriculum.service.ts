@@ -83,7 +83,6 @@ export class CurriculumService {
   getSchedualeByCurriculumId(cid: number): Observable<Schedulez> {
     return this.http.get<Schedulez>(this.urlService.curriculum.getSchedulesByCurriculumIdUrl(cid)).map(
       data => {
-        console.log("Recieved this"+JSON.stringify(data));
         return data;
       }
     );
@@ -179,7 +178,6 @@ export class CurriculumService {
 
     addSchedule(json : any)
     {
-      console.log('Sending this:'+JSON.stringify(json))
       return this.http.post(this.urlService.curriculum.addSchedule(),JSON.stringify(json)).subscribe(
         data => {
           return data;

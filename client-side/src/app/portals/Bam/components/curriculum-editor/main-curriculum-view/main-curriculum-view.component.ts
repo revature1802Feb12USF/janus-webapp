@@ -16,6 +16,7 @@ import { WeeksExportDTO } from '../../../models/weeksExportDTO';
 import { SubtopicService } from '../../../services/subtopic.service';
 import { Schedulez } from '../../../models/scheduleZ.model';
 import { SubtopicCurric } from '../../../models/subtopicCurric.model';
+import { Topic } from '../../../models/topic.model';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
 const EXCEL_EXTENSION = '.xlsx';
@@ -169,7 +170,9 @@ export class MainCurriculumViewComponent implements OnInit {
 
                      this.selectedCurr=<Curriculum>response.body;
                      let unformatted_JSON = JSON.parse(JSON.stringify(weeksDTO));
+                     console.log("Unformatted\n"+JSON.stringify(unformatted_JSON));
                      let formatted_schedule = this.formatSchedule(unformatted_JSON);
+                     console.log("Formatted\n"+JSON.stringify(formatted_schedule));
                      this.curriculumService.addSchedule(formatted_schedule);
 
 
@@ -191,21 +194,36 @@ export class MainCurriculumViewComponent implements OnInit {
         let schedule : Schedulez = new Schedulez();
         schedule.curriculum=this.selectedCurr;
         let i,j,k;
+        console.log("first length:"+unformatted_JSON.length)
         for(i=0;i<unformatted_JSON.length;i++) //for every week
         {
             for(j=0;j<5;j++) //for every day
             {
                 let hour=9;
                 
+                console.log("second length:"+unformatted_JSON[i].days[j].subtopics.length)
                 for(k=0;k<unformatted_JSON[i].days[j].subtopics.length;k++) //for every hour (or subtopic)
                 {
-                    if(unformatted_JSON[i].days[j].subtopics[k])
-                    {
+                        console.log("THE SUBTOPIC:"+JSON.stringify(unformatted_JSON[i].days[j].subtopics[k]));
                         let subtopic : SubtopicCurric=new SubtopicCurric();
-                        subtopic.subtopicId=unformatted_JSON[i].days[j].subtopics[k].subtopicId;
-                        subtopic.subtopicName=unformatted_JSON[i].days[j].subtopics[k].subtopicName;
-                        subtopic.parentTopic=unformatted_JSON[i].days[j].subtopics[k].parentTopic;
-                        subtopic.status=unformatted_JSON[i].days[j].subtopics[k].status;
+                        if(typeof unformatted_JSON[i].days[j].subtopics[k].id==="undefined")
+                        {
+                            console.log("here1");
+                            subtopic.subtopicId=unformatted_JSON[i].days[j].subtopics[k].subtopicId;
+                            subtopic.subtopicName=unformatted_JSON[i].days[j].subtopics[k].subtopicName;
+                            subtopic.parentTopic=unformatted_JSON[i].days[j].subtopics[k].parentTopic;
+                            subtopic.status=unformatted_JSON[i].days[j].subtopics[k].status;
+                        }
+                        else
+                        {
+                            console.log("here2");
+                            subtopic.subtopicId=unformatted_JSON[i].days[j].subtopics[k].id;
+                            subtopic.subtopicName=unformatted_JSON[i].days[j].subtopics[k].name;
+                            let topic : Topic = new Topic();
+                            topic.topicID=unformatted_JSON[i].days[j].subtopics[k].topic.id
+                            topic.topicName=unformatted_JSON[i].days[j].subtopics[k].topic.name
+                            subtopic.parentTopic=topic;
+                        }
 
                         subtopic.date.day=j+1;
                         let arbitraryTime = new Date("1970-01-01");
@@ -215,7 +233,7 @@ export class MainCurriculumViewComponent implements OnInit {
                         subtopic.date.endTime=arbitraryTime.getTime();
                         subtopic.date.week=i+1;
                         schedule.subtopics.push(subtopic);
-                    }
+
                 }
             }
         }
