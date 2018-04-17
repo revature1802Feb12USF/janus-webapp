@@ -1,5 +1,6 @@
 import { BamUser } from './bamuser.model';
 import { BatchType } from './batchtype.model';
+import { Curriculum } from './curriculum.model';
 
 export class Batch {
     id: number;
@@ -8,6 +9,7 @@ export class Batch {
     endDate: Date;
     trainer: BamUser;
     trainerID: number;
+    curriculum: Curriculum;
     curriculumID: number;
     scheduleID: number;
 

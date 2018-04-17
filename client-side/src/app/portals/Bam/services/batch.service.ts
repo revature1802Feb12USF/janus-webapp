@@ -35,8 +35,8 @@ export class BatchService {
    * @returns Batch[]
    * @param email: string
    */
-  getPastBatches(email: string): Observable<Batch[]> {
-    return this.http.get<Batch[]>(this.urlService.bambatch.getPastBatchesUrl(email)).map(
+  getPastBatches(trainerId: number): Observable<Batch[]> {
+    return this.http.get<Batch[]>(this.urlService.bambatch.getPastBatchesUrl(trainerId)).map(
       data => {
         return data;
       }
@@ -49,8 +49,8 @@ export class BatchService {
    * @returns Batch[]
    * @param email: string
    */
-  getFutureBatches(email: string): Observable<Batch[]> {
-    return this.http.get<Batch[]>(this.urlService.bambatch.getFutureBatchesUrl(email)).map(
+  getFutureBatches(trainerId: number): Observable<Batch[]> {
+    return this.http.get<Batch[]>(this.urlService.bambatch.getFutureBatchesUrl(trainerId)).map(
       data => {
         return data;
       }
@@ -75,10 +75,10 @@ export class BatchService {
    * Retrieves all current batches for a given trainer
    * @author James Holzer | Batch: 1712-dec10-java-steve
    * @returns Batch[]
-   * @param email: string
+   * @param trainerId: number
    */
-  getAllBatchesInProgress(email: string): Observable<Batch[]> {
-    return this.http.get<Batch[]>(this.urlService.bambatch.getAllBatchesInProgressUrl(email)).map(
+  getAllBatchesInProgress(trainerId: number): Observable<Batch[]> {
+    return this.http.get<Batch[]>(this.urlService.bambatch.getAllBatchesInProgressUrl(trainerId)).map(
       data => {
         return data;
       }

@@ -124,7 +124,7 @@ export class UrlService {
 
   curriculum = {
     getCurriculumAllUrl: () => `${this.context}/curricula/all`,
-    getCurriculumByIdUrl: (id: number) => `${this.context}/curricula/${id}`,
+    getCurriculumByIdUrl: (id: number) => `${this.context}/curricula?ids=${id}`,
     getSchedulesByCurriculumIdUrl: (id: number) => `${this.context}/curricula/schedule/${id}`,
     getTopicPoolAllUrl: () => `${this.context}/curricula/topicpool`,
     getSubtopicPoolAllUrl: () => `${this.context}/curricula/subtopicpool`,
@@ -137,10 +137,10 @@ export class UrlService {
 
   bambatch = {
     getBatchAllUrl: () => `${this.context}/batches/`,
-    getPastBatchesUrl: (email: string) => `${this.context}/batches/past/${email}`,
-    getFutureBatchesUrl: (email: string) => `${this.context}/batches/future/${email}`,
+    getPastBatchesUrl: (trainerId: number) => `${this.context}/batches/past/${trainerId}`,
+    getFutureBatchesUrl: (trainerId: number) => `${this.context}/batches/future/${trainerId}`,
     getBatchInProgressUrl: (email: string) => `${this.context}/batches/inprogress/${email}`,
-    getAllBatchesInProgressUrl: (email: string) => `${this.context}/batches/allinprogress/${email}`,
+    getAllBatchesInProgressUrl: (trainerId: number) => `${this.context}/batches/current/${trainerId}`,
     getBatchByIdURL: (batchId: number) => `${this.context}/batches/batch/${batchId}`,
     updateBatchUrl: () => `${this.context}/batches/batch`,
     getAllBatchTypesUrl: () => `${this.context}/batches/types`,
