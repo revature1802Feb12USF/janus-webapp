@@ -297,7 +297,6 @@ export class MainCurriculumViewComponent implements OnInit {
                 maxWeek = e.curriculumSubtopicWeek;
             }
         });
-        console.log("max week"+maxWeek);
         return maxWeek;
     }
 

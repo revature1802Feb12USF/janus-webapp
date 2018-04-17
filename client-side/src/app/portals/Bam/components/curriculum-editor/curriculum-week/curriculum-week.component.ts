@@ -93,7 +93,6 @@ export class CurriculumWeekComponent implements OnInit {
           break;
       }
     });
-    console.log("days:"+JSON.stringify(this.monday))
     this.weekDTO.days.push(this.monday, this.tuesday, this.wednesday, this.thursday, this.friday);
   }
 

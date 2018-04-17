@@ -45,7 +45,6 @@ export class CourseStructureComponent implements OnInit {
   viewCurrSchedule(currVersion: Curriculum) {
     //Please...kill me
     //For real, curriculum editor is all jacked up, definitely redo it
-    console.log("curriculum id"+currVersion.id)
     this.curriculumService.getSchedualeByCurriculumId(currVersion.id).subscribe(
       data => {
         if(data[0].subtopics.length==0)
@@ -72,7 +71,6 @@ export class CourseStructureComponent implements OnInit {
               let subtopicname : SubtopicName = new SubtopicName(subtopicID,subtopicName,topicname,type);
               let curriculumsubtopic : CurriculumSubtopic = new CurriculumSubtopic(subtopicID,subtopicname,week,day);
               weeks.push(curriculumsubtopic);
-              console.log("weeks:"+JSON.stringify(weeks));
               if(weeks.length==subtopics.length)
               {
               this.update(weeks)
