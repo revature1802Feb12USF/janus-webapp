@@ -6,7 +6,6 @@ import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 
 // new notif imports
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import { AlertService } from '../../services/alerts/alerts.service';
 
