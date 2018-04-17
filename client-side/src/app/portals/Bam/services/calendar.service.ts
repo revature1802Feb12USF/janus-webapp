@@ -8,6 +8,10 @@ import { CalendarEvent } from '../models/calendar-event.model';
 import { of } from 'rxjs/observable/of';
 import { CalendarStatusService } from './calendar-status.service';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
+import { Schedule } from '../models/schedule.model';
+import { ScheduledSubtopic } from '../models/scheduledsubtopic.model';
+import { CALENDAR_VALUE_ACCESSOR } from 'primeng/primeng';
+import { Curriculum } from '../models/curriculum.model';
 
 
 const httpOptions = {
@@ -31,13 +35,14 @@ export class CalendarService {
    * @param pageNumber: number
    * @param pageSize: number
    */
-  getSubtopicsByBatchPagination(batchId: number, pageNumber: number, pageSize: number): Observable<Subtopic[]> {
-    return this.http.get<Subtopic[]>(this.urlService.calendar.getSubtopicsByBatchPaginationUrl(batchId, pageNumber, pageSize)).map(
-      data => {
-        return data;
-      }
-    );
-  }
+  // getSubtopicsByBatchPagination(batchId: number, pageNumber: number, pageSize: number): Observable<Subtopic[]> {
+  //   return this.http.get<Subtopic[]>(this.urlService.calendar.getSubtopicsByBatchPaginationUrl(batchId, pageNumber, pageSize)).map(
+  //     data => {
+  //       return data;
+  //     }
+  //   );
+  // }
+
 
   /**
    * Retrieves subtopic by batchId
@@ -53,6 +58,21 @@ export class CalendarService {
     );
   }
 
+    /**
+   * Retrieves schedule by scheduleId
+   * @author Scott Bennett | Batch: 1802-feb12-Matt
+   * @returns Schedule
+   * @param batchId number
+   */
+  getScheduleByScheduleId(scheduleId: number): Observable<Schedule> {
+    return this.http.get<Schedule>(this.urlService.calendar.getScheduleById(scheduleId)).map(
+      data => {
+        return data;
+      }
+    );
+  }
+
+  
   /**
    * Retrieves the number of subtopics by batchId
    * @author James Holzer | Batch: 1712-dec10-java-steve
@@ -89,12 +109,15 @@ export class CalendarService {
    * @param batchId: number
    * @param status: number
    */
-  changeTopicDate(subtopicId: number, batchId: number, date: number) {
-    return this.http.post(this.urlService.calendar.changeTopicDateUrl(subtopicId, batchId, date), null, httpOptions).map(
-      data => {
-        return data;
-      }
-    );
+  // changeTopicDate(subtopicId: number, batchId: number, date: Date) {
+  //   return this.http.post(this.urlService.calendar.changeTopicDateUrl(subtopicId, batchId, date), null, httpOptions).map(
+  //     data => {
+  //       return data;
+  //     }
+  //   );
+  // }
+  changeTopicDate(schedule: Schedule) {
+    return this.http.patch<Schedule>(this.urlService.calendar.changeTopicDateUrl, schedule);
   }
 
   /**
@@ -144,12 +167,12 @@ export class CalendarService {
    */
   mapSubtopicToEvent(subtopic: Subtopic): CalendarEvent {
     const calendarEvent = new CalendarEvent();
-    calendarEvent.subtopicNameId = subtopic.subtopicName.id;
-    calendarEvent.subtopicId = subtopic.subtopicId;
-    calendarEvent.title = subtopic.subtopicName.name;
-    calendarEvent.start = new Date(subtopic.subtopicDate);
+    calendarEvent.color = this.statusService.getStatusColor(subtopic.status);
+    calendarEvent.start = subtopic.startTime;
+    // calendarEvent.end = subtopic.endTime;
     calendarEvent.status = subtopic.status;
-    calendarEvent.color = this.statusService.getStatusColor(calendarEvent.status);
+    calendarEvent.subtopicId = subtopic.subtopicId;
+    calendarEvent.title = subtopic.subtopicName;
 
     return calendarEvent;
   }
