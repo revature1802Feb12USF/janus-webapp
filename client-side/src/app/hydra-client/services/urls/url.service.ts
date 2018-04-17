@@ -85,7 +85,8 @@ export class UrlService {
 
   subtopic = {
     getSubtopicByIDs: (subtopicIdList: number[]) => `${this.context}/topics/subtopics?ids=${subtopicIdList}`,
-    getSubtopics: () => `subtopic/subtopics`,
+    getSubtopicByID: (subtopicId: number) => `${this.context}/topics/subtopics/${subtopicId}`,
+    getSubtopics: () => `${this.context}/topics/subtopics`,
     addSubTopicName: (subtopicName: string, topicId: number, typeId: number) =>
       `${this.context}/subtopics/${typeId}/${topicId}/${subtopicName}`,
     removeSubtopic: (subtopicId: number) => `${this.context}/subtopics/${subtopicId}`,
@@ -125,14 +126,15 @@ export class UrlService {
   curriculum = {
     getCurriculumAllUrl: () => `${this.context}/curricula/all`,
     getCurriculumByIdUrl: (id: number) => `${this.context}/curricula?ids=${id}`,
-    getSchedulesByCurriculumIdUrl: (id: number) => `${this.context}/curricula/schedule/${id}`,
-    getTopicPoolAllUrl: () => `${this.context}/curricula/topicpool`,
+    getSchedulesByCurriculumIdUrl: (id: number) => `${this.context}/curricula/${id}/schedules`,
+    getTopicPoolAllUrl: () => `${this.context}/topics/`,
     getSubtopicPoolAllUrl: () => `${this.context}/curricula/subtopicpool`,
-    addCurriculumUrl: () => `${this.context}/curricula/addcurriculum`,
-    makeCurriculumMasterByIdUrl: (id: number) => `${this.context}/curricula/makemaster/${id}`,
+    addCurriculumUrl: () => `${this.context}/curricula/`,
+    makeCurriculumMasterByIdUrl: (id: number) => `${this.context}/curricula/${id}/master`,
     syncBatchByIdUrl: (id: number) => `${this.context}/curricula/syncbatch/${id}`,
     deleteCurriculumVersionUrl: () => `${this.context}/curricula/deleteversion`,
-    getScheduleById: (id: number) => `${this.context}/curricula/schedules/${id}`
+    getScheduleById: (id: number) => `${this.context}/curricula/schedules/${id}`,
+    addSchedule: () => `${this.context}/curricula/schedules`
   };
 
   bambatch = {
