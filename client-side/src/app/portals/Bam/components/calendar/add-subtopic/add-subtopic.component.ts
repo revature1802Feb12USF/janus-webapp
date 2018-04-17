@@ -183,7 +183,7 @@ export class AddSubtopicComponent implements OnInit {
     if (this.selectedSubtopic !== '' && this.selectedSubtopic !== 'Select a Subtopic') {
       for (const i in this.batchSubtopics) {
         if (this.selectedSubtopic === this.batchSubtopics[i].subtopicName) {
-          this.topicId = this.batchSubtopics[i].parentTopic.topicId;
+          this.topicId = this.batchSubtopics[i].parentTopic.topicID;
           this.subtopicId = this.batchSubtopics[i].subtopicId;
         }
       }
@@ -273,14 +273,18 @@ export class AddSubtopicComponent implements OnInit {
         let startTime: Date = new Date(this.selectedDateMiliseconds);
         let endTime: Date = new Date(this.selectedDateMiliseconds);
         endTime.setHours(endTime.getHours() + 1);
-    
+        
+        let parent : Topic = new Topic();
+        parent.topicID=this.topicId;
+        parent.topicName=this.selectedTopic;
+        
         this.subtopic = {
           subtopicId: sub.subtopicId,
           subtopicName: sub.subtopicName,
           startTime: startTime,
           endTime: endTime,
           status: this.status,
-          parentTopic: new Topic(this.topicId, this.selectedTopic)
+          parentTopic: parent
         };
         break;
       }
