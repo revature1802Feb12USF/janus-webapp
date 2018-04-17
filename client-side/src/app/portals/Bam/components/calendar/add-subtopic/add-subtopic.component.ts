@@ -43,6 +43,7 @@ export class AddSubtopicComponent implements OnInit {
 
   @ViewChild('content') modalRef: TemplateRef<any>;
   public loading: Boolean = true;
+  public loadingSuccess: Boolean = true;
   public closeResult: string;
 
   public currentlyAddedSubtopic: Subtopic[] = [];
@@ -105,8 +106,21 @@ export class AddSubtopicComponent implements OnInit {
             this.currentBatch = selectedBatch;
           }
         )
+      }, (err) => {
+        this.loading = false;
+        this.loadingSuccess = false;
       }
     );
+  }
+
+/**
+ * Method called when getSubtopicPool throws an error. This will generate an
+ * error message that will replace the loading image on the page.
+ * @author Jessica Colson (1802-Matt)
+ */
+
+  onErrorLoadErrorMessage() {
+
   }
 
   /**
@@ -156,6 +170,7 @@ export class AddSubtopicComponent implements OnInit {
         }
       }
       this.loading = false;
+      this.loadingSuccess = true;
   }
 
   /**
