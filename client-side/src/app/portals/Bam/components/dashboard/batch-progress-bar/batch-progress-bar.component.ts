@@ -23,7 +23,7 @@ import { SubtopicService } from '../../../services/subtopic.service';
 })
 export class BatchProgressBarComponent implements OnInit, OnChanges {
 
-  batchObs: Observable<Batch>;
+  //batchObs: Observable<Batch>;
   batchId: number;
   batch: Batch;
   batchName: string;
@@ -40,7 +40,7 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
   missedTopics: number;
   totalTopics: number;
   subTopicsCompleted: number;
-  subTopicObs: Observable<Subtopic[]>;
+  //subTopicObs: Observable<Subtopic[]>;
   numSubtopics: number;
   subTopicMissed: number;
   topicArray: ListModel[];
@@ -55,17 +55,13 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
     this.batchId = null;
   }
   ngOnChanges() {
-
+    
   }
   ngOnInit() {
     this.selectedBatch = JSON.parse(sessionStorage.getItem('batch'));
-    this.sessionService.selectedBatchSubject.subscribe(data => {
-      this.batchId = data.id;
-      this.batchObs = this.batchService.getBatchById(this.batchId);
-      //this.subTopicTotalObs = this.calendarService.getNumberOfSubTopicsByBatch(this.batchId);
+      this.batchId = this.selectedBatch.id;
+      //this.batchObs = this.batchService.getBatchById(this.batchId);
 
-      // this.subTopicObs = this.calendarService.getSubtopicsByBatch(this.batchId);
-      //begin inserted code
       this.calendarService.getScheduleByScheduleId(this.selectedBatch.scheduleID).subscribe(
         schedule => {
           this.schedule = schedule;
@@ -87,7 +83,7 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
             sessionStorage.setItem('subtopics', JSON.stringify(this.subtopics));
 
 
-            this.batchObs.subscribe(
+            this.batchService.getBatchById(this.batchId).subscribe(
               data1 => {
                 this.showSpinner = false;
                 this.batch = data1;
@@ -165,6 +161,6 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
           });
         }
       );
-    });
+
   }
 }
