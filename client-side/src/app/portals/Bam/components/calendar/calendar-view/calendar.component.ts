@@ -314,16 +314,14 @@ export class CalendarComponent implements OnInit {
     newSubtopic.color = this.statusService.getStatusColor(newSubtopic.status);
     event.color = newSubtopic.color;
 
-    // update date and status synchronously
     this.addSubtopicService.addNewScheduledSubtopic(this.schedule.id, scheduledSubtopic).subscribe(
-        response => {
-          this.schedule.subtopics[this.schedule.subtopics.length-1].parentSchedule = this.schedule;
-          this.calendarService.updateTopicStatus(event, this.selectedBatch.id).subscribe();
-        },
-        error => {
-          console.log(error);
-        }
-      );
+      response => {
+        this.schedule.subtopics[this.schedule.subtopics.length-1].parentSchedule = this.schedule;
+      },
+      error => {
+        console.log(error);
+      }
+    );
       
     this.updateEvent(calendarEvent);
     this.fc.updateEvent(newSubtopic);

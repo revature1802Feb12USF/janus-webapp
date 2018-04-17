@@ -107,7 +107,7 @@ export class UrlService {
     updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
       `${bam}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
     updateScheduleURL: `${bam}/curricula/schedules`,
-    addNewScheduledSubtopic: (scheduleId: number) => `${bam}/curricula/scheduled-subtopics/${scheduleId}`
+    addNewScheduledSubtopic: (scheduleId: number) => `${bam}/curricula/scheduled-subtopics?schedule=${scheduleId}`
   };
 
   assignForce = {
