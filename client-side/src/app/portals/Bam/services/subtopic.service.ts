@@ -30,6 +30,14 @@ export class SubtopicService {
     )
   }
 
+  getSubtopicByIDz(subtopicIdList: number[]): Observable<SubtopicCurric[]>  {
+    return this.http.get<SubtopicCurric[]>(this.urlService.subtopic.getSubtopicByIDs(subtopicIdList)).map(
+      data => {
+        return data;
+      }
+    )
+  }
+
   getSubtopicByID(subtopicId : number): Observable<any>  {
     return this.http.get<any>(this.urlService.subtopic.getSubtopicByID(subtopicId)).map(
       data => {

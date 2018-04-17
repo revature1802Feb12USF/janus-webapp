@@ -56,28 +56,22 @@ export class CourseStructureComponent implements OnInit {
         let i;
         for(i=0;i<subtopics.length;i++)
         {
-          let subtopicName,parentName;
           let subtopic=subtopics[i];
           let week=subtopic.date.week;
           let day=subtopic.date.day;
           let subtopicID=subtopic.subtopicId
-          this.subtopicService.getSubtopicByID(subtopic.subtopicId).subscribe(
-            result => {
-              subtopicName=result.subtopicName;
-              parentName=result.parentTopic.topicName;
-               //need topic id
-              let topicname :TopicName = new TopicName(0,parentName);
-              let type : SubtopicType = new SubtopicType(subtopicID,"blah");
-              let subtopicname : SubtopicName = new SubtopicName(subtopicID,subtopicName,topicname,type);
-              let curriculumsubtopic : CurriculumSubtopic = new CurriculumSubtopic(subtopicID,subtopicname,week,day);
-              weeks.push(curriculumsubtopic);
-              if(weeks.length==subtopics.length)
-              {
-              this.update(weeks)
-              }
-            }
-          );
-          
+          // subtopicName=result.subtopicName;
+          // parentName=result.parentTopic.topicName;
+          //need topic id
+          let topicname :TopicName = new TopicName(0,"filler");
+          let type : SubtopicType = new SubtopicType(subtopicID,"blah");
+          let subtopicname : SubtopicName = new SubtopicName(subtopicID,"filler",topicname,type);
+          let curriculumsubtopic : CurriculumSubtopic = new CurriculumSubtopic(subtopicID,subtopicname,week,day);
+          weeks.push(curriculumsubtopic);
+          if(weeks.length==subtopics.length)
+          {
+            this.update(weeks)
+          }
         }
         //turn data into an array of curriculumsubtopics and send to data
         
@@ -92,7 +86,33 @@ export class CourseStructureComponent implements OnInit {
 
   update(weeks: CurriculumSubtopic[])
   {
-    this.curriculumService.changeData(weeks);
+    let subtopicIDs : number[]=[];
+    weeks.forEach(
+      subtopic =>
+      {
+        subtopicIDs.push(subtopic.curriculumSubtopicId);
+      }
+    );
+    this.subtopicService.getSubtopicByIDz(subtopicIDs).subscribe(
+      result =>
+      {      
+        console.log("The result of byIDs:"+JSON.stringify(result)+" the result of length"+result.length);
+        for(let i=0;i<weeks.length;i++)
+        {
+          for(let j=0;j<result.length;j++)
+          {
+            if(weeks[i].curriculumSubtopicNameId.id===result[j].subtopicId)
+            {
+              weeks[i].curriculumSubtopicNameId.name=result[j].subtopicName;
+              weeks[i].curriculumSubtopicNameId.topic.name=result[j].parentTopic.topicName;
+            }
+          }
+
+        }
+        this.curriculumService.changeData(weeks);
+      }
+    );
+    
   }
 
   /**

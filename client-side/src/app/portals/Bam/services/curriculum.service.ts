@@ -180,7 +180,7 @@ export class CurriculumService {
     addSchedule(json : any)
     {
       console.log('Sending this:'+JSON.stringify(json))
-      return this.http.post(this.urlService.curriculum.addSchedule(),json).map(
+      return this.http.post(this.urlService.curriculum.addSchedule(),JSON.stringify(json)).subscribe(
         data => {
           return data;
         });
