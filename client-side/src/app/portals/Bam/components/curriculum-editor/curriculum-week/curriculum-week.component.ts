@@ -45,7 +45,7 @@ export class CurriculumWeekComponent implements OnInit {
 
   ngOnInit() {
     this.sortSubtopics();
-    this.progressBar();
+    //this.progressBar();
   }
   /**
    * This method returns the subtopic-topic names for the progress bar and a visual
@@ -54,7 +54,6 @@ export class CurriculumWeekComponent implements OnInit {
    * @author James Holzer, Shane Sistoza, Jeffrey Camacho, Jordan DeLong (1712-Steve)
    */
   progressBar() {
-
     this.weekDTO.days.forEach(element => {
       element.subtopics.forEach(subtopic => {
         if (this.percentageMap[subtopic.parentTopic.topicName] === undefined) {
@@ -94,6 +93,7 @@ export class CurriculumWeekComponent implements OnInit {
           break;
       }
     });
+    console.log("days:"+JSON.stringify(this.monday))
     this.weekDTO.days.push(this.monday, this.tuesday, this.wednesday, this.thursday, this.friday);
   }
 
@@ -105,7 +105,6 @@ export class CurriculumWeekComponent implements OnInit {
   dropIt(dayNum: number) {
     this.dndService.currentSubtopic.subscribe(
       data => {
-        console.log("DATA:"+JSON.stringify(data));
         this.weekDTO.days[dayNum].subtopics.push(data);
       }
     ).unsubscribe();
@@ -151,7 +150,6 @@ export class CurriculumWeekComponent implements OnInit {
  confirmWeekDeletion(weekNum: number) {
     event.stopPropagation();
     this.weekNum = weekNum;
-    console.log(weekNum);
  }
 
   removeWeekCall() {

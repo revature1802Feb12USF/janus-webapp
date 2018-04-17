@@ -86,6 +86,7 @@ topic = {
 
 subtopic = {
   getSubtopicByIDs: (subtopicIdList: number[]) => `${bam}/topics/subtopics?ids=${subtopicIdList}`,
+  getSubtopicByID: (subtopicId: number) => `${bam}/topics/subtopics/${subtopicId}`,
   getSubtopics: () => `${bam}/topics/subtopics`,
   addSubTopicName: (subtopicName: string, topicId: number, typeId: number) =>
    `${bam}/subtopics/${typeId}/${topicId}/${subtopicName}`,
@@ -124,7 +125,7 @@ calendar = {
 curriculum = {
   getCurriculumAllUrl: () => `${bam}/curricula/all`,
   getCurriculumByIdUrl: (id: number) => `${bam}/curricula/${id}`,
-  getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curricula/schedules/${id}`,
+  getSchedulesByCurriculumIdUrl: (id: number) => `${bam}/curricula/${id}/schedules`,
   getTopicPoolAllUrl: () => `${bam}/topics/`,
   getSubtopicPoolAllUrl: () => `${bam}/curricula/subtopicpool`,
   addCurriculumUrl: () => `${bam}/curricula/`,

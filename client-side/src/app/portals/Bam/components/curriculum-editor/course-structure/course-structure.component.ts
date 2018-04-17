@@ -1,8 +1,16 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Curriculum } from '../../../models/curriculum.model';
 import { CurriculumService } from '../../../services/curriculum.service';
+import { SubtopicService } from '../../../services/subtopic.service'
 import { forEach } from '@angular/router/src/utils/collection';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
+import { Schedulez } from '../../../models/scheduleZ.model';
+import { CurriculumSubtopic } from '../../../models/curriculumSubtopic.model';
+import { TopicName } from '../../../models/topicname.model';
+import { Topic } from '../../../models/topic.model';
+import { SubtopicType } from '../../../models/subtopictype.model';
+import { SubtopicName } from '../../../models/subtopicname.model';
+import { SubtopicCurric } from '../../../models/subtopicCurric.model';
 
 
 @Component({
@@ -21,7 +29,7 @@ export class CourseStructureComponent implements OnInit {
   selectedTypeIndex: any = 0;
   @Output() messageEvent = new EventEmitter<Curriculum>();
 
-  constructor(private curriculumService: CurriculumService, private modalService: NgbModal) { }
+  constructor(private curriculumService: CurriculumService, private modalService: NgbModal, private subtopicService : SubtopicService) { }
 
   ngOnInit() {
     this.getAllCurriculums();
@@ -35,17 +43,58 @@ export class CourseStructureComponent implements OnInit {
   * @param currVersion - curriculum object selected from view
   */
   viewCurrSchedule(currVersion: Curriculum) {
-    console.log("currVersion in viewSchedule:"+JSON.stringify(currVersion))
+    //Please...kill me
+    //For real, curriculum editor is all jacked up, definitely redo it
+    console.log("curriculum id"+currVersion.id)
     this.curriculumService.getSchedualeByCurriculumId(currVersion.id).subscribe(
       data => {
-        this.curriculumService.changeData(data);
-
+        if(data[0].subtopics.length==0)
+        {
+          this.update([]);
+        }
+        let weeks : CurriculumSubtopic[] = new Array<CurriculumSubtopic>()
+        let subtopics=data[0].subtopics;
+        let i;
+        for(i=0;i<subtopics.length;i++)
+        {
+          let subtopicName,parentName;
+          let subtopic=subtopics[i];
+          let week=subtopic.date.week;
+          let day=subtopic.date.day;
+          let subtopicID=subtopic.subtopicId
+          this.subtopicService.getSubtopicByID(subtopic.subtopicId).subscribe(
+            result => {
+              subtopicName=result.subtopicName;
+              parentName=result.parentTopic.topicName;
+               //need topic id
+              let topicname :TopicName = new TopicName(0,parentName);
+              let type : SubtopicType = new SubtopicType(subtopicID,"blah");
+              let subtopicname : SubtopicName = new SubtopicName(subtopicID,subtopicName,topicname,type);
+              let curriculumsubtopic : CurriculumSubtopic = new CurriculumSubtopic(subtopicID,subtopicname,week,day);
+              weeks.push(curriculumsubtopic);
+              console.log("weeks:"+JSON.stringify(weeks));
+              if(weeks.length==subtopics.length)
+              {
+              this.update(weeks)
+              }
+            }
+          );
+          
+        }
+        //turn data into an array of curriculumsubtopics and send to data
+        
+       
       },
       error => {
         console.log(error);
       }
     );
     this.curriculumService.changeCurriculum(currVersion);
+  }
+
+  update(weeks: CurriculumSubtopic[])
+  {
+    this.curriculumService.changeData(weeks);
   }
 
   /**
@@ -199,11 +248,9 @@ export class CourseStructureComponent implements OnInit {
    * @author Carter Taylor, Olayinka Ewumi (1712-Steve)
    */
   makeMaster() {
-    console.log("Unique:"+JSON.stringify(this.uniqCurrVersions[this.selectedTypeIndex]));
     for (let j = 0; j < this.uniqCurrVersions[this.selectedTypeIndex].length; j++) {
         this.uniqCurrVersions[this.selectedTypeIndex][j].masterVersion = 0;
     }
-    console.log("After Unique:"+JSON.stringify(this.uniqCurrVersions[this.selectedTypeIndex]))
 
 
     this.selectedCurrVer.masterVersion = 1;
@@ -237,13 +284,11 @@ export class CourseStructureComponent implements OnInit {
   newVersion(currName: string, typeIndex: number) {
     event.stopPropagation();
     let newVersionNum = 0;
-    console.log("hey");
     this.uniqCurrVersions[typeIndex].forEach(elem => {
       if (elem.version > newVersionNum) {
         newVersionNum = elem.version;
       }
     });
-    console.log(this.uniqCurrVersions);
     const master = this.uniqCurrVersions[typeIndex].filter(e => e.masterVersion == 1);
     this.viewCurrSchedule(master[0]);
 

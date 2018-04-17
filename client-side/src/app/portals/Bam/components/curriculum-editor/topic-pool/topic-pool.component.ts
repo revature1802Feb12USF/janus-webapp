@@ -91,7 +91,6 @@ export class TopicPoolComponent implements OnInit {
      */
   initTopics() {
     for (let i = 0; i < this.subTopicName.length; i++) {
-      console.log(JSON.stringify(this.subTopicName))
       this.topics.push(this.subTopicName[i].topicName);
     }
   }
@@ -112,7 +111,6 @@ export class TopicPoolComponent implements OnInit {
     *  @batch 1712-Dec11-2017
     */
   uniqueTopics() {
-    console.log("topics:"+this.topics);
     this.uniqarr = this.topics.filter(this.onlyUnique);
     this.uniqarrFiltered = this.uniqarr;
   }
@@ -128,7 +126,6 @@ export class TopicPoolComponent implements OnInit {
    */
   initFilterTopicListener() {
     this.searchTextService.getMessage().subscribe(data => {
-      console.log("THIS IS THE SEARCH DATA:"+JSON.stringify(data));
       if (data.type === 'topic') {
         const topicSearch = data.text.toString().toLowerCase();
         this.uniqarrFiltered = this.uniqarr.filter(i => {
@@ -187,7 +184,6 @@ export class TopicPoolComponent implements OnInit {
           //after that, iterate the index
           
         });
-        console.log("HEY LOOK AT ME:"+JSON.stringify(this.subTopicArray));
       }
     );
 

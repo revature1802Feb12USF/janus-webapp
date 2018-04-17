@@ -30,6 +30,14 @@ export class SubtopicService {
     )
   }
 
+  getSubtopicByID(subtopicId : number): Observable<any>  {
+    return this.http.get<any>(this.urlService.subtopic.getSubtopicByID(subtopicId)).map(
+      data => {
+        return data;
+      }
+    )
+  }
+
   /**
    * Adds a subtopic to a topic.
    * @author Cristian Hermida | Batch: 1712-dec10-java-steve
@@ -71,7 +79,6 @@ export class SubtopicService {
   getAllSubtopics() : Observable<SubtopicCurric[]>
   {
     return this.http.get<SubtopicCurric[]>(this.urlService.subtopic.getSubtopics()).map(data => {
-      console.log("HEYYYYY:"+JSON.stringify(data));
       return data;
     });    
   }

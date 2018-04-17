@@ -10,6 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
 import { Schedule } from '../models/schedule.model';
+import { Schedulez } from '../models/schedulez.model';
 import { Topic } from '../models/topic.model';
 
 const httpOptions = {
@@ -79,16 +80,13 @@ export class CurriculumService {
     * @return: Observable<CurriculumSubtopic[]>
     * @param: Curriculum Id
     */
-  getSchedualeByCurriculumId(cid: number): Observable<CurriculumSubtopic[]> {
-    console.log("the cid:"+cid);
-    return this.http.get<CurriculumSubtopic[]>(this.urlService.curriculum.getSchedulesByCurriculumIdUrl(cid)).map(
+  getSchedualeByCurriculumId(cid: number): Observable<Schedulez> {
+    return this.http.get<Schedulez>(this.urlService.curriculum.getSchedulesByCurriculumIdUrl(cid)).map(
       data => {
-        console.log("We in this bitch"+JSON.stringify(data));
         return data;
       }
     );
   }
-
   /** Gets the entire topic pool being taught at revature
    *  @author: Mohamad Alhindi
     * @batch:  1712-Dec11-2017
@@ -97,7 +95,6 @@ export class CurriculumService {
   getAllTopicPool(): Observable<Topic[]> {
     return this.http.get<Topic[]>(this.urlService.curriculum.getTopicPoolAllUrl()).map(
       data => {
-        console.log(data);
         this.allTopicPoolData.next(data);
         return data;
       }
@@ -123,7 +120,6 @@ export class CurriculumService {
     * @param: CurriculumSubtopicDTO
     */
    addCurriculum(curriculum: Curriculum) {
-    console.log("addCurriculum:"+JSON.stringify(curriculum));
     return this.http.post(this.urlService.curriculum.addCurriculumUrl(), curriculum, httpOptions).map(
       data => {
         return data;
@@ -137,7 +133,6 @@ export class CurriculumService {
     * @param: Curriculum Id
     */
   markCurriculumAsMaster(curriculum: Curriculum) {
-    console.log(JSON.stringify(curriculum));
     return this.http.patch(this.urlService.curriculum.makeCurriculumMasterByIdUrl(curriculum.id),httpOptions).map(
       data => {
         return data;

@@ -14,7 +14,7 @@ import * as XLSX from 'xlsx';
 import * as XLSXStyle from 'xlsx-style';
 import { WeeksExportDTO } from '../../../models/weeksExportDTO';
 import { SubtopicService } from '../../../services/subtopic.service';
-import { Schedule } from '../../../models/scheduleZ.model';
+import { Schedulez } from '../../../models/scheduleZ.model';
 import { SubtopicCurric } from '../../../models/subtopicCurric.model';
 
 const EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
@@ -186,11 +186,10 @@ export class MainCurriculumViewComponent implements OnInit {
         );
     }
 
-    formatSchedule( unformatted_JSON : any) : Schedule
+    formatSchedule( unformatted_JSON : any) : Schedulez
     {
-        let schedule : Schedule = new Schedule();
+        let schedule : Schedulez = new Schedulez();
         schedule.curriculum=this.selectedCurr;
-        console.log("hey george"+JSON.stringify(this.selectedCurr.id))
         let i,j,k;
         for(i=0;i<unformatted_JSON.length;i++) //for every week
         {
@@ -202,14 +201,12 @@ export class MainCurriculumViewComponent implements OnInit {
                 {
                     if(unformatted_JSON[i].days[j].subtopics[k])
                     {
-                        console.log(unformatted_JSON[i].days[j].subtopics[k]);
                         let subtopic : SubtopicCurric=new SubtopicCurric();
                         subtopic.subtopicId=unformatted_JSON[i].days[j].subtopics[k].subtopicId;
                         subtopic.subtopicName=unformatted_JSON[i].days[j].subtopics[k].subtopicName;
                         subtopic.parentTopic=unformatted_JSON[i].days[j].subtopics[k].parentTopic;
                         subtopic.status=unformatted_JSON[i].days[j].subtopics[k].status;
 
-                        console.log("now im here"+JSON.stringify(subtopic));
                         subtopic.date.day=j+1;
                         let arbitraryTime = new Date("1970-01-01");
                         arbitraryTime.setHours(hour+k); 
@@ -223,7 +220,6 @@ export class MainCurriculumViewComponent implements OnInit {
             }
         }
 
-        console.log("HEY"+JSON.stringify(schedule));
         return schedule;
     }
 
@@ -286,6 +282,8 @@ export class MainCurriculumViewComponent implements OnInit {
                 week = [];
             }
         }
+        this.allWeeks.forEach( week => {console.log("A week"+JSON.stringify(week))});
+
     }
     /**
      * Discovers the amount of weeks in a given curriculum
@@ -299,7 +297,7 @@ export class MainCurriculumViewComponent implements OnInit {
                 maxWeek = e.curriculumSubtopicWeek;
             }
         });
-
+        console.log("max week"+maxWeek);
         return maxWeek;
     }
 
