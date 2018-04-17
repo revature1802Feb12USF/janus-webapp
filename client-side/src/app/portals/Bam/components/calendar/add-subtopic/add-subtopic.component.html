@@ -1,7 +1,6 @@
 <div class="sidebar-element">
   <div>
     <img *ngIf="loading" src='/assets/img/revloading.gif'>
-    <img *ngIf="!loading && !loadingSuccess" src=''>
   </div>
   <div *ngIf="!loading && loadingSuccess && currentBatch != null">
     <div class="form-group row">
