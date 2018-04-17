@@ -10,6 +10,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
 import { Schedule } from '../models/schedule.model';
+import { Schedulez } from '../models/schedulez.model';
+import { Topic } from '../models/topic.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -25,7 +27,7 @@ export class CurriculumService {
   public allCurriculumData = new BehaviorSubject<Curriculum[]>([]);
   currentAllCurriculumData = this.allCurriculumData.asObservable();
 
-  private allTopicPoolData = new BehaviorSubject<SubtopicName[]>([]);
+  private allTopicPoolData = new BehaviorSubject<Topic[]>([]);
   currentTopicPoolData = this.allTopicPoolData.asObservable();
 
   private selectedCurrData = new BehaviorSubject<Curriculum>(null);
@@ -78,21 +80,20 @@ export class CurriculumService {
     * @return: Observable<CurriculumSubtopic[]>
     * @param: Curriculum Id
     */
-  getSchedualeByCurriculumId(cid: number): Observable<CurriculumSubtopic[]> {
-    return this.http.get<CurriculumSubtopic[]>(this.urlService.curriculum.getSchedulesByCurriculumIdUrl(cid)).map(
+  getSchedualeByCurriculumId(cid: number): Observable<Schedulez> {
+    return this.http.get<Schedulez>(this.urlService.curriculum.getSchedulesByCurriculumIdUrl(cid)).map(
       data => {
         return data;
       }
     );
   }
-
   /** Gets the entire topic pool being taught at revature
    *  @author: Mohamad Alhindi
     * @batch:  1712-Dec11-2017
     * @return: Observable<SubtopicName[]>
     */
-  getAllTopicPool(): Observable<SubtopicName[]> {
-    return this.http.get<SubtopicName[]>(this.urlService.curriculum.getTopicPoolAllUrl()).map(
+  getAllTopicPool(): Observable<Topic[]> {
+    return this.http.get<Topic[]>(this.urlService.curriculum.getTopicPoolAllUrl()).map(
       data => {
         this.allTopicPoolData.next(data);
         return data;
@@ -118,7 +119,7 @@ export class CurriculumService {
     * @batch: 1712-Dec11-2017
     * @param: CurriculumSubtopicDTO
     */
-   addCurriculum(curriculum: CurriculumSubtopicDTO) {
+   addCurriculum(curriculum: Curriculum) {
     return this.http.post(this.urlService.curriculum.addCurriculumUrl(), curriculum, httpOptions).map(
       data => {
         return data;
@@ -131,8 +132,8 @@ export class CurriculumService {
     * @batch: 1712-Dec11-2017
     * @param: Curriculum Id
     */
-  markCurriculumAsMaster(curriculumId: number) {
-    return this.http.get(this.urlService.curriculum.makeCurriculumMasterByIdUrl(curriculumId)).map(
+  markCurriculumAsMaster(curriculum: Curriculum) {
+    return this.http.patch(this.urlService.curriculum.makeCurriculumMasterByIdUrl(curriculum.id),httpOptions).map(
       data => {
         return data;
       }
@@ -157,8 +158,8 @@ export class CurriculumService {
     * @batch: 1712-Dec11-2017
     * @param: Curriculum
     */
-    deleteCurriculumVersion(curriculumVersion: Curriculum) {
-      return this.http.post(this.urlService.curriculum.deleteCurriculumVersionUrl(), curriculumVersion, {
+    deleteCurriculumVersion(version: Curriculum) {
+      return this.http.post(this.urlService.curriculum.deleteCurriculumVersionUrl(), version, {
         responseType: 'text',
       });
     }
@@ -168,10 +169,18 @@ export class CurriculumService {
      * @param: number - id - int to get the schedule of
      */
     getScheduleById(id: number): Observable<Schedule> {
-      return this.http.get(this.urlService.curriculum.getScheduleById(id)).map(
+      return this.http.get<Schedule>(this.urlService.curriculum.getScheduleById(id)).map(
         data => {
           return data;
         }
       )
+    }
+
+    addSchedule(json : any)
+    {
+      return this.http.post(this.urlService.curriculum.addSchedule(),JSON.stringify(json)).subscribe(
+        data => {
+          return data;
+        });
     }
 }
