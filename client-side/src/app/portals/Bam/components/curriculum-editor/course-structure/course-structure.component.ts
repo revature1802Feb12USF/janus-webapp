@@ -96,6 +96,7 @@ export class CourseStructureComponent implements OnInit {
     this.subtopicService.getSubtopicByIDz(subtopicIDs).subscribe(
       result =>
       {      
+        console.log("The result of byIDs:"+JSON.stringify(result)+" the result of length"+result.length);
         for(let i=0;i<weeks.length;i++)
         {
           for(let j=0;j<result.length;j++)
