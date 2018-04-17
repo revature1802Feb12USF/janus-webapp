@@ -54,10 +54,8 @@ export class CourseStructureComponent implements OnInit {
         let weeks : CurriculumSubtopic[] = new Array<CurriculumSubtopic>()
         let subtopics=data[0].subtopics;
         let i;
-        console.log("SUBTOPICS:"+JSON.stringify(subtopics));
         for(i=0;i<subtopics.length;i++)
         {
-          console.log("i="+i);
           let subtopic=subtopics[i];
           let week=subtopic.date.week;
           let day=subtopic.date.day;
@@ -69,9 +67,8 @@ export class CourseStructureComponent implements OnInit {
           let type : SubtopicType = new SubtopicType(subtopicID,"blah");
           let subtopicname : SubtopicName = new SubtopicName(subtopicID,"filler",topicname,type);
           let curriculumsubtopic : CurriculumSubtopic = new CurriculumSubtopic(subtopicID,subtopicname,week,day);
-          console.log("CURRICULUM:"+JSON.stringify(curriculumsubtopic));
           weeks.push(curriculumsubtopic);
-          if(weeks.length===subtopics.length)
+          if(weeks.length==subtopics.length)
           {
             this.update(weeks)
           }
@@ -112,8 +109,6 @@ export class CourseStructureComponent implements OnInit {
           }
 
         }
-        
-        
         this.curriculumService.changeData(weeks);
       }
     );
