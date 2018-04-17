@@ -61,7 +61,7 @@ export class CourseStructureComponent implements OnInit {
           let week=subtopic.date.week;
           let day=subtopic.date.day;
           let subtopicID=subtopic.subtopicId
-          (
+          this.subtopicService.getSubtopicByID(subtopic.subtopicId).subscribe(
             result => {
               subtopicName=result.subtopicName;
               parentName=result.parentTopic.topicName;
@@ -73,7 +73,7 @@ export class CourseStructureComponent implements OnInit {
               weeks.push(curriculumsubtopic);
               if(weeks.length==subtopics.length)
               {
-                this.update(weeks)
+              this.update(weeks)
               }
             }
           );
