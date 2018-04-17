@@ -1,12 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 
-//Remote
-// const bam = 'http://hydra-gateway-service-dev.cfapps.io/api/v2';
-// const context = 'http://hydra-gateway-service-dev.cfapps.io/api/v2';
-
-//Local
-const bam = 'http://localhost:9001/api/v2';
 const context = environment.context;
 
 @Injectable()
