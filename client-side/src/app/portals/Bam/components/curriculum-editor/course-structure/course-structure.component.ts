@@ -73,7 +73,7 @@ export class CourseStructureComponent implements OnInit {
               weeks.push(curriculumsubtopic);
               if(weeks.length==subtopics.length)
               {
-                this.update(weeks)
+              this.update(weeks)
               }
             }
           );
