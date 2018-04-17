@@ -95,13 +95,14 @@ export class UrlService {
 
   addsubtopics = {
     // getBatchSubtopicsUrl: (batchId: number, pageNumber: number, pageSize: number) =>
-    //   `${bam}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
+    //   `${this.context}/calendar/subtopicspagination/${batchId}/${pageSize}/${pageNumber}`,
     getBatchIdUrl: (batchId: number) => `${this.context}/batches/batch/${batchId}`,
     addSubtopicUrl: () => `${this.context}/curricula/schedules`,
     getSubtopicPoolUrl: (curriculumId: number) => `${this.context}/curricula/${curriculumId}/subtopics`,
     updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
       `${this.context}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
-    updateScheduleURL: `${this.context}/curricula/schedules`
+    updateScheduleURL: `${this.context}/curricula/schedules`,
+    addNewScheduledSubtopic: (scheduleId: number) => `${this.context}/curricula/scheduled-subtopics?schedule=${scheduleId}`
   };
 
   assignForce = {
@@ -110,7 +111,7 @@ export class UrlService {
 
   calendar = {
     // getSubtopicsByBatchPaginationUrl: (batchId: number, pageNumber: number, pageSize: number) =>
-    //   `${bam}/calendar/subtopicspagination/${batchId}/${pageNumber}/${pageSize}/`,
+    //   `${this.context}/calendar/subtopicspagination/${batchId}/${pageNumber}/${pageSize}/`,
     getScheduleById: (scheduleId: number) => `${this.context}/curricula/schedules/${scheduleId}`,
     getSubtopicsByBatchUrl: (batchId: number) => `${this.context}/calendar/subtopics/${batchId}`,
     getNumberOfSubTopicsByBatchUrl: (batchId: number) => `${this.context}/calendar/getnumberofsubtopics/${batchId}`,
