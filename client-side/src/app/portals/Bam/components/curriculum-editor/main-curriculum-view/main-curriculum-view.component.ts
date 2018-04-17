@@ -169,7 +169,9 @@ export class MainCurriculumViewComponent implements OnInit {
 
                      this.selectedCurr=<Curriculum>response.body;
                      let unformatted_JSON = JSON.parse(JSON.stringify(weeksDTO));
+                     console.log("BEFORE FORMATTING SCHEDULE"+JSON.stringify(unformatted_JSON));
                      let formatted_schedule = this.formatSchedule(unformatted_JSON);
+                     console.log("THE FORMATTED SCHEDULE"+JSON.stringify(formatted_schedule));
                      this.curriculumService.addSchedule(formatted_schedule);
 
 
@@ -214,6 +216,7 @@ export class MainCurriculumViewComponent implements OnInit {
                         arbitraryTime.setHours(hour+k+1);
                         subtopic.date.endTime=arbitraryTime.getTime();
                         subtopic.date.week=i+1;
+                        console.log("THIS IS THE SUBTOPIC"+JSON.stringify(subtopic));
                         schedule.subtopics.push(subtopic);
                     }
                 }
