@@ -162,18 +162,17 @@ export class MainCurriculumViewComponent implements OnInit {
         const weeksDTO: WeeksDTO[] = [];
         this.weeks.forEach(elem => weeksDTO.push(elem.weekDTO));
 
-        
         this.curriculumService.addCurriculum(this.selectedCurr).subscribe(
             response => {
                 this.alertService.alert('success', 'Successfully saved ' +
-                    (<Curriculum> response.body).name + ' version #' + (<Curriculum> response.body).version);
+                    response.name + ' version #' + response.version);
 
-                this.selectedCurr=<Curriculum>response.body;
+                this.selectedCurr = response;
                 let unformatted_JSON = JSON.parse(JSON.stringify(weeksDTO));
                 let formatted_schedule = this.formatSchedule(unformatted_JSON);
                 this.curriculumService.addSchedule(formatted_schedule);
 
-                this.refreshList(<Curriculum>response.body);
+                this.refreshList(response);
                 this.isNewVer = false;
             },
             error => {

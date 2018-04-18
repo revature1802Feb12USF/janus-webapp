@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Curriculum } from '../models/curriculum.model';
 import { CurriculumSubtopic } from '../models/curriculumSubtopic.model';
@@ -119,8 +119,8 @@ export class CurriculumService {
     * @batch: 1712-Dec11-2017
     * @param: CurriculumSubtopicDTO
     */
-   addCurriculum(curriculum: Curriculum) {
-    return this.http.post<Curriculum>(this.urlService.curriculum.addCurriculumUrl(), curriculum, httpOptions).map(
+   addCurriculum(curriculum: Curriculum): Observable<Curriculum> {
+    return this.http.post<Curriculum>(this.urlService.curriculum.addCurriculumUrl(), curriculum).map(
       data => {
         return data;
       }

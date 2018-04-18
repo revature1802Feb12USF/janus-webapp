@@ -109,13 +109,6 @@ export class CalendarService {
    * @param batchId: number
    * @param status: number
    */
-  // changeTopicDate(subtopicId: number, batchId: number, date: Date) {
-  //   return this.http.post(this.urlService.calendar.changeTopicDateUrl(subtopicId, batchId, date), null, httpOptions).map(
-  //     data => {
-  //       return data;
-  //     }
-  //   );
-  // }
   changeTopicDate(schedule: Schedule) {
     return this.http.patch<Schedule>(this.urlService.calendar.changeTopicDateUrl, schedule);
   }
