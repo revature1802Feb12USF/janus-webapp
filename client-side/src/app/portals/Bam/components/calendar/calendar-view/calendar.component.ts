@@ -219,16 +219,16 @@ export class CalendarComponent implements OnInit {
     calendarEvent.color = droppedTopic.color;
 
     // update date and status synchronously
-    this.calendarService.changeTopicDate(this.schedule)
-      .subscribe(
-        response => {
-          this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
-        },
-        error => {
-          console.log(error);
-          //this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
-        }
-      );
+    // this.calendarService.changeTopicDate(this.schedule)
+    //   .subscribe(
+    //     response => {
+    //       this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
+    //     },
+    //     error => {
+    //       console.log(error);
+    //       //this.calendarService.updateTopicStatus(calendarEvent, this.selectedBatch.id).subscribe();
+    //     }
+    //   );
     this.updateEvent(calendarEvent);
     this.fc.updateEvent(droppedTopic);
   }
