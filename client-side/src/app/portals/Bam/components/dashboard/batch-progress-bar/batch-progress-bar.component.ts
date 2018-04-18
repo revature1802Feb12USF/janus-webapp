@@ -24,7 +24,6 @@ import { SubtopicService } from '../../../services/subtopic.service';
 @Injectable()
 export class BatchProgressBarComponent implements OnInit, OnChanges {
 
-  //batchObs: Observable<Batch>;
   batchId: number;
   batch: Batch;
   batchName: string;
@@ -41,11 +40,10 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
   missedTopics: number;
   totalTopics: number;
   subTopicsCompleted: number;
-  //subTopicObs: Observable<Subtopic[]>;
   numSubtopics: number;
   subTopicMissed: number;
   topicArray: ListModel[];
-  batchIdObs: Observable<number>;
+  batchObs: Observable<Batch>;
   schedule: BatchSchedule;
   scheduledSubtopics: ScheduledSubtopic[];
   subtopics: Subtopic[];
@@ -58,110 +56,126 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
   ngOnChanges() {
     
   }
-  ngOnInit() {
+
+  ngOnInit(){
+    if (sessionStorage.getItem('batch') != null) {
+      this.batch = JSON.parse(sessionStorage.getItem('batch'));
+      this.setProperties();
+    }
+    this.batchSubscribe();
+  }
+
+  /**
+   * @author David Graves -- batch: 1712-dec-Java-Steve
+   * Subscribes to obtain current batch info to deterime start and end date, as well as current week.
+   */
+  batchSubscribe() {
+    this.sessionService.selectedBatchSubject.subscribe(data =>  {
+      this.batchId = data.id;
+      this.batchObs = this.batchService.getBatchById(this.batchId);
+      this.batchObs.subscribe(
+        data1 => {
+          if (data1 != null) {
+            this.batch = data1;
+            this.setProperties();
+          }
+        });
+    });
+  }
+
+  setProperties() {
     this.selectedBatch = JSON.parse(sessionStorage.getItem('batch'));
-    if (this.selectedBatch) {
-      this.batchId = this.selectedBatch.id;
-      //this.batchObs = this.batchService.getBatchById(this.batchId);
+    this.batchId = this.selectedBatch.id;
 
-      this.calendarService.getScheduleByScheduleId(this.selectedBatch.scheduleID).subscribe(
-        schedule => {
-          this.schedule = schedule;
-          sessionStorage.setItem('schedule', JSON.stringify(schedule));
-          this.scheduledSubtopics = this.schedule.subtopics;
-          let subtopicIds: number[] = [];
-          this.scheduledSubtopics.forEach(element => {
-            subtopicIds.push(element.subtopicId);
-          });
+    this.calendarService.getScheduleByScheduleId(this.selectedBatch.scheduleID).subscribe(
+      schedule => {
+        this.schedule = schedule;
+        sessionStorage.setItem('schedule', JSON.stringify(schedule));
+        this.scheduledSubtopics = this.schedule.subtopics;
+        let subtopicIds: number[] = [];
+        this.scheduledSubtopics.forEach(element => {
+          subtopicIds.push(element.subtopicId);
+        });
 
-          this.subtopicService.getSubtopicByIDs(subtopicIds).subscribe(subtopics => {
-            this.subtopics = subtopics;
-            for (let i = 0; i < this.scheduledSubtopics.length; i++) {
-              let topicStartDate = new Date(this.selectedBatch.startDate);
-              topicStartDate.setDate(topicStartDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 1);
-              topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime / 1000 / 3600) % 24) - 4); //- 4 to adjust for EST from GMT
-              subtopics[i].startTime = topicStartDate;
-            }
-            sessionStorage.setItem('subtopics', JSON.stringify(this.subtopics));
+        this.subtopicService.getSubtopicByIDs(subtopicIds).subscribe(subtopics => {
+          this.subtopics = subtopics;
+          for (let i = 0; i < this.scheduledSubtopics.length; i++) {
+            let topicStartDate = new Date(this.selectedBatch.startDate);
+            topicStartDate.setDate(topicStartDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 1);
+            topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime / 1000 / 3600) % 24) - 4); //- 4 to adjust for EST from GMT
+            subtopics[i].startTime = topicStartDate;
+          }
+          sessionStorage.setItem('subtopics', JSON.stringify(this.subtopics));
 
-            this.batchService.getBatchById(this.batchId).subscribe(
-              data1 => {
-                this.showSpinner = false;
-                this.batch = data1;
-                this.currentDate = new Date();
-                if ((this.currentDate.valueOf() - this.batch.startDate.valueOf() >
-                  this.batch.endDate.valueOf() - this.batch.startDate.valueOf())) {
-                  this.completedDate = this.batch.endDate.valueOf() - this.batch.startDate.valueOf();
-                } else {
-                  this.completedDate = (this.currentDate.valueOf() - this.batch.startDate.valueOf());
-                }
-                this.percentCompleted = Math.floor(this.completedDate.valueOf() /
-                  (this.batch.endDate.valueOf() - this.batch.startDate.valueOf()) * 100);
-              });
+          this.batchService.getBatchById(this.batchId).subscribe(
+            data1 => {
+              this.showSpinner = false;
+              this.batch = data1;
+              this.currentDate = new Date();
+              if ((this.currentDate.valueOf() - this.batch.startDate.valueOf() >
+                this.batch.endDate.valueOf() - this.batch.startDate.valueOf())) {
+                this.completedDate = this.batch.endDate.valueOf() - this.batch.startDate.valueOf();
+              } else {
+                this.completedDate = (this.currentDate.valueOf() - this.batch.startDate.valueOf());
+              }
+              this.percentCompleted = Math.floor(this.completedDate.valueOf() /
+                (this.batch.endDate.valueOf() - this.batch.startDate.valueOf()) * 100);
+            });
 
 
-            this.numSubtopics = null;
-            this.numSubtopics = this.subtopics.length;
-            this.topicArray = [];
-            if (this.numSubtopics == null) {
-              this.subTopicCompleted = null;
-              this.subTopicMissed = 0;
-            } else {
-              this.subTopicMissed = 0;
-              this.subTopicCompleted = 0;
-              this.subPercentCompleted = 0;
-              this.subTopicTotal = this.subtopics.length;
-              for (let i = 0; i < this.subtopics.length; i++) {
-                if (this.subtopics[i].status == 'Planned' || this.subtopics[i].status == 'Completed') {
-                  this.subTopicCompleted += 1;
-                }
-                if (this.subtopics[i].status == 'Missed') {
-                  const subTopicName = this.subtopics[i].subtopicName;
-                  const topicName = this.subtopics[i].parentTopic.topicName;
-                  this.subTopicMissed += 1;
-                  if (this.subtopics[i].parentTopic) {
-                    // if topicArray is null;
-                    if (this.topicArray == null) {
-                      const listModel = new ListModel(topicName);
-                      listModel.listItems.push(subTopicName);
-                      this.topicArray.push(listModel);
-                    }
-                    let topicNameExists = false;
-                    for (let j = 0; j < this.topicArray.length; j++) {
-                      if (this.topicArray[j].listName === topicName) {
-                        topicNameExists = true;
-                        this.topicArray[j].listItems.push(subTopicName);
-                      }
-                    }
-                    if (!topicNameExists) {
-                      const listModel = new ListModel(topicName);
-                      listModel.listItems.push(subTopicName);
-                      this.topicArray.push(listModel);
+          this.numSubtopics = null;
+          this.numSubtopics = this.subtopics.length;
+          this.topicArray = [];
+          if (this.numSubtopics == null) {
+            this.subTopicCompleted = null;
+            this.subTopicMissed = 0;
+          } else {
+            this.subTopicMissed = 0;
+            this.subTopicCompleted = 0;
+            this.subPercentCompleted = 0;
+            this.subTopicTotal = this.subtopics.length;
+            for (let i = 0; i < this.subtopics.length; i++) {
+              if (this.subtopics[i].status == 'Planned' || this.subtopics[i].status == 'Completed') {
+                this.subTopicCompleted += 1;
+              }
+              if (this.subtopics[i].status == 'Missed') {
+                const subTopicName = this.subtopics[i].subtopicName;
+                const topicName = this.subtopics[i].parentTopic.topicName;
+                this.subTopicMissed += 1;
+                if (this.subtopics[i].parentTopic) {
+                  // if topicArray is null;
+                  if (this.topicArray == null) {
+                    const listModel = new ListModel(topicName);
+                    listModel.listItems.push(subTopicName);
+                    this.topicArray.push(listModel);
+                  }
+                  let topicNameExists = false;
+                  for (let j = 0; j < this.topicArray.length; j++) {
+                    if (this.topicArray[j].listName === topicName) {
+                      topicNameExists = true;
+                      this.topicArray[j].listItems.push(subTopicName);
                     }
                   }
+                  if (!topicNameExists) {
+                    const listModel = new ListModel(topicName);
+                    listModel.listItems.push(subTopicName);
+                    this.topicArray.push(listModel);
+                  }
                 }
-                // subtopic percent complete
-                this.subPercentCompleted = Math.floor((this.subTopicCompleted * 100) / this.subTopicTotal);
               }
+              // subtopic percent complete
+              this.subPercentCompleted = Math.floor((this.subTopicCompleted * 100) / this.subTopicTotal);
             }
+          }
 
+          this.subTopicTotal = this.schedule.subtopics.length;
+          this.subTopicCompleted = 0;
 
-            this.subTopicTotal = this.schedule.subtopics.length;
-            // this.subTopicTotalObs.subscribe(
-            //   data3 => {
-            //     this.subTopicTotal = data3;
-            //   }
-            // );
-            // find subtopics completed
-            this.subTopicCompleted = 0;
-
-
-            if (this.sessionService.getSelectedBatch() != null) {
-              this.sessionService.putSelectedBatchIntoSession(this.sessionService.getSelectedBatch());
-            }
-          });
-        }
-      );
-    }
+          if (this.sessionService.getSelectedBatch() != null) {
+            this.sessionService.putSelectedBatchIntoSession(this.sessionService.getSelectedBatch());
+          }
+        });
+      }
+    );
   }
 }
