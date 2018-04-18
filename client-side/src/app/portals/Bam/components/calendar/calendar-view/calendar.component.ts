@@ -78,8 +78,8 @@ export class CalendarComponent implements OnInit {
           this.subtopics = subtopics;
           for (let i = 0; i < this.scheduledSubtopics.length; i++) {
             let topicStartDate = new Date(this.selectedBatch.startDate);
-            topicStartDate.setDate(topicStartDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 1);
-            topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24) - 4); //- 4 to adjust for EST from GMT
+            topicStartDate.setDate(topicStartDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 0);
+            topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24) - 0); //- 4 to adjust for EST from GMT
             subtopics[i].startTime = topicStartDate;
 
             if(subtopics[i].status == 'Planned'){
