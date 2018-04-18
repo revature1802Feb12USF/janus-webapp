@@ -165,6 +165,7 @@ export class MainCurriculumViewComponent implements OnInit {
         
         this.curriculumService.addCurriculum(this.selectedCurr).subscribe(
             response => {
+                console.log(response);
                 this.alertService.alert('success', 'Successfully saved ' +
                     (<Curriculum> response.body).name + ' version #' + (<Curriculum> response.body).version);
 
