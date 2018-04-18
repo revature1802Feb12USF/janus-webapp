@@ -31,7 +31,6 @@ import { HydraBatchUtilService } from './services/hydra-batch-util.service';
 import { ErrorAlertComponent } from './hydra-client/ui/error-alert/error-alert.component';
 import { HydraInterceptor } from './hydra-client/interceptors/hydra.interceptor';
 
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { ToastrOptions } from './hydra-client/ui/error-alert/toastr-options';
 
@@ -56,7 +55,6 @@ const routes: Routes = [
 @NgModule({
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     HttpModule,
     NgbModule.forRoot(),
     FormsModule,
