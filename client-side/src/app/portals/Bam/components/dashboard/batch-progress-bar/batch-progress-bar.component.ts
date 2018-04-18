@@ -59,7 +59,7 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
     
   }
   ngOnInit() {
-  this.selectedBatch = JSON.parse(sessionStorage.getItem('batch'));
+    this.selectedBatch = JSON.parse(sessionStorage.getItem('batch'));
     if (this.selectedBatch) {
       this.batchId = this.selectedBatch.id;
       //this.batchObs = this.batchService.getBatchById(this.batchId);
@@ -83,7 +83,6 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
               subtopics[i].startTime = topicStartDate;
             }
             sessionStorage.setItem('subtopics', JSON.stringify(this.subtopics));
-
 
             this.batchService.getBatchById(this.batchId).subscribe(
               data1 => {

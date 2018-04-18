@@ -28,8 +28,7 @@ export class WelcomeComponent implements OnInit {
 
   constructor(private batchService: BatchService, 
               private sessionService: SessionService, 
-              private alertService: AlertService,
-              private batchProgressBar: BatchProgressBarComponent) { }
+              private alertService: AlertService) { }
 
   ngOnInit() {
     this.currentUser = this.sessionService.getUser();
@@ -68,7 +67,6 @@ export class WelcomeComponent implements OnInit {
    */
   setSelected() {
     this.sessionService.putSelectedBatchIntoSession(this.selectedBatch);
-    this.batchProgressBar.ngOnInit();
   }
 
 
