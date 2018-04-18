@@ -10,8 +10,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UrlService } from '../../../hydra-client/services/urls/url.service';
 import { Schedule } from '../models/schedule.model';
-import { Schedulez } from '../models/schedulez.model';
 import { Topic } from '../models/topic.model';
+import { Schedulez } from '../models/scheduleZ.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -44,7 +44,7 @@ export class CurriculumService {
   }
 
   changeCurriculum(data: Curriculum) {
-  this.selectedCurrData.next(data);
+    this.selectedCurrData.next(data);
   }
 
   /**  This gets all curriculums from the API
@@ -120,7 +120,7 @@ export class CurriculumService {
     * @param: CurriculumSubtopicDTO
     */
    addCurriculum(curriculum: Curriculum) {
-    return this.http.post(this.urlService.curriculum.addCurriculumUrl(), curriculum, httpOptions).map(
+    return this.http.post<Curriculum>(this.urlService.curriculum.addCurriculumUrl(), curriculum, httpOptions).map(
       data => {
         return data;
       }

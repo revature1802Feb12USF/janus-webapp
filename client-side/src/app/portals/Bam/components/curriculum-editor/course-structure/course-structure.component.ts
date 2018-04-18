@@ -74,11 +74,6 @@ export class CourseStructureComponent implements OnInit {
           }
         }
         //turn data into an array of curriculumsubtopics and send to data
-        
-       
-      },
-      error => {
-        console.log(error);
       }
     );
     this.curriculumService.changeCurriculum(currVersion);
@@ -237,6 +232,7 @@ export class CourseStructureComponent implements OnInit {
         this.getUniqueCurrNames();
         this.getCurriculumVersions();
         this.getUniqCurrVersions();
+
         this.uniqCurrVersions[0].forEach(e => {
           if (e.masterVersion === 1) {
             this.viewCurrSchedule(e);
@@ -269,15 +265,8 @@ export class CourseStructureComponent implements OnInit {
         this.uniqCurrVersions[this.selectedTypeIndex][j].masterVersion = 0;
     }
 
-
     this.selectedCurrVer.masterVersion = 1;
-    this.curriculumService.markCurriculumAsMaster(this.selectedCurrVer).subscribe(
-      data => {
-        console.log(data);
-      },
-      error => {
-        console.log(error);
-      });
+    this.curriculumService.markCurriculumAsMaster(this.selectedCurrVer).subscribe();
   }
 
 
@@ -307,12 +296,17 @@ export class CourseStructureComponent implements OnInit {
       }
     });
     const master = this.uniqCurrVersions[typeIndex].filter(e => e.masterVersion == 1);
-    this.viewCurrSchedule(master[0]);
+    if(master[0] != null){
+      this.viewCurrSchedule(master[0]);
 
-    const newCurrVer: Curriculum = new Curriculum;
-      newCurrVer.name=currName;
-      newCurrVer.version=++newVersionNum;
-      newCurrVer.masterVersion=0;
-    this.messageEvent.emit(newCurrVer);
+      const newCurrVer: Curriculum = new Curriculum;
+        newCurrVer.name=currName;
+        newCurrVer.version=++newVersionNum;
+        newCurrVer.masterVersion=0;
+      this.messageEvent.emit(newCurrVer);
+    }
+    else{
+      (<any>$('#needMasterModal')).modal('show');
+    }
   }
 }
