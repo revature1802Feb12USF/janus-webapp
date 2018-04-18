@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -63,7 +63,8 @@ const routes: Routes = [
     ChartsModule,
     HttpClientModule,
     HydraClientModule,
-    ToastModule.forRoot()
+    ToastModule.forRoot(),
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent,
