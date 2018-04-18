@@ -102,7 +102,7 @@ export class UrlService {
     getSubtopicPoolUrl: (curriculumId: number) => `${this.context}/curricula/${curriculumId}/subtopics`,
     updateDateUrl: (subtopicId: number, batchId: number, date: number) =>
       `${this.context}/calendar/dateupdate/${subtopicId}/${batchId}/${date}`,
-      updateScheduleURL: environment.context +`/curricula/schedules`,
+      updateScheduleURL: `${context}/curricula/schedules`,
       addNewScheduledSubtopic: (scheduleId: number) => `${this.context}/curricula/scheduled-subtopics?schedule=${scheduleId}`
     };
   
@@ -117,7 +117,7 @@ export class UrlService {
       getSubtopicsByBatchUrl: (batchId: number) => `${this.context}/calendar/subtopics/${batchId}`,
       getNumberOfSubTopicsByBatchUrl: (batchId: number) => `${this.context}/calendar/getnumberofsubtopics/${batchId}`,
       getTopicsByBatchPagUrl: (batchId: number) => `${this.context}/calendar/topics/${batchId}`,
-      changeTopicDateUrl: environment.context +`/curricula/scheduled-subtopics`,
+      changeTopicDateUrl:  `${context}/curricula/scheduled-subtopics`,
     updateTopicStatusUrl: (subtopicId: number, batchId: number, status: string) =>
       `${this.context}/curricula/schedules`,
     addTopicsUrl: () => `${this.context}/calendar/addtopics`
