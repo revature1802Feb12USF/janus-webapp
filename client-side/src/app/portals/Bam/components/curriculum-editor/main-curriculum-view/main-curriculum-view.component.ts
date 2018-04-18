@@ -166,20 +166,15 @@ export class MainCurriculumViewComponent implements OnInit {
         this.curriculumService.addCurriculum(this.selectedCurr).subscribe(
             response => {
                 this.alertService.alert('success', 'Successfully saved ' +
-                    (<Curriculum>response.body).name + ' version #' + (<Curriculum>response.body).version);
+                    (<Curriculum> response.body).name + ' version #' + (<Curriculum> response.body).version);
 
-                     this.selectedCurr=<Curriculum>response.body;
-                     let unformatted_JSON = JSON.parse(JSON.stringify(weeksDTO));
-                     console.log("Unformatted\n"+JSON.stringify(unformatted_JSON));
-                     let formatted_schedule = this.formatSchedule(unformatted_JSON);
-                     console.log("Formatted\n"+JSON.stringify(formatted_schedule));
-                     this.curriculumService.addSchedule(formatted_schedule);
-
+                this.selectedCurr=<Curriculum>response.body;
+                let unformatted_JSON = JSON.parse(JSON.stringify(weeksDTO));
+                let formatted_schedule = this.formatSchedule(unformatted_JSON);
+                this.curriculumService.addSchedule(formatted_schedule);
 
                 this.refreshList(<Curriculum>response.body);
                 this.isNewVer = false;
-
-               
             },
             error => {
                 this.alertService.alert('danger', 'Unable to save curriculum');
@@ -194,21 +189,17 @@ export class MainCurriculumViewComponent implements OnInit {
         let schedule : Schedulez = new Schedulez();
         schedule.curriculum=this.selectedCurr;
         let i,j,k;
-        console.log("first length:"+unformatted_JSON.length)
         for(i=0;i<unformatted_JSON.length;i++) //for every week
         {
             for(j=0;j<5;j++) //for every day
             {
                 let hour=9;
-                
-                console.log("second length:"+unformatted_JSON[i].days[j].subtopics.length)
+
                 for(k=0;k<unformatted_JSON[i].days[j].subtopics.length;k++) //for every hour (or subtopic)
                 {
-                        console.log("THE SUBTOPIC:"+JSON.stringify(unformatted_JSON[i].days[j].subtopics[k]));
                         let subtopic : SubtopicCurric=new SubtopicCurric();
                         if(typeof unformatted_JSON[i].days[j].subtopics[k].id==="undefined")
                         {
-                            console.log("here1");
                             subtopic.subtopicId=unformatted_JSON[i].days[j].subtopics[k].subtopicId;
                             subtopic.subtopicName=unformatted_JSON[i].days[j].subtopics[k].subtopicName;
                             subtopic.parentTopic=unformatted_JSON[i].days[j].subtopics[k].parentTopic;
@@ -216,7 +207,6 @@ export class MainCurriculumViewComponent implements OnInit {
                         }
                         else
                         {
-                            console.log("here2");
                             subtopic.subtopicId=unformatted_JSON[i].days[j].subtopics[k].id;
                             subtopic.subtopicName=unformatted_JSON[i].days[j].subtopics[k].name;
                             let topic : Topic = new Topic();
@@ -300,8 +290,6 @@ export class MainCurriculumViewComponent implements OnInit {
                 week = [];
             }
         }
-        this.allWeeks.forEach( week => {console.log("A week"+JSON.stringify(week))});
-
     }
     /**
      * Discovers the amount of weeks in a given curriculum
