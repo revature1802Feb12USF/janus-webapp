@@ -4,5 +4,5 @@ export class ToastrOptions extends ToastOptions {
     dismiss = 'click';
     positionClass = 'toast-top-left';
     maxShown = 1;
-    //enableHTML = true; //this would allow for input messages to be HTML, could use this to make lists to display multiple down endpoints
+    // enableHTML = true; // this would allow for input messages to be HTML, could use this to make lists to display multiple down endpoints
 }

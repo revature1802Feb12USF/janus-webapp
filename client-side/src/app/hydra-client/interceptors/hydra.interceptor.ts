@@ -6,7 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/of';
 import { ErrorAlertComponent } from '../ui/error-alert/error-alert.component';
-import { Subject, ReplaySubject } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 import { AlertService } from '../services/alerts/alerts.service';
 
 /**
@@ -33,7 +34,7 @@ export class HydraInterceptor implements HttpInterceptor {
         });
 
         return next.handle(modifiedRequest).do((event: HttpEvent<any>) => {}, (err: any) => {
-            if(err instanceof HttpErrorResponse) {
+            if (err instanceof HttpErrorResponse) {
                 this.alertServ.publishAlert(err.url);
             }
         });

@@ -69,7 +69,7 @@ export class CalendarComponent implements OnInit {
         this.schedule = schedule;
         sessionStorage.setItem('schedule', JSON.stringify(schedule));
         this.scheduledSubtopics = this.schedule.subtopics;
-        let subtopicIds: number[] = [];
+        const subtopicIds: number[] = [];
         this.scheduledSubtopics.forEach(element => {
           subtopicIds.push(element.subtopicId);
         });
@@ -77,16 +77,18 @@ export class CalendarComponent implements OnInit {
         this.subtopicService.getSubtopicByIDs(subtopicIds).subscribe(subtopics => {
           this.subtopics = subtopics;
           for (let i = 0; i < this.scheduledSubtopics.length; i++) {
-            let topicStartDate = new Date(this.selectedBatch.startDate);
-            topicStartDate.setDate(topicStartDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 0);
-            topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24) - 0); //- 4 to adjust for EST from GMT
+            const topicStartDate = new Date(this.selectedBatch.startDate);
+            topicStartDate.setDate(topicStartDate.getDate()
+              + (this.scheduledSubtopics[i].date.week - 1) * 7
+              + this.scheduledSubtopics[i].date.day);
+            topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime / 1000 / 3600) % 24)); // - 4 to adjust for EST from GMT
             subtopics[i].startTime = topicStartDate;
 
-            if(subtopics[i].status == 'Planned'){
+            if (subtopics[i].status === 'Planned') {
               subtopics[i].status = 'Pending';
             }
 
-            // let topicLengthInHours = 
+            // let topicLengthInHours =
             // ((this.scheduledSubtopics[i].date.endTime/1000/3600) % 24) -
             // ((this.scheduledSubtopics[i].date.startTime/1000/3600) % 24);
 
@@ -95,7 +97,7 @@ export class CalendarComponent implements OnInit {
             // subtopics[i].endTime = topicEndDate;
           }
           sessionStorage.setItem('subtopics', JSON.stringify(this.subtopics));
-          
+
           this.subtopics.forEach((subtopic, index) => {
             const calendarEvent = this.calendarService.mapSubtopicToEvent(subtopic);
             this.events.push(calendarEvent);
@@ -240,12 +242,12 @@ export class CalendarComponent implements OnInit {
   updateSchedule(calendarEvent) {
     this.schedule.subtopics.forEach((element, index) => {
       if (element.subtopicId === calendarEvent.subtopicId) {
-        //update week and day
-        let date = this.subtopics[index].startTime;
-        let batchStartDate = new Date(this.selectedBatch.startDate);
+        // update week and day
+        const date = this.subtopics[index].startTime;
+        const batchStartDate = new Date(this.selectedBatch.startDate);
 
-        let newWeek = Math.floor((calendarEvent.start.getDate() - batchStartDate.getDate()) / 7 + 1);
-        let newDay = calendarEvent.start.getDay();
+        const newWeek = Math.floor((calendarEvent.start.getDate() - batchStartDate.getDate()) / 7 + 1);
+        const newDay = calendarEvent.start.getDay();
 
         element.date.day = newDay;
         element.date.week = newWeek;
@@ -262,13 +264,15 @@ export class CalendarComponent implements OnInit {
    * @author Scott Bennett - (1802-Matt)
    * @author Trevor Fortner - (1802-Matt)
    */
-  addSubtopicToSchedule(calendarEvent): ScheduledSubtopic{
-    let batchStartDate = new Date(this.selectedBatch.startDate);
+  addSubtopicToSchedule(calendarEvent): ScheduledSubtopic {
+    const batchStartDate = new Date(this.selectedBatch.startDate);
 
-    let newWeek = Math.floor((calendarEvent.start.getDate() - batchStartDate.getDate()) / 7 + 1);
-    let newDay = calendarEvent.start.getDay();
+    const newWeek = Math.floor((calendarEvent.start.getDate() - batchStartDate.getDate()) / 7 + 1);
+    const newDay = calendarEvent.start.getDay();
 
-    let newScheduledSub = new ScheduledSubtopic(0, calendarEvent.subtopicId, new ScheduledDate(0, newDay, newWeek, calendarEvent.start.getTime(), calendarEvent.start.getTime() + 1));
+    const newScheduledSub = new ScheduledSubtopic(0, calendarEvent.subtopicId,
+      new ScheduledDate(0, newDay, newWeek, calendarEvent.start.getTime(),
+      calendarEvent.start.getTime() + 1));
 
     this.schedule.subtopics.push(newScheduledSub);
 
@@ -283,7 +287,7 @@ export class CalendarComponent implements OnInit {
   */
   handleDrop(event) {
     const newSubtopic = $(event.jsEvent.target).data('subtopic');
-    
+
     // time not needed for non-month views
     if (event.resourceId.name !== 'month') {
       newSubtopic.startTime = new Date(event.date.format());
@@ -298,7 +302,7 @@ export class CalendarComponent implements OnInit {
       newSubtopic.status = 'Missed';
     }
 
-    let calendarEvent = this.calendarService.mapSubtopicToEvent(newSubtopic);
+    const calendarEvent = this.calendarService.mapSubtopicToEvent(newSubtopic);
     let existingIndex;
 
     if ((existingIndex = this.eventExists(calendarEvent)) > -1) {
@@ -308,7 +312,7 @@ export class CalendarComponent implements OnInit {
       return;
     }
 
-    let scheduledSubtopic = this.addSubtopicToSchedule(calendarEvent);
+    const scheduledSubtopic = this.addSubtopicToSchedule(calendarEvent);
     const milliDate = event.start;
 
     newSubtopic.color = this.statusService.getStatusColor(newSubtopic.status);
@@ -316,13 +320,13 @@ export class CalendarComponent implements OnInit {
 
     this.addSubtopicService.addNewScheduledSubtopic(this.schedule.id, scheduledSubtopic).subscribe(
       response => {
-        this.schedule.subtopics[this.schedule.subtopics.length-1].parentSchedule = this.schedule;
+        this.schedule.subtopics[this.schedule.subtopics.length - 1].parentSchedule = this.schedule;
       },
       error => {
         console.log(error);
       }
     );
-      
+
     this.updateEvent(calendarEvent);
     this.fc.updateEvent(newSubtopic);
   }
@@ -398,7 +402,7 @@ export class CalendarComponent implements OnInit {
     // reset the first index date that gets overriden on drops
     this.events[0].start = this.overridenDate;
 
-    if(index === -1){   //if it doesn't exist yet
+    if (index === -1) {   // if it doesn't exist yet
       this.events.push(changedSubtopicEvent);
       return;
     }
@@ -462,9 +466,9 @@ export class CalendarComponent implements OnInit {
     event.target.style.opacity = 1;
     this.removeEvent(this.eventExists(calendarEvent));
 
-    for(let scheduledSubtopic of this.scheduledSubtopics){
-      if(scheduledSubtopic.subtopicId == calendarEvent.subtopicId){
-        let index = this.schedule.subtopics.indexOf(scheduledSubtopic);
+    for (const scheduledSubtopic of this.scheduledSubtopics) {
+      if (scheduledSubtopic.subtopicId === calendarEvent.subtopicId) {
+        const index = this.schedule.subtopics.indexOf(scheduledSubtopic);
         this.schedule.subtopics.splice(index, 1);
 
         this.addSubtopicService.updateSchedule(this.schedule).subscribe();

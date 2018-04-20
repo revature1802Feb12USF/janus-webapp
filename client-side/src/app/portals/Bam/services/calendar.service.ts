@@ -72,7 +72,7 @@ export class CalendarService {
     );
   }
 
-  
+
   /**
    * Retrieves the number of subtopics by batchId
    * @author James Holzer | Batch: 1712-dec10-java-steve

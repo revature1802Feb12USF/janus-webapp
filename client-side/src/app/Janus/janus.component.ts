@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
 import { Subscription } from 'rxjs/Subscription';
 import { ErrorAlertComponent } from '../hydra-client/ui/error-alert/error-alert.component';
 import { HydraInterceptor } from '../hydra-client/interceptors/hydra.interceptor';

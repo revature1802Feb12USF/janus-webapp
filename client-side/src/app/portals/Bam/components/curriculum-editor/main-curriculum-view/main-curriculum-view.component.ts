@@ -154,7 +154,7 @@ export class MainCurriculumViewComponent implements OnInit {
     saveCurr(makeMaster: boolean) {
         this.selectedCurr.weekDuration = this.weeks.length;
         this.selectedCurr.creatorId = this.sessionService.getUser().userId;
-        this.selectedCurr.modifierId=0;
+        this.selectedCurr.modifierId = 0;
         this.selectedCurr.dateCreated = Date.now();
 
         const meta = new MetaDTO(this.selectedCurr);
@@ -168,8 +168,8 @@ export class MainCurriculumViewComponent implements OnInit {
                     response.name + ' version #' + response.version);
 
                 this.selectedCurr = response;
-                let unformatted_JSON = JSON.parse(JSON.stringify(weeksDTO));
-                let formatted_schedule = this.formatSchedule(unformatted_JSON);
+                const unformatted_JSON = JSON.parse(JSON.stringify(weeksDTO));
+                const formatted_schedule = this.formatSchedule(unformatted_JSON);
                 this.curriculumService.addSchedule(formatted_schedule);
 
                 this.refreshList(response);
@@ -183,46 +183,38 @@ export class MainCurriculumViewComponent implements OnInit {
         );
     }
 
-    formatSchedule( unformatted_JSON : any) : Schedulez
-    {
-        let schedule : Schedulez = new Schedulez();
-        schedule.curriculum=this.selectedCurr;
-        let i,j,k;
-        for(i=0;i<unformatted_JSON.length;i++) //for every week
-        {
-            for(j=0;j<5;j++) //for every day
-            {
-                let hour=9;
+    formatSchedule( unformatted_JSON: any): Schedulez {
+        const schedule: Schedulez = new Schedulez();
+        schedule.curriculum = this.selectedCurr;
+        let i, j, k;
+        for (i = 0; i < unformatted_JSON.length; i++) { // for every week
+            for (j = 0; j < 5; j++) { // for every day
+                const hour = 9;
 
-                for(k=0;k<unformatted_JSON[i].days[j].subtopics.length;k++) //for every hour (or subtopic)
-                {
-                        let subtopic : SubtopicCurric=new SubtopicCurric();
-                        if(typeof unformatted_JSON[i].days[j].subtopics[k].id==="undefined")
-                        {
-                            subtopic.subtopicId=unformatted_JSON[i].days[j].subtopics[k].subtopicId;
-                            subtopic.subtopicName=unformatted_JSON[i].days[j].subtopics[k].subtopicName;
-                            subtopic.parentTopic=unformatted_JSON[i].days[j].subtopics[k].parentTopic;
-                            subtopic.status=unformatted_JSON[i].days[j].subtopics[k].status;
-                        }
-                        else
-                        {
-                            subtopic.subtopicId=unformatted_JSON[i].days[j].subtopics[k].id;
-                            subtopic.subtopicName=unformatted_JSON[i].days[j].subtopics[k].name;
-                            let topic : Topic = new Topic();
-                            topic.topicID=unformatted_JSON[i].days[j].subtopics[k].topic.id
-                            topic.topicName=unformatted_JSON[i].days[j].subtopics[k].topic.name
-                            subtopic.parentTopic=topic;
+                for (k = 0; k < unformatted_JSON[i].days[j].subtopics.length; k++) { // for every hour (or subtopic)
+                        const subtopic: SubtopicCurric = new SubtopicCurric();
+                        if (typeof unformatted_JSON[i].days[j].subtopics[k].id === 'undefined') {
+                            subtopic.subtopicId = unformatted_JSON[i].days[j].subtopics[k].subtopicId;
+                            subtopic.subtopicName = unformatted_JSON[i].days[j].subtopics[k].subtopicName;
+                            subtopic.parentTopic = unformatted_JSON[i].days[j].subtopics[k].parentTopic;
+                            subtopic.status = unformatted_JSON[i].days[j].subtopics[k].status;
+                        } else {
+                            subtopic.subtopicId = unformatted_JSON[i].days[j].subtopics[k].id;
+                            subtopic.subtopicName = unformatted_JSON[i].days[j].subtopics[k].name;
+                            const topic: Topic = new Topic();
+                            topic.topicID = unformatted_JSON[i].days[j].subtopics[k].topic.id;
+                            topic.topicName = unformatted_JSON[i].days[j].subtopics[k].topic.name;
+                            subtopic.parentTopic = topic;
                         }
 
-                        subtopic.date.day=j+1;
-                        let arbitraryTime = new Date("1970-01-01");
-                        arbitraryTime.setHours(hour+k); 
-                        subtopic.date.startTime=arbitraryTime.getTime();
-                        arbitraryTime.setHours(hour+k+1);
-                        subtopic.date.endTime=arbitraryTime.getTime();
-                        subtopic.date.week=i+1;
+                        subtopic.date.day = j + 1;
+                        const arbitraryTime = new Date('1970-01-01');
+                        arbitraryTime.setHours(hour + k);
+                        subtopic.date.startTime = arbitraryTime.getTime();
+                        arbitraryTime.setHours(hour + k + 1);
+                        subtopic.date.endTime = arbitraryTime.getTime();
+                        subtopic.date.week = i + 1;
                         schedule.subtopics.push(subtopic);
-
                 }
             }
         }

@@ -45,7 +45,7 @@ export class CurriculumWeekComponent implements OnInit {
 
   ngOnInit() {
     this.sortSubtopics();
-    //this.progressBar();
+    // this.progressBar();
   }
   /**
    * This method returns the subtopic-topic names for the progress bar and a visual

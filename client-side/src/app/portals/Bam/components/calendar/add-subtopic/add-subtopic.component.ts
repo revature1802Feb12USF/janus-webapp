@@ -64,7 +64,7 @@ export class AddSubtopicComponent implements OnInit {
   public currentBatch: Batch;
   private batchSubtopics: Subtopic[] = [];
   private allSubtopicsForCurriculum: Subtopic[] = [];
-  
+
   private status: string;
   private subtopic: Subtopic;
   private selectedDateMiliseconds: any;
@@ -75,7 +75,12 @@ export class AddSubtopicComponent implements OnInit {
   public alertMessage: string;
   public successMessage: string;
 
-  constructor(private addSubtopicService: AddSubtopicService, private statusService: CalendarStatusService, private modalService: NgbModal, private calendarService: CalendarService, private sessionService: SessionService, private subtopicService: SubtopicService) { }
+  constructor(private addSubtopicService: AddSubtopicService,
+    private statusService: CalendarStatusService,
+    private modalService: NgbModal,
+    private calendarService: CalendarService,
+    private sessionService: SessionService,
+    private subtopicService: SubtopicService) { }
 
   ngOnInit() {
     this.selectedTopic = 'Select a Topic';
@@ -86,26 +91,26 @@ export class AddSubtopicComponent implements OnInit {
     this._alertSuccess.subscribe((message) => this.successMessage = message);
     debounceTime.call(this._alertSuccess, 5000).subscribe(() => this.successMessage = null);
 
-    let selectedBatch = JSON.parse(sessionStorage.getItem("batch"));
-    let selectedBatchSchedule = JSON.parse(sessionStorage.getItem("schedule"));
+    const selectedBatch = JSON.parse(sessionStorage.getItem('batch'));
+    const selectedBatchSchedule = JSON.parse(sessionStorage.getItem('schedule'));
     this.addSubtopicService.getSubtopicPool(selectedBatch.curriculumID).subscribe(
       (subtopicIdList) => {
         this.subtopicService.getSubtopicByIDs(subtopicIdList).subscribe(
           subtopicList => {
             this.allSubtopicsForCurriculum = subtopicList;
             this.getTopics(subtopicList);
-    
-            for(let subtopic of subtopicList){
-              for(let scheduledSub of selectedBatchSchedule.subtopics){
-                if(subtopic.subtopicId == scheduledSub.subtopicId){
+
+            for (const subtopic of subtopicList) {
+              for (const scheduledSub of selectedBatchSchedule.subtopics) {
+                if (subtopic.subtopicId === scheduledSub.subtopicId) {
                   this.batchSubtopics.push(subtopic);
                 }
               }
             }
-    
+
             this.currentBatch = selectedBatch;
           }
-        )
+        );
       }, (err) => {
         this.loading = false;
         this.loadingSuccess = false;
@@ -211,7 +216,7 @@ export class AddSubtopicComponent implements OnInit {
         this.status = 'Missed';
       }
 
-      this.setSubtopicObject(); //sets this.subtopic to the one clicked
+      this.setSubtopicObject(); // sets this.subtopic to the one clicked
 
       if (this.checkSubtopics()) {
         this.addSelectedSubtopic();
@@ -231,10 +236,10 @@ export class AddSubtopicComponent implements OnInit {
    * added because it exists on the current batch.
    */
   checkSubtopics() {
-    let subtopicsOnCalendar: Subtopic[] = JSON.parse(sessionStorage.getItem("subtopics"));
-    
+    const subtopicsOnCalendar: Subtopic[] = JSON.parse(sessionStorage.getItem('subtopics'));
+
     for (let i = 0; i < this.batchSubtopics.length; i++) {
-      if (this.subtopic.subtopicName == this.batchSubtopics[i].subtopicName) {
+      if (this.subtopic.subtopicName === this.batchSubtopics[i].subtopicName) {
         this.prevDate = subtopicsOnCalendar[i].startTime;
         this.newDate = new Date(this.selectedDateMiliseconds);
         this.subtopicId = this.batchSubtopics[i].subtopicId;
@@ -268,16 +273,16 @@ export class AddSubtopicComponent implements OnInit {
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    */
   setSubtopicObject() {
-    for(let sub of this.allSubtopicsForCurriculum){
-      if(sub.subtopicName == this.selectedSubtopic){
-        let startTime: Date = new Date(this.selectedDateMiliseconds);
-        let endTime: Date = new Date(this.selectedDateMiliseconds);
+    for (const sub of this.allSubtopicsForCurriculum) {
+      if (sub.subtopicName === this.selectedSubtopic) {
+        const startTime: Date = new Date(this.selectedDateMiliseconds);
+        const endTime: Date = new Date(this.selectedDateMiliseconds);
         endTime.setHours(endTime.getHours() + 1);
-        
-        let parent : Topic = new Topic();
-        parent.topicID=this.topicId;
-        parent.topicName=this.selectedTopic;
-        
+
+        const parent: Topic = new Topic();
+        parent.topicID = this.topicId;
+        parent.topicName = this.selectedTopic;
+
         this.subtopic = {
           subtopicId: sub.subtopicId,
           subtopicName: sub.subtopicName,
@@ -290,24 +295,25 @@ export class AddSubtopicComponent implements OnInit {
       }
     }
   }
-  
+
   /**
    * Adds the selected subtopic to the schedule
    * On success -> shows "Successfully added!"
    * On failure -> shows error message
-   * 
+   *
    * @author Scott Bennett - (Batch Matt-1802)
    * @author Trevor Fortner - (Batch Matt-1802)
    * @param message - String to put in response alert
    */
-  addSelectedSubtopic(){
-    let selectedBatchSchedule: Schedule = JSON.parse(sessionStorage.getItem("schedule"));
-    
-    let batchStartDate = new Date(this.currentBatch.startDate);
+  addSelectedSubtopic() {
+    const selectedBatchSchedule: Schedule = JSON.parse(sessionStorage.getItem('schedule'));
 
-    let newWeek = Math.floor((this.subtopic.startTime.getDate() - batchStartDate.getDate()) / 7 + 1);
+    const batchStartDate = new Date(this.currentBatch.startDate);
 
-    let newScheduledDate = new ScheduledDate(0, this.subtopic.startTime.getDay(), newWeek, this.subtopic.startTime.getTime(), this.subtopic.endTime.getTime());
+    const newWeek = Math.floor((this.subtopic.startTime.getDate() - batchStartDate.getDate()) / 7 + 1);
+
+    const newScheduledDate = new ScheduledDate(0, this.subtopic.startTime.getDay(),
+      newWeek, this.subtopic.startTime.getTime(), this.subtopic.endTime.getTime());
     // ^ lol sorry next batch
     // use whatever's in it currently to populate basically the same thing, but with a new day number, week number, and start/end times
 
@@ -328,22 +334,24 @@ export class AddSubtopicComponent implements OnInit {
    * Updates the selected subtopic into the database
    * On success -> shows "Successfully updated!" alert
    * On failure -> shows error message
-   * 
+   *
    * @author Scott Bennett - (Batch Matt-1802)
    * @author Trevor Fortner - (Batch Matt-1802)
    * @param message - String to put in response alert
    */
-  updateSelectedSubtopic(){
-    let selectedBatchSchedule: Schedule = JSON.parse(sessionStorage.getItem("schedule"));
+  updateSelectedSubtopic() {
+    const selectedBatchSchedule: Schedule = JSON.parse(sessionStorage.getItem('schedule'));
 
-    for(let i = 0; i < selectedBatchSchedule.subtopics.length; i++){
-      let scheduledSubtopic = selectedBatchSchedule.subtopics[i];
-      if(scheduledSubtopic.subtopicId == this.subtopic.subtopicId){
-        let batchStartDate = new Date(this.currentBatch.startDate);
+    for (let i = 0; i < selectedBatchSchedule.subtopics.length; i++) {
+      const scheduledSubtopic = selectedBatchSchedule.subtopics[i];
+      if (scheduledSubtopic.subtopicId === this.subtopic.subtopicId) {
+        const batchStartDate = new Date(this.currentBatch.startDate);
 
-        let newWeek = Math.floor((this.subtopic.startTime.getDate() - batchStartDate.getDate()) / 7 + 1);
+        const newWeek = Math.floor((this.subtopic.startTime.getDate() - batchStartDate.getDate()) / 7 + 1);
 
-        let newScheduledDate = new ScheduledDate(scheduledSubtopic.date.id, this.subtopic.startTime.getDay(), newWeek, this.subtopic.startTime.getTime(), this.subtopic.endTime.getTime());
+        const newScheduledDate = new ScheduledDate(scheduledSubtopic.date.id,
+          this.subtopic.startTime.getDay(), newWeek,
+          this.subtopic.startTime.getTime(), this.subtopic.endTime.getTime());
         // ^ lol sorry next batch
         // use whatever's in it currently to populate basically the same thing, but with a new day number, week number, and start/end times
 
@@ -408,8 +416,8 @@ export class AddSubtopicComponent implements OnInit {
    * @author Sean Sung | Batch: 1712-dec10-java-steve
    */
   setDraggableOnSubtopic(event, subtopicName: string) {
-    for(let subChosen of this.allSubtopicsForCurriculum){
-      if(subChosen.subtopicName == subtopicName){
+    for (const subChosen of this.allSubtopicsForCurriculum) {
+      if (subChosen.subtopicName === subtopicName) {
         const subtopicData = new Subtopic(
           subChosen.subtopicId,
           subChosen.subtopicName,
@@ -418,7 +426,7 @@ export class AddSubtopicComponent implements OnInit {
           this.statusService.getDefaultStatus(),
           subChosen.parentTopic
         );
-    
+
         // attach data to draggable element
         // -Blake - Why are we using jquery?
         // -Trevor - idk dude but I can't fix it

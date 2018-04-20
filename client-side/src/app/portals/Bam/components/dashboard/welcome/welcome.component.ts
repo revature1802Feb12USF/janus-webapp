@@ -26,8 +26,8 @@ export class WelcomeComponent implements OnInit {
   private batches: Batch [];
   private selectedBatch: Batch;
 
-  constructor(private batchService: BatchService, 
-              private sessionService: SessionService, 
+  constructor(private batchService: BatchService,
+              private sessionService: SessionService,
               private alertService: AlertService) { }
 
   ngOnInit() {
@@ -48,8 +48,8 @@ export class WelcomeComponent implements OnInit {
    * and setting the response data to batches array.
    */
   getInProgressBatches() {
-    //this.batchService.getAllBatchesInProgress(this.currentUser.email).subscribe(
-      
+    // this.batchService.getAllBatchesInProgress(this.currentUser.email).subscribe(
+
     this.batchService.getBatchAll().subscribe(response => {
         this.batches = response;
         if (this.batches !== null) {

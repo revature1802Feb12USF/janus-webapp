@@ -27,7 +27,7 @@ export class SubtopicService {
       data => {
         return data;
       }
-    )
+    );
   }
 
   getSubtopicByIDz(subtopicIdList: number[]): Observable<SubtopicCurric[]>  {
@@ -35,15 +35,15 @@ export class SubtopicService {
       data => {
         return data;
       }
-    )
+    );
   }
 
-  getSubtopicByID(subtopicId : number): Observable<any>  {
+  getSubtopicByID(subtopicId: number): Observable<any>  {
     return this.http.get<any>(this.urlService.subtopic.getSubtopicByID(subtopicId)).map(
       data => {
         return data;
       }
-    )
+    );
   }
 
   /**
@@ -84,11 +84,10 @@ export class SubtopicService {
     return this.http.post(this.urlService.subtopic.removeAllSubtopics(batchId), httpOptions);
   }
 
-  getAllSubtopics() : Observable<SubtopicCurric[]>
-  {
+  getAllSubtopics(): Observable<SubtopicCurric[]> {
     return this.http.get<SubtopicCurric[]>(this.urlService.subtopic.getSubtopics()).map(data => {
       return data;
-    });    
+    });
   }
 
   /**

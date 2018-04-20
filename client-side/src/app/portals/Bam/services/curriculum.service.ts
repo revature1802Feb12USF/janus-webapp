@@ -133,7 +133,7 @@ export class CurriculumService {
     * @param: Curriculum Id
     */
   markCurriculumAsMaster(curriculum: Curriculum) {
-    return this.http.patch(this.urlService.curriculum.makeCurriculumMasterByIdUrl(curriculum.id),httpOptions).map(
+    return this.http.patch(this.urlService.curriculum.makeCurriculumMasterByIdUrl(curriculum.id), httpOptions).map(
       data => {
         return data;
       }
@@ -173,12 +173,11 @@ export class CurriculumService {
         data => {
           return data;
         }
-      )
+      );
     }
 
-    addSchedule(json : any)
-    {
-      return this.http.post(this.urlService.curriculum.addSchedule(),JSON.stringify(json)).subscribe(
+    addSchedule(json: any) {
+      return this.http.post(this.urlService.curriculum.addSchedule(), JSON.stringify(json)).subscribe(
         data => {
           return data;
         });

@@ -105,11 +105,11 @@ export class UrlService {
       updateScheduleURL: `${context}/curricula/schedules`,
       addNewScheduledSubtopic: (scheduleId: number) => `${this.context}/curricula/scheduled-subtopics?schedule=${scheduleId}`
     };
-  
+
     assignForce = {
       refreshBatches: () => `${this.context}/refreshbatches`
     };
-  
+
     calendar = {
       // getSubtopicsByBatchPaginationUrl: (batchId: number, pageNumber: number, pageSize: number) =>
       //   `${this.context}/calendar/subtopicspagination/${batchId}/${pageNumber}/${pageSize}/`,

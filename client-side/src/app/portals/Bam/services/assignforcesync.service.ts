@@ -6,7 +6,7 @@ import { UrlService } from '../../../hydra-client/services/urls/url.service';
 
 @Injectable()
 export class AssignforcesyncService {
-  constructor(private http: HttpClient, private urlService:UrlService) { }
+  constructor(private http: HttpClient, private urlService: UrlService) { }
 
   /**
    * Pulls from the Assign force DB and populates the BAM DB

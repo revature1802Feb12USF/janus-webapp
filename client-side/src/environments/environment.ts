@@ -7,7 +7,7 @@ const bam = 'http://localhost:9001/api/v2';
 export const environment = {
   production: false,
 
-  //hydraContext: 'http://localhost:9001/api/v2',
+  // hydraContext: 'http://localhost:9001/api/v2',
 
   context: context, // change for what the production environment would actually be
   bam: bam,
