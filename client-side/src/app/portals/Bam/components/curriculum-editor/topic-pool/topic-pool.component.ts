@@ -170,25 +170,22 @@ export class TopicPoolComponent implements OnInit {
     * @batch 1712-Dec11-2017
     */
   getSubTopics() {
-    //get all subtopics
+    // get all subtopics
     this.subtopicService.getAllSubtopics().subscribe(
-      arrayOfAllSubtopics =>
-      {
-        let i=0;
-        this.subTopicName.forEach(topic => 
-        {
-          this.subTopicArray.push(arrayOfAllSubtopics.filter( match => topic.topicName == match.parentTopic.topicName))
-          //if topic name equals subtopic.parentname
-          //add it to subtopicarray first index
-          //++i;
-          //after that, iterate the index
-          
+      arrayOfAllSubtopics => {
+        const i = 0;
+        this.subTopicName.forEach(topic => {
+          this.subTopicArray.push(arrayOfAllSubtopics.filter( match => topic.topicName === match.parentTopic.topicName));
+          // if topic name equals subtopic.parentname
+          // add it to subtopicarray first index
+          // ++i;
+          // after that, iterate the index
         });
       }
     );
 
-    //for each in subtopic name
-    
+    // for each in subtopic name
+
   }
 
   /**

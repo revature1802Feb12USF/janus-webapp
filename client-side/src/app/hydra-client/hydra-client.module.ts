@@ -29,7 +29,7 @@ import { AlertService } from './services/alerts/alerts.service';
 
     { provide: HTTP_INTERCEPTORS, useClass: HydraInterceptor, multi: true },  // interceptor for all HTTP requests
     UrlService
-  ], 
+  ],
   exports: [
     ErrorAlertComponent
   ]

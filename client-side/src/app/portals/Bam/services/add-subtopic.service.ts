@@ -75,14 +75,14 @@ export class AddSubtopicService {
   addSubtopic(subtopic): Observable<Subtopic> {
     return this.http.post<Subtopic>(this.urlService.addsubtopics.addSubtopicUrl(), JSON.stringify(subtopic), httpOptionsJson);
   }
-  
+
   /**
    * Updates a Schedule object on the backend
    * @param schedule - new version of a schedule to be updated
    * @author Scott Bennett - (Batch 1802-Matt)
    * @author Trevor Fortner - (Batch 1802-Matt)
    */
-  updateSchedule(schedule: Schedule){
+  updateSchedule(schedule: Schedule) {
     return this.http.patch<Schedule>(this.urlService.addsubtopics.updateScheduleURL, schedule);
   }
 
@@ -93,7 +93,7 @@ export class AddSubtopicService {
    * @author Scott Bennett - (Batch 1802-Matt)
    * @author Trevor Fortner - (Batch 1802-Matt)
    */
-  addNewScheduledSubtopic(scheduleId: number, scheduledSubtopic: ScheduledSubtopic){
+  addNewScheduledSubtopic(scheduleId: number, scheduledSubtopic: ScheduledSubtopic) {
     return this.http.post<ScheduledSubtopic>(this.urlService.addsubtopics.addNewScheduledSubtopic(scheduleId), scheduledSubtopic);
   }
 }

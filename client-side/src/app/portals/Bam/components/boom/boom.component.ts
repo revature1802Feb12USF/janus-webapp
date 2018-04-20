@@ -69,7 +69,11 @@ export class BoomComponent implements OnInit {
   public allBatchSubtopics: Subtopic[][] = [];
   public allSchedules: Schedule[] = [];
 
-  constructor(private batchService: BatchService, private calendarService: CalendarService, private curriculumService: CurriculumService, private subtopicService: SubtopicService, private usersService: UsersService) { }
+  constructor(private batchService: BatchService,
+    private calendarService: CalendarService,
+    private curriculumService: CurriculumService,
+    private subtopicService: SubtopicService,
+    private usersService: UsersService) { }
 
   ngOnInit() {
     this.batchService.getAllInProgress().subscribe(
@@ -85,10 +89,10 @@ export class BoomComponent implements OnInit {
           return 0;
         });
 
-        for(let i = 0; i < getBatches.length; i++){
+        for (let i = 0; i < getBatches.length; i++) {
           this.usersService.getUserByID(getBatches[i].trainerID).subscribe(
             trainer => {
-              //get all the trainer infos from user service and add them into the variable that stores all the batch info on this component
+              // get all the trainer infos from user service and add them into the variable that stores all the batch info on this component
               this.currentBatches[i].trainer = trainer;
             }
           );
@@ -108,10 +112,10 @@ export class BoomComponent implements OnInit {
     this.currentBatches.forEach((batch, index) => {
       this.curriculumService.getScheduleById(batch.scheduleID).subscribe(
         schedule => {
-          if(schedule != null){
+          if (schedule != null) {
             this.allSchedules.push(schedule);
-            let subtopicIDs: number[] = [];
-            for(let i=0; i<schedule.subtopics.length; i++){
+            const subtopicIDs: number[] = [];
+            for (let i = 0; i < schedule.subtopics.length; i++) {
               subtopicIDs.push(schedule.subtopics[i].subtopicId);
             }
 
@@ -120,7 +124,7 @@ export class BoomComponent implements OnInit {
                 this.allBatchSubtopics[index] = subtopic;
                 count++;
 
-                if(count > this.currentBatches.length){ //if we're on the last batch...
+                if (count > this.currentBatches.length) { // if we're on the last batch...
                   this.setBatchStats();
                   this.plotBatch(this.batchSelectionList[0].id);
                   this.pieChartPercent(this.percent);
@@ -137,14 +141,14 @@ export class BoomComponent implements OnInit {
    * @author Francisco Palomino | Batch: 1712-dec10-java-steve
    * @param date
    */
-  getWeek(date) {   //put in the batch's start date instead of jan 4th? when is this used?
-//shouldn't any instance of this just be able to be replaced by Schedule.ScheduledSubtopic.ScheduledDate.week?
+  getWeek(date) {   // put in the batch's start date instead of jan 4th? when is this used?
+// shouldn't any instance of this just be able to be replaced by Schedule.ScheduledSubtopic.ScheduledDate.week?
     const thisYear = new Date().getFullYear();
     const subtopicDate: any = new Date(date);
     const jan4th: any = new Date(`04/jan/${thisYear}`);
     return Math.ceil((((subtopicDate.setHours(0, 0, 0, 0) - jan4th.setHours(0, 0, 0, 0))    / 86400000) + jan4th.getDay() + 1) / 7);
-      //set the time on that day to the first ms of the day, then divide by (hrs in day * s in hr * ms in s)
-      //set hours returns the difference between January 1, 1970 00:00:00 UTC and the new date
+      // set the time on that day to the first ms of the day, then divide by (hrs in day * s in hr * ms in s)
+      // set hours returns the difference between January 1, 1970 00:00:00 UTC and the new date
   }
   /**
    * Method generates all the statistics of all current active batches and
@@ -167,10 +171,10 @@ export class BoomComponent implements OnInit {
         for (let checkweek = 1; checkweek <= currentWeek; checkweek++) {
           for (let y = 0; y < this.allSchedules[i].subtopics.length; y++) {
             if (checkweek === this.allSchedules[i].subtopics[y].date.week) {
-              if (this.allBatchSubtopics[i][y].status == 'Completed') {   //if the status is "completed"
+              if (this.allBatchSubtopics[i][y].status === 'Completed') {   // if the status is "completed"
                 totalSubtopics++;
                 completedSubtopics++;
-              } else if (this.allBatchSubtopics[i][y].status == 'Missed') {  //if the status is "missed"
+              } else if (this.allBatchSubtopics[i][y].status === 'Missed') {  // if the status is "missed"
                 totalSubtopics++;
                 missedSubtopics++;
               }
@@ -198,30 +202,30 @@ export class BoomComponent implements OnInit {
     const completedSubtop: any[] = [];
     const missedSubTop: any[] = [];
     for (let i = 0; i < this.currentBatches.length; i++) {
-      if (this.allBatchSubtopics[i] != null && this.currentBatches[i].id == id) {
+      if (this.allBatchSubtopics[i] != null && this.currentBatches[i].id === id) {
         const today = new Date();
         const startDate = new Date(this.currentBatches[i].startDate);
         const diffDays = Math.floor((today.getTime() - startDate.getTime()) / (1000 * 3600 * 24));
         const currentWeek = Math.ceil(diffDays / 7);
-        
+
         for (let checkWeek = 1; checkWeek <= currentWeek; checkWeek++) {
           let totalSubtopics = 0;
           let completedSubtopics = 0;
           let missedSubtopics = 0;
           this.barChartLabels.push('Week ' + (checkWeek));
           for (let y = 0; y < this.allBatchSubtopics[i].length; y++) {
-            if (checkWeek === this.allSchedules[i].subtopics[y].date.week) {  
-              if (this.allBatchSubtopics[i][y].status == 'Completed') {
+            if (checkWeek === this.allSchedules[i].subtopics[y].date.week) {
+              if (this.allBatchSubtopics[i][y].status === 'Completed') {
                 totalSubtopics++;
                 completedSubtopics++;
-              } else if (this.allBatchSubtopics[i][y].status == 'Missed') {
+              } else if (this.allBatchSubtopics[i][y].status === 'Missed') {
                 totalSubtopics++;
                 missedSubtopics++;
               }
             }
-          }   //after tallying up the week's subtopics
+          }   // after tallying up the week's subtopics
 
-          completedSubtop.push(Number(completedSubtopics / totalSubtopics * 100).toFixed(2)); //to 2 decimal places
+          completedSubtop.push(Number(completedSubtopics / totalSubtopics * 100).toFixed(2)); // to 2 decimal places
           missedSubTop.push(Number(missedSubtopics / totalSubtopics * 100).toFixed(2));
         }
         this.barChartData = [
@@ -267,18 +271,18 @@ export class BoomComponent implements OnInit {
         week: this.batches[i].week
       };
 
-      this.batchOverallArray.push(trainer); //used to populate the table on the right side
+      this.batchOverallArray.push(trainer); // used to populate the table on the right side
 
-      if (totalCompletedAvg >= percent) {   //if meets the percentage, add to the list of ones that meet it
+      if (totalCompletedAvg >= percent) {   // if meets the percentage, add to the list of ones that meet it
         labelComplete.push(this.batches[i].batchName + ' ' + totalCompletedAvg + '%');
-      } else {        //else, add to the list of batches that don't meet the percent
+      } else {        // else, add to the list of batches that don't meet the percent
         labelMissed.push(this.batches[i].batchName + ' ' + totalCompletedAvg + '%');
       }
 
     }
     this.pieChartLabels = [labelComplete, labelMissed];
-    this.pieChartData.push(labelComplete.length - 1);   //plot the total batches that meet the %
-    this.pieChartData.push(labelMissed.length - 1);     //versus the total batches that don't meet it
+    this.pieChartData.push(labelComplete.length - 1);   // plot the total batches that meet the %
+    this.pieChartData.push(labelMissed.length - 1);     // versus the total batches that don't meet it
 
     this.pieChartDatasets = [{ data : this.pieChartData}];
   }

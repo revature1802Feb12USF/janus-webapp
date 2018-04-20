@@ -1,4 +1,4 @@
-import { Topic } from "./topic.model";
+import { Topic } from './topic.model';
 
 export class Subtopic {
     subtopicId: number;
@@ -7,7 +7,7 @@ export class Subtopic {
     startTime: Date;
     endTime: Date;
     parentTopic: Topic;
-    
+
     constructor(subtopicId: number, subtopicName: string, startTime: Date, endTime: Date, status: string, parentTopic: Topic) {
         this.subtopicId = subtopicId;
         this.subtopicName = subtopicName;

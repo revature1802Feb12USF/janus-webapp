@@ -13,5 +13,5 @@ export class SubtopicCurric {
         startTime : 0,
         day: 0,
         week: 0,
-    }
+    };
 }

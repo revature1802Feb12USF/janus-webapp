@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Curriculum } from '../../../models/curriculum.model';
 import { CurriculumService } from '../../../services/curriculum.service';
-import { SubtopicService } from '../../../services/subtopic.service'
+import { SubtopicService } from '../../../services/subtopic.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap/modal/modal';
 import { Schedulez } from '../../../models/scheduleZ.model';
@@ -29,7 +29,7 @@ export class CourseStructureComponent implements OnInit {
   selectedTypeIndex: any = 0;
   @Output() messageEvent = new EventEmitter<Curriculum>();
 
-  constructor(private curriculumService: CurriculumService, private modalService: NgbModal, private subtopicService : SubtopicService) { }
+  constructor(private curriculumService: CurriculumService, private modalService: NgbModal, private subtopicService: SubtopicService) { }
 
   ngOnInit() {
     this.getAllCurriculums();
@@ -43,70 +43,60 @@ export class CourseStructureComponent implements OnInit {
   * @param currVersion - curriculum object selected from view
   */
   viewCurrSchedule(currVersion: Curriculum) {
-    //Please...kill me
-    //For real, curriculum editor is all jacked up, definitely redo it
+    // Please...kill me
+    // For real, curriculum editor is all jacked up, definitely redo it
     this.curriculumService.getSchedualeByCurriculumId(currVersion.id).subscribe(
       data => {
-        if(data[0].subtopics.length==0)
-        {
+        if (data[0].subtopics.length === 0) {
           this.update([]);
         }
-        let weeks : CurriculumSubtopic[] = new Array<CurriculumSubtopic>()
-        let subtopics=data[0].subtopics;
+        const weeks: CurriculumSubtopic[] = new Array<CurriculumSubtopic>();
+        const subtopics = data[0].subtopics;
         let i;
-        for(i=0;i<subtopics.length;i++)
-        {
-          let subtopic=subtopics[i];
-          let week=subtopic.date.week;
-          let day=subtopic.date.day;
-          let subtopicID=subtopic.subtopicId
+        for (i = 0; i < subtopics.length; i++) {
+          const subtopic = subtopics[i];
+          const week = subtopic.date.week;
+          const day = subtopic.date.day;
+          const subtopicID = subtopic.subtopicId;
           // subtopicName=result.subtopicName;
           // parentName=result.parentTopic.topicName;
-          //need topic id
-          let topicname :TopicName = new TopicName(0,"filler");
-          let type : SubtopicType = new SubtopicType(subtopicID,"blah");
-          let subtopicname : SubtopicName = new SubtopicName(subtopicID,"filler",topicname,type);
-          let curriculumsubtopic : CurriculumSubtopic = new CurriculumSubtopic(subtopicID,subtopicname,week,day);
+          // need topic id
+          const topicname: TopicName = new TopicName(0, 'filler');
+          const type: SubtopicType = new SubtopicType(subtopicID, 'blah');
+          const subtopicname: SubtopicName = new SubtopicName(subtopicID, 'filler', topicname, type);
+          const curriculumsubtopic: CurriculumSubtopic = new CurriculumSubtopic(subtopicID, subtopicname, week, day);
           weeks.push(curriculumsubtopic);
-          if(weeks.length==subtopics.length)
-          {
-            this.update(weeks)
+          if (weeks.length === subtopics.length) {
+            this.update(weeks);
           }
         }
-        //turn data into an array of curriculumsubtopics and send to data
+        // turn data into an array of curriculumsubtopics and send to data
       }
     );
     this.curriculumService.changeCurriculum(currVersion);
   }
 
-  update(weeks: CurriculumSubtopic[])
-  {
-    let subtopicIDs : number[]=[];
+  update(weeks: CurriculumSubtopic[]) {
+    const subtopicIDs: number[] = [];
     weeks.forEach(
-      subtopic =>
-      {
+      subtopic => {
         subtopicIDs.push(subtopic.curriculumSubtopicId);
       }
     );
     this.subtopicService.getSubtopicByIDz(subtopicIDs).subscribe(
-      result =>
-      {      
-        for(let i=0;i<weeks.length;i++)
-        {
-          for(let j=0;j<result.length;j++)
-          {
-            if(weeks[i].curriculumSubtopicNameId.id===result[j].subtopicId)
-            {
-              weeks[i].curriculumSubtopicNameId.name=result[j].subtopicName;
-              weeks[i].curriculumSubtopicNameId.topic.name=result[j].parentTopic.topicName;
+      result => {
+        for (let i = 0; i < weeks.length; i++) {
+          for (let j = 0; j < result.length; j++) {
+            if (weeks[i].curriculumSubtopicNameId.id === result[j].subtopicId) {
+              weeks[i].curriculumSubtopicNameId.name = result[j].subtopicName;
+              weeks[i].curriculumSubtopicNameId.topic.name = result[j].parentTopic.topicName;
             }
           }
-
         }
         this.curriculumService.changeData(weeks);
       }
     );
-    
+
   }
 
   /**
@@ -209,11 +199,11 @@ export class CourseStructureComponent implements OnInit {
         if (data.length === 0) {
           this.callApi();
         } else {
-        this.allCurriculums = data;
-        this.getCurriculumNames();
-        this.getUniqueCurrNames();
-        this.getCurriculumVersions();
-        this.getUniqCurrVersions();
+          this.allCurriculums = data;
+          this.getCurriculumNames();
+          this.getUniqueCurrNames();
+          this.getCurriculumVersions();
+          this.getUniqCurrVersions();
         }
       }
     );
@@ -262,7 +252,7 @@ export class CourseStructureComponent implements OnInit {
    */
   makeMaster() {
     for (let j = 0; j < this.uniqCurrVersions[this.selectedTypeIndex].length; j++) {
-        this.uniqCurrVersions[this.selectedTypeIndex][j].masterVersion = 0;
+      this.uniqCurrVersions[this.selectedTypeIndex][j].masterVersion = 0;
     }
 
     this.selectedCurrVer.masterVersion = 1;
@@ -272,8 +262,8 @@ export class CourseStructureComponent implements OnInit {
 
   createCurr(curTitle: string) {
     const curric = new Curriculum;
-    curric.version=0;
-    curric.masterVersion=1;
+    curric.version = 0;
+    curric.masterVersion = 1;
     curric.name = curTitle;
     curric.version = 1;
     this.messageEvent.emit(curric);
@@ -295,17 +285,16 @@ export class CourseStructureComponent implements OnInit {
         newVersionNum = elem.version;
       }
     });
-    const master = this.uniqCurrVersions[typeIndex].filter(e => e.masterVersion == 1);
-    if(master[0] != null){
+    const master = this.uniqCurrVersions[typeIndex].filter(e => e.masterVersion === 1);
+    if (master[0] != null) {
       this.viewCurrSchedule(master[0]);
 
       const newCurrVer: Curriculum = new Curriculum;
-        newCurrVer.name=currName;
-        newCurrVer.version=++newVersionNum;
-        newCurrVer.masterVersion=0;
+      newCurrVer.name = currName;
+      newCurrVer.version = ++newVersionNum;
+      newCurrVer.masterVersion = 0;
       this.messageEvent.emit(newCurrVer);
-    }
-    else{
+    } else {
       (<any>$('#needMasterModal')).modal('show');
     }
   }

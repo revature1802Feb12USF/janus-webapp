@@ -54,10 +54,10 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
     this.batchId = null;
   }
   ngOnChanges() {
-    
+
   }
 
-  ngOnInit(){
+  ngOnInit() {
     if (sessionStorage.getItem('batch') != null) {
       this.batch = JSON.parse(sessionStorage.getItem('batch'));
       this.setProperties();
@@ -92,7 +92,7 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
         this.schedule = schedule;
         sessionStorage.setItem('schedule', JSON.stringify(schedule));
         this.scheduledSubtopics = this.schedule.subtopics;
-        let subtopicIds: number[] = [];
+        const subtopicIds: number[] = [];
         this.scheduledSubtopics.forEach(element => {
           subtopicIds.push(element.subtopicId);
         });
@@ -100,9 +100,11 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
         this.subtopicService.getSubtopicByIDs(subtopicIds).subscribe(subtopics => {
           this.subtopics = subtopics;
           for (let i = 0; i < this.scheduledSubtopics.length; i++) {
-            let topicStartDate = new Date(this.selectedBatch.startDate);
-            topicStartDate.setDate(topicStartDate.getDate() + (this.scheduledSubtopics[i].date.week - 1) * 7 + this.scheduledSubtopics[i].date.day - 1);
-            topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime / 1000 / 3600) % 24) - 4); //- 4 to adjust for EST from GMT
+            const topicStartDate = new Date(this.selectedBatch.startDate);
+            topicStartDate.setDate(topicStartDate.getDate()
+              + (this.scheduledSubtopics[i].date.week - 1) * 7
+              + this.scheduledSubtopics[i].date.day - 1);
+            topicStartDate.setHours(((this.scheduledSubtopics[i].date.startTime / 1000 / 3600) % 24) - 4); // - 4 to adjust for EST from GMT
             subtopics[i].startTime = topicStartDate;
           }
           sessionStorage.setItem('subtopics', JSON.stringify(this.subtopics));
@@ -135,10 +137,10 @@ export class BatchProgressBarComponent implements OnInit, OnChanges {
             this.subPercentCompleted = 0;
             this.subTopicTotal = this.subtopics.length;
             for (let i = 0; i < this.subtopics.length; i++) {
-              if (this.subtopics[i].status == 'Planned' || this.subtopics[i].status == 'Completed') {
+              if (this.subtopics[i].status === 'Planned' || this.subtopics[i].status === 'Completed') {
                 this.subTopicCompleted += 1;
               }
-              if (this.subtopics[i].status == 'Missed') {
+              if (this.subtopics[i].status === 'Missed') {
                 const subTopicName = this.subtopics[i].subtopicName;
                 const topicName = this.subtopics[i].parentTopic.topicName;
                 this.subTopicMissed += 1;

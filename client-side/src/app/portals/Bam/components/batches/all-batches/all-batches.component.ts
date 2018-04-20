@@ -15,8 +15,8 @@ export class AllBatchesComponent implements OnInit {
   filterText: string;
 
   constructor(
-    private batchService: BatchService, 
-    private usersService: UsersService, 
+    private batchService: BatchService,
+    private usersService: UsersService,
     private currService: CurriculumService) { }
 
   ngOnInit() {
@@ -32,10 +32,10 @@ export class AllBatchesComponent implements OnInit {
 
       this.batches = batches;
 
-      for(let i=0; i<this.batches.length; i++) {
-        
-        let userID = this.batches[i].trainerID;
-        let currID = this.batches[i].curriculumID;
+      for (let i = 0; i < this.batches.length; i++) {
+
+        const userID = this.batches[i].trainerID;
+        const currID = this.batches[i].curriculumID;
 
         this.usersService.getUserByID(userID).subscribe(trainer => {
           this.batches[i].trainer = trainer;
@@ -43,7 +43,7 @@ export class AllBatchesComponent implements OnInit {
 
         this.currService.getCurriculumById(currID).subscribe(curriculum => {
           this.batches[i].curriculum = curriculum[0];
-        })
+        });
 
       }
 

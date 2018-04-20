@@ -15,10 +15,11 @@ export class SessionService {
   public selectedBatchSubject = new Subject<Batch>();
 
   constructor(private userService: UsersService, private batchService: BatchService) {
-    
+
     this.batch = batchService.getBatchById(50);
 
-    this.bamUser = new BamUser(50, 'Ryan', null, 'Lessley', 'rl@revature.com', '1234', 2, null, '1234567890', '8675309', 'rl_skype', null, 9);
+    this.bamUser = new BamUser(50, 'Ryan', null, 'Lessley', 'rl@revature.com',
+      '1234', 2, null, '1234567890', '8675309', 'rl_skype', null, 9);
 
     sessionStorage.setItem('bamUser', JSON.stringify(this.bamUser));
   }
